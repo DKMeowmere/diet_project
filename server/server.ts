@@ -3,6 +3,8 @@ import { config as configDotEnv } from "dotenv"
 import mongoose from "mongoose"
 import morgan from "morgan"
 import cors, { CorsOptions } from "cors"
+import dietRouter from "./routes/diet.js"
+import productRouter from "./routes/product.js"
 
 configDotEnv()
 
@@ -35,6 +37,9 @@ start()
 
 app.use(cors(corsOptions))
 app.use(morgan("dev"))
+
+app.use("/api/diet", dietRouter)
+app.use("/api/product", productRouter)
 
 app.use((req, res) => {
 	res.status(404).json({ error: "not found" })
