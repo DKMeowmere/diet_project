@@ -5,6 +5,8 @@ import morgan from "morgan"
 import cors, { CorsOptions } from "cors"
 import dietRouter from "./routes/diet.js"
 import productRouter from "./routes/product.js"
+import authRouter from "./routes/auth.js"
+import { requireAuth } from "./middleware/requireAuth.js"
 
 configDotEnv()
 
@@ -37,7 +39,10 @@ start()
 
 app.use(cors(corsOptions))
 app.use(morgan("dev"))
+app.use(express.json())
 
+app.use("/api/auth", authRouter)
+app.use(requireAuth)
 app.use("/api/diet", dietRouter)
 app.use("/api/product", productRouter)
 

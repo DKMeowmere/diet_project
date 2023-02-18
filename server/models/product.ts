@@ -1,5 +1,5 @@
 import mongoose from "mongoose"
-import { Product } from "../types/product"
+import { Product } from "../types/product.js"
 
 const productSchema = new mongoose.Schema<Product>(
 	{
@@ -29,3 +29,4 @@ const productSchema = new mongoose.Schema<Product>(
 )
 
 const Product = mongoose.model<Product>("Product", productSchema)
+export default Product

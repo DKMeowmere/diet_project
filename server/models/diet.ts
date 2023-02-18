@@ -62,3 +62,4 @@ const dietSchema = new mongoose.Schema<Diet>(
 )
 
 const Diet = mongoose.model<Diet>("Diet", dietSchema)
+export default Diet

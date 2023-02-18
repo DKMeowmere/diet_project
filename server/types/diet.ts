@@ -1,4 +1,4 @@
-import { Meals } from "./meal"
+import { Meals } from "./meal.js"
 
 export type Diet = {
 	name: string
