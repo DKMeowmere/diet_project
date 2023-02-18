@@ -18,7 +18,7 @@ const theme:Theme = {
 		},
 	},
 	colors: {
-		whiteText: "#fff",
+		whiteText: "#FFF",
 		blackText: "#000",
 		errorMain: "#da5252",
 		errorSecondary: "#fdeded",

@@ -18,4 +18,5 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 			</ThemeProvider>
 		</ReduxProvider>
 	</React.StrictMode>
+	
 )
