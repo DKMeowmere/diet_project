@@ -1,34 +1,32 @@
 import { NavbarContainer } from './styles'
+import { HiFaceSmile } from 'react-icons/hi2'
+import { FaCarrot } from 'react-icons/fa'
+import { BiDish } from 'react-icons/bi'
+import { AiFillHome } from 'react-icons/ai'
 
 function Navbar() {
 	return (
 		<NavbarContainer>
-			<header>
-				<div className='container'>
-					<div className='logo'>
-						<h1>Logo</h1>
+			<nav>
+				<div className='options-box'>
+					<div className='option'>
+						<AiFillHome/>
+						<span className="option-text">Strona Główna</span>
 					</div>
-					<nav>
-						<div className='options-box'>
-							<div className='options1'>
-								<a href='#'>Home</a>
-							</div>
-							<div className='options'>
-								<a href='#'>About</a>
-							</div>
-							<div className='options'>
-								<a href='#'>Services</a>
-							</div>
-							<div className='options'>
-								<a href='#'>Contact</a>
-							</div>
-							<div className='options'>
-								<a href='#'>Feedback</a>
-							</div>
-						</div>
-					</nav>
+					<div className='option'>
+						<HiFaceSmile/>
+						<span className="option-text">Klienci</span>
+					</div>
+					<div className='option'>
+						<FaCarrot/>
+						<span className="option-text">Produkty</span>
+					</div>
+					<div className='option'>
+						<BiDish/>
+						<span className="option-text">Diety</span>
+					</div>
 				</div>
-			</header>
+			</nav>
 		</NavbarContainer>
 	)
 }

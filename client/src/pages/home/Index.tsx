@@ -1,7 +1,7 @@
 import backgroundImage from '../../../public/img/homeBackground.jpg'
 import { HomeContainer } from './styles'
 import { Block } from './styles'
-import { CiFaceSmile } from 'react-icons/ci'
+import { HiFaceSmile } from 'react-icons/hi2'
 import { FaCarrot } from 'react-icons/fa'
 import { BiDish } from 'react-icons/bi'
 
@@ -11,7 +11,7 @@ function Home() {
 			<div className='block-container'>
 				<Block>
 					<div className='block-icon'>
-						<CiFaceSmile></CiFaceSmile>
+						<HiFaceSmile/>
 					</div>
 					<span className='block-title'>Klienci</span>
 				</Block>
@@ -22,10 +22,10 @@ function Home() {
 					<span className='block-title'>Produkty</span>
 				</Block>
 				<Block>
-				<div className='block-icon'>
+					<div className='block-icon'>
 						<BiDish></BiDish>
 					</div>
-					<span className='block-title'>Potrawy</span>
+					<span className='block-title'>Diety</span>
 				</Block>
 			</div>
 		</HomeContainer>

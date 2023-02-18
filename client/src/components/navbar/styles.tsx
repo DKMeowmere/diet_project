@@ -3,46 +3,43 @@ import styled from "styled-components";
 type NavbarProps={}
 
 export const NavbarContainer=styled.header`
-background-color: #252525;
+background-color:${({theme})=>theme.colors.whiteText};
+height: 80px;
 width: 100%;
 display: flex;
 
-color:${({theme})=>theme.colors.whiteText};
-.logo{
-    width: 25vw;
-    padding: 20px;
-    font-size: 2.5rem;
-    text-align: center;
-    color:mediumslateblue;
-    
-}
-.container{
-    display: flex;
-    align-items: center;
+color:${({theme})=>theme.colors.blackText};
+svg{
+    color:${({theme})=>theme.colors.main};
+    font-size: 2.3rem;
     
 }
 nav{
-   width :75vw;
-}
-.options-box{
-   
+    height: 100%;
+    width:100%;
     display: flex;
-    justify-content: center;
-    gap: 100px;
-    font-size: 1.5rem;
     align-items: center;
 }
-.options1{
-    background-color: #606060;
-}
-.options, .options1{
-    border: 2px #FFF solid;
-    padding: 20px;
-}
-.options:hover, .options1:hover{
-    opacity: 0.9;
-    background-color: white;
-    color: black;
-}
 
+.options-box{
+    display: flex;
+    justify-content: space-evenly;
+    
+    height: 100%;
+    width: 100%;
+}
+.option{
+    display: flex;
+    width: 150px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    
+}
+.option-text{
+    color:${({theme})=>theme.colors.main};
+    margin-top: 5px;
+    font-size: 1.2rem;
+}
 `

@@ -1,7 +1,7 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 export const Container = styled.main`
-    width: 100%;
-    background-color: #454545;
-    min-height: 100vh;
-    `
+	width: 100%;
+	background-color: #fff;
+	min-height: 100vh;
+`

@@ -18,7 +18,7 @@ export const HomeContainer = styled.article<{ imageUrl: string }>`
 		gap: 40px;
 	}
 	.block-icon {
-		color: orange;
+		color: ${({theme})=>theme.colors.main};
 	}
 
 	.block-title {
@@ -43,9 +43,9 @@ export const Block = styled.div`
 	padding: 20px;
 	&:hover{
 		background-color: #ffa500;
-		color: #fff;
+		color: ${({theme})=>theme.colors.whiteText};
 		cursor: pointer;
-		svg{fill: #fff;}
+		svg{fill: ${({theme})=>theme.colors.whiteText};}
 	}
 	svg{
 		font-size: 3.5rem;
