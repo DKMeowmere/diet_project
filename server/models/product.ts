@@ -8,10 +8,6 @@ const productSchema = new mongoose.Schema<Product>(
 			required: true,
 			trim: true,
 		},
-		mealTypes: {
-			type: [String],
-			default: [],
-		},
 		calories: {
 			type: Number,
 			required: true,
@@ -21,6 +17,10 @@ const productSchema = new mongoose.Schema<Product>(
 			required: true,
 		},
 		fats: {
+			type: Number,
+			required: true,
+		},
+		carbohydrates: {
 			type: Number,
 			required: true,
 		},

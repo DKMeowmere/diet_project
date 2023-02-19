@@ -1,29 +1,11 @@
 import mongoose from "mongoose"
-import { Diet } from "../types/diet"
+import { Diet } from "../types/diet.js"
 
-const meal = [
+const mealProductSchema = new mongoose.Schema(
 	{
 		product: {
-			name: {
-				type: String,
-				required: true,
-			},
-			mealTypes: {
-				type: [String],
-				default: [],
-			},
-			calories: {
-				type: Number,
-				required: true,
-			},
-			proteins: {
-				type: Number,
-				required: true,
-			},
-			fats: {
-				type: Number,
-				required: true,
-			},
+			ref: "Product",
+			type: mongoose.Schema.Types.ObjectId,
 		},
 		count: {
 			type: Number,
@@ -34,7 +16,37 @@ const meal = [
 			required: true,
 		},
 	},
-]
+	{
+		_id: false,
+	}
+)
+
+const mealsSchema = new mongoose.Schema(
+	{
+		name: {
+			type: String,
+			required: true,
+		},
+		description: {
+			type: String,
+		},
+		products: [mealProductSchema],
+	},
+	{
+		_id: false,
+	}
+)
+
+const daysSchema = new mongoose.Schema(
+	{
+		day: {
+			type: String,
+			required: true,
+		},
+		meals: [mealsSchema],
+	},
+	{ _id: false }
+)
 
 const dietSchema = new mongoose.Schema<Diet>(
 	{
@@ -43,20 +55,11 @@ const dietSchema = new mongoose.Schema<Diet>(
 			required: true,
 			trim: true,
 		},
-		days: [
-			{
-				day: {
-					type: String,
-					required: true,
-				},
-				meals: {
-					breakfast: meal,
-					lunch: meal,
-					dinner: meal,
-					supper: meal,
-				},
-			},
-		],
+		description: {
+			type: String,
+			trim: true,
+		},
+		days: [daysSchema],
 	},
 	{ timestamps: true }
 )

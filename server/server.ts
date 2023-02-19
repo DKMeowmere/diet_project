@@ -5,6 +5,7 @@ import morgan from "morgan"
 import cors, { CorsOptions } from "cors"
 import dietRouter from "./routes/diet.js"
 import productRouter from "./routes/product.js"
+import patientRouter from "./routes/patient.js"
 import authRouter from "./routes/auth.js"
 import { requireAuth } from "./middleware/requireAuth.js"
 
@@ -45,6 +46,7 @@ app.use("/api/auth", authRouter)
 app.use(requireAuth)
 app.use("/api/diet", dietRouter)
 app.use("/api/product", productRouter)
+app.use("/api/patient", patientRouter)
 
 app.use((req, res) => {
 	res.status(404).json({ error: "not found" })
