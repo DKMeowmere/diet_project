@@ -1,14 +1,11 @@
 import styled from "styled-components"
-import { InputContainer } from "../input/styles"
 
 type SearchInputContainerProps = {
 	width: string
 	height: string
 }
 
-export const SearchInputContainer = styled(
-	InputContainer
-)<SearchInputContainerProps>`
+export const SearchInputContainer = styled.div<SearchInputContainerProps>`
 	width: ${({ width }) => width};
 	max-height: ${({ height }) => height};
 	overflow: visible;

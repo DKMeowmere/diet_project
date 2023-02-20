@@ -8,13 +8,15 @@ type Props = {
 	height: string
 	initialQuery: string
 	autocompleteData: string[]
+	className?: string
 }
 
-export default function SeachInput({
+export default function SearchInput({
 	width,
 	height,
 	initialQuery,
 	autocompleteData,
+	className,
 }: Props) {
 	const [query, setQuery] = useState(initialQuery)
 	const [isAutoCompleteVisible, setIsAutoCompleteVisible] = useState(false)
@@ -29,9 +31,13 @@ export default function SeachInput({
 	}, [query])
 
 	return (
-		<SearchInputContainer width={width} height={height}>
+		<SearchInputContainer
+			width={width}
+			height={height}
+			className={className || ""}
+		>
 			<Input
-				width={width}
+				width="100%"
 				height={height}
 				type="search"
 				value={query}
