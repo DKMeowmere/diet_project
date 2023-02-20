@@ -11,6 +11,8 @@ import CreateProduct from './pages/productCreate/Index'
 import CreatePatient from './pages/patientCreate/Index'
 import CreateDiet from './pages/dietCreate'
 import Products from './pages/products/Index'
+import Login from './pages/login/Index'
+
 
 function App() {
 	return (
@@ -22,6 +24,7 @@ function App() {
 					<Route path='/diet/create' element={<CreateDiet />} />
 					<Route path='/product/create' element={<CreateProduct />} />
 					<Route path='/product' element={<Products />} />
+					<Route path='/login' element={<Login />} />
 					<Route path='/patient/create' element={<CreatePatient />} />
 					<Route path='/patient/:id' element={<PatientDetails />} />
 					<Route path='/product/:id' element={<ProductDetails />} />

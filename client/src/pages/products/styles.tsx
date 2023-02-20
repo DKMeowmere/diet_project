@@ -1,6 +1,13 @@
 import styled from 'styled-components'
+export const ProductsArticle=styled.article`
+	
 
-export const ProductsContainer = styled.article`
+	.search-input{
+		margin: auto;
+		margin-top: 20px;
+	}
+` 
+export const ProductsContainer = styled.div`
 	width: 90%;
 	
 	display: flex;
@@ -21,6 +28,7 @@ export const ProductsContainer = styled.article`
 		display: flex;
 		justify-content: space-between;
 	}
+	
 	svg{
 		
 	}
