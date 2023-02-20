@@ -1,9 +1,9 @@
-import React from 'react'
-
-
+import SeachInput from "../../components/searchInput/Index"
 
 export default function NotFoundPage() {
-  return (
-    <p>Nie znaleziono</p>
-  )
+	return (
+		<>
+			<h1>404 nie znaleziono</h1>
+		</>
+	)
 }
