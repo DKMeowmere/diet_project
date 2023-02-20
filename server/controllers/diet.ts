@@ -122,7 +122,7 @@ export async function generateDietPdf(req: Request, res: Response) {
 			`attachment; filename=${diet.title}.pdf`
 		)
 
-		const dietPdf = pdf.create(html, {}).toStream((err, pdfStream) => {
+		pdf.create(html, {}).toStream((err, pdfStream) => {
 			if (err) {
 				res.status(500).json({
 					error: "Błąd podczas generowanie pdf",
@@ -137,7 +137,6 @@ export async function generateDietPdf(req: Request, res: Response) {
 			pdfStream.pipe(res)
 		})
 
-		res.send(dietPdf)
 	} catch (err: any) {
 		res.status(400).json({ error: err.message })
 	}
