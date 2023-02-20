@@ -1,17 +1,221 @@
-import { ProductsContainer } from './styles'
+import { Product, ProductsContainer, ProductsArticle } from './styles'
 import Navbar from '../../components/navbar/Index'
-import Input from '../../components/input/Index'
-import { Button } from '../../components/button/Button'
-import theme from '../../app/theme'
-import { Product } from './styles'
+import { AiFillFire } from 'react-icons/ai'
+import { GiWeight, GiCoalWagon, GiMilkCarton } from 'react-icons/gi'
+import SearchInput from '../../components/searchInput/Index'
+
+
+import { ProductContainer } from './styles'
 
 function Products() {
 	return (
-		<ProductsContainer>
-			<Product>
-                <div className="Name">dsa</div>
-            </Product>
-		</ProductsContainer>
+		<ProductsArticle>
+			<SearchInput className='search-input' width='50%' height='60px' initialQuery='' autocompleteData={[]} />
+			<ProductsContainer>
+				
+
+				<ProductContainer>
+					<Product>
+						<div className='product-title'>MarchewkaMarchewkaMarchewka</div>
+						<div className='product-value'>
+							<div className='unit-container'>
+								<AiFillFire className='fire' /> 32cal
+							</div>{' '}
+							<div className='unit-container'>
+								<GiWeight className='coal' /> 100g{' '}
+							</div>
+							<div className='unit-container'>
+								<GiMilkCarton className='milk' /> 32cal
+							</div>{' '}
+							<div className='unit-container'>
+								<GiCoalWagon /> 100g
+							</div>
+						</div>
+					</Product>
+				</ProductContainer>
+
+				<ProductContainer>
+					<Product>
+						<div className='product-title'>MarchewkaMarchewkaMarchewka</div>
+						<div className='product-value'>
+							<div className='unit-container'>
+								<AiFillFire className='fire' /> 32cal
+							</div>{' '}
+							<div className='unit-container'>
+								<GiWeight className='coal' /> 100g{' '}
+							</div>
+							<div className='unit-container'>
+								<GiMilkCarton className='milk' /> 32cal
+							</div>{' '}
+							<div className='unit-container'>
+								<GiCoalWagon /> 100g
+							</div>
+						</div>
+					</Product>
+				</ProductContainer>
+
+				<ProductContainer>
+					<Product>
+						<div className='product-title'>MarchewkaMarchewkaMarchewka</div>
+						<div className='product-value'>
+							<div className='unit-container'>
+								<AiFillFire className='fire' /> 32cal
+							</div>{' '}
+							<div className='unit-container'>
+								<GiWeight className='coal' /> 100g{' '}
+							</div>
+							<div className='unit-container'>
+								<GiMilkCarton className='milk' /> 32cal
+							</div>{' '}
+							<div className='unit-container'>
+								<GiCoalWagon /> 100g
+							</div>
+						</div>
+					</Product>
+				</ProductContainer>
+
+				<ProductContainer>
+					<Product>
+						<div className='product-title'>MarchewkaMarchewkaMarchewka</div>
+						<div className='product-value'>
+							<div className='unit-container'>
+								<AiFillFire className='fire' /> 32cal
+							</div>{' '}
+							<div className='unit-container'>
+								<GiWeight className='coal' /> 100g{' '}
+							</div>
+							<div className='unit-container'>
+								<GiMilkCarton className='milk' /> 32cal
+							</div>{' '}
+							<div className='unit-container'>
+								<GiCoalWagon /> 100g
+							</div>
+						</div>
+					</Product>
+				</ProductContainer>
+
+				<ProductContainer>
+					<Product>
+						<div className='product-title'>MarchewkaMarchewkaMarchewka</div>
+						<div className='product-value'>
+							<div className='unit-container'>
+								<AiFillFire className='fire' /> 32cal
+							</div>{' '}
+							<div className='unit-container'>
+								<GiWeight className='coal' /> 100g{' '}
+							</div>
+							<div className='unit-container'>
+								<GiMilkCarton className='milk' /> 32cal
+							</div>{' '}
+							<div className='unit-container'>
+								<GiCoalWagon /> 100g
+							</div>
+						</div>
+					</Product>
+				</ProductContainer>
+
+				<ProductContainer>
+					<Product>
+						<div className='product-title'>MarchewkaMarchewkaMarchewka</div>
+						<div className='product-value'>
+							<div className='unit-container'>
+								<AiFillFire className='fire' /> 32cal
+							</div>{' '}
+							<div className='unit-container'>
+								<GiWeight className='coal' /> 100g{' '}
+							</div>
+							<div className='unit-container'>
+								<GiMilkCarton className='milk' /> 32cal
+							</div>{' '}
+							<div className='unit-container'>
+								<GiCoalWagon /> 100g
+							</div>
+						</div>
+					</Product>
+				</ProductContainer>
+
+				<ProductContainer>
+					<Product>
+						<div className='product-title'>MarchewkaMarchewkaMarchewka</div>
+						<div className='product-value'>
+							<div className='unit-container'>
+								<AiFillFire className='fire' /> 32cal
+							</div>{' '}
+							<div className='unit-container'>
+								<GiWeight className='coal' /> 100g{' '}
+							</div>
+							<div className='unit-container'>
+								<GiMilkCarton className='milk' /> 32cal
+							</div>{' '}
+							<div className='unit-container'>
+								<GiCoalWagon /> 100g
+							</div>
+						</div>
+					</Product>
+				</ProductContainer>
+
+				<ProductContainer>
+					<Product>
+						<div className='product-title'>MarchewkaMarchewkaMarchewka</div>
+						<div className='product-value'>
+							<div className='unit-container'>
+								<AiFillFire className='fire' /> 32cal
+							</div>{' '}
+							<div className='unit-container'>
+								<GiWeight className='coal' /> 100g{' '}
+							</div>
+							<div className='unit-container'>
+								<GiMilkCarton className='milk' /> 32cal
+							</div>{' '}
+							<div className='unit-container'>
+								<GiCoalWagon /> 100g
+							</div>
+						</div>
+					</Product>
+				</ProductContainer>
+
+				<ProductContainer>
+					<Product>
+						<div className='product-title'>MarchewkaMarchewkaMarchewka</div>
+						<div className='product-value'>
+							<div className='unit-container'>
+								<AiFillFire className='fire' /> 32cal
+							</div>{' '}
+							<div className='unit-container'>
+								<GiWeight className='coal' /> 100g{' '}
+							</div>
+							<div className='unit-container'>
+								<GiMilkCarton className='milk' /> 32cal
+							</div>{' '}
+							<div className='unit-container'>
+								<GiCoalWagon /> 100g
+							</div>
+						</div>
+					</Product>
+				</ProductContainer>
+
+				<ProductContainer>
+					<Product>
+						<div className='product-title'>MarchewkaMarchewkaMarchewka</div>
+						<div className='product-value'>
+							<div className='unit-container'>
+								<AiFillFire className='fire' /> 32cal
+							</div>{' '}
+							<div className='unit-container'>
+								<GiWeight className='coal' /> 100g{' '}
+							</div>
+							<div className='unit-container'>
+								<GiMilkCarton className='milk' /> 32cal
+							</div>{' '}
+							<div className='unit-container'>
+								<GiCoalWagon /> 100g
+							</div>
+						</div>
+					</Product>
+				</ProductContainer>
+				<div className='margin'></div>
+			</ProductsContainer>
+		</ProductsArticle>
 	)
 }
 export default Products
