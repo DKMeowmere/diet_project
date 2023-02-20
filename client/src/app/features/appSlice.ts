@@ -8,6 +8,7 @@ const initialState: AppState = {
 	appUrl: import.meta.env.VITE_CLIENT_URL || "http://localhost:5173",
 	alerts: [],
 	alertLifeTime: 5000,
+	isAppLoading: false,
 }
 
 const appSlice = createSlice({
@@ -20,8 +21,15 @@ const appSlice = createSlice({
 		deleteAlert: state => {
 			state.alerts.shift()
 		},
+		startLoading: state => {
+			state.isAppLoading = true
+		},
+		endLoading: state => {
+			state.isAppLoading = false
+		},
 	},
 })
 
 export default appSlice.reducer
-export const { addAlert, deleteAlert } = appSlice.actions
+export const { addAlert, deleteAlert, startLoading, endLoading } =
+	appSlice.actions
