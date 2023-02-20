@@ -7,6 +7,7 @@ type Props = {
 	value: string
 	onChange: React.ChangeEventHandler<HTMLInputElement>
 	placeholder?: string
+	type?: string
 }
 
 export default function Input({
@@ -15,13 +16,12 @@ export default function Input({
 	value,
 	onChange,
 	placeholder,
-	
+	type,
 }: Props) {
 	return (
 		<InputContainer width={width} height={height}>
 			<input
-				
-				type="text"
+				type={type || "text"}
 				placeholder={placeholder}
 				value={value}
 				onChange={onChange}
