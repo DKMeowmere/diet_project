@@ -15,10 +15,12 @@ export default function Input({
 	value,
 	onChange,
 	placeholder,
+	
 }: Props) {
 	return (
 		<InputContainer width={width} height={height}>
 			<input
+				
 				type="text"
 				placeholder={placeholder}
 				value={value}

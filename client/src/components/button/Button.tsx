@@ -1,9 +1,10 @@
 import styled from "styled-components"
 
-export const Button = styled.button<{ width: string; height: string }>`
+export const Button = styled.button<{ width: string; height: string, bgColor:string }>`
 	width: ${({ width }) => width};
 	height: ${({ height }) => height};
-	background-color: ${({ theme }) => theme.colors.mainBlue};
+
+	background-color: ${({ bgColor }) => bgColor};
 	color: ${({ theme }) => theme.colors.whiteText};
 	padding: 5px 10px;
 	cursor: pointer;

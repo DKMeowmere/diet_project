@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ProductDetailsContainer = styled.article`
+export const PatientDetailsContainer = styled.article`
 	width: 100%;
 	display: flex;
 	justify-content: center;
@@ -9,9 +9,6 @@ export const ProductDetailsContainer = styled.article`
 	}
 	.diet-first-title {
 		font-size: 1.7rem;
-	}
-	.diet-second-title {
-		font-size: 1.4rem;
 	}
 `
 export const Form = styled.form`

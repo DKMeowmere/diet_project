@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ProductDetailsContainer = styled.article`
+export const ProductCreateContainer = styled.article`
 	width: 100%;
 	display: flex;
 	justify-content: center;

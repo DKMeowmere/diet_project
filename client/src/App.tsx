@@ -5,17 +5,26 @@ import NotFoundPage from './pages/404/Index'
 import Navbar from './components/navbar/Index'
 import { Container } from './components/container/Container'
 import Home from './pages/home/Index'
-import ProductDetails from './pages/productDetails'
+import ProductDetails from './pages/productDetails/Index'
+import PatientDetails from './pages/patientDetails/Index'
+import CreateProduct from './pages/productCreate/Index'
+import CreatePatient from './pages/patientCreate/Index'
+import CreateDiet from './pages/dietCreate'
+import Products from './pages/products/Index'
 
 function App() {
 	return (
 		<BrowserRouter>
 			<Container>
-				<Navbar/>
+				<Navbar />
 				<Routes>
-					
-					<Route path='/' element={<Home/>} />
-					<Route path='/product/:id' element={<ProductDetails/>} />
+					<Route path='/' element={<Home />} />
+					<Route path='/diet/create' element={<CreateDiet />} />
+					<Route path='/product/create' element={<CreateProduct />} />
+					<Route path='/product' element={<Products />} />
+					<Route path='/patient/create' element={<CreatePatient />} />
+					<Route path='/patient/:id' element={<PatientDetails />} />
+					<Route path='/product/:id' element={<ProductDetails />} />
 					<Route path='*' element={<NotFoundPage />} />
 				</Routes>
 			</Container>
