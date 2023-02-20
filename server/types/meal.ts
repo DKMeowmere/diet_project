@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 
 export type MealProduct = {
-	product: mongoose.Schema.Types.ObjectId
+	product: mongoose.Schema.Types.ObjectId 
 	count: number
 	grams: number
 }

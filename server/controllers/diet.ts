@@ -1,6 +1,8 @@
 import { Request, Response } from "express"
 import mongoose from "mongoose"
 import Diet from "../models/diet.js"
+import generateDietHTML from "../utils/generateDietHTML.js"
+import pdf from "html-pdf"
 
 export async function getDiets(req: Request, res: Response) {
 	try {
@@ -16,9 +18,9 @@ export async function getDiets(req: Request, res: Response) {
 
 export async function createDiet(req: Request, res: Response) {
 	try {
-		const { name, description, days } = req.body
+		const { title, description, days } = req.body
 
-		if (!name || !description || !days) {
+		if (!title || !description || !days) {
 			throw new Error(
 				"Musisz podać wszystkie wartości potrzebne do stworzenia produktu"
 			)
@@ -91,6 +93,51 @@ export async function deleteDiet(req: Request, res: Response) {
 		}
 
 		res.status(204).json(diet)
+	} catch (err: any) {
+		res.status(400).json({ error: err.message })
+	}
+}
+
+export async function generateDietPdf(req: Request, res: Response) {
+	try {
+		const { id } = req.params
+
+		if (!mongoose.isValidObjectId(id)) {
+			throw new Error("Nie poprawne id diety")
+		}
+
+		const diet = await Diet.findById(id).populate(
+			"days.meals.products.product"
+		)
+
+		if (!diet) {
+			throw new Error("Podałeś złe id diety")
+		}
+
+		const html = generateDietHTML(diet)
+
+		res.setHeader("Content-Type", "application/pdf")
+		res.setHeader(
+			"Content-Disposition",
+			`attachment; filename=${diet.title}.pdf`
+		)
+
+		const dietPdf = pdf.create(html, {}).toStream((err, pdfStream) => {
+			if (err) {
+				res.status(500).json({
+					error: "Błąd podczas generowanie pdf",
+				})
+				return
+			}
+			res.statusCode = 200
+			pdfStream.on("end", () => {
+				return res.end()
+			})
+
+			pdfStream.pipe(res)
+		})
+
+		res.send(dietPdf)
 	} catch (err: any) {
 		res.status(400).json({ error: err.message })
 	}

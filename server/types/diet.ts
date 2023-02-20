@@ -1,7 +1,7 @@
 import { Meals } from "./meal.js"
 
 export type Diet = {
-	name: string
+	title: string
 	description: string
 	days: {
 		day: string

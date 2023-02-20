@@ -50,7 +50,7 @@ const daysSchema = new mongoose.Schema(
 
 const dietSchema = new mongoose.Schema<Diet>(
 	{
-		name: {
+		title: {
 			type: String,
 			required: true,
 			trim: true,
