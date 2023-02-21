@@ -1,4 +1,4 @@
-import backgroundImage from "../../../public/img/homeBackground.jpg"
+import backgroundImage from "../../assets/homeBackground.jpg"
 import { HomeContainer } from "./styles"
 import { Block } from "./styles"
 import { HiFaceSmile } from "react-icons/hi2"

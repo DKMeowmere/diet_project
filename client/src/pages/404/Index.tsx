@@ -7,7 +7,7 @@ export default function NotFoundPage() {
 			<SearchInput
 				width="50%"
 				height="60px"
-				initialQuery=""
+				query=""
 				autocompleteData={[]}
 			/>
 		</>
