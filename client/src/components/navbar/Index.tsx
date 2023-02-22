@@ -3,28 +3,35 @@ import { HiFaceSmile } from 'react-icons/hi2'
 import { FaCarrot } from 'react-icons/fa'
 import { BiDish } from 'react-icons/bi'
 import { AiFillHome } from 'react-icons/ai'
+import { Link, useLocation } from 'react-router-dom'
 
 function Navbar() {
+	const location = useLocation()
+
+	if (location.pathname === "/") {
+		return <></>
+	}
+
 	return (
 		<NavbarContainer>
 			<nav>
 				<div className='options-box'>
-					<div className='option'>
+					<Link to="/" className='option'>
 						<AiFillHome/>
 						<span className="option-text">Strona Główna</span>
-					</div>
-					<div className='option'>
+					</Link>
+					<Link to="/patients" className='option'>
 						<HiFaceSmile/>
-						<span className="option-text">Klienci</span>
-					</div>
-					<div className='option'>
+						<span className="option-text">Pacjenci</span>
+					</Link>
+					<Link to="/product" className='option'>
 						<FaCarrot/>
 						<span className="option-text">Produkty</span>
-					</div>
-					<div className='option'>
+					</Link>
+					<Link to="/diets" className='option'>
 						<BiDish/>
 						<span className="option-text">Diety</span>
-					</div>
+					</Link>
 				</div>
 			</nav>
 		</NavbarContainer>

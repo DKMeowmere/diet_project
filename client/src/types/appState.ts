@@ -6,4 +6,5 @@ export type AppState = {
 	appUrl: string
 	alerts: Alerts
 	alertLifeTime: number
+	isAppLoading: boolean
 }

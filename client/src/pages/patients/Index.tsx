@@ -4,10 +4,10 @@ import { GrMail } from 'react-icons/gr'
 import SearchInput from '../../components/searchInput/Index'
 import { FcPhoneAndroid } from 'react-icons/fc'
 
-function Patients() {
+function PatientsList() {
 	return (
 		<PatientsArticle>
-			<SearchInput className='search-input' width='50%' height='60px' initialQuery='' autocompleteData={[]} />
+			<SearchInput className='search-input' width='50%' height='60px'  query='sda' setQuery={()=>""} autocompleteData={[]} />
 			<PatientsContainer>
 				<PatientContainer>
 					<Patient>
@@ -66,7 +66,7 @@ function Patients() {
 						</div>
 					</Patient>
 				</PatientContainer>
-                
+
 				<PatientContainer>
 					<Patient>
 						<div className='patient-title'>Jakub Domański</div>
@@ -95,7 +95,7 @@ function Patients() {
 						</div>
 					</Patient>
 				</PatientContainer>
-                
+
 				<PatientContainer>
 					<Patient>
 						<div className='patient-title'>Jakub Domański</div>
@@ -130,4 +130,4 @@ function Patients() {
 		</PatientsArticle>
 	)
 }
-export default Patients
+export default PatientsList

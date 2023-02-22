@@ -37,7 +37,7 @@ async function start() {
 	}
 }
 start()
-
+console.log(corsOptions)
 app.use(cors(corsOptions))
 app.use(morgan("dev"))
 app.use(express.json())

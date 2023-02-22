@@ -6,7 +6,8 @@ import { GoSearch } from "react-icons/go"
 type Props = {
 	width: string
 	height: string
-	initialQuery: string
+	query: string
+	setQuery: (query: string) => void
 	autocompleteData: string[]
 	className?: string
 }
@@ -14,11 +15,11 @@ type Props = {
 export default function SearchInput({
 	width,
 	height,
-	initialQuery,
+	query,
+	setQuery,
 	autocompleteData,
 	className,
 }: Props) {
-	const [query, setQuery] = useState(initialQuery)
 	const [isAutoCompleteVisible, setIsAutoCompleteVisible] = useState(false)
 
 	const filteredData = useMemo(() => {
