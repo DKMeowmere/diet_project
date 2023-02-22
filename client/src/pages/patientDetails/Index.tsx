@@ -21,7 +21,9 @@ function PatientDetails() {
 				<Button width='90%' height='40px' type='submit' bgColor={theme.colors.main}>
 					Zatwierdź
 				</Button>
-				
+				<Button width='90%' height='40px' type='submit' bgColor={theme.colors.errorMain}>
+					Usuń
+				</Button>
 			</Form>
 		</PatientDetailsContainer>
 	)
