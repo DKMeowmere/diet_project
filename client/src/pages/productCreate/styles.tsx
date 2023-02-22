@@ -1,9 +1,10 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 export const ProductCreateContainer = styled.article`
 	width: 100%;
 	display: flex;
 	justify-content: center;
+	padding-bottom: 30px;
 	.diet-title {
 		font-size: 1.2rem;
 	}

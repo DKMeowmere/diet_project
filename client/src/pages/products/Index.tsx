@@ -1,7 +1,7 @@
-
 import { Product, ProductsContainer, ProductsArticle } from "./styles"
 import { AiFillFire } from "react-icons/ai"
-import { GiWeight, GiCoalWagon, GiMilkCarton } from "react-icons/gi"
+import { GiCoalWagon, GiMilkCarton } from "react-icons/gi"
+import { RiOilFill } from "react-icons/ri"
 import SearchInput from "../../components/searchInput/Index"
 import { ProductContainer } from "./styles"
 import { useState, useMemo, useEffect } from "react"
@@ -60,9 +60,12 @@ function ProductsList() {
 				setQuery={setQuery}
 				autocompleteData={productsTitles}
 			/>
-			<ProductsContainer >
+			<ProductsContainer>
 				{filteredProducts.map(product => (
-					<ProductContainer key={product._id} to={`/product/${product._id}`}>
+					<ProductContainer
+						key={product._id}
+						to={`/product/${product._id}`}
+					>
 						<Product>
 							<div className="product-title">{product.name}</div>
 							<div className="product-value">
@@ -79,7 +82,7 @@ function ProductsList() {
 									{product.proteins} B
 								</div>
 								<div className="unit-container">
-									<GiWeight /> {product.fats} T
+									<RiOilFill className="oil"/> {product.fats} T
 								</div>
 							</div>
 						</Product>
