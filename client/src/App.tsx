@@ -16,6 +16,7 @@ import Alerts from './components/alert/Index'
 import LoadingScreen from './components/loadingScreen/Index'
 import { useAppSelector } from './app/hooks'
 import { useCookies } from 'react-cookie'
+import DietDetails from './pages/dietDetails/Index'
 
 function App() {
 	const isLoading = useAppSelector(state => state.app.isAppLoading)
@@ -39,6 +40,7 @@ function App() {
 			<Routes>
 				<Route path='/' element={<Home />} />
 				<Route path='/diet/create' element={<CreateDiet />} />
+				<Route path='/diet/:id' element={<DietDetails />} />
 				<Route path='/product' element={<ProductsList />} />
 				<Route path='/product/create' element={<CreateProduct />} />
 				<Route path='/product/:id' element={<ProductDetails />} />
