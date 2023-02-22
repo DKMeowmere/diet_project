@@ -7,6 +7,7 @@ export async function getPatients(req: Request, res: Response) {
 		const patients = await Patient.find({})
 			.populate("diets")
 			.sort({ createdAt: -1 })
+		console.log(patients)
 		res.json(patients)
 	} catch (err: any) {
 		res.status(400).json(err.message)

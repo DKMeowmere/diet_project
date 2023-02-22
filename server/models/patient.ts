@@ -21,10 +21,15 @@ const patientSchema = new mongoose.Schema<Patient>(
 			type: String,
 			trim: true,
 		},
-		diets: [{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: "Diet",
-		}],
+		weight: {
+			type: Number,
+		},
+		diets: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: "Diet",
+			},
+		],
 	},
 	{ timestamps: true }
 )

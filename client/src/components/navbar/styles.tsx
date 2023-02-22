@@ -1,11 +1,20 @@
 import styled from "styled-components"
 
+export const NavbarPlaceholder = styled.div`
+	width: 100%;
+	height: 80px;
+`
+
 export const NavbarContainer = styled.header`
 	background-color: ${({ theme }) => theme.colors.whiteText};
 	height: 80px;
 	width: 100%;
 	display: flex;
 	color: ${({ theme }) => theme.colors.blackText};
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 100;
 	svg {
 		color: ${({ theme }) => theme.colors.main};
 		font-size: 1.5rem;

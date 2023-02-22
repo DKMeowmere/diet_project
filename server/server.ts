@@ -37,13 +37,13 @@ async function start() {
 	}
 }
 start()
-console.log(corsOptions)
+
 app.use(cors(corsOptions))
 app.use(morgan("dev"))
 app.use(express.json())
 
 app.use("/api/auth", authRouter)
-// app.use(requireAuth)
+app.use(requireAuth)
 app.use("/api/diet", dietRouter)
 app.use("/api/product", productRouter)
 app.use("/api/patient", patientRouter)

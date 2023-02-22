@@ -21,15 +21,15 @@ function App() {
 	const isLoading = useAppSelector(state => state.app.isAppLoading)
 	const [cookies] = useCookies()
 
-	// if (!cookies.token) {
-	// 	return (
-	// 		<>
-	// 			<Login />
-	// 			<Alerts />
-	// 			{isLoading && <LoadingScreen />}
-	// 		</>
-	// 	)
-	// }
+	if (!cookies.token) {
+		return (
+			<>
+				<Login />
+				<Alerts />
+				{isLoading && <LoadingScreen />}
+			</>
+		)
+	}
 
 	return (
 		<Container>
@@ -43,9 +43,9 @@ function App() {
 				<Route path='/product/create' element={<CreateProduct />} />
 				<Route path='/product/:id' element={<ProductDetails />} />
 				<Route path='/login' element={<Login />} />
+				<Route path='/patients' element={<PatientsList />} />
 				<Route path='/patient/create' element={<CreatePatient />} />
 				<Route path='/patient/:id' element={<PatientDetails />} />
-				<Route path='/patients' element={<PatientsList />} />
 				<Route path='*' element={<NotFoundPage />} />
 			</Routes>
 		</Container>

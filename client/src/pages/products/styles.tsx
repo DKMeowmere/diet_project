@@ -13,32 +13,6 @@ export const ProductsContainer = styled.div`
 	justify-content: center;
 	margin: auto;
 	gap: 30px;
-
-	.product-title {
-		height: 80%;
-		font-size: 1.7rem;
-	}
-
-	.product-value {
-		display: flex;
-		justify-content: space-between;
-		height: 20%;
-		font-size: 1.4rem;
-		font-weight: light;
-	}
-
-	.milk {
-		color: #1cbbbb;
-	}
-	.coal {
-		color: darkviolet;
-	}
-	.fire {
-		color: #ffa500;
-	}
-	&:last-child {
-		padding-bottom: 30px;
-	}
 `
 export const ProductContainer = styled(Link)`
 	width: calc(50% - 30px);
@@ -51,4 +25,38 @@ export const Product = styled.div`
 	border-radius: 10px;
 	padding: 20px;
 	box-shadow: 0px 9px 20px -7px rgba(66, 68, 90, 1);
+	.product-title {
+		height: 80%;
+		font-size: 1.7rem;
+	}
+	.product-value {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: auto;
+		font-size: 1.4rem;
+		font-weight: light;
+		.unit-container {
+			height: 100%;
+			display: flex;
+			align-items: center;
+			gap: 4px;
+			.milk {
+				color: #1cbbbb;
+			}
+			.coal {
+				color: #000;
+			}
+			.fire {
+				color: #ffa500;
+			}
+			.oil {
+				color: crimson;
+			}
+		}
+	}
+
+	&:last-child {
+		padding-bottom: 30px;
+	}
 `
