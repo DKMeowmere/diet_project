@@ -3,8 +3,6 @@ import Navbar from '../../components/navbar/Index'
 import { AiFillFire } from 'react-icons/ai'
 import { GiWeight, GiCoalWagon, GiMilkCarton } from 'react-icons/gi'
 import SearchInput from '../../components/searchInput/Index'
-
-
 import { ProductContainer } from './styles'
 
 function Products() {
