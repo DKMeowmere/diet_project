@@ -33,7 +33,7 @@ function PatientsList() {
 
 			if (!res.ok) {
 				setPatients([])
-				dispatch(addAlert({ body: data?.message, type: "ERROR" }))
+				dispatch(addAlert({ body: data?.error, type: "ERROR" }))
 				return
 			}
 
@@ -72,7 +72,10 @@ function PatientsList() {
 			<PatientsContainer>
 				<PatientContainer>
 					{filteredPatients.map(patient => (
-						<Patient key={patient._id}>
+						<Patient
+							key={patient._id}
+							to={`/patient/${patient._id}`}
+						>
 							<div className="patient-title">{`${patient.firstName} ${patient.lastName}`}</div>
 							<div className="patient-value">
 								<div className="email">
@@ -89,9 +92,15 @@ function PatientsList() {
 								</div>
 							</div>
 							<div className="patient-diets">
-								{patient.diets.length && <p>Diety Użytkownika:</p>}
+								{patient.diets.length > 0 && (
+									<p>Diety Użytkownika:</p>
+								)}
 								{patient.diets.map(diet => (
-									<Link to={`/diet/${diet._id}`} key={diet._id} className="diet-title">
+									<Link
+										to={`/diet/${diet._id}`}
+										key={diet._id}
+										className="diet-title"
+									>
 										{diet.title}
 									</Link>
 								))}

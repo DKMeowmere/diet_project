@@ -54,7 +54,7 @@ function ProductModal({
 
 			if (!res.ok) {
 				setProducts([])
-				dispatch(addAlert({ body: data?.message, type: "ERROR" }))
+				dispatch(addAlert({ body: data?.error, type: "ERROR" }))
 				return
 			}
 

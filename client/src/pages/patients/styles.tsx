@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 export const PatientsArticle = styled.article`
 	.search-input {
@@ -20,7 +21,7 @@ export const PatientsContainer = styled.div`
 export const PatientContainer = styled.div`
 	width: calc(50% - 30px);
 `
-export const Patient = styled.div`
+export const Patient = styled(Link)`
 	margin: auto;
 	gap: 20px;
 	box-shadow: 0px 0px 20px -10px rgba(66, 68, 90, 1);
@@ -32,6 +33,10 @@ export const Patient = styled.div`
 	border-radius: 10px;
 	padding: 20px;
 	box-shadow: 0px 9px 20px -7px rgba(66, 68, 90, 1);
+	&:hover {
+		opacity: 0.7;
+		box-shadow: 0px 9px 25px 5px rgba(66, 68, 90, 1);
+	}
 	.patient-title {
 		font-size: 1.7rem;
 	}
@@ -42,22 +47,23 @@ export const Patient = styled.div`
 		display: flex;
 		gap: 20px;
 		flex-direction: column;
-		.email {
+		.phone-number {
 			display: flex;
 			align-items: center;
 		}
-		.phone-number {
+		svg {
+			margin-right: 5px;
+			width: 20px;
+			height: 20px;
+		}
+		.email {
 			display: flex;
 			align-items: center;
 		}
 		.letter {
 			color: ${({ theme }) => theme.colors.main};
 		}
-		svg {
-			margin-right: 5px;
-		}
 		.patient-weight {
-			font-size: 1.2rem;
 		}
 	}
 

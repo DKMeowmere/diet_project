@@ -11,7 +11,7 @@ import Textarea from "../../components/textarea/Index"
 import { Day } from "../../types/day"
 import { Meal as MealType, MealProduct } from "../../types/meal"
 import { WhereToPassProduct } from "../../types/whereToPassProduct"
-import Product from "./product"
+import Product from "./Product"
 import { ProductsContainer } from "./styles"
 
 type Props = {

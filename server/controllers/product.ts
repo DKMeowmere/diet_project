@@ -85,7 +85,7 @@ export async function deleteProduct(req: Request, res: Response) {
 			throw new Error("Nie znaleziono produktu o podanym id")
 		}
 
-		res.status(204).json(product)
+		res.status(200).json(product)
 	} catch (err: any) {
 		res.status(400).json({ error: err.message })
 	}
