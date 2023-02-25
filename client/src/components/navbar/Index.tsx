@@ -30,7 +30,7 @@ function Navbar() {
 							<FaCarrot />
 							<span className="option-text">Produkty</span>
 						</Link>
-						<Link to="/diets" className="option">
+						<Link to="/diet" className="option">
 							<BiDish />
 							<span className="option-text">Diety</span>
 						</Link>

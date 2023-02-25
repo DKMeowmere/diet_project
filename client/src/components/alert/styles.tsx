@@ -36,6 +36,7 @@ function getAlertColor(type: AlertTypes) {
 
 export const AlertsContainer = styled.section`
 	position: fixed;
+	z-index: 10;
 	left: 20px;
 	bottom: 20px;
 	display: flex;

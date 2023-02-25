@@ -1,11 +1,10 @@
-import { Meals } from "./meal.js"
+import { Days } from "./day.js"
 
 export type Diet = {
-	_id: string
+	_id?: string
 	title: string
 	description: string
-	days: {
-		day: string
-		meals: Meals
-	}[]
+	days: Days
 }
+
+export type Diets = Diet[]

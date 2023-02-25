@@ -1,21 +1,44 @@
-import { Link } from "react-router-dom"
 import styled from "styled-components"
-export const ProductsArticle = styled.article`
+
+export const ProductModalContainer = styled.div`
+	position: fixed;
+	z-index: 5;
+	width: 100%;
+	height: calc(100vh - 80px);
+	background-color: #0008;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+`
+
+export const ProductsArticle = styled.section`
+	position: relative;
+	z-index: 10;
+	width: 80%;
+	background-color: #fff;
+	overflow-y: scroll;
+	max-width: 1000px;
+	height: 70vh;
 	padding-bottom: 30px;
+	.title {
+		font-size: 2rem;
+		text-align: center;
+		margin: 20px;
+	}
 	.search-input {
 		margin: auto;
 		margin-top: 20px;
 	}
 `
 export const ProductsContainer = styled.div`
-	width: 90%;
+	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	margin: auto;
 	gap: 30px;
 `
-export const ProductContainer = styled(Link)`
+export const ProductContainer = styled.div`
 	width: calc(50% - 30px);
 `
 export const Product = styled.div`
@@ -26,6 +49,7 @@ export const Product = styled.div`
 	border-radius: 10px;
 	padding: 20px;
 	box-shadow: 0px 9px 20px -7px rgba(66, 68, 90, 1);
+	cursor: pointer;
 	.product-title {
 		height: 80%;
 		font-size: 1.4rem;
