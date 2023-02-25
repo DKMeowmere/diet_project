@@ -17,20 +17,21 @@ import LoadingScreen from './components/loadingScreen/Index'
 import { useAppSelector } from './app/hooks'
 import { useCookies } from 'react-cookie'
 import DietDetails from './pages/dietDetails/Index'
+import Diets from './pages/diet/Index'
 
 function App() {
 	const isLoading = useAppSelector(state => state.app.isAppLoading)
 	const [cookies] = useCookies()
 
-	if (!cookies.token) {
-		return (
-			<>
-				<Login />
-				<Alerts />
-				{isLoading && <LoadingScreen />}
-			</>
-		)
-	}
+	// if (!cookies.token) {
+	// 	return (
+	// 		<>
+	// 			<Login />
+	// 			<Alerts />
+	// 			{isLoading && <LoadingScreen />}
+	// 		</>
+	// 	)
+	// }
 
 	return (
 		<Container>
@@ -41,6 +42,7 @@ function App() {
 				<Route path='/' element={<Home />} />
 				<Route path='/diet/create' element={<CreateDiet />} />
 				<Route path='/diet/:id' element={<DietDetails />} />
+				<Route path='/diet/' element={<Diets />} />
 				<Route path='/product' element={<ProductsList />} />
 				<Route path='/product/create' element={<CreateProduct />} />
 				<Route path='/product/:id' element={<ProductDetails />} />
