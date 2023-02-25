@@ -13,7 +13,7 @@ function Home() {
 					<div className="block-icon">
 						<HiFaceSmile />
 					</div>
-					<span className="block-title">Klienci</span>
+					<span className="block-title">Pacjenci</span>
 				</Block>
 				<Block to="/product">
 					<div className="block-icon">
