@@ -26,6 +26,10 @@ export const Product = styled.div`
 	border-radius: 10px;
 	padding: 20px;
 	box-shadow: 0px 9px 20px -7px rgba(66, 68, 90, 1);
+	&:hover {
+		opacity: 0.7;
+		box-shadow: 0px 9px 25px 5px rgba(66, 68, 90, 1);
+	}
 	.product-title {
 		height: 80%;
 		font-size: 1.4rem;
