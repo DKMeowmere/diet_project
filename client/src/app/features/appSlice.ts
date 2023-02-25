@@ -16,10 +16,10 @@ const appSlice = createSlice({
 	initialState,
 	reducers: {
 		addAlert: (state, action: PayloadAction<Alert>) => {
-			state.alerts.push(action.payload)
+			state.alerts.unshift(action.payload)
 		},
 		deleteAlert: state => {
-			state.alerts.shift()
+			state.alerts.pop()
 		},
 		startLoading: state => {
 			state.isAppLoading = true

@@ -26,9 +26,11 @@ const mealsSchema = new mongoose.Schema(
 		name: {
 			type: String,
 			required: true,
+			trim: true,
 		},
 		description: {
 			type: String,
+			trim: true,
 		},
 		products: [mealProductSchema],
 	},

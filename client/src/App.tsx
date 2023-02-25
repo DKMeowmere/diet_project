@@ -8,7 +8,7 @@ import ProductDetails from './pages/productDetails'
 import PatientDetails from './pages/patientDetails/Index'
 import CreateProduct from './pages/productCreate/Index'
 import CreatePatient from './pages/patientCreate/Index'
-import CreateDiet from './pages/dietCreate'
+import CreateDiet from './pages/dietCreate/Index'
 import Login from './pages/login/Index'
 import PatientsList from './pages/patients/Index'
 import ProductsList from './pages/products/Index'
@@ -23,15 +23,15 @@ function App() {
 	const isLoading = useAppSelector(state => state.app.isAppLoading)
 	const [cookies] = useCookies()
 
-	// if (!cookies.token) {
-	// 	return (
-	// 		<>
-	// 			<Login />
-	// 			<Alerts />
-	// 			{isLoading && <LoadingScreen />}
-	// 		</>
-	// 	)
-	// }
+	if (!cookies.token) {
+		return (
+			<>
+				<Login />
+				<Alerts />
+				{isLoading && <LoadingScreen />}
+			</>
+		)
+	}
 
 	return (
 		<Container>
@@ -47,7 +47,7 @@ function App() {
 				<Route path='/product/create' element={<CreateProduct />} />
 				<Route path='/product/:id' element={<ProductDetails />} />
 				<Route path='/login' element={<Login />} />
-				<Route path='/patients' element={<PatientsList />} />
+				<Route path='/patient' element={<PatientsList />} />
 				<Route path='/patient/create' element={<CreatePatient />} />
 				<Route path='/patient/:id' element={<PatientDetails />} />
 				<Route path='*' element={<NotFoundPage />} />

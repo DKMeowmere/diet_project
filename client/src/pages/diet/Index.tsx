@@ -89,6 +89,15 @@ function Diets() {
 									<td className='cell'>2</td>
 									<td className='cell'>200</td>
 								</Product>
+								<tfoot>
+									<th className='cell'>Łacznie</th>
+									<th className='cell'>18cal</th>
+									<th className='cell'>34B</th>
+									<th className='cell'>432T</th>
+									<th className='cell'>420W</th>
+									<th className='cell'>10x</th>
+									<th className='cell'>1000g</th>
+								</tfoot>
 							</ProductsContainer>
 						</MealsContainer>
 					</Day>

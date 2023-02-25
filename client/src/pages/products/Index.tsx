@@ -8,7 +8,7 @@ import { useState, useMemo, useEffect } from "react"
 import { Products } from "../../types/product"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { useCookies } from "react-cookie"
-import { addAlert } from "../../app/features/appSlice"
+import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
 
 function ProductsList() {
 	const [products, setProducts] = useState<Products>([])
@@ -18,6 +18,7 @@ function ProductsList() {
 	const [cookies] = useCookies()
 
 	useEffect(() => {
+		dispatch(startLoading())
 		async function fetchProducts() {
 			const res = await fetch(`${serverUrl}/api/product`, {
 				headers: {
@@ -25,6 +26,7 @@ function ProductsList() {
 				},
 			})
 			const data = await res.json()
+			dispatch(endLoading())
 
 			if (!res.ok) {
 				setProducts([])

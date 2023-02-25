@@ -17,14 +17,12 @@ export default function Textarea({
 	placeholder,
 }: Props) {
 	return (
-		
-			<TextareaContainer
-				width={width}
-				height={height}
-				placeholder={placeholder}
-				value={value}
-				onChange={onChange}
-			/>
-		
+		<TextareaContainer
+			width={width}
+			height={height}
+			placeholder={placeholder}
+			value={value}
+			onChange={onChange}
+		/>
 	)
 }

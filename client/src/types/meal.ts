@@ -1,15 +1,19 @@
 import { Product } from "./product"
 
 export type MealProduct = {
+	_id: string
 	product: Product
 	count: number
 	grams: number
 }
 
-export type Meal = MealProduct[]
+export type MealProducts = MealProduct[]
 
-export type Meals = {
+export type Meal = {
+	_id: string
 	name: string
 	description: string
-	products: Meal
-}[]
+	products: MealProducts
+}
+
+export type Meals = Meal[]

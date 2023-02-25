@@ -22,7 +22,7 @@ function Navbar() {
 							<AiFillHome />
 							<span className="option-text">Strona Główna</span>
 						</Link>
-						<Link to="/patients" className="option">
+						<Link to="/patient" className="option">
 							<HiFaceSmile />
 							<span className="option-text">Pacjenci</span>
 						</Link>
@@ -30,7 +30,7 @@ function Navbar() {
 							<FaCarrot />
 							<span className="option-text">Produkty</span>
 						</Link>
-						<Link to="/diets" className="option">
+						<Link to="/diet" className="option">
 							<BiDish />
 							<span className="option-text">Diety</span>
 						</Link>

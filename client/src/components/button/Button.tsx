@@ -14,6 +14,6 @@ export const Button = styled.button<{ width: string; height: string, bgColor:str
 	border: none;
 	border-radius: 10px;
 	&:hover {
-		opacity: 0.9;
+		opacity: 0.8;
 	}
 `

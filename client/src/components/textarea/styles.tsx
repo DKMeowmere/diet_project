@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 type Props = {
 	width: string
@@ -11,4 +11,5 @@ export const TextareaContainer = styled.textarea<Props>`
 	height: ${({ height }) => height};
 	padding: 10px;
 	resize: vertical;
+	font-family: inherit;
 `
