@@ -15,7 +15,14 @@ export const Form = styled.form`
 	max-width: 1000px;
 	flex-direction: column;
 	color: ${({ theme }) => theme.colors.blackText};
-	border: 1px #000 solid;
+	.diet-name{
+		width: 100%;
+		background-color: ${({ theme }) => theme.colors.main};
+		color:${({ theme }) => theme.colors.whiteText};
+		text-align: center;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
+	}
 	.diet-title {
 		font-size: 3rem;
 		margin: 20px;
@@ -25,7 +32,7 @@ export const Form = styled.form`
 		background-color: #fff;
 		padding: 15px;
 		text-align: center;
-		border: 1px #000 solid;
+		margin: 20px;
 		font-size: 1.5rem;
 	}
 	.diet-btn {

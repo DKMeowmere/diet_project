@@ -1,3 +1,4 @@
+
 import { Route, Routes } from "react-router"
 import NotFoundPage from "./pages/404/Index"
 import Navbar from "./components/navbar/Index"
@@ -17,6 +18,7 @@ import { useAppSelector } from "./app/hooks"
 import { useCookies } from "react-cookie"
 import DietList from "./pages/dietList/Index"
 import DietDetails from "./pages/dietDetails/Index"
+
 
 function App() {
 	const isLoading = useAppSelector(state => state.app.isAppLoading)
@@ -50,6 +52,7 @@ function App() {
 				<Route path="/patient/create" element={<CreatePatient />} />
 				<Route path="/patient/:id" element={<PatientDetails />} />
 				<Route path="*" element={<NotFoundPage />} />
+
 			</Routes>
 		</Container>
 	)

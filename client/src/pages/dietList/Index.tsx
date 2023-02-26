@@ -1,53 +1,82 @@
-import { DietListContainer , Form } from "./styles"
-import Input from "../../components/input/Index"
-import { Button } from "../../components/button/Button"
-import theme from "../../app/theme"
-import { TextareaContainer } from "../../components/textarea/styles"
-import { Days } from "./styles"
+<<<<<<< HEAD
+import { DietsListContainer, DietListContainer, Dietes } from './styles'
+import SearchInput from '../../components/searchInput/Index'
 
 function DietList() {
 	return (
-		<DietListContainer>
-			<Form>
-				<p className="diet-title">Dodaj Dietę</p>
-				<p className="diet-name">dodaj Nazwę Diety</p>
-				<Input
-					width="90%"
-					height="50px"
-					placeholder="Podaj Nazwę"
-					value=""
-					onChange={e => {}}
-				/>
-				<p className="diet-name">dodaj Opis</p>
-				<TextareaContainer
-					width="90%"
-					height="250px"
-					value=""
-					onChange={e => {}}
-					placeholder="Opis"
-				/>
+		<DietsListContainer>
+			<DietListContainer>
+				<Dietes>
+					<div className='diet-title'>Keto</div>
+				</Dietes>
+			</DietListContainer>
 
-				<Days>
-					<div className="day">Poniedziałek</div>
-					<div className="meal-name">śniadanie</div>
-					<TextareaContainer
-						width="90%"
-						height="250px"
-						value=""
-						onChange={e => {}}
-						placeholder="Opis"
-					/>
-				</Days>
-				<Button
-					width="90%"
-					height="40px"
-					type="button"
-					bgColor={theme.colors.main}
-				>
-					Dodaj Dźień
-				</Button>
-			</Form>
-		</DietListContainer>
+			<DietListContainer>
+				<Dietes>
+					<div className='diet-title'>Keto</div>
+				</Dietes>
+			</DietListContainer>
+
+			<DietListContainer>
+				<Dietes>
+					<div className='diet-title'>Keto</div>
+				</Dietes>
+			</DietListContainer>
+
+			<DietListContainer>
+				<Dietes>
+					<div className='diet-title'>Keto</div>
+				</Dietes>
+			</DietListContainer>
+
+			<DietListContainer>
+				<Dietes>
+					<div className='diet-title'>Keto</div>
+				</Dietes>
+			</DietListContainer>
+
+			<DietListContainer>
+				<Dietes>
+					<div className='diet-title'>Keto</div>
+				</Dietes>
+			</DietListContainer>
+
+			<DietListContainer>
+				<Dietes>
+					<div className='diet-title'>Keto</div>
+				</Dietes>
+			</DietListContainer>
+
+			<DietListContainer>
+				<Dietes>
+					<div className='diet-title'>Keto</div>
+				</Dietes>
+			</DietListContainer>
+
+			<DietListContainer>
+				<Dietes>
+					<div className='diet-title'>Keto</div>
+				</Dietes>
+			</DietListContainer>
+
+			<DietListContainer>
+				<Dietes>
+					<div className='diet-title'>Keto</div>
+				</Dietes>
+			</DietListContainer>
+
+			<DietListContainer>
+				<Dietes>
+					<div className='diet-title'>Keto</div>
+				</Dietes>
+			</DietListContainer>
+
+			<DietListContainer>
+				<Dietes>
+					<div className='diet-title'>Keto</div>
+				</Dietes>
+			</DietListContainer>
+		</DietsListContainer>
 	)
 }
 export default DietList
