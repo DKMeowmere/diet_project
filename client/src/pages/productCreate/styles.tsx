@@ -5,13 +5,13 @@ export const ProductCreateContainer = styled.article`
 	display: flex;
 	justify-content: center;
 	padding-bottom: 30px;
-	.diet-title {
+	.product-title {
 		font-size: 1.2rem;
 	}
-	.diet-first-title {
+	.product-subtitle {
 		font-size: 1.7rem;
 	}
-	.diet-second-title {
+	.product-text {
 		font-size: 1.4rem;
 	}
 `

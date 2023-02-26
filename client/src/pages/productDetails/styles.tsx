@@ -5,13 +5,20 @@ export const ProductDetailsContainer = styled.article`
 	display: flex;
 	justify-content: center;
 	padding-bottom: 30px;
-	.diet-title {
+	a {
+		text-align: center;
+		font-size: 2rem;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	.product-text {
 		font-size: 1.2rem;
 	}
-	.diet-first-title {
+	.product-title {
 		font-size: 1.7rem;
 	}
-	.diet-second-title {
+	.product-subtitle {
 		font-size: 1.4rem;
 	}
 `

@@ -1,18 +1,25 @@
-import React from 'react'
-import { ArrowContainer } from './styles'
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai'
+import React from "react"
+import { ArrowContainer } from "./styles"
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai"
 
-export function LeftArrow() {
+type Props = {
+	onClick: () => void
+}
+
+export function LeftArrow({ onClick }: Props) {
 	return (
-		<ArrowContainer type='LEFT'>
+		<ArrowContainer type="LEFT" onClick={onClick}>
 			<AiOutlineArrowLeft />
 		</ArrowContainer>
 	)
 }
 
-export function RightArrow() {
+export function RightArrow({ onClick }: Props) {
 	return (
-		<ArrowContainer type='RIGHT'>
+		<ArrowContainer
+			type="RIGHT"
+			onClick={onClick}
+		>
 			<AiOutlineArrowRight />
 		</ArrowContainer>
 	)

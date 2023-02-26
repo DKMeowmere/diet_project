@@ -7,10 +7,10 @@ type Props = {
 
 export const InputContainer = styled.div<Props>`
 	position: relative;
-  width: ${({ width }) => width};
+	width: ${({ width }) => width};
 	input {
 		padding: 5px;
-    width: ${({ width }) => width};
+		width: 100%;
 		height: ${({ height }) => height};
 	}
 `

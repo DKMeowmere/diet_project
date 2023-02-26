@@ -1,7 +1,8 @@
+<<<<<<< HEAD
 import { DietsListContainer, DietListContainer, Dietes } from './styles'
 import SearchInput from '../../components/searchInput/Index'
 
-function Diet() {
+function DietList() {
 	return (
 		<DietsListContainer>
 			<DietListContainer>
@@ -78,4 +79,4 @@ function Diet() {
 		</DietsListContainer>
 	)
 }
-export default Diet
+export default DietList

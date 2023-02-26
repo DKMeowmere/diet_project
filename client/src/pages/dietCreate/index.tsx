@@ -46,7 +46,7 @@ function CreateDiet() {
 			dispatch(endLoading())
 
 			if (!res.ok) {
-				throw new Error(data.message)
+				throw new Error(data.error)
 			}
 
 			dispatch(
