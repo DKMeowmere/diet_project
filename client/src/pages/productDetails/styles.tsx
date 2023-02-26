@@ -12,14 +12,14 @@ export const ProductDetailsContainer = styled.article`
 			text-decoration: underline;
 		}
 	}
-	.product-text {
-		font-size: 1.2rem;
-	}
 	.product-title {
 		font-size: 1.7rem;
 	}
 	.product-subtitle {
 		font-size: 1.4rem;
+	}
+	.product-text {
+		font-size: 1.2rem;
 	}
 `
 export const Form = styled.form`

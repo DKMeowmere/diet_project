@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 export const ProductsArticle = styled.article`
-	padding-bottom: 30px;
+	padding: 30px 0;
+	.create-product-link {
+		display: block;
+		margin: auto;
+		width: 50%;
+	}
 	.search-input {
 		margin: auto;
 		margin-top: 20px;

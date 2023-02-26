@@ -14,6 +14,8 @@ import { useCookies } from "react-cookie"
 import { addAlert } from "../../app/features/appSlice"
 import { GiWeight } from "react-icons/gi"
 import { Link } from "react-router-dom"
+import { Button } from "../../components/button/Button"
+import theme from "../../app/theme"
 
 function PatientsList() {
 	const [patients, setPatients] = useState<Patients>([])
@@ -61,6 +63,11 @@ function PatientsList() {
 
 	return (
 		<PatientsArticle>
+			<Link to="/patient/create" className="create-patient-link">
+				<Button width="100%" height="60px" bgColor={theme.colors.main}>
+					Stwórz pacjenta
+				</Button>
+			</Link>
 			<SearchInput
 				className="search-input"
 				width="50%"
@@ -80,11 +87,11 @@ function PatientsList() {
 							<div className="patient-value">
 								<div className="email">
 									<GrMail className="letter" />
-									email:{patient.email || "brak"}
+									email: {patient.email || "brak"}
 								</div>
 								<div className="phone-number">
 									<FcPhoneAndroid />
-									nr.tel:{patient.phoneNumber || "brak"}
+									nr.tel: {patient.phoneNumber || "brak"}
 								</div>
 								<div className="patient-weight">
 									<GiWeight />
@@ -93,7 +100,7 @@ function PatientsList() {
 							</div>
 							<div className="patient-diets">
 								{patient.diets.length > 0 && (
-									<p>Diety Użytkownika:</p>
+									<p>Diety pacjenta: </p>
 								)}
 								{patient.diets.map(diet => (
 									<Link

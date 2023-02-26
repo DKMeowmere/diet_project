@@ -1,9 +1,14 @@
 import styled from "styled-components"
 
-export const Button = styled.button<{ width: string; height: string, bgColor:string }>`
+type Props = {
+	width: string
+	height: string
+	bgColor: string
+}
+
+export const Button = styled.button<Props>`
 	width: ${({ width }) => width};
 	height: ${({ height }) => height};
-
 	background-color: ${({ bgColor }) => bgColor};
 	color: ${({ theme }) => theme.colors.whiteText};
 	padding: 5px 10px;
@@ -14,6 +19,6 @@ export const Button = styled.button<{ width: string; height: string, bgColor:str
 	border: none;
 	border-radius: 10px;
 	&:hover {
-		opacity: 0.8;
+		box-shadow: 0px 0px 25px 0px ${({ bgColor }) => bgColor};
 	}
 `

@@ -9,6 +9,9 @@ import { Products } from "../../types/product"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { useCookies } from "react-cookie"
 import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
+import { Link } from "react-router-dom"
+import { Button } from "../../components/button/Button"
+import theme from "../../app/theme"
 
 function ProductsList() {
 	const [products, setProducts] = useState<Products>([])
@@ -54,6 +57,11 @@ function ProductsList() {
 
 	return (
 		<ProductsArticle>
+			<Link to="/product/create" className="create-product-link">
+				<Button width="100%" height="60px" bgColor={theme.colors.main}>
+					Stwórz produkt
+				</Button>
+			</Link>
 			<SearchInput
 				className="search-input"
 				width="50%"
@@ -84,7 +92,8 @@ function ProductsList() {
 									{product.proteins} B
 								</div>
 								<div className="unit-container">
-									<RiOilFill className="oil"/> {product.fats} T
+									<RiOilFill className="oil" /> {product.fats}{" "}
+									T
 								</div>
 							</div>
 						</Product>

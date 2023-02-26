@@ -20,7 +20,7 @@ const theme:Theme = {
 	colors: {
 		whiteText: "#FFF",
 		blackText: "#000",
-		main:"#ffa500",
+		main: "#ffa500",
 		errorMain: "#da5252",
 		errorSecondary: "#fdeded",
 		warningMain: "#ee7f23",

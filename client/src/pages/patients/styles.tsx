@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
+
 export const PatientsArticle = styled.article`
+	padding: 30px 0;
+	.create-patient-link {
+		display: block;
+		margin: auto;
+		width: 50%;
+	}
 	.search-input {
 		margin: auto;
 		margin-top: 20px;
@@ -15,7 +22,6 @@ export const PatientsContainer = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding-bottom: 30px;
 `
 
 export const PatientContainer = styled.div`
