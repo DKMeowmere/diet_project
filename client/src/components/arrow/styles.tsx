@@ -7,8 +7,8 @@ export const ArrowContainer = styled.div<{ type: 'LEFT' | 'RIGHT' }>`
 	background-color: ${({ theme }) => theme.colors.main};
 	position: fixed;
 	top: 50%;
-	left: ${({ type }) => (type === 'LEFT' ? '140px' : '')};
-	right: ${({ type }) => (type === 'RIGHT' ? '140px' : '')};
+	left: ${({ type }) => (type === 'LEFT' ? '4%' : '')};
+	right: ${({ type }) => (type === 'RIGHT' ? '4%' : '')};
 	display: flex;
 	justify-content: center;
 	align-items: center;
