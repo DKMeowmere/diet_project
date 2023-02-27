@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
+
 export const ProductsArticle = styled.article`
 	padding: 30px 0;
 	.create-product-link {
@@ -12,6 +13,7 @@ export const ProductsArticle = styled.article`
 		margin-top: 20px;
 	}
 `
+
 export const ProductsContainer = styled.div`
 	width: 90%;
 	display: flex;

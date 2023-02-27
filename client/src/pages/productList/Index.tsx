@@ -13,7 +13,7 @@ import { Link } from "react-router-dom"
 import { Button } from "../../components/button/Button"
 import theme from "../../app/theme"
 
-function ProductsList() {
+function ProductList() {
 	const [products, setProducts] = useState<Products>([])
 	const [query, setQuery] = useState("")
 	const serverUrl = useAppSelector(state => state.app.serverUrl)
@@ -103,4 +103,4 @@ function ProductsList() {
 		</ProductsArticle>
 	)
 }
-export default ProductsList
+export default ProductList
