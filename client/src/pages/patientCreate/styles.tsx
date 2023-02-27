@@ -5,11 +5,11 @@ export const PatientCreateContainer = styled.article`
 	display: flex;
 	justify-content: center;
 	padding-bottom: 30px;
-	.diet-title {
-		font-size: 1.2rem;
-	}
-	.diet-first-title {
+	.patient-title {
 		font-size: 1.7rem;
+	}
+	.patient-text {
+		font-size: 1.2rem;
 	}
 `
 export const Form = styled.form`

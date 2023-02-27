@@ -44,7 +44,7 @@ function CreateProduct() {
 				throw new Error("Podaj nazwe produktu")
 			}
 
-			dispatch(startLoading)
+			dispatch(startLoading())
 			const res = await fetch(`${serverUrl}/api/product`, {
 				method: "POST",
 				body: JSON.stringify({
@@ -59,8 +59,8 @@ function CreateProduct() {
 					Authorization: `Bearer ${cookies.token}`,
 				},
 			})
-			const data = await res.json()
 			dispatch(endLoading())
+			const data = await res.json()
 
 			if (!res.ok) {
 				throw new Error(data.error)

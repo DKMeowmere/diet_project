@@ -8,7 +8,7 @@ function createToken() {
 	}
 
 	const token = jwt.sign({}, process.env.TOKEN_SECRET, {
-		expiresIn: "7d",
+		expiresIn: "28d",
 	})
 	return token
 }
@@ -34,6 +34,7 @@ export async function login(req: Request, res: Response) {
 		}
 
 		const token = createToken()
+
 		if (!token) {
 			res.status(500).json({ error: "błąd serwera - tworzenie tokena" })
 			return

@@ -17,15 +17,21 @@ export const useLogin = () => {
 			body: JSON.stringify({ password }),
 			headers: { "Content-Type": "application/json" },
 		})
+		dispatch(endLoading())
 		const data = await res.json()
 
-		dispatch(endLoading())
-    if (!res.ok) {
+		if (!res.ok) {
 			dispatch(addAlert({ body: data.error, type: "ERROR" }))
 			return
 		}
 
-		setCookie("token", data.token)
+		//month (28 days) in seconds
+		const month = 60 * 60 * 24 * 28
+
+		setCookie("token", data.token, {
+			maxAge: month,
+			sameSite: "lax",
+		})
 		navigate("/")
 	}
 

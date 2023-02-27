@@ -8,7 +8,7 @@ import { NavLink, useLocation } from "react-router-dom"
 function Navbar() {
 	const location = useLocation()
 
-	if (location.pathname === "/") {
+	if (location.pathname === "/" || location.pathname.includes("pdf")) {
 		return <></>
 	}
 

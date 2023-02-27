@@ -12,7 +12,7 @@ function Login() {
 	const { login } = useLogin()
 	const navigate = useNavigate()
 	
-	async function handleSumbit(e: React.FormEvent<HTMLFormElement>) {
+	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault()
 		await login(password)
 		navigate("/")
@@ -20,7 +20,7 @@ function Login() {
 
 	return (
 		<LoginContainer imageUrl={backgroundImage}>
-			<form onSubmit={handleSumbit}>
+			<form onSubmit={handleSubmit}>
 				<PasswordInput
 					width="100%"
 					height="50px"

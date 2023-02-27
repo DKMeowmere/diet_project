@@ -27,7 +27,7 @@ export const PatientsContainer = styled.div`
 export const PatientContainer = styled.div`
 	width: calc(50% - 30px);
 `
-export const Patient = styled(Link)`
+export const Patient = styled.div`
 	margin: auto;
 	gap: 20px;
 	box-shadow: 0px 0px 20px -10px rgba(66, 68, 90, 1);
@@ -39,6 +39,7 @@ export const Patient = styled(Link)`
 	border-radius: 10px;
 	padding: 20px;
 	box-shadow: 0px 9px 20px -7px rgba(66, 68, 90, 1);
+	cursor: pointer;
 	&:hover {
 		opacity: 0.7;
 		box-shadow: 0px 9px 25px 5px rgba(66, 68, 90, 1);
@@ -46,7 +47,6 @@ export const Patient = styled(Link)`
 	.patient-title {
 		font-size: 1.7rem;
 	}
-
 	.patient-value {
 		font-size: 1.4rem;
 		font-weight: light;
@@ -68,8 +68,6 @@ export const Patient = styled(Link)`
 		}
 		.letter {
 			color: ${({ theme }) => theme.colors.main};
-		}
-		.patient-weight {
 		}
 	}
 

@@ -28,8 +28,8 @@ function ProductsList() {
 					Authorization: `Bearer ${cookies.token}`,
 				},
 			})
-			const data = await res.json()
 			dispatch(endLoading())
+			const data = await res.json()
 
 			if (!res.ok) {
 				setProducts([])
@@ -92,7 +92,7 @@ function ProductsList() {
 									{product.proteins} B
 								</div>
 								<div className="unit-container">
-									<RiOilFill className="oil" /> {product.fats}{" "}
+									<RiOilFill className="oil" /> {product.fats}
 									T
 								</div>
 							</div>

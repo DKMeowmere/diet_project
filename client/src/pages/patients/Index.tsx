@@ -11,9 +11,9 @@ import { useState, useEffect, useMemo } from "react"
 import { Patients } from "../../types/patients"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { useCookies } from "react-cookie"
-import { addAlert } from "../../app/features/appSlice"
+import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
 import { GiWeight } from "react-icons/gi"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Button } from "../../components/button/Button"
 import theme from "../../app/theme"
 
@@ -23,14 +23,17 @@ function PatientsList() {
 	const serverUrl = useAppSelector(state => state.app.serverUrl)
 	const dispatch = useAppDispatch()
 	const [cookies] = useCookies()
+	const navigate = useNavigate()
 
 	useEffect(() => {
 		async function fetchPatients() {
+			dispatch(startLoading())
 			const res = await fetch(`${serverUrl}/api/patient`, {
 				headers: {
 					Authorization: `Bearer ${cookies.token}`,
 				},
 			})
+			dispatch(endLoading())
 			const data = await res.json()
 
 			if (!res.ok) {
@@ -81,7 +84,7 @@ function PatientsList() {
 					{filteredPatients.map(patient => (
 						<Patient
 							key={patient._id}
-							to={`/patient/${patient._id}`}
+							onClick={() => navigate(`/patient/${patient._id}`)}
 						>
 							<div className="patient-title">{`${patient.firstName} ${patient.lastName}`}</div>
 							<div className="patient-value">
@@ -95,7 +98,10 @@ function PatientsList() {
 								</div>
 								<div className="patient-weight">
 									<GiWeight />
-									Waga: {patient.weight || "brak"}
+									Waga:{" "}
+									{patient.weight
+										? `${patient.weight}kg`
+										: "brak"}
 								</div>
 							</div>
 							<div className="patient-diets">
@@ -103,13 +109,16 @@ function PatientsList() {
 									<p>Diety pacjenta: </p>
 								)}
 								{patient.diets.map(diet => (
-									<Link
-										to={`/diet/${diet._id}`}
+									<div
+										onClick={e => {
+											e.stopPropagation()
+											navigate(`/diet/${diet._id}`)
+										}}
 										key={diet._id}
 										className="diet-title"
 									>
 										{diet.title}
-									</Link>
+									</div>
 								))}
 							</div>
 						</Patient>

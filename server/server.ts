@@ -20,7 +20,7 @@ const corsOptions: CorsOptions = {
 	methods: ["GET", "POST", "PATCH", "DELETE"],
 	allowedHeaders: ["Content-Type", "Authorization"],
 }
-console.log(CLIENT_APP_URL)
+
 async function start() {
 	try {
 		if (!MONGO_URI) {

@@ -5,11 +5,18 @@ export const PatientDetailsContainer = styled.article`
 	display: flex;
 	justify-content: center;
 	padding-bottom: 30px;
-	.diet-title {
-		font-size: 1.2rem;
+	a {
+		text-align: center;
+		font-size: 2rem;
+		&:hover {
+			text-decoration: underline;
+		}
 	}
-	.diet-first-title {
+	.patient-title {
 		font-size: 1.7rem;
+	}
+	.patient-text {
+		font-size: 1.2rem;
 	}
 `
 export const Form = styled.form`
@@ -25,4 +32,15 @@ export const Form = styled.form`
 		display: block;
 		margin: auto;
 	}
+`
+
+export const PatientDiets = styled.div`
+	width: 90%;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	background-color: #fff;
+	border-radius: 20px;
+	padding: 30px;
+	gap: 20px;
 `
