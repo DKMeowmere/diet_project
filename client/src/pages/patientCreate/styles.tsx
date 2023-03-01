@@ -26,3 +26,35 @@ export const Form = styled.form`
 		margin: auto;
 	}
 `
+
+export const PatientDietsContainer = styled.div`
+	width: 90%;
+	background-color: #fff;
+	border-radius: 30px;
+	display: flex;
+	padding: 20px 10px;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+	p {
+		position: relative;
+		border: 1px solid #000;
+		width: 80%;
+		padding: 10px 20px;
+		border-radius: 10px;
+		text-align: center;
+		svg {
+			position: absolute;
+			cursor: pointer;
+			fill: ${({ theme }) => theme.colors.errorMain};
+			width: 40px;
+			height: 40px;
+			right: 8px;
+			top: 0;
+			bottom: 0;
+		}
+		&:hover {
+			background-color: #eee;
+		}
+	}
+`

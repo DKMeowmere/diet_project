@@ -44,3 +44,40 @@ export const PatientDiets = styled.div`
 	padding: 30px;
 	gap: 20px;
 `
+
+export const PatientDietsContainer = styled.div`
+	width: 90%;
+	background-color: #fff;
+	border-radius: 30px;
+	display: flex;
+	padding: 20px 10px;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+	.diet-link {
+		display: block;
+		position: relative;
+		border: 1px solid #000;
+		width: 80%;
+		padding: 10px 20px;
+		border-radius: 10px;
+		text-align: center;
+		font-size: 1.5rem;
+		&:hover {
+			text-decoration: none;
+		}
+		svg {
+			position: absolute;
+			cursor: pointer;
+			fill: ${({ theme }) => theme.colors.errorMain};
+			width: 40px;
+			height: 40px;
+			right: 8px;
+			top: 50%;
+			translate: 0 -50%;
+		}
+		&:hover {
+			background-color: #eee;
+		}
+	}
+`

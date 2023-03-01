@@ -1,4 +1,4 @@
-import { PatientCreateContainer, Form } from "./styles"
+import { PatientCreateContainer, Form, PatientDietsContainer } from "./styles"
 import Input from "../../components/input/Index"
 import { Button } from "../../components/button/Button"
 import theme from "../../app/theme"
@@ -8,6 +8,8 @@ import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
 import { useAppSelector } from "../../app/hooks"
 import { useCookies } from "react-cookie"
 import { useNavigate } from "react-router-dom"
+import DietsModal from "../../components/dietModal/Index"
+import { BsX } from "react-icons/bs"
 
 function CreatePatient() {
 	const [firstName, setFirstName] = useState("")
@@ -19,6 +21,10 @@ function CreatePatient() {
 	const serverUrl = useAppSelector(state => state.app.serverUrl)
 	const [cookies] = useCookies()
 	const navigate = useNavigate()
+	const [patientDiets, setPatientDiets] = useState<
+		{ title: string; _id: string }[]
+	>([])
+	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault()
@@ -36,6 +42,8 @@ function CreatePatient() {
 				throw new Error("Podaj nazwisko")
 			}
 
+			const patientDietsIds = patientDiets.map(diet => diet._id)
+
 			dispatch(startLoading())
 			const res = await fetch(`${serverUrl}/api/patient`, {
 				method: "POST",
@@ -45,6 +53,7 @@ function CreatePatient() {
 					email: email || null,
 					phoneNumber: phoneNumber || null,
 					weight: weight || null,
+					diets: patientDietsIds,
 				}),
 				headers: {
 					"Content-Type": "application/json",
@@ -81,6 +90,13 @@ function CreatePatient() {
 
 	return (
 		<PatientCreateContainer>
+			{isModalOpen && (
+				<DietsModal
+					setIsModalOpen={setIsModalOpen}
+					patientDiets={patientDiets}
+					setPatientDiets={setPatientDiets}
+				/>
+			)}
 			<Form onSubmit={handleSubmit}>
 				<p className="patient-title">Dodaj pacjenta</p>
 				<p className="patient-text">Podaj imię pacjenta</p>
@@ -132,6 +148,34 @@ function CreatePatient() {
 						setWeight(parseFloat(e.target.value))
 					}}
 				/>
+				{patientDiets.length > 0 && (
+					<PatientDietsContainer>
+						{patientDiets.map(diet => (
+							<p key={diet._id}>
+								{diet.title}
+								<BsX
+									onClick={() =>
+										setPatientDiets(
+											patientDiets.filter(
+												prevDiet =>
+													prevDiet._id !== diet._id
+											)
+										)
+									}
+								/>
+							</p>
+						))}
+					</PatientDietsContainer>
+				)}
+				<Button
+					width="90%"
+					height="40px"
+					type="button"
+					bgColor={theme.colors.main}
+					onClick={() => setIsModalOpen(true)}
+				>
+					Dodaj diete do pacjenta
+				</Button>
 				<Button
 					width="90%"
 					height="40px"

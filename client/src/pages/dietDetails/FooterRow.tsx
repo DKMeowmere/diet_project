@@ -10,51 +10,59 @@ export default function FooterRow({ meal }: Props) {
 			<tr>
 				<td className="cell strong">Łącznie</td>
 				<td className="cell strong">
-					{meal.products.reduce<number>(
-						(accumulator, product) =>
-							accumulator +
-							(product.product.calories *
-								product.count *
-								product.grams) /
-								100,
-						0
-					)}
+					{Math.round(
+						meal.products.reduce<number>(
+							(accumulator, product) =>
+								accumulator +
+								(product.product.calories *
+									product.count *
+									product.grams) /
+									100,
+							0
+						) * 100
+					) / 100}
 					cal
 				</td>
 				<td className="cell strong">
-					{meal.products.reduce<number>(
-						(accumulator, product) =>
-							accumulator +
-							(product.product.proteins *
-								product.count *
-								product.grams) /
-								100,
-						0
-					)}
+					{Math.round(
+						meal.products.reduce<number>(
+							(accumulator, product) =>
+								accumulator +
+								(product.product.proteins *
+									product.count *
+									product.grams) /
+									100,
+							0
+						) * 100
+					) / 100}
 					B
 				</td>
 				<td className="cell strong">
-					{meal.products.reduce<number>(
-						(accumulator, product) =>
-							accumulator +
-							(product.product.fats *
-								product.count *
-								product.grams) /
-								100,
-						0
-					)}
+					{Math.round(
+						meal.products.reduce<number>(
+							(accumulator, product) =>
+								accumulator +
+								(product.product.fats *
+									product.count *
+									product.grams) /
+									100,
+							0
+						) * 100
+					) / 100}
 					T
 				</td>
 				<td className="cell strong">
-					{meal.products.reduce<number>(
-						(accumulator, product) =>
-							accumulator +
-							(product.product.carbohydrates *
-								product.count *
-								product.grams) /
-								100,
-						0
-					)}
+					{Math.round(
+						meal.products.reduce<number>(
+							(accumulator, product) =>
+								accumulator +
+								(product.product.carbohydrates *
+									product.count *
+									product.grams) /
+									100,
+							0
+						) * 100
+					) / 100}
 					W
 				</td>
 				<td className="cell strong">

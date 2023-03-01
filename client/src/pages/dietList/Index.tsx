@@ -18,7 +18,7 @@ function DietList() {
 
 	useEffect(() => {
 		dispatch(startLoading())
-		async function fetchProducts() {
+		async function fetchDiets() {
 			const res = await fetch(`${serverUrl}/api/diet`, {
 				headers: {
 					Authorization: `Bearer ${cookies.token}`,
@@ -40,7 +40,7 @@ function DietList() {
 
 			setDiets(data as unknown as Diets)
 		}
-		fetchProducts()
+		fetchDiets()
 	}, [])
 
 	const filteredDiets = useMemo(() => {
@@ -53,7 +53,7 @@ function DietList() {
 
 	return (
 		<DietsArticle>
-			<Link to="/diet/create" className="create-product-link">
+			<Link to="/diet/create" className="create-diet-link">
 				<Button width="100%" height="60px" bgColor={theme.colors.main}>
 					Stwórz diete
 				</Button>

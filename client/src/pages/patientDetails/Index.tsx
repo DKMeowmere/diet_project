@@ -1,13 +1,16 @@
-import { PatientDetailsContainer, Form, PatientDiets } from "./styles"
+import { PatientDetailsContainer, Form, PatientDietsContainer } from "./styles"
 import Input from "../../components/input/Index"
 import { Button } from "../../components/button/Button"
 import theme from "../../app/theme"
 import { useState, useEffect } from "react"
-import { Patient as PatientType } from "../../types/patients"
+import { Patient as PatientType } from "../../types/patient"
 import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { useCookies } from "react-cookie"
 import { Link, useNavigate, useParams } from "react-router-dom"
+import DietsModal from "../../components/dietModal/Index"
+import { BsX } from "react-icons/bs"
+import { Diet } from "../../types/diet"
 
 function PatientDetails() {
 	const [patient, setPatient] = useState<PatientType | null>(null)
@@ -16,6 +19,10 @@ function PatientDetails() {
 	const [cookies] = useCookies()
 	const { id } = useParams()
 	const navigate = useNavigate()
+	const [patientDiets, setPatientDiets] = useState<
+		{ title: string; _id: string }[]
+	>([])
+	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	useEffect(() => {
 		dispatch(startLoading())
@@ -39,11 +46,20 @@ function PatientDetails() {
 				return
 			}
 
+			const patientDiets = data.diets.map((diet: Diet) => ({
+				title: diet.title,
+				_id: diet._id,
+			}))
+			setPatientDiets(patientDiets)
 			setPatient(data as unknown as PatientType)
 		}
 		fetchProduct()
 	}, [])
-	
+
+	// useEffect(() => {
+	// 	setPatient({ ...patient, diets: patientDiets })
+	// }, [patientDiets])
+
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault()
 
@@ -64,10 +80,11 @@ function PatientDetails() {
 				throw new Error("Podaj nazwisko")
 			}
 
+			const patientDietsIds = patientDiets.map(diet => diet._id)
 			dispatch(startLoading)
 			const res = await fetch(`${serverUrl}/api/patient/${id}`, {
 				method: "PATCH",
-				body: JSON.stringify(patient),
+				body: JSON.stringify({ ...patient, diets: patientDietsIds }),
 				headers: {
 					"Content-Type": "application/json",
 					Authorization: `Bearer ${cookies.token}`,
@@ -157,6 +174,13 @@ function PatientDetails() {
 
 	return (
 		<PatientDetailsContainer>
+			{isModalOpen && (
+				<DietsModal
+					patientDiets={patientDiets}
+					setIsModalOpen={setIsModalOpen}
+					setPatientDiets={setPatientDiets}
+				/>
+			)}
 			<Form onSubmit={handleSubmit}>
 				<p className="patient-title">Modyfikuj Pacjenta</p>
 				<p className="patient-text">Edytuj Imię Pacjenta</p>
@@ -219,15 +243,37 @@ function PatientDetails() {
 						})
 					}}
 				/>
-				<PatientDiets>
+				<PatientDietsContainer>
+					{patientDiets.map(diet => (
+						<Link
+							className="diet-link"
+							key={diet._id}
+							to={`/diet/${diet._id}`}
+						>
+							{diet.title}
+							<BsX
+								onClick={e => {
+									e.preventDefault()
+									setPatientDiets(
+										patientDiets.filter(
+											prevDiet =>
+												prevDiet._id !== diet._id
+										)
+									)
+								}}
+							/>
+						</Link>
+					))}
 					<Button
-						width="100%"
+						width="90%"
 						height="40px"
+						type="button"
 						bgColor={theme.colors.main}
+						onClick={() => setIsModalOpen(true)}
 					>
-						Dieta 1
+						Dodaj diete
 					</Button>
-				</PatientDiets>
+				</PatientDietsContainer>
 				<Button
 					width="90%"
 					height="40px"

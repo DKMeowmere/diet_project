@@ -16,6 +16,7 @@ import { useCookies } from "react-cookie"
 import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
 import { WhereToPassProduct } from "../../types/whereToPassProduct"
 import { addProduct } from "../../app/features/dietSlice"
+import { BsX } from "react-icons/bs"
 
 function ProductModal({
 	whereToPassProduct,
@@ -35,9 +36,11 @@ function ProductModal({
 	const [cookies] = useCookies()
 
 	useEffect(() => {
-		document.body.style.overflowY = "hidden"
+		const html = document.querySelector("html")
+		if (!html) return
+		html.style.overflowY = "hidden"
 		return () => {
-			document.body.style.overflowY = "auto"
+			html.style.overflowY = "auto"
 		}
 	}, [])
 
@@ -133,6 +136,10 @@ function ProductModal({
 						</ProductContainer>
 					))}
 				</ProductsContainer>
+				<BsX
+					className="close-btn"
+					onClick={() => setIsModalOpen(false)}
+				/>
 			</ProductsArticle>
 		</ProductModalContainer>
 	)
