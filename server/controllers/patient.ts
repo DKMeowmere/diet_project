@@ -7,7 +7,6 @@ export async function getPatients(req: Request, res: Response) {
 		const patients = await Patient.find({})
 			.populate("diets")
 			.sort({ createdAt: -1 })
-		console.log(patients)
 		res.json(patients)
 	} catch (err: any) {
 		res.status(400).json(err.message)
@@ -88,7 +87,7 @@ export async function deletePatient(req: Request, res: Response) {
 			throw new Error("Nie znaleziono produktu o podanym id")
 		}
 
-		res.status(204).json(patient)
+		res.status(200).json(patient)
 	} catch (err: any) {
 		res.status(400).json({ error: err.message })
 	}

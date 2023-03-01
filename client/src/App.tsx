@@ -1,4 +1,3 @@
-
 import { Route, Routes } from "react-router"
 import NotFoundPage from "./pages/404/Index"
 import Navbar from "./components/navbar/Index"
@@ -11,20 +10,20 @@ import CreatePatient from "./pages/patientCreate/Index"
 import CreateDiet from "./pages/dietCreate/Index"
 import Login from "./pages/login/Index"
 import PatientsList from "./pages/patients/Index"
-import ProductsList from "./pages/products/Index"
+import ProductList from "./pages/productList/Index"
 import Alerts from "./components/alert/Index"
 import LoadingScreen from "./components/loadingScreen/Index"
 import { useAppSelector } from "./app/hooks"
-import { useCookies } from "react-cookie"
 import DietList from "./pages/dietList/Index"
 import DietDetails from "./pages/dietDetails/Index"
-
+import useTokenValidation from "./hooks/useTokenValidation"
+import DietPdf from "./pages/dietDetails/Pdf"
 
 function App() {
 	const isLoading = useAppSelector(state => state.app.isAppLoading)
-	const [cookies] = useCookies()
+	const { isTokenValid } = useTokenValidation()
 
-	if (!cookies.token) {
+	if (!isTokenValid()) {
 		return (
 			<>
 				<Login />
@@ -43,8 +42,9 @@ function App() {
 				<Route path="/" element={<Home />} />
 				<Route path="/diet" element={<DietList />} />
 				<Route path="/diet/create" element={<CreateDiet />} />
+				<Route path="/diet/:id/pdf" element={<DietPdf />} />
 				<Route path="/diet/:id" element={<DietDetails />} />
-				<Route path="/product" element={<ProductsList />} />
+				<Route path="/product" element={<ProductList />} />
 				<Route path="/product/create" element={<CreateProduct />} />
 				<Route path="/product/:id" element={<ProductDetails />} />
 				<Route path="/login" element={<Login />} />

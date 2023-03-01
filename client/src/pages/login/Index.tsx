@@ -5,21 +5,22 @@ import PasswordInput from "../../components/passwordInput/Index"
 import { useState } from "react"
 import { useLogin } from "../../hooks/useLogin"
 import { useNavigate } from "react-router-dom"
+import backgroundImage from "../../assets/homeBackground.jpg"
 
 function Login() {
 	const [password, setPassword] = useState("")
 	const { login } = useLogin()
 	const navigate = useNavigate()
 	
-	async function handleSumbit(e: React.FormEvent<HTMLFormElement>) {
+	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault()
 		await login(password)
 		navigate("/")
 	}
 
 	return (
-		<LoginContainer>
-			<form onSubmit={handleSumbit}>
+		<LoginContainer imageUrl={backgroundImage}>
+			<form onSubmit={handleSubmit}>
 				<PasswordInput
 					width="100%"
 					height="50px"

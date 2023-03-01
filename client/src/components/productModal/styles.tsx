@@ -29,6 +29,15 @@ export const ProductsArticle = styled.section`
 		margin: auto;
 		margin-top: 20px;
 	}
+	.close-btn {
+		position: absolute;
+		cursor: pointer;
+		fill: ${({ theme }) => theme.colors.errorMain};
+		width: 40px;
+		height: 40px;
+		right: 12px;
+		top: 12px;
+	}
 `
 export const ProductsContainer = styled.div`
 	width: 100%;

@@ -25,8 +25,8 @@ function ProductDetails() {
 					Authorization: `Bearer ${cookies.token}`,
 				},
 			})
-			const data = await res.json()
 			dispatch(endLoading())
+			const data = await res.json()
 
 			if (!res.ok) {
 				setProduct(null)
@@ -81,8 +81,8 @@ function ProductDetails() {
 					Authorization: `Bearer ${cookies.token}`,
 				},
 			})
-			const data = await res.json()
 			dispatch(endLoading())
+			const data = await res.json()
 
 			if (!res.ok) {
 				throw new Error(data.error)
@@ -125,8 +125,8 @@ function ProductDetails() {
 					Authorization: `Bearer ${cookies.token}`,
 				},
 			})
-			const data = await res.json()
 			dispatch(endLoading())
+			const data = await res.json()
 
 			if (!res.ok) {
 				throw new Error(data.error)

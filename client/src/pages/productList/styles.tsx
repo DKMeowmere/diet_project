@@ -1,12 +1,19 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
+
 export const ProductsArticle = styled.article`
-	padding-bottom: 30px;
+	padding: 30px 0;
+	.create-product-link {
+		display: block;
+		margin: auto;
+		width: 50%;
+	}
 	.search-input {
 		margin: auto;
 		margin-top: 20px;
 	}
 `
+
 export const ProductsContainer = styled.div`
 	width: 90%;
 	display: flex;
@@ -27,7 +34,6 @@ export const Product = styled.div`
 	padding: 20px;
 	box-shadow: 0px 9px 20px -7px rgba(66, 68, 90, 1);
 	&:hover {
-		opacity: 0.7;
 		box-shadow: 0px 9px 25px 5px rgba(66, 68, 90, 1);
 	}
 	.product-title {

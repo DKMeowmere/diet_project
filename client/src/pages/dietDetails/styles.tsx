@@ -96,3 +96,15 @@ export const ProductContainer = styled.tr`
 		color: black;
 	}
 `
+
+export const PdfDietContainer = styled(DietContainer)`
+	min-height: 100%;
+	background-color: #fff;
+`
+
+export const DietPdf = styled(Diet)``
+
+export const PdfDay = styled(Day)`
+	border-radius: 0;
+	background-color: #fff;
+`

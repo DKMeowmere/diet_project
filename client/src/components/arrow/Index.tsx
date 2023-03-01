@@ -4,11 +4,12 @@ import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai"
 
 type Props = {
 	onClick: () => void
+	position?: "relative" | "absolute" | "fixed"
 }
 
-export function LeftArrow({ onClick }: Props) {
+export function LeftArrow({ onClick, position }: Props) {
 	return (
-		<ArrowContainer type="LEFT" onClick={onClick}>
+		<ArrowContainer position={position || "fixed"} type="LEFT" onClick={onClick}>
 			<AiOutlineArrowLeft />
 		</ArrowContainer>
 	)
@@ -16,10 +17,7 @@ export function LeftArrow({ onClick }: Props) {
 
 export function RightArrow({ onClick }: Props) {
 	return (
-		<ArrowContainer
-			type="RIGHT"
-			onClick={onClick}
-		>
+		<ArrowContainer type="RIGHT" onClick={onClick}>
 			<AiOutlineArrowRight />
 		</ArrowContainer>
 	)

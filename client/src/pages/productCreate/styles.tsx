@@ -6,13 +6,13 @@ export const ProductCreateContainer = styled.article`
 	justify-content: center;
 	padding-bottom: 30px;
 	.product-title {
-		font-size: 1.2rem;
-	}
-	.product-subtitle {
 		font-size: 1.7rem;
 	}
-	.product-text {
+	.product-subtitle {
 		font-size: 1.4rem;
+	}
+	.product-text {
+		font-size: 1.2rem;
 	}
 `
 export const Form = styled.form`
