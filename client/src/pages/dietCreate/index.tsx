@@ -78,59 +78,64 @@ function CreateDiet() {
 					setIsModalOpen={setIsModalOpen}
 				/>
 			)}
+
 			<Form onSubmit={handleSubmit}>
-				<div className='diet-name'>
-					<p className='diet-title'>Dodaj dietę</p>
+				<div className='right-form'>
+					<p className='diet-title'>Podaj tytuł diety</p>
+					<Input
+						width='100%'
+						height='65px'
+						placeholder='Podaj tytuł'
+						value={title}
+						onChange={e => dispatch(changeTitle(e.target.value))}
+					/>
+					<p className='diet-text-main'>Podaj opis diety</p>
+					<Textarea
+						width='100%'
+						height='150px'
+						placeholder='podaj opis... (opcjonalnie)'
+						value={description}
+						onChange={e => dispatch(changeDescription(e.target.value))}
+					/>
+
+					<div className='button-container'>
+						<Button
+							width='100%'
+							height='40px'
+							type='reset'
+							bgColor={theme.colors.errorMain}
+							onClick={() => dispatch(clearDiet())}
+							className='main-btn'>
+							Wyczyść diete
+						</Button>
+						<Button width='100%' height='40px' type='submit' bgColor={theme.colors.main} className='main-btn'>
+							Zatwierź
+						</Button>
+					</div>
 				</div>
-				<p className='diet-text'>Podaj tytuł diety</p>
-				<Input
-					width='100%'
-					height='50px'
-					placeholder='Podaj tytuł'
-					value={title}
-					onChange={e => dispatch(changeTitle(e.target.value))}
-				/>
-				<p className='diet-text'>Podaj opis diety</p>
-				<Textarea
-					width='100%'
-					height='150px'
-					placeholder='podaj opis... (opcjonalnie)'
-					value={description}
-					onChange={e => dispatch(changeDescription(e.target.value))}
-				/>
-				{days.length > 0 && (
-					<DaysContainer>
-						{days.map((day: DayType) => (
-							<Day
-								key={day._id}
-								day={day}
-								setIsModalOpen={setIsModalOpen}
-								setWhereToPassProduct={setWhereToPassProduct}
-							/>
-						))}
-					</DaysContainer>
-				)}
-				<Button
-					width='100%'
-					height='40px'
-					type='button'
-					bgColor={theme.colors.main}
-					onClick={() => dispatch(addDay())}
-					className='diet-btn'>
-					Dodaj Dzień
-				</Button>
-				<Button
-					width='100%'
-					height='40px'
-					type='reset'
-					bgColor={theme.colors.errorMain}
-					onClick={() => dispatch(clearDiet())}
-					className='diet-btn'>
-					Wyczyść diete
-				</Button>
-				<Button width='100%' height='40px' type='submit' bgColor={theme.colors.main} className='diet-btn'>
-					Zatwierź
-				</Button>
+				<div className='left-form'>
+					<Button
+						width='100%'
+						height='40px'
+						type='button'
+						bgColor={theme.colors.main}
+						onClick={() => dispatch(addDay())}
+						className='diet-btn'>
+						Dodaj Dzień
+					</Button>
+					{days.length > 0 && (
+						<DaysContainer>
+							{days.map((day: DayType) => (
+								<Day
+									key={day._id}
+									day={day}
+									setIsModalOpen={setIsModalOpen}
+									setWhereToPassProduct={setWhereToPassProduct}
+								/>
+							))}
+						</DaysContainer>
+					)}
+				</div>
 			</Form>
 		</DietCreateContainer>
 	)

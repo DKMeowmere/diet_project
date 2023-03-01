@@ -1,81 +1,82 @@
-<<<<<<< HEAD
-import { DietsListContainer, DietListContainer, Dietes } from './styles'
+import { DietsListContainer, DietContainer, Diet } from './styles'
 import SearchInput from '../../components/searchInput/Index'
 
 function DietList() {
 	return (
 		<DietsListContainer>
-			<DietListContainer>
-				<Dietes>
+			<DietContainer>
+				{/* key={diet._id}
+				to={`/diet/${diet._id}`} */}
+				<Diet>
 					<div className='diet-title'>Keto</div>
-				</Dietes>
-			</DietListContainer>
+				</Diet>
+			</DietContainer>
 
-			<DietListContainer>
-				<Dietes>
+			<DietContainer>
+				<Diet>
 					<div className='diet-title'>Keto</div>
-				</Dietes>
-			</DietListContainer>
+				</Diet>
+			</DietContainer>
 
-			<DietListContainer>
-				<Dietes>
+			<DietContainer>
+				<Diet>
 					<div className='diet-title'>Keto</div>
-				</Dietes>
-			</DietListContainer>
+				</Diet>
+			</DietContainer>
 
-			<DietListContainer>
-				<Dietes>
+			<DietContainer>
+				<Diet>
 					<div className='diet-title'>Keto</div>
-				</Dietes>
-			</DietListContainer>
+				</Diet>
+			</DietContainer>
 
-			<DietListContainer>
-				<Dietes>
+			<DietContainer>
+				<Diet>
 					<div className='diet-title'>Keto</div>
-				</Dietes>
-			</DietListContainer>
+				</Diet>
+			</DietContainer>
 
-			<DietListContainer>
-				<Dietes>
+			<DietContainer>
+				<Diet>
 					<div className='diet-title'>Keto</div>
-				</Dietes>
-			</DietListContainer>
+				</Diet>
+			</DietContainer>
 
-			<DietListContainer>
-				<Dietes>
+			<DietContainer>
+				<Diet>
 					<div className='diet-title'>Keto</div>
-				</Dietes>
-			</DietListContainer>
+				</Diet>
+			</DietContainer>
 
-			<DietListContainer>
-				<Dietes>
+			<DietContainer>
+				<Diet>
 					<div className='diet-title'>Keto</div>
-				</Dietes>
-			</DietListContainer>
+				</Diet>
+			</DietContainer>
 
-			<DietListContainer>
-				<Dietes>
+			<DietContainer>
+				<Diet>
 					<div className='diet-title'>Keto</div>
-				</Dietes>
-			</DietListContainer>
+				</Diet>
+			</DietContainer>
 
-			<DietListContainer>
-				<Dietes>
+			<DietContainer>
+				<Diet>
 					<div className='diet-title'>Keto</div>
-				</Dietes>
-			</DietListContainer>
+				</Diet>
+			</DietContainer>
 
-			<DietListContainer>
-				<Dietes>
+			<DietContainer>
+				<Diet>
 					<div className='diet-title'>Keto</div>
-				</Dietes>
-			</DietListContainer>
+				</Diet>
+			</DietContainer>
 
-			<DietListContainer>
-				<Dietes>
+			<DietContainer>
+				<Diet>
 					<div className='diet-title'>Keto</div>
-				</Dietes>
-			</DietListContainer>
+				</Diet>
+			</DietContainer>
 		</DietsListContainer>
 	)
 }

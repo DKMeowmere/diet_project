@@ -20,7 +20,7 @@ export const HomeContainer = styled.article<{ imageUrl: string }>`
 `
 export const Block = styled(Link)`
 	background-color: #fff;
-	height: 20vh;
+	height: 20%;
 	width: 50%;
 	height: auto;
 	display: flex;

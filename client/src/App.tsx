@@ -52,7 +52,6 @@ function App() {
 				<Route path="/patient/create" element={<CreatePatient />} />
 				<Route path="/patient/:id" element={<PatientDetails />} />
 				<Route path="*" element={<NotFoundPage />} />
-
 			</Routes>
 		</Container>
 	)
