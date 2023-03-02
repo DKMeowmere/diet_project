@@ -41,7 +41,7 @@ export const Patient = styled.div`
 	box-shadow: 0px 9px 20px -7px rgba(66, 68, 90, 1);
 	cursor: pointer;
 	&:hover {
-		opacity: 0.7;
+		opacity: 0.9;
 		box-shadow: 0px 9px 25px 5px rgba(66, 68, 90, 1);
 	}
 	.patient-title {

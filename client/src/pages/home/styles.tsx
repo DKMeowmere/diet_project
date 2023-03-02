@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom"
-import styled from "styled-components"
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
 export const HomeContainer = styled.article<{ imageUrl: string }>`
 	background: url(${({ imageUrl }) => imageUrl});
@@ -20,7 +20,7 @@ export const HomeContainer = styled.article<{ imageUrl: string }>`
 `
 export const Block = styled(Link)`
 	background-color: #fff;
-	height: 20%;
+	height: 30vh;
 	width: 50%;
 	height: auto;
 	display: flex;

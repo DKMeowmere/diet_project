@@ -18,6 +18,7 @@ import DietList from "./pages/dietList/Index"
 import DietDetails from "./pages/dietDetails/Index"
 import useTokenValidation from "./hooks/useTokenValidation"
 import DietPdf from "./pages/dietDetails/Pdf"
+import DietUpdate from "./pages/dietDetailsUpdate/Index"
 
 function App() {
 	const isLoading = useAppSelector(state => state.app.isAppLoading)
@@ -44,6 +45,7 @@ function App() {
 				<Route path="/diet/create" element={<CreateDiet />} />
 				<Route path="/diet/:id/pdf" element={<DietPdf />} />
 				<Route path="/diet/:id" element={<DietDetails />} />
+				<Route path="/diet/:id/update" element={<DietUpdate />} />
 				<Route path="/product" element={<ProductList />} />
 				<Route path="/product/create" element={<CreateProduct />} />
 				<Route path="/product/:id" element={<ProductDetails />} />

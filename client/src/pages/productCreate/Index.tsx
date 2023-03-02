@@ -73,7 +73,7 @@ function CreateProduct() {
 				})
 			)
 
-			navigate(`/product/${data._id}`)
+			navigate("/product")
 		} catch (err: unknown) {
 			const message =
 				err instanceof Error ? err.message : "Nieoczekiwany błąd"
