@@ -9,7 +9,7 @@ import {
 import { Diet } from "./styles"
 import { useEffect, useState } from "react"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
-import { Link, useParams } from "react-router-dom"
+import { Link, useParams, useSearchParams } from "react-router-dom"
 import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
 import { useCookies } from "react-cookie"
 import { Diet as DietType } from "../../types/diet"
@@ -23,6 +23,8 @@ function DietPdf() {
 	const dispatch = useAppDispatch()
 	const { id } = useParams()
 	const [cookies] = useCookies()
+	const [searchParams] = useSearchParams()
+	const dayId = searchParams.get("day")
 
 	useEffect(() => {
 		dispatch(startLoading())
@@ -66,7 +68,6 @@ function DietPdf() {
 
 	return (
 		<PdfDietContainer>
-			<Diet>
 				<div className="diet-box">
 					<div className="title">{diet.title}</div>
 					{diet.description && (
@@ -76,41 +77,52 @@ function DietPdf() {
 					)}
 				</div>
 				<DaysContainer>
-					{diet.days.map(day => (
-						<PdfDay key={day._id}>
-							<div className="day-name">{day.day}</div>
-							<MealsContainer>
-								{day.meals.map(meal => (
-									<div className="meal" key={meal._id}>
-										<div className="meal-box">
-											<div className="meal-title">
-												{meal.name}
-											</div>
-											{meal.description && (
-												<div className="meals-description">
-													{meal.description}
+					{diet.days.map(day => {
+						if (dayId && day._id !== dayId) {
+							return
+						}
+
+						return (
+							<PdfDay key={day._id}>
+								<div className="day-name">{day.day}</div>
+								<MealsContainer>
+									{day.meals.map(meal => (
+										<div className="meal" key={meal._id}>
+											<div className="meal-box">
+												<div className="meal-title">
+													{meal.name}
 												</div>
-											)}
+												{meal.description && (
+													<div className="meals-description">
+														{meal.description}
+													</div>
+												)}
+											</div>
+											<ProductsContainer>
+												<HeaderRow />
+												<tbody>
+													{meal.products.map(
+														product => (
+															<ProductRow
+																product={
+																	product
+																}
+																key={
+																	product._id
+																}
+															/>
+														)
+													)}
+												</tbody>
+												<FooterRow meal={meal} />
+											</ProductsContainer>
 										</div>
-										<ProductsContainer>
-											<HeaderRow />
-											<tbody>
-												{meal.products.map(product => (
-													<ProductRow
-														product={product}
-														key={product._id}
-													/>
-												))}
-											</tbody>
-											<FooterRow meal={meal} />
-										</ProductsContainer>
-									</div>
-								))}
-							</MealsContainer>
-						</PdfDay>
-					))}
+									))}
+								</MealsContainer>
+							</PdfDay>
+						)
+					})}
 				</DaysContainer>
-			</Diet>
 		</PdfDietContainer>
 	)
 }

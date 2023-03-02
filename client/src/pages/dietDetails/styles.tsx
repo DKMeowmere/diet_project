@@ -98,11 +98,38 @@ export const ProductContainer = styled.tr`
 `
 
 export const PdfDietContainer = styled(DietContainer)`
+	width: 100%;
 	min-height: 100%;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 	background-color: #fff;
+	border-radius: 15px;
+	margin-top: 20px;
+	padding: 20px;
+	justify-content: center;
+	.title {
+		font-size: 2rem;
+		margin-bottom: 20px;
+	}
+	a {
+		text-align: center;
+		font-size: 2rem;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	.diet-box {
+		background-color: #ffa500;
+		padding: 20px;
+		border-radius: 10px;
+		color: ${({ theme }) => theme.colors.whiteText};
+	}
+	.diet-description {
+		font-size: 1.2rem;
+	}
 `
-
-export const DietPdf = styled(Diet)``
 
 export const PdfDay = styled(Day)`
 	border-radius: 0;

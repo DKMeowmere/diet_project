@@ -1,5 +1,6 @@
-import { Request, Response } from "express"
+import {  Response } from "express"
 import jwt from "jsonwebtoken"
+import CustomRequest from "../types/customRequest.js"
 
 function createToken() {
 	if (!process.env.TOKEN_SECRET) {
@@ -13,7 +14,7 @@ function createToken() {
 	return token
 }
 
-export async function login(req: Request, res: Response) {
+export async function login(req: CustomRequest, res: Response) {
 	try {
 		const { password } = req.body
 		const appPassword = process.env.APP_PASSWORD
