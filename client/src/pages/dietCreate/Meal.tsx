@@ -55,13 +55,6 @@ export default function Meal({ meal, day, setIsModalOpen, setWhereToPassProduct 
 					)
 				}
 			/>
-			{meal.products.length > 0 && (
-				<ProductsContainer>
-					{meal.products.map((product: MealProduct) => (
-						<Product key={product._id} day={day} meal={meal} product={product} />
-					))}
-				</ProductsContainer>
-			)}
 			<Button
 				width='100%'
 				height='40px'
@@ -78,6 +71,13 @@ export default function Meal({ meal, day, setIsModalOpen, setWhereToPassProduct 
 				Dodaj produkt do posiłku:
 				{meal.name}
 			</Button>
+			{meal.products.length > 0 && (
+				<ProductsContainer>
+					{meal.products.map((product: MealProduct) => (
+						<Product key={product._id} day={day} meal={meal} product={product} />
+					))}
+				</ProductsContainer>
+			)}
 			<div className='diet-values'>
 				<div className='diet-amount'>Razem</div>
 				<div className='diet-calories'>

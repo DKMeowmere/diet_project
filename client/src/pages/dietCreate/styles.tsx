@@ -11,7 +11,6 @@ export const DietCreateContainer = styled.article`
 		text-align: center;
 		font-size: 1.5rem;
 		margin-top: 30px;
-		
 	}
 	.input-diet-box {
 		display: flex;
@@ -40,8 +39,7 @@ export const DietCreateContainer = styled.article`
 	}
 `
 export const Form = styled.form`
-	margin-left: 290px;
-	margin-top: 30px;
+	margin:30px 0 0 90px;
 	max-width: 1000px;
 	color: ${({ theme }) => theme.colors.blackText};
 	.left-form {

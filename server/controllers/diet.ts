@@ -22,7 +22,7 @@ export async function createDiet(req: Request, res: Response) {
 
 		if (!title || !description || !days) {
 			throw new Error(
-				"Musisz podać wszystkie wartości potrzebne do stworzenia produktu"
+				"Musisz podać wszystkie wartości potrzebne do stworzenia diety"
 			)
 		}
 
@@ -39,7 +39,7 @@ export async function getDiet(req: Request, res: Response) {
 		const { id } = req.params
 
 		if (!mongoose.isValidObjectId(id)) {
-			throw new Error("Nie poprawne id produktu")
+			throw new Error("Nie poprawne id diety")
 		}
 
 		const diet = await Diet.findById(id).populate(
@@ -105,7 +105,6 @@ export async function generateDietPdf(req: CustomRequest, res: Response) {
 		const url = `${process.env.CLIENT_APP_URL}/diet/${id}/pdf${
 			day ? `?day=${day}` : ""
 		}`
-		console.log(url)
 
 		if (!req.token) {
 			throw new Error("Brak tokena")
@@ -123,7 +122,6 @@ export async function generateDietPdf(req: CustomRequest, res: Response) {
 		const page = await browser.newPage()
 		await page.goto(url)
 
-		// await page.setViewport({ width: 1080, height: 1024 })
 		await page.emulateMediaType("screen")
 
 		await page.setCookie({ name: "token", value: req.token })

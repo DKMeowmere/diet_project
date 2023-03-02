@@ -18,7 +18,7 @@ import DietList from "./pages/dietList/Index"
 import DietDetails from "./pages/dietDetails/Index"
 import useTokenValidation from "./hooks/useTokenValidation"
 import DietPdf from "./pages/dietDetails/Pdf"
-import DietUpdate from "./pages/dietDetailsUpdate/Index"
+import DietUpdate from "./pages/dietUpdate/Index"
 
 function App() {
 	const isLoading = useAppSelector(state => state.app.isAppLoading)

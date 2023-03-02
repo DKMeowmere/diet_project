@@ -1,12 +1,10 @@
 import { useCookies } from "react-cookie"
 import { useAppDispatch, useAppSelector } from "../app/hooks"
-import { useNavigate } from "react-router-dom"
 import { addAlert, endLoading, startLoading } from "../app/features/appSlice"
 
 export const useLogin = () => {
 	const [, setCookie] = useCookies()
 	const dispatch = useAppDispatch()
-	const navigate = useNavigate()
 	const serverUrl = useAppSelector(state => state.app.serverUrl)
 
 	async function login(password: string) {
@@ -32,7 +30,6 @@ export const useLogin = () => {
 			maxAge: month,
 			sameSite: "lax",
 		})
-		navigate("/")
 	}
 
 	return { login }

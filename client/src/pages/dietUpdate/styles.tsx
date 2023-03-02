@@ -40,7 +40,7 @@ export const DietCreateContainer = styled.article`
 	}
 `
 export const Form = styled.form`
-	margin-left: 290px;
+	margin-left: 90px;
 	margin-top: 30px;
 	max-width: 1000px;
 	color: ${({ theme }) => theme.colors.blackText};
