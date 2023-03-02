@@ -1,8 +1,8 @@
 import { Request, Response } from "express"
 import mongoose from "mongoose"
 import Diet from "../models/diet.js"
-import generateDietHTML from "../utils/generateDietHTML.js"
-import pdf from "html-pdf"
+import puppeteer from "puppeteer"
+import CustomRequest from "../types/customRequest.js"
 
 export async function getDiets(req: Request, res: Response) {
 	try {
@@ -98,9 +98,18 @@ export async function deleteDiet(req: Request, res: Response) {
 	}
 }
 
-export async function generateDietPdf(req: Request, res: Response) {
+export async function generateDietPdf(req: CustomRequest, res: Response) {
 	try {
 		const { id } = req.params
+		const { day } = req.query
+		const url = `${process.env.CLIENT_APP_URL}/diet/${id}/pdf${
+			day ? `?day=${day}` : ""
+		}`
+		console.log(url)
+
+		if (!req.token) {
+			throw new Error("Brak tokena")
+		}
 
 		if (!mongoose.isValidObjectId(id)) {
 			throw new Error("Nie poprawne id diety")
@@ -110,33 +119,31 @@ export async function generateDietPdf(req: Request, res: Response) {
 			"days.meals.products.product"
 		)
 
-		if (!diet) {
-			throw new Error("Podałeś złe id diety")
-		}
+		const browser = await puppeteer.launch()
+		const page = await browser.newPage()
+		await page.goto(url)
 
-		const html = generateDietHTML(diet)
+		// await page.setViewport({ width: 1080, height: 1024 })
+		await page.emulateMediaType("screen")
+
+		await page.setCookie({ name: "token", value: req.token })
+
+		await page.goto(url, { waitUntil: "networkidle0" })
+		const pdf = await page.pdf({
+			preferCSSPageSize: true,
+			printBackground: true,
+			format: "A4",
+		})
 
 		res.setHeader("Content-Type", "application/pdf")
 		res.setHeader(
 			"Content-Disposition",
-			`attachment; filename=${diet.title}.pdf`
+			`attachment; filename=${
+				diet?.title.split(" ").join("-") || "dieta"
+			}.pdf`
 		)
-
-		pdf.create(html, {}).toStream((err, pdfStream) => {
-			if (err) {
-				res.status(500).json({
-					error: "Błąd podczas generowanie pdf",
-				})
-				return
-			}
-			res.statusCode = 200
-			pdfStream.on("end", () => {
-				return res.end()
-			})
-
-			pdfStream.pipe(res)
-		})
-
+		res.send(pdf)
+		await browser.close()
 	} catch (err: any) {
 		res.status(400).json({ error: err.message })
 	}
