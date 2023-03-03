@@ -22,7 +22,7 @@ export default function Meal({ meal, day, setIsModalOpen, setWhereToPassProduct 
 
 	return (
 		<div className='meal' key={meal._id}>
-			<div className='meal-name'>Modyfikuj nazwe posiłku</div>
+			<div className='meal-name'>Podaj nazwe posiłku</div>
 			<Input
 				width='100%'
 				height='70px'
@@ -39,7 +39,7 @@ export default function Meal({ meal, day, setIsModalOpen, setWhereToPassProduct 
 				}
 			/>
 
-			<div className='meal-name'>Modyfikuj opis posiłku</div>
+			<div className='meal-name'>Podaj opis posiłku</div>
 			<Textarea
 				width='100%'
 				height='150px'
@@ -55,13 +55,6 @@ export default function Meal({ meal, day, setIsModalOpen, setWhereToPassProduct 
 					)
 				}
 			/>
-			{meal.products.length > 0 && (
-				<ProductsContainer>
-					{meal.products.map((product: MealProduct) => (
-						<Product key={product._id} day={day} meal={meal} product={product} />
-					))}
-				</ProductsContainer>
-			)}
 			<Button
 				width='100%'
 				height='40px'
@@ -78,30 +71,37 @@ export default function Meal({ meal, day, setIsModalOpen, setWhereToPassProduct 
 				Dodaj produkt do posiłku:
 				{meal.name}
 			</Button>
-			<div className='diet-values'>
-				<div className='diet-amount'>Razem</div>
-				<div className='diet-calories'>
+			{meal.products.length > 0 && (
+				<ProductsContainer>
+					{meal.products.map((product: MealProduct) => (
+						<Product key={product._id} day={day} meal={meal} product={product} />
+					))}
+				</ProductsContainer>
+			)}
+			<div className='product-values'>
+				<div className='product-amount'>Razem</div>
+				<div className='product-calories'>
 					Kalorie:
 					{meal.products.reduce<number>(
 						(accumulator, product) => accumulator + product.product.calories * product.count * product.grams,
 						0
 					)}
 				</div>
-				<div className='diet-carbo'>
+				<div className='product-carbo'>
 					Węglowodany:
 					{meal.products.reduce<number>(
 						(accumulator, product) => accumulator + product.product.carbohydrates * product.count * product.grams,
 						0
 					)}
 				</div>
-				<div className='diet-proteins'>
+				<div className='product-proteins'>
 					Białka:
 					{meal.products.reduce<number>(
 						(accumulator, product) => accumulator + product.product.proteins * product.count * product.grams,
 						0
 					)}
 				</div>
-				<div className='diet-fats'>
+				<div className='product-fats'>
 					Tłuszcze:
 					{meal.products.reduce<number>(
 						(accumulator, product) => accumulator + product.product.fats * product.count * product.grams,

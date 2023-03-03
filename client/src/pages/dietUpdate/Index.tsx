@@ -17,11 +17,12 @@ import { WhereToPassProduct } from "../../types/whereToPassProduct"
 import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
 import { validate } from "./validateDiet"
 import { useCookies } from "react-cookie"
-import { useNavigate } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import Day from "./Day"
 import { LeftArrow, RightArrow } from "../../components/arrow/Index"
+import { Diet as DietType } from "../../types/diet"
 
-function CreateDiet() {
+function UpdateDiet() {
 	const diet = useAppSelector(state => state.diet.currentDiet)
 	const title = useAppSelector(state => state.diet.currentDiet.title)
 	const description = useAppSelector(
@@ -34,8 +35,8 @@ function CreateDiet() {
 		useState<WhereToPassProduct | null>(null)
 	const serverUrl = useAppSelector(state => state.app.serverUrl)
 	const [cookies] = useCookies()
-	const navigate = useNavigate()
 	const [pageNumber, setPageNumber] = useState(0)
+	const { id } = useParams()
 
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault()
@@ -82,8 +83,6 @@ function CreateDiet() {
 					type: "SUCCESS",
 				})
 			)
-
-			navigate(`/diet/${data._id}`)
 		} catch (err: unknown) {
 			const message =
 				err instanceof Error ? err.message : "Nieoczekiwany błąd"
@@ -98,20 +97,29 @@ function CreateDiet() {
 	}
 
 	useEffect(() => {
-		const diet = JSON.parse(localStorage.getItem("diet") || "null")
+		dispatch(startLoading())
+		async function fetchDiet() {
+			const res = await fetch(`${serverUrl}/api/diet/${id}`, {
+				headers: {
+					Authorization: `Bearer ${cookies.token}`,
+				},
+			})
+			dispatch(endLoading())
+			const data = await res.json()
 
-		if (diet) {
-			dispatch(importDiet(diet))
+			if (!res.ok) {
+				dispatch(addAlert({ body: data?.error, type: "ERROR" }))
+				return
+			}
+
+			if (!data) {
+				return
+			}
+
+			dispatch(importDiet(data as unknown as DietType))
 		}
-
-		localStorage.setItem("diet", JSON.stringify(diet))
+		fetchDiet()
 	}, [])
-
-	useEffect(() => {
-		if (diet.days.length > 0) {
-			localStorage.setItem("diet", JSON.stringify(diet))
-		}
-	}, [diet])
 
 	return (
 		<DietCreateContainer>
@@ -217,4 +225,4 @@ function CreateDiet() {
 	)
 }
 
-export default CreateDiet
+export default UpdateDiet

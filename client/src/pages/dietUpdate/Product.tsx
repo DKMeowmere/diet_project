@@ -19,7 +19,7 @@ export default function Product({ product, meal, day }: Props) {
 		<div className='product'>
 			<div className='diet-text'>{product.product.name}</div>
 			<div className='input-product-box'>
-				<div className='diet-weight'>Podaj wage (w gramach)</div>
+				<div className='product-weight'>Podaj wage (w gramach)</div>
 				<div className='input-box'>
 					<Input
 						width='100%'
@@ -40,7 +40,7 @@ export default function Product({ product, meal, day }: Props) {
 				</div>
 			</div>
 			<div className='input-amount-box'>
-				<div className='diet-amount-element'>Podaj ilość</div>
+				<div className='product-amount-element'>Podaj ilość</div>
 				<div className='input-box'>
 					<Input
 						width='100%'
@@ -60,20 +60,20 @@ export default function Product({ product, meal, day }: Props) {
 					/>
 				</div>
 			</div>
-			<div className='diet-values'>
-				<div className='diet-calories'>
+			<div className='product-values'>
+				<div className='product-calories'>
 					Kalorie:
 					{product.product.calories * product.grams * product.count}
 				</div>
-				<div className='diet-carbo'>
+				<div className='product-carbo'>
 					Węglowodany:
 					{product.product.carbohydrates * product.grams * product.count}
 				</div>
-				<div className='diet-proteins'>
+				<div className='product-proteins'>
 					Białka:
 					{product.product.proteins * product.grams * product.count}
 				</div>
-				<div className='diet-fats'>
+				<div className='product-fats'>
 					Tłuszcze:
 					{product.product.fats * product.grams * product.count}
 				</div>
