@@ -11,7 +11,6 @@ export const DietCreateContainer = styled.article`
 		text-align: center;
 		font-size: 1.5rem;
 		margin-top: 30px;
-		
 	}
 	.input-diet-box {
 		display: flex;
@@ -40,7 +39,7 @@ export const DietCreateContainer = styled.article`
 	}
 `
 export const Form = styled.form`
-	margin-left: 290px;
+	margin-left: 90px;
 	margin-top: 30px;
 	max-width: 1000px;
 	color: ${({ theme }) => theme.colors.blackText};
@@ -106,19 +105,19 @@ export const Form = styled.form`
 		color: ${({ theme }) => theme.colors.whiteText};
 	}
 	.diet-amount {
-			width: 100%;
-			padding: 20px;
-			text-align: center;
-			background-color: #d96500;
-			font-size: 1.5rem;
-			color: ${({ theme }) => theme.colors.whiteText};
-		}
+		width: 100%;
+		padding: 20px;
+		text-align: center;
+		background-color: #d96500;
+		font-size: 1.5rem;
+		color: ${({ theme }) => theme.colors.whiteText};
+	}
 	.diet-text {
 		width: 100%;
 		background-color: ${({ theme }) => theme.colors.main};
 		padding: 20px;
 		text-align: center;
-		font-size: 1.5rem;	
+		font-size: 1.5rem;
 		margin-top: 30px;
 		color: ${({ theme }) => theme.colors.whiteText};
 	}
@@ -179,19 +178,23 @@ export const Form = styled.form`
 	}
 	.meal-btn {
 		border-radius: 0;
-	
 	}
-	.diet-values{
+	.diet-values {
 		display: flex;
 		flex-direction: row;
+		margin-top: 0px;
 	}
+	.diet-values-amount {
+		display: flex;
+		flex-direction: row;
+		margin-top: 20px;
+	}
+
 	.diet-btn {
 		border-radius: 0;
-		
 	}
 	.diet-btn:first-child {
 		border-radius: 0;
-		;
 	}
 	.diet-btn {
 		border-radius: 0;

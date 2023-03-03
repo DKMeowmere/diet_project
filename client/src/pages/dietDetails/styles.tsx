@@ -24,7 +24,7 @@ export const Diet = styled.div`
 		.pdf-icon {
 			position: absolute;
 			right: 8px;
-			top: 8px;
+			top: -8px;
 			padding: 10px;
 			border-radius: 50%;
 			cursor: pointer;

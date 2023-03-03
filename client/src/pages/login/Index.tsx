@@ -5,7 +5,7 @@ import PasswordInput from "../../components/passwordInput/Index"
 import { useState } from "react"
 import { useLogin } from "../../hooks/useLogin"
 import { useNavigate } from "react-router-dom"
-import backgroundImage from "../../assets/homeBackground.jpg"
+
 
 function Login() {
 	const [password, setPassword] = useState("")
@@ -19,7 +19,7 @@ function Login() {
 	}
 
 	return (
-		<LoginContainer imageUrl={backgroundImage}>
+		<LoginContainer>
 			<form onSubmit={handleSubmit}>
 				<PasswordInput
 					width="100%"
