@@ -26,7 +26,7 @@ function PatientDetails() {
 
 	useEffect(() => {
 		dispatch(startLoading())
-		async function fetchProduct() {
+		async function fetchPatient() {
 			const res = await fetch(`${serverUrl}/api/patient/${id}`, {
 				headers: {
 					Authorization: `Bearer ${cookies.token}`,
@@ -53,12 +53,8 @@ function PatientDetails() {
 			setPatientDiets(patientDiets)
 			setPatient(data as unknown as PatientType)
 		}
-		fetchProduct()
+		fetchPatient()
 	}, [])
-
-	// useEffect(() => {
-	// 	setPatient({ ...patient, diets: patientDiets })
-	// }, [patientDiets])
 
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault()
