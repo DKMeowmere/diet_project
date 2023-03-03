@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 export const DietContainer = styled.article`
 	width: 100%;
@@ -6,6 +6,7 @@ export const DietContainer = styled.article`
 	justify-content: center;
 	padding-bottom: 30px;
 `
+
 export const Diet = styled.div`
 	width: 75%;
 	display: flex;
@@ -16,26 +17,31 @@ export const Diet = styled.div`
 	margin-top: 20px;
 	padding: 20px;
 	justify-content: center;
-
 	.title {
 		font-size: 2rem;
 		position: relative;
 		margin-bottom: 20px;
-		.pdf-icon {
+		.icons {
 			position: absolute;
 			right: 8px;
 			top: -8px;
-			padding: 10px;
-			border-radius: 50%;
-			cursor: pointer;
-			fill: ${({ theme }) => theme.colors.main};
-			width: 60px;
-			height: 60px;
-			background-color: #fff;
 			display: flex;
-			&:hover {
-				background-color: ${({ theme }) => theme.colors.main};
-				fill: ${({ theme }) => theme.colors.whiteText};
+			gap: 20px;
+			svg {
+				padding: 10px;
+				border-radius: 50%;
+				cursor: pointer;
+				fill: ${({ theme }) => theme.colors.main};
+				color: ${({ theme }) => theme.colors.main};
+				width: 60px;
+				height: 60px;
+				background-color: #fff;
+				display: flex;
+				&:hover {
+					background-color: ${({ theme }) => theme.colors.main};
+					fill: ${({ theme }) => theme.colors.whiteText};
+					color: ${({ theme }) => theme.colors.whiteText};
+				}
 			}
 		}
 	}
@@ -114,6 +120,7 @@ export const MealsContainer = styled.div`
 		text-align: center;
 	}
 `
+
 export const ProductsContainer = styled.table`
 	text-align: center;
 	margin: auto;

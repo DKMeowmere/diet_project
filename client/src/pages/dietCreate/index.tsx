@@ -2,7 +2,7 @@ import { DaysContainer, DietCreateContainer, Form } from "./styles"
 import Input from "../../components/input/Index"
 import { Button } from "../../components/button/Button"
 import theme from "../../app/theme"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Textarea from "../../components/textarea/Index"
 import ProductModal from "../../components/productModal/Index"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
@@ -11,14 +11,15 @@ import {
 	changeDescription,
 	changeTitle,
 	clearDiet,
+	importDiet,
 } from "../../app/features/dietSlice"
-import { Day as DayType } from "../../types/day"
 import { WhereToPassProduct } from "../../types/whereToPassProduct"
 import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
 import { validate } from "./validateDiet"
 import { useCookies } from "react-cookie"
 import { useNavigate } from "react-router-dom"
 import Day from "./Day"
+import { LeftArrow, RightArrow } from "../../components/arrow/Index"
 
 function CreateDiet() {
 	const diet = useAppSelector(state => state.diet.currentDiet)
@@ -34,6 +35,7 @@ function CreateDiet() {
 	const serverUrl = useAppSelector(state => state.app.serverUrl)
 	const [cookies] = useCookies()
 	const navigate = useNavigate()
+	const [pageNumber, setPageNumber] = useState(0)
 
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault()
@@ -95,6 +97,22 @@ function CreateDiet() {
 		}
 	}
 
+	useEffect(() => {
+		const diet = JSON.parse(localStorage.getItem("diet") || "null")
+
+		if (diet) {
+			dispatch(importDiet(diet))
+		}
+
+		localStorage.setItem("diet", JSON.stringify(diet))
+	}, [])
+
+	useEffect(() => {
+		if (diet.days.length > 0) {
+			localStorage.setItem("diet", JSON.stringify(diet))
+		}
+	}, [diet])
+
 	return (
 		<DietCreateContainer>
 			{isModalOpen && (
@@ -132,7 +150,11 @@ function CreateDiet() {
 							height="40px"
 							type="reset"
 							bgColor={theme.colors.errorMain}
-							onClick={() => dispatch(clearDiet())}
+							onClick={() => {
+								localStorage.setItem("diet", "null")
+								setPageNumber(0)
+								dispatch(clearDiet())
+							}}
 							className="main-btn"
 						>
 							Wyczyść diete
@@ -161,16 +183,32 @@ function CreateDiet() {
 					</Button>
 					{days.length > 0 && (
 						<DaysContainer>
-							{days.map((day: DayType) => (
-								<Day
-									key={day._id}
-									day={day}
-									setIsModalOpen={setIsModalOpen}
-									setWhereToPassProduct={
-										setWhereToPassProduct
+							<Day
+								day={days[pageNumber]}
+								setIsModalOpen={setIsModalOpen}
+								setWhereToPassProduct={setWhereToPassProduct}
+								pageNumber={pageNumber}
+								setPageNumber={setPageNumber}
+								daysCount={days.length}
+							/>
+							{pageNumber > 0 && (
+								<LeftArrow
+									onClick={() =>
+										setPageNumber(prevPage => prevPage - 1)
 									}
+									position="absolute"
+									top="20px"
 								/>
-							))}
+							)}
+							{pageNumber < diet.days.length - 1 && (
+								<RightArrow
+									onClick={() =>
+										setPageNumber(prevPage => prevPage + 1)
+									}
+									position="absolute"
+									top="20px"
+								/>
+							)}
 						</DaysContainer>
 					)}
 				</div>

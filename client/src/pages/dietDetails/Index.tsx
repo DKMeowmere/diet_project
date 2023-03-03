@@ -9,7 +9,7 @@ import { Diet } from "./styles"
 import { LeftArrow, RightArrow } from "../../components/arrow/Index"
 import { useEffect, useState } from "react"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
 import { useCookies } from "react-cookie"
 import { Diet as DietType } from "../../types/diet"
@@ -17,6 +17,7 @@ import ProductRow from "./ProductRow"
 import FooterRow from "./FooterRow"
 import HeaderRow from "./HeaderRow"
 import { AiOutlineFilePdf } from "react-icons/ai"
+import { RxUpdate } from "react-icons/rx"
 
 function DietDetails() {
 	const [diet, setDiet] = useState<DietType | null>(null)
@@ -25,6 +26,7 @@ function DietDetails() {
 	const { id } = useParams()
 	const [cookies] = useCookies()
 	const [pageNumber, setPageNumber] = useState(0)
+	const navigate = useNavigate()
 
 	async function handlePdfGeneration(url: string) {
 		dispatch(startLoading())
@@ -101,14 +103,16 @@ function DietDetails() {
 				<div className="diet-box">
 					<div className="title">
 						{diet.title}
-						<AiOutlineFilePdf
-							className="pdf-icon"
-							onClick={() =>
-								handlePdfGeneration(
-									`${serverUrl}/api/diet/pdf/${diet._id}`
-								)
-							}
-						/>
+						<div className="icons">
+							<AiOutlineFilePdf
+								onClick={() =>
+									handlePdfGeneration(
+										`${serverUrl}/api/diet/pdf/${diet._id}`
+									)
+								}
+							/>
+								<RxUpdate onClick={() => navigate(`/diet/${diet._id}/update`)}/>
+						</div>
 					</div>
 
 					{diet.description && (

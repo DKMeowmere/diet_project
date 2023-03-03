@@ -1,8 +1,9 @@
 import styled from "styled-components"
 
 type Props = {
-	type: "LEFT" | "RIGHT",
+	type: "LEFT" | "RIGHT"
 	position?: "relative" | "absolute" | "fixed"
+	top?:string
 }
 
 export const ArrowContainer = styled.div<Props>`
@@ -10,8 +11,8 @@ export const ArrowContainer = styled.div<Props>`
 	height: 60px;
 	z-index: 100;
 	background-color: ${({ theme }) => theme.colors.main};
-	position: fixed;
-	top: 50%;
+	position: ${({ position }) => position || "fixed"};
+	top: ${({ top }) => top || "50%"};
 	left: ${({ type }) => (type === "LEFT" ? "4%" : "")};
 	right: ${({ type }) => (type === "RIGHT" ? "4%" : "")};
 	display: flex;

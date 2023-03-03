@@ -14,7 +14,7 @@ export const NavbarContainer = styled.header`
 	position: fixed;
 	top: 0;
 	right: 0;
-	z-index: 100;
+	z-index: 1000;
 	svg {
 		color: ${({ theme }) => theme.colors.main};
 		font-size: 1.5rem;

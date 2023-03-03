@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { Day } from "../../types/day"
+import { Diet } from "../../types/diet"
 import { DietState } from "../../types/dietState"
 import { Meal, MealProduct } from "../../types/meal"
 import { Product } from "../../types/product"
@@ -27,6 +28,10 @@ const dietSlice = createSlice({
 	reducers: {
 		clearDiet: state => {
 			state.currentDiet = { title: "", description: "", days: [] }
+		},
+
+		importDiet: (state, action: PayloadAction<Diet>) => {
+			state.currentDiet = action.payload
 		},
 
 		changeTitle: (state, action: PayloadAction<string>) => {
@@ -261,6 +266,7 @@ const dietSlice = createSlice({
 export default dietSlice.reducer
 export const {
 	clearDiet,
+	importDiet,
 	changeTitle,
 	changeDescription,
 	addDay,
