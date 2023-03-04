@@ -16,7 +16,7 @@ import { Diet as DietType } from "../../types/diet"
 import ProductRow from "./ProductRow"
 import FooterRow from "./FooterRow"
 import HeaderRow from "./HeaderRow"
-import { AiOutlineFilePdf } from "react-icons/ai"
+import { AiOutlineFilePdf, AiFillDelete } from "react-icons/ai"
 import { RxUpdate } from "react-icons/rx"
 
 function DietDetails() {
@@ -84,6 +84,50 @@ function DietDetails() {
 		fetchDiet()
 	}, [])
 
+	async function handleDelete(e: React.FormEvent<SVGElement>) {
+		e.preventDefault()
+
+		try {
+			if (!diet) {
+				throw new Error("oczekiwany błąd")
+			}
+
+			dispatch(startLoading)
+			const res = await fetch(`${serverUrl}/api/diet/${id}`, {
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${cookies.token}`,
+				},
+			})
+			dispatch(endLoading())
+			const data = await res.json()
+
+			if (!res.ok) {
+				throw new Error(data.error)
+			}
+
+			dispatch(
+				addAlert({
+					body: "Diete usunięto pomyślnie",
+					type: "SUCCESS",
+				})
+			)
+
+			navigate("/")
+		} catch (err: unknown) {
+			const message =
+				err instanceof Error ? err.message : "Nieoczekiwany błąd"
+
+			dispatch(
+				addAlert({
+					body: message || "Nieoczekiwany błąd",
+					type: "ERROR",
+				})
+			)
+		}
+	}
+
 	if (!diet) {
 		return (
 			<DietContainer>
@@ -111,7 +155,8 @@ function DietDetails() {
 									)
 								}
 							/>
-								<RxUpdate onClick={() => navigate(`/diet/${diet._id}/update`)}/>
+							<RxUpdate onClick={() => navigate(`/diet/${diet._id}/update`)} />
+							<AiFillDelete onClick={handleDelete}/>
 						</div>
 					</div>
 

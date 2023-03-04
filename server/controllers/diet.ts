@@ -92,7 +92,7 @@ export async function deleteDiet(req: Request, res: Response) {
 			throw new Error("Nie znaleziono diety o podanym id")
 		}
 
-		res.status(204).json(diet)
+		res.status(200).json(diet)
 	} catch (err: any) {
 		res.status(400).json({ error: err.message })
 	}
