@@ -6,16 +6,25 @@ export const DietCreateContainer = styled.article`
 	.input-diet-box {
 		display: flex;
 		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 		height: 200px;
 		background-color: #fafafa;
-		gap: 20px;
 		width: 100%;
+		margin-bottom: 40px;
 		.diet-name {
 			width: 100%;
 			padding: 20px;
 			text-align: center;
 			color: ${({ theme }) => theme.colors.blackText};
 			font-size: 1.5rem;
+		}
+		.input-box {
+			width: 50%;
+			margin-left: auto;
+			padding: 20px;
+			margin-right: auto;
+			margin-bottom: 20px;
 		}
 	}
 `
@@ -58,7 +67,7 @@ export const Form = styled.form`
 		padding: 20px;
 		text-align: center;
 		font-size: 1.5rem;
-		margin-top: 30px;
+		margin-top:30px;
 		color: ${({ theme }) => theme.colors.whiteText};
 	}
 	.input-product-box {
@@ -104,7 +113,7 @@ export const Form = styled.form`
 	}
 	.main-btn {
 		border-radius: 0;
-		margin: 5px 0px;
+		margin:25px 0px;
 		width: 100%;
 	}
 	button {
@@ -114,15 +123,29 @@ export const Form = styled.form`
 		display: block;
 		margin: auto;
 	}
+	.meal-btn{
+		margin-top:40px;
+		margin-bottom: 0px;
+	}
 `
 
 export const DaysContainer = styled.div`
 	width: 100%;
 	position: relative;
+	.main-btn{
+		margin-bottom: 30px;
+	}
 `
 export const MealsContainer = styled.div`
 	width: 100%;
 	margin: auto;
+	.diet-btn{
+		margin-bottom: 10px;
+	}
+	.diet-btn-element{
+		margin-bottom: 40px;
+	}
+	
 	.meal-name {
 		width: 100%;
 		background-color: ${({ theme }) => theme.colors.main};

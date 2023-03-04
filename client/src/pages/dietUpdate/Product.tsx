@@ -83,7 +83,7 @@ export default function Product({ product, meal, day }: Props) {
 				height='40px'
 				type='button'
 				bgColor={theme.colors.errorMain}
-				className='diet-btn'
+				className='diet-btn-element'
 				onClick={() =>
 					dispatch(
 						removeProduct({

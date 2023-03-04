@@ -69,7 +69,7 @@ function ProductList() {
 				query={query}
 				setQuery={setQuery}
 				autocompleteData={productsTitles}
-			/>
+				/>
 			<ProductsContainer>
 				{filteredProducts.map(product => (
 					<ProductContainer

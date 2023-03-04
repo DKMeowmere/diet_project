@@ -15,20 +15,22 @@ export const ProductsArticle = styled.article`
 `
 
 export const ProductsContainer = styled.div`
-	width: 90%;
+	width: 80%;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	margin: auto;
 	gap: 30px;
+	margin-top: 40px;
 `
 export const ProductContainer = styled(Link)`
-	width: calc(50% - 30px);
+	width: calc(40% - 30px);
+	margin: 20px 40px;
+	
 `
 export const Product = styled.div`
-	width: 80%;
+	width: 100%;
 	height: 150px;
-	margin: 40px auto 0;
 	background-color: #fff;
 	border-radius: 10px;
 	padding: 20px;
@@ -69,8 +71,7 @@ export const Product = styled.div`
 	&:last-child {
 		padding-bottom: 30px;
 	}
-	@media screen and (min-width: ${({ theme }) =>
-			theme.media.breakpoints.lg}) {
+	@media screen and (min-width: ${({ theme }) =>theme.media.breakpoints.lg}) {
 		.product-value {
 			font-size: 1.4rem;
 		}
