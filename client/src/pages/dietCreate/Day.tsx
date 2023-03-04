@@ -66,6 +66,7 @@ export default function Day({
 				width="100%"
 				height="40px"
 				type="button"
+				className="diet-btn-element"
 				bgColor={theme.colors.main}
 				onClick={() => dispatch(addMeal({ day }))}
 			>

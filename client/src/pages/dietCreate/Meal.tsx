@@ -78,15 +78,9 @@ export default function Meal({ meal, day, setIsModalOpen, setWhereToPassProduct 
 					))}
 				</ProductsContainer>
 			)}
-<<<<<<< HEAD
-			<div className='diet-values-amount'>
-				<div className='diet-amount'>Razem</div>
-				<div className='diet-calories'>
-=======
 			<div className='product-values'>
 				<div className='product-amount'>Razem</div>
 				<div className='product-calories'>
->>>>>>> 6d35824dabd80decd748f7469bc970b58ecfb5e1
 					Kalorie:
 					{meal.products.reduce<number>(
 						(accumulator, product) => accumulator + product.product.calories * product.count * product.grams,

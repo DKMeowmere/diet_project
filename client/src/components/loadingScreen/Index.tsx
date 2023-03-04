@@ -1,17 +1,18 @@
-import { useEffect } from "react"
-import { LoadingScreenContainer, Spinner } from "./styles"
+import { useEffect } from 'react'
+import { LoadingScreenContainer } from './styles'
 
 export default function LoadingScreen() {
-  useEffect(() => {
-    document.body.style.overflow = "hidden"
-    return () => {
-			document.body.style.overflow = "hidden auto"
+	useEffect(() => {
+		document.body.style.overflow = 'hidden'
+		return () => {
+			document.body.style.overflow = 'hidden auto'
 		}
 	}, [])
 
 	return (
 		<LoadingScreenContainer>
-			<Spinner />
+			<div className='ring'></div>
+			<span>loading...</span>
 		</LoadingScreenContainer>
 	)
 }
