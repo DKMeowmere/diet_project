@@ -18,6 +18,7 @@ export const LoadingScreenContainer = styled.div`
 		height: 200px;
 		border-radius: 50%;
 		animation: ring 2s linear infinite;
+		
 	}
 	@keyframes ring {
 		0% {
