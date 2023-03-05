@@ -1,0 +1,21 @@
+{
+	"name": "diet_project",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"frontend": "cd client && npm run build && npm run preview",
+		"start": "cd server && npm run build && node dist/server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/DKMeowmere/diet_project.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/DKMeowmere/diet_project/issues"
+	},
+	"homepage": "https://github.com/DKMeowmere/diet_project#readme"
+}
