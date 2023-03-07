@@ -2,6 +2,7 @@ import styled from "styled-components"
 
 export const ProductModalContainer = styled.div`
 	position: fixed;
+	top: 80px;
 	z-index: 5;
 	width: 100%;
 	height: calc(100vh - 80px);
@@ -11,15 +12,16 @@ export const ProductModalContainer = styled.div`
 	justify-content: center;
 `
 
-export const ProductsArticle = styled.section`
+export const ProductsArticle = styled.div`
 	position: relative;
 	z-index: 10;
-	width: 80%;
-	background-color: #fff;
-	overflow-y: scroll;
 	max-width: 1000px;
-	height: 70vh;
-	padding-bottom: 30px;
+	width: 80%;
+	height: 500px;
+	background-color: #eee;
+	border-radius: 10px;
+	overflow-y: scroll;
+	padding: 30px 0;
 	.title {
 		font-size: 2rem;
 		text-align: center;
@@ -39,7 +41,7 @@ export const ProductsArticle = styled.section`
 		top: 12px;
 	}
 `
-export const ProductsContainer = styled.div`
+export const ProductsContainer = styled.section`
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
