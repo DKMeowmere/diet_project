@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom"
-import styled from "styled-components"
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
 export const PatientsArticle = styled.article`
 	padding: 30px 0;
@@ -46,6 +46,17 @@ export const Patient = styled.div`
 	}
 	.patient-title {
 		font-size: 1.7rem;
+		display: flex;
+		flex-direction: row;
+		.icon-box {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			svg {
+				font-size: 1.4rem;
+				margin-right: 5px;
+			}
+		}
 	}
 	.patient-value {
 		font-size: 1.4rem;
@@ -80,7 +91,7 @@ export const Patient = styled.div`
 			font-size: 1.55rem;
 		}
 		.diet-title {
-			background-color: #ffa500;
+			background-color: ${({ theme }) => theme.colors.main};
 			padding: 20px;
 			font-size: 1.2rem;
 			border-radius: 10px;

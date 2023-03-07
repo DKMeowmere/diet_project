@@ -27,6 +27,7 @@ export const Diet = styled.div`
 			top: -8px;
 			display: flex;
 			gap: 20px;
+			
 			svg {
 				padding: 10px;
 				border-radius: 50%;
