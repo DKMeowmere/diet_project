@@ -8,7 +8,6 @@ export const LoadingScreenContainer = styled.div`
 	top: 0;
 	left: 0;
 	background-color: #011e;
-	
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -18,7 +17,6 @@ export const LoadingScreenContainer = styled.div`
 		height: 200px;
 		border-radius: 50%;
 		animation: ring 2s linear infinite;
-		
 	}
 	@keyframes ring {
 		0% {
