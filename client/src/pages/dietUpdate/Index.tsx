@@ -62,8 +62,8 @@ function UpdateDiet() {
 				})),
 			}
 
-			const res = await fetch(`${serverUrl}/api/diet`, {
-				method: "POST",
+			const res = await fetch(`${serverUrl}/api/diet/${id}`, {
+				method: "PATCH",
 				body: JSON.stringify(newDiet),
 				headers: {
 					"Content-Type": "application/json",
@@ -79,7 +79,7 @@ function UpdateDiet() {
 
 			dispatch(
 				addAlert({
-					body: "Diete dodano pomyślnie",
+					body: "Diete zaaktualizowano pomyślnie",
 					type: "SUCCESS",
 				})
 			)
