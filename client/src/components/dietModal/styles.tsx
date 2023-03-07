@@ -11,13 +11,14 @@ export const DietModalContainer = styled.div`
 	justify-content: center;
 `
 
-export const DietsArticle = styled.article`
+export const DietsArticle = styled.div`
 	position: relative;
+	z-index: 10;
 	padding: 30px 0;
 	width: 90%;
+	max-width: 1200px;
 	height: 500px;
 	overflow-y: scroll;
-	max-width: 1200px;
 	background-color: #eee;
 	border-radius: 20px;
 	.search-input {
@@ -35,7 +36,7 @@ export const DietsArticle = styled.article`
 	}
 `
 
-export const DietsListContainer = styled.article`
+export const DietsListContainer = styled.section`
 	width: 90%;
 	display: flex;
 	flex-wrap: wrap;
