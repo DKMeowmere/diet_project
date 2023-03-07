@@ -17,6 +17,7 @@ export const LoadingScreenContainer = styled.div`
 		height: 200px;
 		border-radius: 50%;
 		animation: ring 2s linear infinite;
+		
 	}
 	@keyframes ring {
 		0% {
@@ -29,7 +30,7 @@ export const LoadingScreenContainer = styled.div`
 		}
 		100% {
 			transform: rotate(360deg);
-			box-shadow: 1px 5px 2px #0456c8;
+			box-shadow: 1px 5px 2px #ffa500;
 		}
 	}
 	.ring:before {
