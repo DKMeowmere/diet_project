@@ -18,6 +18,7 @@ import FooterRow from "./FooterRow"
 import HeaderRow from "./HeaderRow"
 import { AiOutlineFilePdf, AiFillDelete } from "react-icons/ai"
 import { RxUpdate } from "react-icons/rx"
+import { MdContentCopy } from "react-icons/md"
 
 function DietDetails() {
 	const [diet, setDiet] = useState<DietType | null>(null)
@@ -155,8 +156,18 @@ function DietDetails() {
 									)
 								}
 							/>
-							<RxUpdate onClick={() => navigate(`/diet/${diet._id}/update`)} />
-							<AiFillDelete onClick={handleDelete}/>
+							<MdContentCopy
+								onClick={() => {
+									localStorage.setItem("diet", JSON.stringify(diet))
+									navigate(`/diet/create`)
+								}}
+							/>
+							<RxUpdate
+								onClick={() =>
+									navigate(`/diet/${diet._id}/update`)
+								}
+							/>
+							<AiFillDelete onClick={handleDelete} />
 						</div>
 					</div>
 

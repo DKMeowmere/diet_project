@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm i && npx tsc",
-    "start": "npm i puppeteer && node dist/server.js",
+    "build": "npx tsc",
+    "start": "node dist/server.js",
     "dev": "node --loader ts-node/esm server.ts"
   },
   "keywords": [],
