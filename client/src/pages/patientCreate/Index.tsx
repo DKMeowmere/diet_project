@@ -2,7 +2,7 @@ import { PatientCreateContainer, Form, PatientDietsContainer } from "./styles"
 import Input from "../../components/input/Index"
 import { Button } from "../../components/button/Button"
 import theme from "../../app/theme"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
 import { useAppSelector } from "../../app/hooks"
@@ -25,6 +25,36 @@ function CreatePatient() {
 		{ title: string; _id: string }[]
 	>([])
 	const [isModalOpen, setIsModalOpen] = useState(false)
+
+	useEffect(() => {
+		const patient = JSON.parse(localStorage.getItem("patient") || "null")
+
+		if (patient) {
+			setFirstName(patient.firstName)
+			setLastName(patient.lastName)
+			setEmail(patient.email)
+			setPhoneNumber(patient.phoneNumber)
+			setWeight(patient.weight)
+			setPatientDiets(patient.patientDiets)
+		}
+	}, [])
+
+	useEffect(() => {
+		if (!firstName || !lastName || !email || !phoneNumber || !weight) {
+			return
+		}
+
+		const patient = {
+			firstName,
+			lastName,
+			email,
+			phoneNumber,
+			weight,
+			patientDiets
+		}
+
+		localStorage.setItem("patient", JSON.stringify(patient))
+	}, [firstName, lastName, email, phoneNumber, weight, patientDiets])
 
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault()
@@ -74,6 +104,7 @@ function CreatePatient() {
 				})
 			)
 
+			localStorage.setItem("patient", "null")
 			navigate("/patient")
 		} catch (err: unknown) {
 			const message =

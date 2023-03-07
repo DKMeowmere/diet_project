@@ -2,7 +2,7 @@ import { ProductCreateContainer, Form } from "./styles"
 import Input from "../../components/input/Index"
 import { Button } from "../../components/button/Button"
 import theme from "../../app/theme"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
 import { useDispatch } from "react-redux"
 import { useAppSelector } from "../../app/hooks"
@@ -73,6 +73,7 @@ function CreateProduct() {
 				})
 			)
 
+			localStorage.setItem("product", "null")
 			navigate("/product")
 		} catch (err: unknown) {
 			const message =
@@ -86,6 +87,35 @@ function CreateProduct() {
 			)
 		}
 	}
+
+	useEffect(() => {
+		const product = JSON.parse(localStorage.getItem("product") || "null")
+
+		console.log(product)
+		if (product) {
+			setName(product.name)
+			setCalories(product.calories)
+			setFats(product.fats)
+			setCarbohydrates(product.carbohydrates)
+			setProteins(product.proteins)
+		}
+	}, [])
+
+	useEffect(() => {
+		if (!calories || !carbohydrates || !fats || !name || !proteins) {
+			return
+		}
+
+		const product = {
+			calories,
+			carbohydrates,
+			fats,
+			name,
+			proteins,
+		}
+
+		localStorage.setItem("product", JSON.stringify(product))
+	}, [calories, carbohydrates, fats, name, proteins])
 
 	return (
 		<ProductCreateContainer>
