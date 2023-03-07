@@ -1,5 +1,6 @@
 import { Request, Response } from "express"
 import mongoose from "mongoose"
+import Diet from "../models/diet.js"
 import Product from "../models/product.js"
 
 export async function getProducts(req: Request, res: Response) {
@@ -86,6 +87,21 @@ export async function deleteProduct(req: Request, res: Response) {
 		}
 
 		res.status(200).json(product)
+
+		const diets = await Diet.find({})
+
+		diets.forEach(diet => {
+			diet.days.forEach(day => {
+				day.meals.forEach(meal => {
+					meal.products = meal.products.filter(
+						mealProduct =>
+							mealProduct.product.toString() !==
+							product._id.toString()
+					)
+				})
+			})
+			diet.save()
+		})
 	} catch (err: any) {
 		res.status(400).json({ error: err.message })
 	}

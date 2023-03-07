@@ -6,5 +6,5 @@ export type Patient = {
 	email?: string
 	phoneNumber?: string
 	weight?: number
-	diets: mongoose.Schema.Types.ObjectId
+	diets: mongoose.Schema.Types.ObjectId[]
 }

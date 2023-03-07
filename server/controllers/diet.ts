@@ -3,6 +3,7 @@ import mongoose from "mongoose"
 import Diet from "../models/diet.js"
 import puppeteer from "puppeteer"
 import CustomRequest from "../types/customRequest.js"
+import Patient from "../models/patient.js"
 
 export async function getDiets(req: Request, res: Response) {
 	try {
@@ -93,6 +94,14 @@ export async function deleteDiet(req: Request, res: Response) {
 		}
 
 		res.status(200).json(diet)
+
+		const patients = await Patient.find({})
+		patients.forEach(patient => {
+			patient.diets = patient.diets.filter(
+				dietId => dietId.toString() !== diet._id.toString()
+			)
+			patient.save()
+		})
 	} catch (err: any) {
 		res.status(400).json({ error: err.message })
 	}
