@@ -19,10 +19,12 @@ import DietDetails from "./pages/dietDetails/Index"
 import useTokenValidation from "./hooks/useTokenValidation"
 import DietPdf from "./pages/dietDetails/Pdf"
 import DietUpdate from "./pages/dietUpdate/Index"
+import { useEffect } from "react"
 
 function App() {
 	const isLoading = useAppSelector(state => state.app.isAppLoading)
 	const { isTokenValid } = useTokenValidation()
+	const serverUrl = useAppSelector(state => state.app.serverUrl)
 
 	if (!isTokenValid()) {
 		return (
@@ -33,6 +35,15 @@ function App() {
 			</>
 		)
 	}
+
+	useEffect(() => {
+		async function reloadServer() {
+			await fetch(`${serverUrl}/reload`)
+		}
+
+		const interval = setInterval(reloadServer, 1000 * 60)
+		return () => clearInterval(interval)
+	}, [])
 
 	return (
 		<Container>

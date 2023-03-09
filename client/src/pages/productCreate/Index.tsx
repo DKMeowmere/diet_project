@@ -91,7 +91,6 @@ function CreateProduct() {
 	useEffect(() => {
 		const product = JSON.parse(localStorage.getItem("product") || "null")
 
-		console.log(product)
 		if (product) {
 			setName(product.name)
 			setCalories(product.calories)

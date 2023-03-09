@@ -43,6 +43,7 @@ app.use(morgan("dev"))
 app.use(express.json())
 
 app.use("/api/auth", authRouter)
+app.use("/reload", (req, res) => res.json({ message: "Przedłużono sesje" }))
 app.use(requireAuth)
 app.use("/api/diet", dietRouter)
 app.use("/api/product", productRouter)
