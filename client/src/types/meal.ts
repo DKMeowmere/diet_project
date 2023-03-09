@@ -3,8 +3,8 @@ import { Product } from "./product"
 export type MealProduct = {
 	_id: string
 	product: Product
-	count: number
-	grams: number
+	count: string
+	grams: string
 }
 
 export type MealProducts = MealProduct[]

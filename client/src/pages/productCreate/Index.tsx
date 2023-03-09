@@ -10,10 +10,10 @@ import { useCookies } from "react-cookie"
 import { useNavigate } from "react-router-dom"
 
 function CreateProduct() {
-	const [calories, setCalories] = useState(0)
-	const [fats, setFats] = useState(0)
-	const [proteins, setProteins] = useState(0)
-	const [carbohydrates, setCarbohydrates] = useState(0)
+	const [calories, setCalories] = useState("0")
+	const [fats, setFats] = useState("0")
+	const [proteins, setProteins] = useState("0")
+	const [carbohydrates, setCarbohydrates] = useState("0")
 	const dispatch = useDispatch()
 	const serverUrl = useAppSelector(state => state.app.serverUrl)
 	const [name, setName] = useState("")
@@ -24,19 +24,19 @@ function CreateProduct() {
 		e.preventDefault()
 
 		try {
-			if (isNaN(calories)) {
+			if (isNaN(+calories)) {
 				throw new Error("Kalorie to nie liczba")
 			}
 
-			if (isNaN(fats)) {
+			if (isNaN(+fats)) {
 				throw new Error("Tłuszcze to nie liczba")
 			}
 
-			if (isNaN(proteins)) {
+			if (isNaN(+proteins)) {
 				throw new Error("Białka to nie liczba")
 			}
 
-			if (isNaN(carbohydrates)) {
+			if (isNaN(+carbohydrates)) {
 				throw new Error("Węglowodany to nie liczba")
 			}
 
@@ -91,7 +91,6 @@ function CreateProduct() {
 	useEffect(() => {
 		const product = JSON.parse(localStorage.getItem("product") || "null")
 
-		console.log(product)
 		if (product) {
 			setName(product.name)
 			setCalories(product.calories)
@@ -137,28 +136,16 @@ function CreateProduct() {
 					width="90%"
 					height="50px"
 					placeholder="Podaj ilość kalorii..."
-					value={calories.toString()}
-					onChange={e => {
-						if (isNaN(parseFloat(e.target.value))) {
-							setCalories(0)
-							return
-						}
-						setCalories(parseFloat(e.target.value))
-					}}
+					value={calories}
+					onChange={e => setCalories(e.target.value)}
 				/>
 				<p className="product-text">Podaj ilość tłuszczy</p>
 				<Input
 					width="90%"
 					height="50px"
 					placeholder="Podaj ilość tłuszczy"
-					value={fats.toString()}
-					onChange={e => {
-						if (isNaN(parseFloat(e.target.value))) {
-							setCalories(0)
-							return
-						}
-						setFats(parseFloat(e.target.value))
-					}}
+					value={fats}
+					onChange={e => setFats(e.target.value)}
 				/>
 
 				<p className="product-text">Podaj ilość białka</p>
@@ -166,14 +153,8 @@ function CreateProduct() {
 					width="90%"
 					height="50px"
 					placeholder="Podaj ilość białka"
-					value={proteins.toString()}
-					onChange={e => {
-						if (isNaN(parseFloat(e.target.value))) {
-							setCalories(0)
-							return
-						}
-						setProteins(parseFloat(e.target.value))
-					}}
+					value={proteins}
+					onChange={e => setProteins(e.target.value)}
 				/>
 
 				<p className="product-text">Podaj ilość węglowodanów</p>
@@ -181,14 +162,8 @@ function CreateProduct() {
 					width="90%"
 					height="50px"
 					placeholder="Podaj ilość węglowodanów..."
-					value={carbohydrates.toString()}
-					onChange={e => {
-						if (isNaN(parseFloat(e.target.value))) {
-							setCalories(0)
-							return
-						}
-						setCarbohydrates(parseFloat(e.target.value))
-					}}
+					value={carbohydrates}
+					onChange={e => setCarbohydrates(e.target.value)}
 				/>
 
 				<Button

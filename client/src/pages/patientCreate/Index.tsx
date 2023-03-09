@@ -16,7 +16,7 @@ function CreatePatient() {
 	const [lastName, setLastName] = useState("")
 	const [email, setEmail] = useState("")
 	const [phoneNumber, setPhoneNumber] = useState("")
-	const [weight, setWeight] = useState(0)
+	const [weight, setWeight] = useState("0")
 	const dispatch = useDispatch()
 	const serverUrl = useAppSelector(state => state.app.serverUrl)
 	const [cookies] = useCookies()
@@ -50,7 +50,7 @@ function CreatePatient() {
 			email,
 			phoneNumber,
 			weight,
-			patientDiets
+			patientDiets,
 		}
 
 		localStorage.setItem("patient", JSON.stringify(patient))
@@ -60,7 +60,7 @@ function CreatePatient() {
 		e.preventDefault()
 
 		try {
-			if (isNaN(weight)) {
+			if (isNaN(+weight)) {
 				throw new Error("Waga pacjenta to nie liczba")
 			}
 
@@ -170,14 +170,8 @@ function CreatePatient() {
 					width="90%"
 					height="50px"
 					placeholder="Podaj wage (opcjonalnie)"
-					value={weight.toString()}
-					onChange={e => {
-						if (isNaN(parseFloat(e.target.value))) {
-							setWeight(0)
-							return
-						}
-						setWeight(parseFloat(e.target.value))
-					}}
+					value={weight}
+					onChange={e => setWeight(e.target.value)}
 				/>
 				{patientDiets.length > 0 && (
 					<PatientDietsContainer>

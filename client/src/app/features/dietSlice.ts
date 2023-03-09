@@ -159,8 +159,8 @@ const dietSlice = createSlice({
 			)
 			state.currentDiet.days[dayIndex].meals[mealIndex].products.push({
 				_id: crypto.randomUUID(),
-				count: 1,
-				grams: 0,
+				count: "1",
+				grams: "0",
 				product: action.payload.product,
 			})
 		},
@@ -174,7 +174,7 @@ const dietSlice = createSlice({
 				value: string
 			}>
 		) => {
-			const value = parseFloat(action.payload.value)
+			const value = action.payload.value
 
 			const dayIndex = state.currentDiet.days.findIndex(
 				day => day._id === action.payload.day._id
@@ -187,14 +187,6 @@ const dietSlice = createSlice({
 			].products.findIndex(
 				product => product._id === action.payload.product._id
 			)
-
-			if (isNaN(value)) {
-				state.currentDiet.days[dayIndex].meals[mealIndex].products[
-					productIndex
-				].grams = 0
-				return
-			}
-
 			state.currentDiet.days[dayIndex].meals[mealIndex].products[
 				productIndex
 			].grams = value
@@ -209,7 +201,7 @@ const dietSlice = createSlice({
 				value: string
 			}>
 		) => {
-			const value = parseFloat(action.payload.value)
+			const value = action.payload.value
 
 			const dayIndex = state.currentDiet.days.findIndex(
 				day => day._id === action.payload.day._id
@@ -222,13 +214,6 @@ const dietSlice = createSlice({
 			].products.findIndex(
 				product => product._id === action.payload.product._id
 			)
-
-			if (isNaN(value)) {
-				state.currentDiet.days[dayIndex].meals[mealIndex].products[
-					productIndex
-				].count = 0
-				return
-			}
 
 			state.currentDiet.days[dayIndex].meals[mealIndex].products[
 				productIndex

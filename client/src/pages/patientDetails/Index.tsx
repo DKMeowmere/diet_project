@@ -64,7 +64,7 @@ function PatientDetails() {
 				throw new Error("oczekiwany błąd")
 			}
 
-			if (isNaN(patient.weight)) {
+			if (isNaN(+patient.weight)) {
 				throw new Error("Waga pacjenta to nie liczba")
 			}
 
@@ -228,16 +228,12 @@ function PatientDetails() {
 					height="50px"
 					placeholder="Podaj wage (opcjonalnie)"
 					value={patient.weight?.toString() || "0"}
-					onChange={e => {
-						if (isNaN(parseFloat(e.target.value))) {
-							setPatient({ ...patient, weight: 0 })
-							return
-						}
+					onChange={e =>
 						setPatient({
 							...patient,
-							weight: parseFloat(e.target.value),
+							weight: e.target.value,
 						})
-					}}
+					}
 				/>
 				<PatientDietsContainer>
 					{patientDiets.map(diet => (

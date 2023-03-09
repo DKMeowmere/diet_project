@@ -52,19 +52,19 @@ function ProductDetails() {
 				throw new Error("oczekiwany błąd")
 			}
 
-			if (isNaN(product.calories)) {
+			if (isNaN(+product.calories)) {
 				throw new Error("Kalorie to nie liczba")
 			}
 
-			if (isNaN(product.fats)) {
+			if (isNaN(+product.fats)) {
 				throw new Error("Tłuszcze to nie liczba")
 			}
 
-			if (isNaN(product.proteins)) {
+			if (isNaN(+product.proteins)) {
 				throw new Error("Białka to nie liczba")
 			}
 
-			if (isNaN(product.carbohydrates)) {
+			if (isNaN(+product.carbohydrates)) {
 				throw new Error("Węglowodany to nie liczba")
 			}
 
@@ -187,68 +187,52 @@ function ProductDetails() {
 					width="90%"
 					height="50px"
 					placeholder="Edytuj ilość"
-					value={product.calories.toString()}
-					onChange={e => {
-						if (isNaN(parseFloat(e.target.value))) {
-							setProduct({ ...product, calories: 0 })
-							return
-						}
+					value={product.calories}
+					onChange={e =>
 						setProduct({
 							...product,
-							calories: parseFloat(e.target.value),
+							calories: e.target.value,
 						})
-					}}
+					}
 				/>
 				<p className="product-text">Edytuj ilość tłuszczy</p>
 				<Input
 					width="90%"
 					height="50px"
 					placeholder="Edytuj ilość"
-					value={product.fats.toString()}
-					onChange={e => {
-						if (isNaN(parseFloat(e.target.value))) {
-							setProduct({ ...product, fats: 0 })
-							return
-						}
+					value={product.fats}
+					onChange={e =>
 						setProduct({
 							...product,
-							fats: parseFloat(e.target.value),
+							fats: e.target.value,
 						})
-					}}
+					}
 				/>
 				<p className="product-text">Edytuj ilość Białka</p>
 				<Input
 					width="90%"
 					height="50px"
 					placeholder="Edytuj ilość"
-					value={product.proteins.toString()}
-					onChange={e => {
-						if (isNaN(parseFloat(e.target.value))) {
-							setProduct({ ...product, proteins: 0 })
-							return
-						}
+					value={product.proteins}
+					onChange={e =>
 						setProduct({
 							...product,
-							proteins: parseFloat(e.target.value),
+							proteins: e.target.value,
 						})
-					}}
+					}
 				/>
 				<p className="product-text">Edytuj ilość Węglowodanów</p>
 				<Input
 					width="90%"
 					height="50px"
 					placeholder="Edytuj Ilość"
-					value={product.carbohydrates.toString()}
-					onChange={e => {
-						if (isNaN(parseFloat(e.target.value))) {
-							setProduct({ ...product, carbohydrates: 0 })
-							return
-						}
+					value={product.carbohydrates}
+					onChange={e =>
 						setProduct({
 							...product,
-							carbohydrates: parseFloat(e.target.value),
+							carbohydrates: e.target.value,
 						})
-					}}
+					}
 				/>
 				<Button
 					width="90%"
