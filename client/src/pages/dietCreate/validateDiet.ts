@@ -28,6 +28,21 @@ export function validate(diet: Diet) {
 					`Musisz podać przynajmniej 1 produkt do posiłku: ${meal.name}`
 				)
 			}
+
+			meal.products.forEach(product => {
+				if (isNaN(+product.count)) {
+					throw new Error(
+						`Ilość produktu: ${product.product.name} w posiłku: ${meal.name} w dniu: ${day.day} to nie liczba`
+					)
+				}
+
+				if ((isNaN(+product.grams))) {
+					throw new Error(
+						`Gramy produktu: ${product.product.name} w posiłku: ${meal.name} w dniu: ${day.day} to nie liczba`
+					)
+				}
+			})
 		})
 	})
 }
+

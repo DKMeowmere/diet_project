@@ -6,7 +6,7 @@ export type Patient = {
 	lastName: string
 	email?: string
 	phoneNumber?: string
-	weight?: number
+	weight?: string
 	diets: Diet[]
 }
 

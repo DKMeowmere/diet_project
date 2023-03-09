@@ -14,9 +14,9 @@ export default function FooterRow({ meal }: Props) {
 						meal.products.reduce<number>(
 							(accumulator, product) =>
 								accumulator +
-								(product.product.calories *
-									product.count *
-									product.grams) /
+								(+product.product.calories *
+									+product.count *
+									+product.grams) /
 									100,
 							0
 						) * 100
@@ -28,9 +28,9 @@ export default function FooterRow({ meal }: Props) {
 						meal.products.reduce<number>(
 							(accumulator, product) =>
 								accumulator +
-								(product.product.proteins *
-									product.count *
-									product.grams) /
+								(+product.product.proteins *
+									+product.count *
+									+product.grams) /
 									100,
 							0
 						) * 100
@@ -42,9 +42,9 @@ export default function FooterRow({ meal }: Props) {
 						meal.products.reduce<number>(
 							(accumulator, product) =>
 								accumulator +
-								(product.product.fats *
-									product.count *
-									product.grams) /
+								(+product.product.fats *
+									+product.count *
+									+product.grams) /
 									100,
 							0
 						) * 100
@@ -56,9 +56,9 @@ export default function FooterRow({ meal }: Props) {
 						meal.products.reduce<number>(
 							(accumulator, product) =>
 								accumulator +
-								(product.product.carbohydrates *
-									product.count *
-									product.grams) /
+								(+product.product.carbohydrates *
+									+product.count *
+									+product.grams) /
 									100,
 							0
 						) * 100
@@ -67,14 +67,14 @@ export default function FooterRow({ meal }: Props) {
 				</td>
 				<td className="cell strong">
 					{meal.products.reduce<number>(
-						(accumulator, product) => accumulator + product.count,
+						(accumulator, product) => accumulator + +product.count,
 						0
 					)}
 				</td>
 				<td className="cell strong">
 					{meal.products.reduce<number>(
 						(accumulator, product) =>
-							accumulator + product.grams * product.count,
+							accumulator + +product.grams * +product.count,
 						0
 					)}
 					g

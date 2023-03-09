@@ -63,19 +63,19 @@ export default function Product({ product, meal, day }: Props) {
 			<div className='product-values'>
 				<div className='product-calories'>
 					Kalorie:
-					{product.product.calories * product.grams * product.count}
+					{+product.product.calories * +product.grams * +product.count}
 				</div>
 				<div className='product-carbo'>
 					Węglowodany:
-					{product.product.carbohydrates * product.grams * product.count}
+					{+product.product.carbohydrates * +product.grams * +product.count}
 				</div>
 				<div className='product-proteins'>
 					Białka:
-					{product.product.proteins * product.grams * product.count}
+					{+product.product.proteins * +product.grams * +product.count}
 				</div>
 				<div className='product-fats'>
 					Tłuszcze:
-					{product.product.fats * product.grams * product.count}
+					{+product.product.fats * +product.grams * +product.count}
 				</div>
 			</div>
 			<Button
