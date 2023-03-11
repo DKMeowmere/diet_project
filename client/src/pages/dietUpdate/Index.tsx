@@ -84,8 +84,7 @@ function UpdateDiet() {
 				})
 			)
 		} catch (err: unknown) {
-			const message =
-				err instanceof Error ? err.message : "Nieoczekiwany błąd"
+			const message = err instanceof Error ? err.message : "Nieoczekiwany błąd"
 
 			dispatch(
 				addAlert({
@@ -147,9 +146,7 @@ function UpdateDiet() {
 						height="150px"
 						placeholder="podaj opis... (opcjonalnie)"
 						value={description}
-						onChange={e =>
-							dispatch(changeDescription(e.target.value))
-						}
+						onChange={e => dispatch(changeDescription(e.target.value))}
 					/>
 
 					<div className="button-container">
@@ -201,18 +198,14 @@ function UpdateDiet() {
 							/>
 							{pageNumber > 0 && (
 								<LeftArrow
-									onClick={() =>
-										setPageNumber(prevPage => prevPage - 1)
-									}
+									onClick={() => setPageNumber(prevPage => prevPage - 1)}
 									position="absolute"
 									top="20px"
 								/>
 							)}
 							{pageNumber < diet.days.length - 1 && (
 								<RightArrow
-									onClick={() =>
-										setPageNumber(prevPage => prevPage + 1)
-									}
+									onClick={() => setPageNumber(prevPage => prevPage + 1)}
 									position="absolute"
 									top="20px"
 								/>

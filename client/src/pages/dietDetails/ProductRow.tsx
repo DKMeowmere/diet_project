@@ -10,23 +10,31 @@ export default function ProductRow({ product }: Props) {
 		<ProductContainer>
 			<td className="cell">{product.product.name}</td>
 			<td className="cell">
-				{(+product.product.calories * +product.grams * +product.count) /
-					100}
+				{(
+					(+product.product.calories * +product.grams * +product.count) /
+					100
+				).toFixed(2)}
 				cal
 			</td>
 			<td className="cell">
-				{(+product.product.proteins * +product.grams * +product.count) /
-					100}
+				{(
+					(+product.product.proteins * +product.grams * +product.count) /
+					100
+				).toFixed(2)}
 				B
 			</td>
 			<td className="cell">
-				{(+product.product.fats * +product.grams * +product.count) / 100}T
+				{(
+					(+product.product.fats * +product.grams * +product.count) /
+					100
+				).toFixed(2)}
+				T
 			</td>
 			<td className="cell">
-				{(+product.product.carbohydrates *
-					+product.grams *
-					+product.count) /
-					100}
+				{(
+					(+product.product.carbohydrates * +product.grams * +product.count) /
+					100
+				).toFixed(2)}
 				W
 			</td>
 			<td className="cell">{product.count}</td>

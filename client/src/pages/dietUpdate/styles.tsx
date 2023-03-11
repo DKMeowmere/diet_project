@@ -67,7 +67,7 @@ export const Form = styled.form`
 		padding: 20px;
 		text-align: center;
 		font-size: 1.5rem;
-		margin-top:30px;
+		margin-top: 30px;
 		color: ${({ theme }) => theme.colors.whiteText};
 	}
 	.input-product-box {
@@ -113,7 +113,7 @@ export const Form = styled.form`
 	}
 	.main-btn {
 		border-radius: 0;
-		margin:25px 0px;
+		margin: 25px 0px;
 		width: 100%;
 	}
 	button {
@@ -123,8 +123,8 @@ export const Form = styled.form`
 		display: block;
 		margin: auto;
 	}
-	.meal-btn{
-		margin-top:40px;
+	.meal-btn {
+		margin-top: 40px;
 		margin-bottom: 0px;
 	}
 `
@@ -132,20 +132,20 @@ export const Form = styled.form`
 export const DaysContainer = styled.div`
 	width: 100%;
 	position: relative;
-	.main-btn{
+	.main-btn {
 		margin-bottom: 30px;
 	}
 `
 export const MealsContainer = styled.div`
 	width: 100%;
 	margin: auto;
-	.diet-btn{
+	.diet-btn {
 		margin-bottom: 10px;
 	}
-	.diet-btn-element{
+	.diet-btn-element {
 		margin-bottom: 40px;
 	}
-	
+
 	.meal-name {
 		width: 100%;
 		background-color: ${({ theme }) => theme.colors.main};

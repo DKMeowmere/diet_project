@@ -9,9 +9,7 @@ export function validate(diet: Diet) {
 
 	days.forEach(day => {
 		if (!day.meals.length) {
-			throw new Error(
-				`Musisz podać przynajmniej 1 posiłek do dnia: ${day.day}`
-			)
+			throw new Error(`Musisz podać przynajmniej 1 posiłek do dnia: ${day.day}`)
 		}
 
 		if (!day.day) {
@@ -36,7 +34,7 @@ export function validate(diet: Diet) {
 					)
 				}
 
-				if ((isNaN(+product.grams))) {
+				if (isNaN(+product.grams)) {
 					throw new Error(
 						`Gramy produktu: ${product.product.name} w posiłku: ${meal.name} w dniu: ${day.day} to nie liczba`
 					)

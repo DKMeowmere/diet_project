@@ -58,8 +58,7 @@ function DietPdf() {
 			<DietContainer>
 				<Diet>
 					<Link to="/">
-						Nie znaleziono diety o podanym id. Wróć do strony
-						głównej
+						Nie znaleziono diety o podanym id. Wróć do strony głównej
 					</Link>
 				</Diet>
 			</DietContainer>
@@ -68,61 +67,48 @@ function DietPdf() {
 
 	return (
 		<PdfDietContainer>
-				<div className="diet-box">
-					<div className="title">{diet.title}</div>
-					{diet.description && (
-						<div className="diet-description">
-							{diet.description}
-						</div>
-					)}
-				</div>
-				<DaysContainer>
-					{diet.days.map(day => {
-						if (dayId && day._id !== dayId) {
-							return
-						}
+			<div className="diet-box">
+				<div className="title">{diet.title}</div>
+				{diet.description && (
+					<div className="diet-description">{diet.description}</div>
+				)}
+			</div>
+			<DaysContainer>
+				{diet.days.map(day => {
+					if (dayId && day._id !== dayId) {
+						return
+					}
 
-						return (
-							<PdfDay key={day._id}>
-								<div className="day-name">{day.day}</div>
-								<MealsContainer>
-									{day.meals.map(meal => (
-										<div className="meal" key={meal._id}>
-											<div className="meal-box">
-												<div className="meal-title">
-													{meal.name}
+					return (
+						<PdfDay key={day._id}>
+							<div className="day-name">{day.day}</div>
+							<MealsContainer>
+								{day.meals.map(meal => (
+									<div className="meal" key={meal._id}>
+										<div className="meal-box">
+											<div className="meal-title">{meal.name}</div>
+											{meal.description && (
+												<div className="meals-description">
+													{meal.description}
 												</div>
-												{meal.description && (
-													<div className="meals-description">
-														{meal.description}
-													</div>
-												)}
-											</div>
-											<ProductsContainer>
-												<HeaderRow />
-												<tbody>
-													{meal.products.map(
-														product => (
-															<ProductRow
-																product={
-																	product
-																}
-																key={
-																	product._id
-																}
-															/>
-														)
-													)}
-												</tbody>
-												<FooterRow meal={meal} />
-											</ProductsContainer>
+											)}
 										</div>
-									))}
-								</MealsContainer>
-							</PdfDay>
-						)
-					})}
-				</DaysContainer>
+										<ProductsContainer>
+											<HeaderRow />
+											<tbody>
+												{meal.products.map(product => (
+													<ProductRow product={product} key={product._id} />
+												))}
+											</tbody>
+											<FooterRow meal={meal} />
+										</ProductsContainer>
+									</div>
+								))}
+							</MealsContainer>
+						</PdfDay>
+					)
+				})}
+			</DaysContainer>
 		</PdfDietContainer>
 	)
 }

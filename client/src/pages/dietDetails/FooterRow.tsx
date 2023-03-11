@@ -1,3 +1,4 @@
+import useReduce from "../../hooks/useReduce"
 import { Meal } from "../../types/meal"
 
 type Props = {
@@ -5,77 +6,53 @@ type Props = {
 }
 
 export default function FooterRow({ meal }: Props) {
+	const { calculateSum } = useReduce()
+
 	return (
 		<tfoot>
 			<tr>
 				<td className="cell strong">Łącznie</td>
 				<td className="cell strong">
-					{Math.round(
-						meal.products.reduce<number>(
-							(accumulator, product) =>
-								accumulator +
-								(+product.product.calories *
-									+product.count *
-									+product.grams) /
-									100,
-							0
-						) * 100
-					) / 100}
+					{calculateSum(
+						meal.products.map(
+							product =>
+								+product.product.calories * +product.count * +product.grams
+						)
+					)}
 					cal
 				</td>
 				<td className="cell strong">
-					{Math.round(
-						meal.products.reduce<number>(
-							(accumulator, product) =>
-								accumulator +
-								(+product.product.proteins *
-									+product.count *
-									+product.grams) /
-									100,
-							0
-						) * 100
-					) / 100}
+					{calculateSum(
+						meal.products.map(
+							product =>
+								+product.product.proteins * +product.count * +product.grams
+						)
+					)}
 					B
 				</td>
 				<td className="cell strong">
-					{Math.round(
-						meal.products.reduce<number>(
-							(accumulator, product) =>
-								accumulator +
-								(+product.product.fats *
-									+product.count *
-									+product.grams) /
-									100,
-							0
-						) * 100
-					) / 100}
+					{calculateSum(
+						meal.products.map(
+							product => +product.product.fats * +product.count * +product.grams
+						)
+					)}
 					T
 				</td>
 				<td className="cell strong">
-					{Math.round(
-						meal.products.reduce<number>(
-							(accumulator, product) =>
-								accumulator +
-								(+product.product.carbohydrates *
-									+product.count *
-									+product.grams) /
-									100,
-							0
-						) * 100
-					) / 100}
+					{calculateSum(
+						meal.products.map(
+							product =>
+								+product.product.carbohydrates * +product.count * +product.grams
+						)
+					)}
 					W
 				</td>
 				<td className="cell strong">
-					{meal.products.reduce<number>(
-						(accumulator, product) => accumulator + +product.count,
-						0
-					)}
+					{calculateSum(meal.products.map(product => +product.count))}
 				</td>
 				<td className="cell strong">
-					{meal.products.reduce<number>(
-						(accumulator, product) =>
-							accumulator + +product.grams * +product.count,
-						0
+					{calculateSum(
+						meal.products.map(product => +product.grams * +product.count)
 					)}
 					g
 				</td>
