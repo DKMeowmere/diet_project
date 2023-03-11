@@ -8,6 +8,7 @@ import theme from "../../app/theme"
 import { Button } from "../../components/button/Button"
 import Input from "../../components/input/Index"
 import Textarea from "../../components/textarea/Index"
+import useReduce from "../../hooks/useReduce"
 import { Day } from "../../types/day"
 import { Meal as MealType, MealProduct } from "../../types/meal"
 import { WhereToPassProduct } from "../../types/whereToPassProduct"
@@ -28,6 +29,7 @@ export default function Meal({
 	setWhereToPassProduct,
 }: Props) {
 	const dispatch = useAppDispatch()
+	const { calculateSum } = useReduce()
 
 	return (
 		<div className="meal" key={meal._id}>
@@ -97,46 +99,37 @@ export default function Meal({
 				<div className="product-amount">Razem</div>
 				<div className="product-calories">
 					Kalorie:
-					{meal.products.reduce<number>(
-						(accumulator, product) =>
-							accumulator +
-							+product.product.calories *
-								+product.count *
-								+product.grams,
-						0
+					{calculateSum(
+						meal.products.map(
+							product =>
+								+product.product.calories * +product.count * +product.grams
+						)
 					)}
 				</div>
 				<div className="product-carbo">
 					Węglowodany:
-					{meal.products.reduce<number>(
-						(accumulator, product) =>
-							accumulator +
-							+product.product.carbohydrates *
-								+product.count *
-								+product.grams,
-						0
+					{calculateSum(
+						meal.products.map(
+							product =>
+								+product.product.carbohydrates * +product.count * +product.grams
+						)
 					)}
 				</div>
 				<div className="product-proteins">
 					Białka:
-					{meal.products.reduce<number>(
-						(accumulator, product) =>
-							accumulator +
-							+product.product.proteins *
-								+product.count *
-								+product.grams,
-						0
+					{calculateSum(
+						meal.products.map(
+							product =>
+								+product.product.proteins * +product.count * +product.grams
+						)
 					)}
 				</div>
 				<div className="product-fats">
 					Tłuszcze:
-					{meal.products.reduce<number>(
-						(accumulator, product) =>
-							accumulator +
-							+product.product.fats *
-								+product.count *
-								+product.grams,
-						0
+					{calculateSum(
+						meal.products.map(
+							product => +product.product.fats * +product.count * +product.grams
+						)
 					)}
 				</div>
 			</div>

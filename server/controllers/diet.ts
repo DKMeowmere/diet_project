@@ -21,7 +21,7 @@ export async function createDiet(req: Request, res: Response) {
 	try {
 		const { title, description, days } = req.body
 
-		if (!title || !description || !days) {
+		if (!title || !days) {
 			throw new Error(
 				"Musisz podać wszystkie wartości potrzebne do stworzenia diety"
 			)
@@ -43,9 +43,7 @@ export async function getDiet(req: Request, res: Response) {
 			throw new Error("Nie poprawne id diety")
 		}
 
-		const diet = await Diet.findById(id).populate(
-			"days.meals.products.product"
-		)
+		const diet = await Diet.findById(id).populate("days.meals.products.product")
 
 		if (!diet) {
 			throw new Error("Nie znaleziono diety o podanym id")
@@ -123,9 +121,7 @@ export async function generateDietPdf(req: CustomRequest, res: Response) {
 			throw new Error("Nie poprawne id diety")
 		}
 
-		const diet = await Diet.findById(id).populate(
-			"days.meals.products.product"
-		)
+		const diet = await Diet.findById(id).populate("days.meals.products.product")
 
 		const browser = await puppeteer.launch()
 		const page = await browser.newPage()
@@ -145,9 +141,7 @@ export async function generateDietPdf(req: CustomRequest, res: Response) {
 		res.setHeader("Content-Type", "application/pdf")
 		res.setHeader(
 			"Content-Disposition",
-			`attachment; filename=${
-				diet?.title.split(" ").join("-") || "dieta"
-			}.pdf`
+			`attachment; filename=${diet?.title.split(" ").join("-") || "dieta"}.pdf`
 		)
 		res.send(pdf)
 		await browser.close()
