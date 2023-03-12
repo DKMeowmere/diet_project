@@ -1,8 +1,8 @@
 import useReduce from "../../hooks/useReduce"
-import { Meal } from "../../types/meal"
+import { MealProduct } from "../../types/meal"
 
 type Props = {
-	meal: Meal
+	meal: MealProduct
 }
 
 export default function FooterRow({ meal }: Props) {

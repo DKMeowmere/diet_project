@@ -1,20 +1,6 @@
 import mongoose from "mongoose"
 import { Diet } from "../types/diet.js"
-
-const mealProductSchema = new mongoose.Schema({
-	product: {
-		ref: "Product",
-		type: mongoose.Schema.Types.ObjectId,
-	},
-	count: {
-		type: Number,
-		required: true,
-	},
-	grams: {
-		type: Number,
-		required: true,
-	},
-})
+import mealProductSchema from "./schemas/mealProduct.js"
 
 const mealsSchema = new mongoose.Schema({
 	name: {

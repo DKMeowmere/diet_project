@@ -9,7 +9,7 @@ export async function getPatients(req: Request, res: Response) {
 			.sort({ createdAt: -1 })
 		res.json(patients)
 	} catch (err: any) {
-		res.status(400).json(err.message)
+		res.status(400).json({ error: err.message })
 	}
 }
 
@@ -27,7 +27,7 @@ export async function createPatient(req: Request, res: Response) {
 
 		res.status(201).json(patient)
 	} catch (err: any) {
-		res.status(400).json(err.message)
+		res.status(400).json({ error: err.message })
 	}
 }
 

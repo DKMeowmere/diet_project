@@ -8,11 +8,11 @@ import theme from "../../app/theme"
 import { Button } from "../../components/button/Button"
 import Input from "../../components/input/Index"
 import { Day } from "../../types/day"
-import { Meal, MealProduct } from "../../types/meal"
+import { MealProduct, MealProduct } from "../../types/meal"
 
 type Props = {
 	product: MealProduct
-	meal: Meal
+	meal: MealProduct
 	day: Day
 }
 

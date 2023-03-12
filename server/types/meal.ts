@@ -6,10 +6,19 @@ export type MealProduct = {
 	grams: number
 }
 
-export type Meal = MealProduct[]
+export type MealProducts = MealProduct[]
+
+export type MealDish = {
+  dishDetails: mongoose.Schema.Types.ObjectId
+	count: number
+	grams: number
+}
+
+export type MealDishes = MealDish[]
 
 export type Meals = {
 	name: string
 	description: string
-	products: Meal
+	products: MealProducts
+  dishes: MealDishes
 }[]

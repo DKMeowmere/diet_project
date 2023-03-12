@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { Day } from "../../types/day"
 import { Diet } from "../../types/diet"
 import { DietState } from "../../types/dietState"
-import { Meal, MealProduct } from "../../types/meal"
+import { MealProduct, MealProduct } from "../../types/meal"
 import { Product } from "../../types/product"
 
 const initialState: DietState = {
@@ -83,9 +83,7 @@ const dietSlice = createSlice({
 			)
 			state.currentDiet.days[dayIndex].meals.push({
 				_id: crypto.randomUUID(),
-				name: `Posiłek ${
-					state.currentDiet.days[dayIndex].meals.length + 1
-				}`,
+				name: `Posiłek ${state.currentDiet.days[dayIndex].meals.length + 1}`,
 				description: "",
 				products: [],
 			})
@@ -95,7 +93,7 @@ const dietSlice = createSlice({
 			state,
 			action: PayloadAction<{
 				day: Day
-				meal: Meal
+				meal: MealProduct
 				value: string
 			}>
 		) => {
@@ -113,7 +111,7 @@ const dietSlice = createSlice({
 			state,
 			action: PayloadAction<{
 				day: Day
-				meal: Meal
+				meal: MealProduct
 				value: string
 			}>
 		) => {
@@ -131,7 +129,7 @@ const dietSlice = createSlice({
 			state,
 			action: PayloadAction<{
 				day: Day
-				meal: Meal
+				meal: MealProduct
 			}>
 		) => {
 			const dayIndex = state.currentDiet.days.findIndex(
@@ -169,7 +167,7 @@ const dietSlice = createSlice({
 			state,
 			action: PayloadAction<{
 				day: Day
-				meal: Meal
+				meal: MealProduct
 				product: MealProduct
 				value: string
 			}>
@@ -196,7 +194,7 @@ const dietSlice = createSlice({
 			state,
 			action: PayloadAction<{
 				day: Day
-				meal: Meal
+				meal: MealProduct
 				product: MealProduct
 				value: string
 			}>
@@ -224,7 +222,7 @@ const dietSlice = createSlice({
 			state,
 			action: PayloadAction<{
 				day: Day
-				meal: Meal
+				meal: MealProduct
 				product: MealProduct
 			}>
 		) => {
@@ -238,12 +236,9 @@ const dietSlice = createSlice({
 
 			const newProducts = state.currentDiet.days[dayIndex].meals[
 				mealIndex
-			].products.filter(
-				product => product._id !== action.payload.product._id
-			)
+			].products.filter(product => product._id !== action.payload.product._id)
 
-			state.currentDiet.days[dayIndex].meals[mealIndex].products =
-				newProducts
+			state.currentDiet.days[dayIndex].meals[mealIndex].products = newProducts
 		},
 	},
 })
