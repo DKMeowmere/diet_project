@@ -43,7 +43,7 @@ export const Block = styled(Link)`
 		background-color: #ffa500;
 		color: ${({ theme }) => theme.colors.whiteText};
 		cursor: pointer;
-		svg {
+		svg{
 			fill: ${({ theme }) => theme.colors.whiteText};
 		}
 	}
