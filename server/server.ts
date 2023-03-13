@@ -6,6 +6,7 @@ import cors, { CorsOptions } from "cors"
 import dietRouter from "./routes/diet.js"
 import productRouter from "./routes/product.js"
 import patientRouter from "./routes/patient.js"
+import dishRouter from "./routes/dish.js"
 import authRouter from "./routes/auth.js"
 import { requireAuth } from "./middleware/requireAuth.js"
 
@@ -47,6 +48,7 @@ app.use("/reload", (req, res) => res.json({ message: "Przedłużono sesje" }))
 app.use(requireAuth)
 app.use("/api/diet", dietRouter)
 app.use("/api/product", productRouter)
+app.use("/api/dish", dishRouter)
 app.use("/api/patient", patientRouter)
 
 app.use((req, res) => {

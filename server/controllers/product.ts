@@ -2,13 +2,15 @@ import { Request, Response } from "express"
 import mongoose from "mongoose"
 import Diet from "../models/diet.js"
 import Product from "../models/product.js"
+import Dish from "../models/dish.js"
+import { MealProduct } from "../types/meal.js"
 
 export async function getProducts(req: Request, res: Response) {
 	try {
 		const products = await Product.find({}).sort({ createdAt: -1 })
 		res.json(products)
 	} catch (err: any) {
-		res.status(400).json(err.message)
+		res.status(400).json({ error: err.message })
 	}
 }
 
@@ -26,7 +28,7 @@ export async function createProduct(req: Request, res: Response) {
 
 		res.status(201).json(product)
 	} catch (err: any) {
-		res.status(400).json(err.message)
+		res.status(400).json({ error: err.message })
 	}
 }
 
@@ -95,12 +97,21 @@ export async function deleteProduct(req: Request, res: Response) {
 				day.meals.forEach(meal => {
 					meal.products = meal.products.filter(
 						mealProduct =>
-							mealProduct.product.toString() !==
-							product._id.toString()
+							mealProduct.product.toString() !== product._id.toString()
 					)
 				})
 			})
 			diet.save()
+		})
+
+		const dishes = await Dish.find({})
+
+		dishes.forEach(dish => {
+			dish.products = dish.products.filter(
+				(mealProduct: MealProduct) =>
+					mealProduct.product.toString() !== product._id.toString()
+			)
+			dish.save()
 		})
 	} catch (err: any) {
 		res.status(400).json({ error: err.message })
