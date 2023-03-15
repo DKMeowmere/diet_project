@@ -5,6 +5,16 @@ import puppeteer from "puppeteer"
 import CustomRequest from "../types/customRequest.js"
 import Patient from "../models/patient.js"
 
+function setPdfDietTitle(title:string){
+  title = title.split(" ").join("-")
+
+  if(title.split("").some(char => char.charCodeAt(0) > 128)){
+    return "Dieta"
+  }
+
+  return title
+}
+
 export async function getDiets(req: Request, res: Response) {
 	try {
 		const diet = await Diet.find({})
@@ -141,7 +151,7 @@ export async function generateDietPdf(req: CustomRequest, res: Response) {
 		res.setHeader("Content-Type", "application/pdf")
 		res.setHeader(
 			"Content-Disposition",
-			`attachment; filename=${diet?.title.split(" ").join("-") || "dieta"}.pdf`
+			`attachment; filename= ${setPdfDietTitle(diet?.title || "Dieta")}.pdf`
 		)
 		res.send(pdf)
 		await browser.close()
