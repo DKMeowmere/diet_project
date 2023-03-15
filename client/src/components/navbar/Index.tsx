@@ -39,6 +39,7 @@ function Navbar() {
 							<MdOutlineRestaurantMenu />
 							<span className='option-text'>Diety</span>
 						</NavLink>
+						
 					</div>
 				</nav>
 			</NavbarContainer>
