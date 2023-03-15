@@ -8,18 +8,19 @@ import ProductModal from "../../components/productModal/Index"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import {
 	addDay,
+	addProduct,
 	changeDescription,
 	changeTitle,
 	clearDiet,
 	importDiet,
 } from "../../app/features/dietSlice"
-import { WhereToPassProduct } from "../../types/whereToPassProduct"
 import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
 import { validate } from "./validateDiet"
 import { useCookies } from "react-cookie"
 import { useNavigate } from "react-router-dom"
 import Day from "./Day"
 import { LeftArrow, RightArrow } from "../../components/arrow/Index"
+import { Product as ProductType } from "../../types/product"
 
 function CreateDiet() {
 	const diet = useAppSelector(state => state.diet.currentDiet)
@@ -30,12 +31,13 @@ function CreateDiet() {
 	const days = useAppSelector(state => state.diet.currentDiet.days)
 	const dispatch = useAppDispatch()
 	const [isModalOpen, setIsModalOpen] = useState(false)
-	const [whereToPassProduct, setWhereToPassProduct] =
-		useState<WhereToPassProduct | null>(null)
 	const serverUrl = useAppSelector(state => state.app.serverUrl)
 	const [cookies] = useCookies()
 	const navigate = useNavigate()
 	const [pageNumber, setPageNumber] = useState(0)
+	const whereToPassProduct = useAppSelector(
+		state => state.diet.whereToPassProduct
+	)
 
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault()
@@ -85,8 +87,7 @@ function CreateDiet() {
 
 			navigate(`/diet/${data._id}`)
 		} catch (err: unknown) {
-			const message =
-				err instanceof Error ? err.message : "Nieoczekiwany błąd"
+			const message = err instanceof Error ? err.message : "Nieoczekiwany błąd"
 
 			dispatch(
 				addAlert({
@@ -113,13 +114,23 @@ function CreateDiet() {
 		}
 	}, [diet])
 
+	function handleProductAddition(product: ProductType) {
+		setIsModalOpen(false)
+		dispatch(
+			addProduct({
+				dayId: whereToPassProduct.dayId,
+				mealId: whereToPassProduct.mealId,
+				product,
+			})
+		)
+	}
+
 	return (
 		<DietCreateContainer>
 			{isModalOpen && (
 				<ProductModal
-					whereToPassProduct={whereToPassProduct}
-					setWhereToPassProduct={setWhereToPassProduct}
 					setIsModalOpen={setIsModalOpen}
+					onProductClick={handleProductAddition}
 				/>
 			)}
 
@@ -139,9 +150,7 @@ function CreateDiet() {
 						height="150px"
 						placeholder="podaj opis... (opcjonalnie)"
 						value={description}
-						onChange={e =>
-							dispatch(changeDescription(e.target.value))
-						}
+						onChange={e => dispatch(changeDescription(e.target.value))}
 					/>
 
 					<div className="button-container">
@@ -186,25 +195,20 @@ function CreateDiet() {
 							<Day
 								day={days[pageNumber]}
 								setIsModalOpen={setIsModalOpen}
-								setWhereToPassProduct={setWhereToPassProduct}
 								pageNumber={pageNumber}
 								setPageNumber={setPageNumber}
 								daysCount={days.length}
 							/>
 							{pageNumber > 0 && (
 								<LeftArrow
-									onClick={() =>
-										setPageNumber(prevPage => prevPage - 1)
-									}
+									onClick={() => setPageNumber(prevPage => prevPage - 1)}
 									position="absolute"
 									top="20px"
 								/>
 							)}
 							{pageNumber < diet.days.length - 1 && (
 								<RightArrow
-									onClick={() =>
-										setPageNumber(prevPage => prevPage + 1)
-									}
+									onClick={() => setPageNumber(prevPage => prevPage + 1)}
 									position="absolute"
 									top="20px"
 								/>

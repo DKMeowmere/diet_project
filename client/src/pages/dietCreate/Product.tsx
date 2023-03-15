@@ -8,11 +8,11 @@ import theme from "../../app/theme"
 import { Button } from "../../components/button/Button"
 import Input from "../../components/input/Index"
 import { Day } from "../../types/day"
-import { MealProduct, MealProduct } from "../../types/meal"
+import { MealProduct, Meal } from "../../types/meal"
 
 type Props = {
 	product: MealProduct
-	meal: MealProduct
+	meal: Meal
 	day: Day
 }
 
@@ -67,31 +67,41 @@ export default function Product({ product, meal, day }: Props) {
 			<div className="product-values">
 				<div className="product-calories">
 					Kalorie:
-					{(
-						+product.product.calories *
-						+product.grams *
-						+product.count
-					).toFixed(2)}
+					{
+						+(
+							(+product.product.calories * +product.grams * +product.count) /
+							100
+						).toFixed(2)
+					}
 				</div>
 				<div className="product-carbo">
 					Węglowodany:
-					{(
-						+product.product.carbohydrates *
-						+product.grams *
-						+product.count
-					).toFixed(2)}
+					{
+						+(
+							(+product.product.carbohydrates *
+								+product.grams *
+								+product.count) /
+							100
+						).toFixed(2)
+					}
 				</div>
 				<div className="product-proteins">
 					Białka:
-					{(
-						+product.product.proteins *
-						+product.grams *
-						+product.count
-					).toFixed(2)}
+					{
+						+(
+							(+product.product.proteins * +product.grams * +product.count) /
+							100
+						).toFixed(2)
+					}
 				</div>
 				<div className="product-fats">
 					Tłuszcze:
-					{(+product.product.fats * +product.grams * +product.count).toFixed(2)}
+					{
+						+(
+							(+product.product.fats * +product.grams * +product.count) /
+							100
+						).toFixed(2)
+					}
 				</div>
 			</div>
 			<Button

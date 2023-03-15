@@ -10,25 +10,21 @@ import { RiOilFill } from "react-icons/ri"
 import SearchInput from "../../components/searchInput/Index"
 import { ProductContainer } from "./styles"
 import { useState, useMemo, useEffect } from "react"
-import { Products as ProductsType } from "../../types/product"
+import {
+	Product as ProductType,
+	Products as ProductsType,
+} from "../../types/product"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { useCookies } from "react-cookie"
 import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
-import { WhereToPassProduct } from "../../types/whereToPassProduct"
-import { addProduct } from "../../app/features/dietSlice"
 import { BsX } from "react-icons/bs"
 
-function ProductModal({
-	whereToPassProduct,
-	setWhereToPassProduct,
-	setIsModalOpen,
-}: {
-	whereToPassProduct: WhereToPassProduct | null
-	setWhereToPassProduct: (
-		WhereToPassProduct: WhereToPassProduct | null
-	) => void
+type Props = {
 	setIsModalOpen: (isModalOpen: boolean) => void
-}) {
+	onProductClick: (product: ProductType) => void
+}
+
+function ProductModal({ setIsModalOpen, onProductClick }: Props) {
 	const [products, setProducts] = useState<ProductsType>([])
 	const [query, setQuery] = useState("")
 	const serverUrl = useAppSelector(state => state.app.serverUrl)
@@ -94,26 +90,8 @@ function ProductModal({
 				<ProductsContainer>
 					{filteredProducts.map(product => (
 						<ProductContainer key={product._id}>
-							<Product
-								onClick={() => {
-									if (!whereToPassProduct) {
-										return
-									}
-
-									setIsModalOpen(false)
-									dispatch(
-										addProduct({
-											dayId: whereToPassProduct.dayId,
-											mealId: whereToPassProduct.mealId,
-											product,
-										})
-									)
-									setWhereToPassProduct(null)
-								}}
-							>
-								<div className="product-title">
-									{product.name}
-								</div>
+							<Product onClick={() => onProductClick(product)}>
+								<div className="product-title">{product.name}</div>
 								<div className="product-value">
 									<div className="unit-container">
 										<AiFillFire className="fire" />
@@ -136,10 +114,7 @@ function ProductModal({
 						</ProductContainer>
 					))}
 				</ProductsContainer>
-				<BsX
-					className="close-btn"
-					onClick={() => setIsModalOpen(false)}
-				/>
+				<BsX className="close-btn" onClick={() => setIsModalOpen(false)} />
 			</ProductsArticle>
 		</ProductModalContainer>
 	)

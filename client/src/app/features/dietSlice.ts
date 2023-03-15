@@ -2,8 +2,9 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { Day } from "../../types/day"
 import { Diet } from "../../types/diet"
 import { DietState } from "../../types/dietState"
-import { MealProduct, MealProduct } from "../../types/meal"
+import { Meal, MealProduct } from "../../types/meal"
 import { Product } from "../../types/product"
+import { WhereToPassProduct } from "../../types/whereToPassProduct"
 
 const initialState: DietState = {
 	currentDiet: {
@@ -20,6 +21,10 @@ const initialState: DietState = {
 		"Sobota",
 		"Niedziela",
 	],
+	whereToPassProduct: {
+		dayId: "",
+		mealId: "",
+	},
 }
 
 const dietSlice = createSlice({
@@ -93,7 +98,7 @@ const dietSlice = createSlice({
 			state,
 			action: PayloadAction<{
 				day: Day
-				meal: MealProduct
+				meal: Meal
 				value: string
 			}>
 		) => {
@@ -111,7 +116,7 @@ const dietSlice = createSlice({
 			state,
 			action: PayloadAction<{
 				day: Day
-				meal: MealProduct
+				meal: Meal
 				value: string
 			}>
 		) => {
@@ -129,7 +134,7 @@ const dietSlice = createSlice({
 			state,
 			action: PayloadAction<{
 				day: Day
-				meal: MealProduct
+				meal: Meal
 			}>
 		) => {
 			const dayIndex = state.currentDiet.days.findIndex(
@@ -167,7 +172,7 @@ const dietSlice = createSlice({
 			state,
 			action: PayloadAction<{
 				day: Day
-				meal: MealProduct
+				meal: Meal
 				product: MealProduct
 				value: string
 			}>
@@ -194,7 +199,7 @@ const dietSlice = createSlice({
 			state,
 			action: PayloadAction<{
 				day: Day
-				meal: MealProduct
+				meal: Meal
 				product: MealProduct
 				value: string
 			}>
@@ -222,7 +227,7 @@ const dietSlice = createSlice({
 			state,
 			action: PayloadAction<{
 				day: Day
-				meal: MealProduct
+				meal: Meal
 				product: MealProduct
 			}>
 		) => {
@@ -239,6 +244,12 @@ const dietSlice = createSlice({
 			].products.filter(product => product._id !== action.payload.product._id)
 
 			state.currentDiet.days[dayIndex].meals[mealIndex].products = newProducts
+		},
+		updateWhereToPassProduct: (
+			state,
+			action: PayloadAction<WhereToPassProduct>
+		) => {
+			state.whereToPassProduct = action.payload
 		},
 	},
 })
@@ -260,4 +271,5 @@ export const {
 	changeProductGrams,
 	changeProductCount,
 	removeProduct,
+	updateWhereToPassProduct,
 } = dietSlice.actions

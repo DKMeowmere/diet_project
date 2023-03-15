@@ -8,12 +8,12 @@ import ProductModal from "../../components/productModal/Index"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import {
 	addDay,
+	addProduct,
 	changeDescription,
 	changeTitle,
 	clearDiet,
 	importDiet,
 } from "../../app/features/dietSlice"
-import { WhereToPassProduct } from "../../types/whereToPassProduct"
 import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
 import { validate } from "./validateDiet"
 import { useCookies } from "react-cookie"
@@ -21,6 +21,7 @@ import { useParams } from "react-router-dom"
 import Day from "./Day"
 import { LeftArrow, RightArrow } from "../../components/arrow/Index"
 import { Diet as DietType } from "../../types/diet"
+import { Product as ProductType } from "../../types/product"
 
 function UpdateDiet() {
 	const diet = useAppSelector(state => state.diet.currentDiet)
@@ -31,12 +32,13 @@ function UpdateDiet() {
 	const days = useAppSelector(state => state.diet.currentDiet.days)
 	const dispatch = useAppDispatch()
 	const [isModalOpen, setIsModalOpen] = useState(false)
-	const [whereToPassProduct, setWhereToPassProduct] =
-		useState<WhereToPassProduct | null>(null)
 	const serverUrl = useAppSelector(state => state.app.serverUrl)
 	const [cookies] = useCookies()
 	const [pageNumber, setPageNumber] = useState(0)
 	const { id } = useParams()
+	const whereToPassProduct = useAppSelector(
+		state => state.diet.whereToPassProduct
+	)
 
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault()
@@ -120,13 +122,23 @@ function UpdateDiet() {
 		fetchDiet()
 	}, [])
 
+	function handleProductAddition(product: ProductType) {
+		setIsModalOpen(false)
+		dispatch(
+			addProduct({
+				dayId: whereToPassProduct.dayId,
+				mealId: whereToPassProduct.mealId,
+				product,
+			})
+		)
+	}
+
 	return (
 		<DietCreateContainer>
 			{isModalOpen && (
 				<ProductModal
-					whereToPassProduct={whereToPassProduct}
-					setWhereToPassProduct={setWhereToPassProduct}
 					setIsModalOpen={setIsModalOpen}
+					onProductClick={handleProductAddition}
 				/>
 			)}
 
@@ -191,7 +203,6 @@ function UpdateDiet() {
 							<Day
 								day={days[pageNumber]}
 								setIsModalOpen={setIsModalOpen}
-								setWhereToPassProduct={setWhereToPassProduct}
 								pageNumber={pageNumber}
 								setPageNumber={setPageNumber}
 								daysCount={days.length}

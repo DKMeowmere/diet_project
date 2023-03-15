@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import { Link } from "react-router-dom"
+import styled from "styled-components"
 
 export const DishArticle = styled.article`
 	padding: 30px 0;
@@ -36,6 +36,7 @@ export const Dish = styled(Link)`
 	padding: 20px;
 	box-shadow: 0px 9px 20px -7px rgba(66, 68, 90, 1);
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	&:hover {
@@ -44,9 +45,40 @@ export const Dish = styled(Link)`
 	}
 	.dish-title {
 		font-size: 2rem;
+		margin-bottom: 10px;
 	}
-	&:hover {
-		opacity: 0.7;
-		box-shadow: 0px 9px 25px 5px rgba(66, 68, 90, 1);
+	.dish-value {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		height: auto;
+		font-size: 1rem;
+		font-weight: light;
+		gap: 15px;
+		.unit-container {
+			height: 100%;
+			display: flex;
+			align-items: center;
+			.milk {
+				color: #1cbbbb;
+			}
+			.coal {
+				color: #000;
+			}
+			.fire {
+				color: #ffa500;
+			}
+			.oil {
+				color: crimson;
+			}
+		}
+	}
+	@media screen and (min-width: ${({ theme }) => theme.media.breakpoints.lg}) {
+		.product-value {
+			font-size: 1.4rem;
+		}
+		.product-title {
+			font-size: 1.7rem;
+		}
 	}
 `

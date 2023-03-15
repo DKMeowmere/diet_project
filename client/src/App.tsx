@@ -22,7 +22,7 @@ import DietUpdate from './pages/dietUpdate/Index'
 import { useEffect } from 'react'
 import DietList from './pages/dietList/Index'
 import CreateDish from './pages/dishCreate/Index'
-import DishDetails from './pages/dishdetails/Index'
+import DishDetails from './pages/dishDetails/Index'
 
 function App() {
 	const isLoading = useAppSelector(state => state.app.isAppLoading)

@@ -144,7 +144,7 @@ function PatientDetails() {
 				})
 			)
 
-			navigate("/")
+			navigate("/patient")
 		} catch (err: unknown) {
 			const message =
 				err instanceof Error ? err.message : "Nieoczekiwany błąd"

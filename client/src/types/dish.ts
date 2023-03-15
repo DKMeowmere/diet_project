@@ -7,3 +7,5 @@ export type Dish = {
 	count: number
 	products: MealProducts
 }
+
+export type Dishes = Dish[]

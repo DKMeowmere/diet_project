@@ -90,7 +90,7 @@ export async function getDish(req: Request, res: Response) {
 			throw new Error("Podałeś nie poprawne id")
 		}
 
-		const dish = await Dish.findById(id)
+		const dish = await Dish.findById(id).populate("products.product")
 
 		if (!dish) {
 			throw new Error("Nie znaleziono potrawy o podanym id")
@@ -117,9 +117,9 @@ export async function updateDish(req: Request, res: Response) {
 
 		const dish = await Dish.findByIdAndUpdate(id, req.body, { new: true })
 
-    if(!dish){
-      throw new Error("Nie znaleziono potrawy o podanym id")
-    }
+		if (!dish) {
+			throw new Error("Nie znaleziono potrawy o podanym id")
+		}
 
 		res.status(200).json(dish)
 	} catch (err: any) {
@@ -137,9 +137,9 @@ export async function deleteDish(req: Request, res: Response) {
 
 		const dish = await Dish.findByIdAndDelete(id)
 
-    if(!dish){
-      throw new Error("Nie znaleziono potrawy o podanym id")
-    }
+		if (!dish) {
+			throw new Error("Nie znaleziono potrawy o podanym id")
+		}
 
 		res.status(200).json(dish)
 	} catch (err: any) {

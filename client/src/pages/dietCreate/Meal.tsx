@@ -2,6 +2,7 @@ import {
 	changeMealDescription,
 	changeMealName,
 	removeMeal,
+	updateWhereToPassProduct,
 } from "../../app/features/dietSlice"
 import { useAppDispatch } from "../../app/hooks"
 import theme from "../../app/theme"
@@ -10,8 +11,7 @@ import Input from "../../components/input/Index"
 import Textarea from "../../components/textarea/Index"
 import useReduce from "../../hooks/useReduce"
 import { Day } from "../../types/day"
-import { MealProduct as MealType, MealProduct } from "../../types/meal"
-import { WhereToPassProduct } from "../../types/whereToPassProduct"
+import { Meal as MealType, MealProduct } from "../../types/meal"
 import Product from "./Product"
 import { ProductsContainer } from "./styles"
 
@@ -19,15 +19,9 @@ type Props = {
 	meal: MealType
 	day: Day
 	setIsModalOpen: (isModalOpen: boolean) => void
-	setWhereToPassProduct: (whereToPassProduct: WhereToPassProduct) => void
 }
 
-export default function Meal({
-	meal,
-	day,
-	setIsModalOpen,
-	setWhereToPassProduct,
-}: Props) {
+export default function Meal({ meal, day, setIsModalOpen }: Props) {
 	const dispatch = useAppDispatch()
 	const { calculateSum } = useReduce()
 
@@ -72,11 +66,10 @@ export default function Meal({
 				type="button"
 				bgColor={theme.colors.main}
 				onClick={() => {
+					dispatch(
+						updateWhereToPassProduct({ dayId: day._id, mealId: meal._id })
+					)
 					setIsModalOpen(true)
-					setWhereToPassProduct({
-						dayId: day._id,
-						mealId: meal._id,
-					})
 				}}
 				className="meal-btn"
 			>
@@ -99,38 +92,57 @@ export default function Meal({
 				<div className="product-amount">Razem</div>
 				<div className="product-calories">
 					Kalorie:
-					{calculateSum(
-						meal.products.map(
-							product =>
-								+product.product.calories * +product.count * +product.grams
-						)
-					)}
+					{
+						+(
+							+calculateSum(
+								meal.products.map(
+									product =>
+										+product.product.calories * +product.count * +product.grams
+								)
+							) / 100
+						).toFixed(2)
+					}
 				</div>
 				<div className="product-carbo">
 					Węglowodany:
-					{calculateSum(
-						meal.products.map(
-							product =>
-								+product.product.carbohydrates * +product.count * +product.grams
-						)
-					)}
+					{
+						+(
+							+calculateSum(
+								meal.products.map(
+									product =>
+										+product.product.carbohydrates *
+										+product.count *
+										+product.grams
+								)
+							) / 100
+						).toFixed(2)
+					}
 				</div>
 				<div className="product-proteins">
 					Białka:
-					{calculateSum(
-						meal.products.map(
-							product =>
-								+product.product.proteins * +product.count * +product.grams
-						)
-					)}
+					{
+						+(
+							+calculateSum(
+								meal.products.map(
+									product =>
+										+product.product.proteins * +product.count * +product.grams
+								)
+							) / 100
+						).toFixed(2)
+					}
 				</div>
 				<div className="product-fats">
 					Tłuszcze:
-					{calculateSum(
-						meal.products.map(
-							product => +product.product.fats * +product.count * +product.grams
-						)
-					)}
+					{
+						+(
+							+calculateSum(
+								meal.products.map(
+									product =>
+										+product.product.fats * +product.count * +product.grams
+								)
+							) / 100
+						).toFixed(2)
+					}
 				</div>
 			</div>
 

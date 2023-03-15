@@ -1,8 +1,8 @@
 import useReduce from "../../hooks/useReduce"
-import { MealProduct } from "../../types/meal"
+import { Meal } from "../../types/meal"
 
 type Props = {
-	meal: MealProduct
+	meal: Meal
 }
 
 export default function FooterRow({ meal }: Props) {
@@ -13,47 +13,68 @@ export default function FooterRow({ meal }: Props) {
 			<tr>
 				<td className="cell strong">Łącznie</td>
 				<td className="cell strong">
-					{calculateSum(
-						meal.products.map(
-							product =>
-								+product.product.calories * +product.count * +product.grams
-						)
-					)}
+					{
+						+(
+							+calculateSum(
+								meal.products.map(
+									product =>
+										+product.product.calories * +product.count * +product.grams
+								)
+							) / 100
+						).toFixed(2)
+					}
 					cal
 				</td>
 				<td className="cell strong">
-					{calculateSum(
-						meal.products.map(
-							product =>
-								+product.product.proteins * +product.count * +product.grams
-						)
-					)}
+					{
+						+(
+							+calculateSum(
+								meal.products.map(
+									product =>
+										+product.product.proteins * +product.count * +product.grams
+								)
+							) / 100
+						).toFixed(2)
+					}
 					B
 				</td>
 				<td className="cell strong">
-					{calculateSum(
-						meal.products.map(
-							product => +product.product.fats * +product.count * +product.grams
-						)
-					)}
+					{
+						+(
+							+calculateSum(
+								meal.products.map(
+									product =>
+										+product.product.fats * +product.count * +product.grams
+								)
+							) / 100
+						).toFixed(2)
+					}
 					T
 				</td>
 				<td className="cell strong">
-					{calculateSum(
-						meal.products.map(
-							product =>
-								+product.product.carbohydrates * +product.count * +product.grams
-						)
-					)}
+					{
+						+(
+							+calculateSum(
+								meal.products.map(
+									product =>
+										+product.product.carbohydrates *
+										+product.count *
+										+product.grams
+								)
+							) / 100
+						).toFixed(2)
+					}
 					W
 				</td>
 				<td className="cell strong">
-					{calculateSum(meal.products.map(product => +product.count))}
+					{+calculateSum(meal.products.map(product => +product.count))}
 				</td>
 				<td className="cell strong">
-					{calculateSum(
-						meal.products.map(product => +product.grams * +product.count)
-					)}
+					{
+						+calculateSum(
+							meal.products.map(product => +product.grams * +product.count)
+						)
+					}
 					g
 				</td>
 			</tr>

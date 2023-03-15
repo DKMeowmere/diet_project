@@ -4,14 +4,12 @@ import Input from "../../components/input/Index"
 import { Day as DayType } from "../../types/day"
 import { MealsContainer } from "./styles"
 import Meal from "./Meal"
-import { WhereToPassProduct } from "../../types/whereToPassProduct"
 import theme from "../../app/theme"
 import { Button } from "../../components/button/Button"
 
 type Props = {
 	day: DayType
 	setIsModalOpen: (isModalOpen: boolean) => void
-	setWhereToPassProduct: (whereToPassProduct: WhereToPassProduct) => void
 	pageNumber: number
 	setPageNumber: (pageNumber: number) => void
 	daysCount: number
@@ -20,7 +18,6 @@ type Props = {
 export default function Day({
 	day,
 	setIsModalOpen,
-	setWhereToPassProduct,
 	pageNumber,
 	setPageNumber,
 	daysCount,
@@ -56,7 +53,6 @@ export default function Day({
 							day={day}
 							meal={meal}
 							setIsModalOpen={setIsModalOpen}
-							setWhereToPassProduct={setWhereToPassProduct}
 						/>
 					))}
 				</MealsContainer>
