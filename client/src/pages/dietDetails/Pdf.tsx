@@ -16,6 +16,7 @@ import { Diet as DietType } from "../../types/diet"
 import ProductRow from "./ProductRow"
 import FooterRow from "./FooterRow"
 import HeaderRow from "./HeaderRow"
+import DishTable from "./DishTable"
 
 function DietPdf() {
 	const [diet, setDiet] = useState<DietType | null>(null)
@@ -96,6 +97,9 @@ function DietPdf() {
 										<TableContainer>
 											<HeaderRow />
 											<tbody>
+												{meal.dishes.map(dish => (
+													<DishTable key={dish._id} dish={dish} />
+												))}
 												{meal.products.map(product => (
 													<ProductRow product={product} key={product._id} />
 												))}
