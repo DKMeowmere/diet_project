@@ -1,8 +1,8 @@
 import { Diet } from "./diet"
-import { WhereToPassProduct } from "./whereToPassProduct"
+import { WhereToPass } from "./whereToPass"
 
 export type DietState = {
 	currentDiet: Diet
 	dayNames: string[]
-  whereToPassProduct:WhereToPassProduct
+	whereToPass: WhereToPass
 }

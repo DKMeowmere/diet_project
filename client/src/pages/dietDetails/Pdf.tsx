@@ -2,7 +2,7 @@ import {
 	DietContainer,
 	MealsContainer,
 	DaysContainer,
-	ProductsContainer,
+	TableContainer,
 	PdfDietContainer,
 	PdfDay,
 } from "./styles"
@@ -93,7 +93,7 @@ function DietPdf() {
 												</div>
 											)}
 										</div>
-										<ProductsContainer>
+										<TableContainer>
 											<HeaderRow />
 											<tbody>
 												{meal.products.map(product => (
@@ -101,7 +101,7 @@ function DietPdf() {
 												))}
 											</tbody>
 											<FooterRow meal={meal} />
-										</ProductsContainer>
+										</TableContainer>
 									</div>
 								))}
 							</MealsContainer>

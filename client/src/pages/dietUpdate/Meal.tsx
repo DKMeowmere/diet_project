@@ -2,7 +2,7 @@ import {
 	changeMealDescription,
 	changeMealName,
 	removeMeal,
-	updateWhereToPassProduct,
+	updateWhereToPass,
 } from "../../app/features/dietSlice"
 import { useAppDispatch } from "../../app/hooks"
 import theme from "../../app/theme"
@@ -11,19 +11,63 @@ import Input from "../../components/input/Index"
 import Textarea from "../../components/textarea/Index"
 import useReduce from "../../hooks/useReduce"
 import { Day } from "../../types/day"
-import { Meal as MealType, MealProduct } from "../../types/meal"
+import { Meal as MealType, MealDish, MealProduct } from "../../types/meal"
+import Dish from "./Dish"
 import Product from "./Product"
 import { ProductsContainer } from "./styles"
 
 type Props = {
 	meal: MealType
 	day: Day
-	setIsModalOpen: (isModalOpen: boolean) => void
+	setIsProductModalOpen: (isModalOpen: boolean) => void
+	setIsDishModalOpen: (isModalOpen: boolean) => void
 }
 
-export default function Meal({ meal, day, setIsModalOpen }: Props) {
+export default function Meal({
+	meal,
+	day,
+	setIsProductModalOpen,
+	setIsDishModalOpen,
+}: Props) {
 	const dispatch = useAppDispatch()
 	const { calculateSum } = useReduce()
+
+	function calculateMealProperty(key: string): number {
+		//get sum of meal products e.g. calories and dishes e.g. calories
+		const productPropertySum =
+			calculateSum(
+				meal.products.map(product => {
+					type ProductKey = keyof typeof product.product
+					return (
+						+product.product[key as ProductKey] *
+						+product.count *
+						+product.grams
+					)
+				})
+			) / 100
+
+		const dishPropertySum = calculateSum(
+			meal.dishes.map(
+				dish =>
+					(calculateSum(
+						dish.dishDetails.products.map(product => {
+							type ProductKey = keyof typeof product.product
+							return (
+								(+product.product[key as ProductKey] *
+									+product.count *
+									+product.grams) /
+								100
+							)
+						})
+					) /
+						100) *
+					+dish.count *
+					+dish.grams
+			)
+		)
+
+		return +(productPropertySum + dishPropertySum).toFixed(2)
+	}
 
 	return (
 		<div className="meal" key={meal._id}>
@@ -66,14 +110,26 @@ export default function Meal({ meal, day, setIsModalOpen }: Props) {
 				type="button"
 				bgColor={theme.colors.main}
 				onClick={() => {
-					dispatch(
-						updateWhereToPassProduct({ dayId: day._id, mealId: meal._id })
-					)
-					setIsModalOpen(true)
+					dispatch(updateWhereToPass({ dayId: day._id, mealId: meal._id }))
+					setIsProductModalOpen(true)
 				}}
 				className="meal-btn"
 			>
 				Dodaj produkt do posiłku:
+				{meal.name}
+			</Button>
+			<Button
+				width="100%"
+				height="40px"
+				type="button"
+				bgColor={theme.colors.main}
+				onClick={() => {
+					dispatch(updateWhereToPass({ dayId: day._id, mealId: meal._id }))
+					setIsDishModalOpen(true)
+				}}
+				className="meal-btn"
+			>
+				Dodaj potrawe do posiłku:
 				{meal.name}
 			</Button>
 			{meal.products.length > 0 && (
@@ -88,61 +144,30 @@ export default function Meal({ meal, day, setIsModalOpen }: Props) {
 					))}
 				</ProductsContainer>
 			)}
-			<div className="product-values">
-				<div className="product-amount">Razem</div>
-				<div className="product-calories">
+			{meal.dishes.length > 0 && (
+				<ProductsContainer>
+					{meal.dishes.map((dish: MealDish) => (
+						<Dish key={dish._id} day={day} meal={meal} dish={dish} />
+					))}
+				</ProductsContainer>
+			)}
+			<div className="values">
+				<div className="amount">Razem</div>
+				<div className="calories">
 					Kalorie:
-					{
-						+(
-							+calculateSum(
-								meal.products.map(
-									product =>
-										+product.product.calories * +product.count * +product.grams
-								)
-							) / 100
-						).toFixed(2)
-					}
+					{calculateMealProperty("calories")}
 				</div>
-				<div className="product-carbo">
+				<div className="carbo">
 					Węglowodany:
-					{
-						+(
-							+calculateSum(
-								meal.products.map(
-									product =>
-										+product.product.carbohydrates *
-										+product.count *
-										+product.grams
-								)
-							) / 100
-						).toFixed(2)
-					}
+					{calculateMealProperty("carbohydrates")}
 				</div>
-				<div className="product-proteins">
+				<div className="proteins">
 					Białka:
-					{
-						+(
-							+calculateSum(
-								meal.products.map(
-									product =>
-										+product.product.proteins * +product.count * +product.grams
-								)
-							) / 100
-						).toFixed(2)
-					}
+					{calculateMealProperty("proteins")}
 				</div>
-				<div className="product-fats">
+				<div className="fats">
 					Tłuszcze:
-					{
-						+(
-							+calculateSum(
-								meal.products.map(
-									product =>
-										+product.product.fats * +product.count * +product.grams
-								)
-							) / 100
-						).toFixed(2)
-					}
+					{calculateMealProperty("fats")}
 				</div>
 			</div>
 

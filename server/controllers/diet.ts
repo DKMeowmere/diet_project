@@ -5,20 +5,26 @@ import puppeteer from "puppeteer"
 import CustomRequest from "../types/customRequest.js"
 import Patient from "../models/patient.js"
 
-function setPdfDietTitle(title:string){
-  title = title.split(" ").join("-")
+function setPdfDietTitle(title: string) {
+	title = title.split(" ").join("-")
 
-  if(title.split("").some(char => char.charCodeAt(0) > 128)){
-    return "Dieta"
-  }
+	if (title.split("").some(char => char.charCodeAt(0) > 128)) {
+		return "Dieta"
+	}
 
-  return title
+	return title
 }
 
 export async function getDiets(req: Request, res: Response) {
 	try {
 		const diet = await Diet.find({})
 			.populate("days.meals.products.product")
+			.populate({
+				path: "days.meals.dishes.dishDetails",
+				populate: {
+					path: "products.product",
+				},
+			})
 			.sort({ createdAt: -1 })
 
 		res.json(diet)
@@ -29,7 +35,7 @@ export async function getDiets(req: Request, res: Response) {
 
 export async function createDiet(req: Request, res: Response) {
 	try {
-		const { title, description, days } = req.body
+		const { title, days } = req.body
 
 		if (!title || !days) {
 			throw new Error(
@@ -53,7 +59,14 @@ export async function getDiet(req: Request, res: Response) {
 			throw new Error("Nie poprawne id diety")
 		}
 
-		const diet = await Diet.findById(id).populate("days.meals.products.product")
+		const diet = await Diet.findById(id)
+			.populate("days.meals.products.product")
+			.populate({
+				path: "days.meals.dishes.dishDetails",
+				populate: {
+					path: "products.product",
+				},
+			})
 
 		if (!diet) {
 			throw new Error("Nie znaleziono diety o podanym id")
@@ -151,7 +164,7 @@ export async function generateDietPdf(req: CustomRequest, res: Response) {
 		res.setHeader("Content-Type", "application/pdf")
 		res.setHeader(
 			"Content-Disposition",
-			`attachment; filename= ${setPdfDietTitle(diet?.title || "Dieta")}.pdf`
+			`attachment; filename=${setPdfDietTitle(diet?.title || "Dieta")}.pdf`
 		)
 		res.send(pdf)
 		await browser.close()

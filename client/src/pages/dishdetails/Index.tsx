@@ -88,7 +88,7 @@ function CreateDish() {
 			}))
 
 			dispatch(startLoading())
-			const res = await fetch(`${serverUrl}/api/dish`, {
+			const res = await fetch(`${serverUrl}/api/dish/${id}`, {
 				method: "PATCH",
 				body: JSON.stringify({
 					name,

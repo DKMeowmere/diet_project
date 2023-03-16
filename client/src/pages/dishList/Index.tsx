@@ -79,30 +79,40 @@ function DishList() {
 							<div className="dish-value">
 								<div className="unit-container">
 									<AiFillFire className="fire" />
-									{calculateSum(
-										dish.products.map(product => +product.product.calories)
-									)}
+									{
+										+calculateSum(
+											dish.products.map(product => +product.product.calories)
+										)
+									}
 									cal
 								</div>
 								<div className="unit-container">
 									<GiCoalWagon className="coal" />
-									{calculateSum(
-										dish.products.map(product => +product.product.carbohydrates)
-									)}
+									{
+										+calculateSum(
+											dish.products.map(
+												product => +product.product.carbohydrates
+											)
+										)
+									}
 									W
 								</div>
 								<div className="unit-container">
 									<GiMilkCarton className="milk" />
-									{calculateSum(
-										dish.products.map(product => +product.product.proteins)
-									)}
+									{
+										+calculateSum(
+											dish.products.map(product => +product.product.proteins)
+										)
+									}
 									B
 								</div>
 								<div className="unit-container">
 									<RiOilFill className="oil" />
-									{calculateSum(
-										dish.products.map(product => +product.product.fats)
-									)}
+									{
+										+calculateSum(
+											dish.products.map(product => +product.product.fats)
+										)
+									}
 									T
 								</div>
 							</div>

@@ -1,5 +1,6 @@
 import { Request, Response } from "express"
 import mongoose from "mongoose"
+import Diet from "../models/diet.js"
 import Dish from "../models/dish.js"
 import Product from "../models/product.js"
 import { MealProduct } from "../types/meal.js"
@@ -142,6 +143,20 @@ export async function deleteDish(req: Request, res: Response) {
 		}
 
 		res.status(200).json(dish)
+
+    const diets = await Diet.find({})
+
+		diets.forEach(diet => {
+			diet.days.forEach(day => {
+				day.meals.forEach(meal => {
+					meal.dishes = meal.dishes.filter(
+						dishProduct =>
+							dishProduct.dishDetails.toString() !== dish._id.toString()
+					)
+				})
+			})
+			diet.save()
+		})
 	} catch (err: any) {
 		res.status(400).json({ error: err.message })
 	}
