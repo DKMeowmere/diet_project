@@ -27,7 +27,7 @@ export const Diet = styled.div`
 			top: -8px;
 			display: flex;
 			gap: 20px;
-			
+
 			svg {
 				padding: 10px;
 				border-radius: 50%;
@@ -122,21 +122,45 @@ export const MealsContainer = styled.div`
 	}
 `
 
-export const ProductsContainer = styled.table`
+export const TableContainer = styled.table`
 	text-align: center;
 	margin: auto;
+	border-collapse: collapse;
+	width: 90%;
 	.cell {
 		border: 2px solid black;
 		padding: 20px;
+		font-size: 1.2rem;
 	}
 	.strong {
 		background-color: ${({ theme }) => theme.colors.main};
 		color: ${({ theme }) => theme.colors.whiteText};
 	}
-	border-collapse: collapse;
+	.bold {
+		font-weight: bold;
+		font-size: 1.5rem;
+	}
 `
 
 export const ProductContainer = styled.tr`
+	td {
+		background-color: #fff;
+		color: black;
+	}
+`
+
+export const ProductDishContainer = styled.tr`
+	td {
+		padding: 10px !important;
+		background-color: #f0f0f0 !important;
+		color: black !important;
+	}
+`
+
+export const DishRow = styled.tr`
+	border: none;
+	border-collapse: collapse;
+	display: table-row;
 	td {
 		background-color: #fff;
 		color: black;

@@ -4,7 +4,7 @@ export default function useReduce() {
       (accumulator, currentValue) => (accumulator += currentValue),
       0
     )
-    return sum.toFixed(2)
+    return +sum.toFixed(2)
   }
 
   return { calculateSum }

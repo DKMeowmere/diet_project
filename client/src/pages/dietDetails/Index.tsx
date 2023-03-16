@@ -3,7 +3,7 @@ import {
 	MealsContainer,
 	DaysContainer,
 	Day,
-	ProductsContainer,
+	TableContainer as TableContainer,
 } from "./styles"
 import { Diet } from "./styles"
 import { LeftArrow, RightArrow } from "../../components/arrow/Index"
@@ -19,6 +19,7 @@ import HeaderRow from "./HeaderRow"
 import { AiOutlineFilePdf, AiFillDelete } from "react-icons/ai"
 import { RxUpdate } from "react-icons/rx"
 import { HiClipboardCopy } from "react-icons/hi"
+import DishTable from "./DishTable"
 
 function DietDetails() {
 	const [diet, setDiet] = useState<DietType | null>(null)
@@ -192,15 +193,18 @@ function DietDetails() {
 											</div>
 										)}
 									</div>
-									<ProductsContainer>
+									<TableContainer>
 										<HeaderRow />
 										<tbody>
+											{meal.dishes.map(dish => (
+												<DishTable key={dish._id} dish={dish} />
+											))}
 											{meal.products.map(product => (
 												<ProductRow product={product} key={product._id} />
 											))}
 										</tbody>
 										<FooterRow meal={meal} />
-									</ProductsContainer>
+									</TableContainer>
 								</div>
 							))}
 						</MealsContainer>

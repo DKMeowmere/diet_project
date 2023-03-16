@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 export const DietCreateContainer = styled.article`
 	width: 100%;
@@ -70,7 +70,7 @@ export const Form = styled.form`
 		margin-top: 30px;
 		color: ${({ theme }) => theme.colors.whiteText};
 	}
-	.input-product-box {
+	.input-container-box {
 		display: flex;
 		flex-direction: column;
 		height: 150px;
@@ -90,7 +90,7 @@ export const Form = styled.form`
 		background-color: #e56f00;
 		width: 100%;
 
-		.product-amount-element {
+		.amount-element {
 			width: 100%;
 			padding: 20px;
 			text-align: center;
@@ -144,18 +144,18 @@ export const MealsContainer = styled.div`
 		font-size: 1.5rem;
 		margin-top: 30px;
 	}
-	.product-weight {
+	.weight {
 		width: 100%;
 		padding: 20px;
 		text-align: center;
 		color: ${({ theme }) => theme.colors.whiteText};
 		font-size: 1.5rem;
 	}
-	.product-values {
+	.values {
 		display: flex;
 		flex-direction: row;
 	}
-	.product-proteins {
+	.proteins {
 		width: 100%;
 		background-color: #ff8f22;
 		padding: 20px;
@@ -163,7 +163,7 @@ export const MealsContainer = styled.div`
 		font-size: 1.5rem;
 		color: ${({ theme }) => theme.colors.whiteText};
 	}
-	.product-calories {
+	.calories {
 		width: 100%;
 		background-color: #f27a00;
 		padding: 20px;
@@ -171,7 +171,7 @@ export const MealsContainer = styled.div`
 		font-size: 1.5rem;
 		color: ${({ theme }) => theme.colors.whiteText};
 	}
-	.product-carbo {
+	.carbo {
 		width: 100%;
 		background-color: #ff8413;
 		padding: 20px;
@@ -179,7 +179,7 @@ export const MealsContainer = styled.div`
 		font-size: 1.5rem;
 		color: ${({ theme }) => theme.colors.whiteText};
 	}
-	.product-fats {
+	.fats {
 		width: 100%;
 		background-color: #ff992f;
 		padding: 20px;
@@ -187,7 +187,7 @@ export const MealsContainer = styled.div`
 		font-size: 1.5rem;
 		color: ${({ theme }) => theme.colors.whiteText};
 	}
-	.product-amount {
+	.amount {
 		width: 100%;
 		padding: 20px;
 		text-align: center;
@@ -203,6 +203,10 @@ export const MealsContainer = styled.div`
 	}
 `
 export const ProductsContainer = styled.div`
+	width: 100%;
+	margin: auto;
+`
+export const DishesContainer = styled.div`
 	width: 100%;
 	margin: auto;
 `

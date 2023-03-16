@@ -9,7 +9,8 @@ import { Button } from "../../components/button/Button"
 
 type Props = {
 	day: DayType
-	setIsModalOpen: (isModalOpen: boolean) => void
+	setIsProductModalOpen: (isModalOpen: boolean) => void
+	setIsDishModalOpen: (isModalOpen: boolean) => void
 	pageNumber: number
 	setPageNumber: (pageNumber: number) => void
 	daysCount: number
@@ -17,7 +18,8 @@ type Props = {
 
 export default function Day({
 	day,
-	setIsModalOpen,
+	setIsProductModalOpen,
+	setIsDishModalOpen,
 	pageNumber,
 	setPageNumber,
 	daysCount,
@@ -52,7 +54,8 @@ export default function Day({
 							key={meal._id}
 							day={day}
 							meal={meal}
-							setIsModalOpen={setIsModalOpen}
+							setIsProductModalOpen={setIsProductModalOpen}
+							setIsDishModalOpen={setIsDishModalOpen}
 						/>
 					))}
 				</MealsContainer>

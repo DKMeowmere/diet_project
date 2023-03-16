@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 import { Dish } from "../types/dish.js"
 
-const dishSchema = new mongoose.Schema<Dish>(
+export const dishSchema = new mongoose.Schema<Dish>(
 	{
 		name: {
 			type: String,

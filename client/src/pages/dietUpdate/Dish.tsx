@@ -1,27 +1,29 @@
 import {
-	changeProductCount,
-	changeProductGrams,
-	removeProduct,
+	changeDishCount,
+	changeDishGrams,
+	removeDish,
 } from "../../app/features/dietSlice"
 import { useAppDispatch } from "../../app/hooks"
 import theme from "../../app/theme"
 import { Button } from "../../components/button/Button"
 import Input from "../../components/input/Index"
+import useReduce from "../../hooks/useReduce"
 import { Day } from "../../types/day"
-import { MealProduct, Meal } from "../../types/meal"
+import { MealDish, Meal } from "../../types/meal"
 
 type Props = {
-	product: MealProduct
+	dish: MealDish
 	meal: Meal
 	day: Day
 }
 
-export default function Product({ product, meal, day }: Props) {
+export default function Dish({ dish, meal, day }: Props) {
 	const dispatch = useAppDispatch()
+	const { calculateSum } = useReduce()
 
 	return (
 		<div className="product">
-			<div className="diet-text">Produkt: {product.product.name}</div>
+			<div className="diet-text">Potrawa: {dish.dishDetails.name}</div>
 			<div className="input-container-box">
 				<div className="weight">Podaj wage (w gramach)</div>
 				<div className="input-box">
@@ -29,13 +31,13 @@ export default function Product({ product, meal, day }: Props) {
 						width="100%"
 						height="50px"
 						placeholder="Podaj ilość gramów"
-						value={product.grams.toString()}
+						value={dish.grams.toString()}
 						onChange={e =>
 							dispatch(
-								changeProductGrams({
+								changeDishGrams({
 									day,
 									meal,
-									product,
+									dish,
 									value: e.target.value,
 								})
 							)
@@ -50,13 +52,13 @@ export default function Product({ product, meal, day }: Props) {
 						width="100%"
 						height="50px"
 						placeholder="Podaj ilość"
-						value={product.count.toString()}
+						value={dish.count.toString()}
 						onChange={e =>
 							dispatch(
-								changeProductCount({
+								changeDishCount({
 									day,
 									meal,
-									product,
+									dish,
 									value: e.target.value,
 								})
 							)
@@ -69,7 +71,13 @@ export default function Product({ product, meal, day }: Props) {
 					Kalorie:
 					{
 						+(
-							(+product.product.calories * +product.grams * +product.count) /
+							(+calculateSum(
+								dish.dishDetails.products.map(
+									product => +product.product.calories
+								)
+							) *
+								+dish.grams *
+								+dish.count) /
 							100
 						).toFixed(2)
 					}
@@ -78,9 +86,13 @@ export default function Product({ product, meal, day }: Props) {
 					Węglowodany:
 					{
 						+(
-							(+product.product.carbohydrates *
-								+product.grams *
-								+product.count) /
+							(+calculateSum(
+								dish.dishDetails.products.map(
+									product => +product.product.carbohydrates
+								)
+							) *
+								+dish.grams *
+								+dish.count) /
 							100
 						).toFixed(2)
 					}
@@ -89,7 +101,13 @@ export default function Product({ product, meal, day }: Props) {
 					Białka:
 					{
 						+(
-							(+product.product.proteins * +product.grams * +product.count) /
+							(+calculateSum(
+								dish.dishDetails.products.map(
+									product => +product.product.proteins
+								)
+							) *
+								+dish.grams *
+								+dish.count) /
 							100
 						).toFixed(2)
 					}
@@ -98,7 +116,11 @@ export default function Product({ product, meal, day }: Props) {
 					Tłuszcze:
 					{
 						+(
-							(+product.product.fats * +product.grams * +product.count) /
+							(+calculateSum(
+								dish.dishDetails.products.map(product => +product.product.fats)
+							) *
+								+dish.grams *
+								+dish.count) /
 							100
 						).toFixed(2)
 					}
@@ -112,15 +134,15 @@ export default function Product({ product, meal, day }: Props) {
 				className="diet-btn"
 				onClick={() =>
 					dispatch(
-						removeProduct({
+						removeDish({
 							day,
 							meal,
-							product,
+							dish,
 						})
 					)
 				}
 			>
-				Usuń produkt
+				Usuń potrawe
 			</Button>
 		</div>
 	)

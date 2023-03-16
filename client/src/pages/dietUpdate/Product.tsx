@@ -21,9 +21,9 @@ export default function Product({ product, meal, day }: Props) {
 
 	return (
 		<div className="product">
-			<div className="diet-text">{product.product.name}</div>
-			<div className="input-product-box">
-				<div className="product-weight">Podaj wage (w gramach)</div>
+			<div className="diet-text">Produkt: {product.product.name}</div>
+			<div className="input-container-box">
+				<div className="weight">Podaj wage (w gramach)</div>
 				<div className="input-box">
 					<Input
 						width="100%"
@@ -44,7 +44,7 @@ export default function Product({ product, meal, day }: Props) {
 				</div>
 			</div>
 			<div className="input-amount-box">
-				<div className="product-amount-element">Podaj ilość</div>
+				<div className="amount-element">Podaj ilość</div>
 				<div className="input-box">
 					<Input
 						width="100%"
@@ -64,8 +64,8 @@ export default function Product({ product, meal, day }: Props) {
 					/>
 				</div>
 			</div>
-			<div className="product-values">
-				<div className="product-calories">
+			<div className="values">
+				<div className="calories">
 					Kalorie:
 					{
 						+(
@@ -74,7 +74,7 @@ export default function Product({ product, meal, day }: Props) {
 						).toFixed(2)
 					}
 				</div>
-				<div className="product-carbo">
+				<div className="carbo">
 					Węglowodany:
 					{
 						+(
@@ -85,7 +85,7 @@ export default function Product({ product, meal, day }: Props) {
 						).toFixed(2)
 					}
 				</div>
-				<div className="product-proteins">
+				<div className="proteins">
 					Białka:
 					{
 						+(
@@ -94,7 +94,7 @@ export default function Product({ product, meal, day }: Props) {
 						).toFixed(2)
 					}
 				</div>
-				<div className="product-fats">
+				<div className="fats">
 					Tłuszcze:
 					{
 						+(
@@ -109,7 +109,7 @@ export default function Product({ product, meal, day }: Props) {
 				height="40px"
 				type="button"
 				bgColor={theme.colors.errorMain}
-				className="diet-btn-element"
+				className="diet-btn"
 				onClick={() =>
 					dispatch(
 						removeProduct({
