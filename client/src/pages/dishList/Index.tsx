@@ -8,10 +8,8 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { useState, useEffect, useMemo } from "react"
 import { useCookies } from "react-cookie"
 import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
-import useReduce from "../../hooks/useReduce"
-import { AiFillFire } from "react-icons/ai"
-import { RiOilFill } from "react-icons/ri"
-import { GiCoalWagon, GiMilkCarton } from "react-icons/gi"
+import useCalculations from "../../hooks/useCalculations"
+import PropertyBadge from "../../components/propertyBadge/Index"
 
 function DishList() {
 	const [dishes, setDishes] = useState<DishesType>([])
@@ -19,7 +17,7 @@ function DishList() {
 	const serverUrl = useAppSelector(state => state.app.serverUrl)
 	const dispatch = useAppDispatch()
 	const [cookies] = useCookies()
-	const { calculateSum } = useReduce()
+	const { getDishProductsPropertySum } = useCalculations()
 
 	useEffect(() => {
 		dispatch(startLoading())
@@ -76,46 +74,15 @@ function DishList() {
 					<DishContainer key={dish._id}>
 						<Dish to={`/dish/${dish._id}`}>
 							<div className="dish-title">{dish.name}</div>
-							<div className="dish-value">
-								<div className="unit-container">
-									<AiFillFire className="fire" />
-									{
-										+calculateSum(
-											dish.products.map(product => +product.product.calories)
-										)
-									}
-									cal
-								</div>
-								<div className="unit-container">
-									<GiCoalWagon className="coal" />
-									{
-										+calculateSum(
-											dish.products.map(
-												product => +product.product.carbohydrates
-											)
-										)
-									}
-									W
-								</div>
-								<div className="unit-container">
-									<GiMilkCarton className="milk" />
-									{
-										+calculateSum(
-											dish.products.map(product => +product.product.proteins)
-										)
-									}
-									B
-								</div>
-								<div className="unit-container">
-									<RiOilFill className="oil" />
-									{
-										+calculateSum(
-											dish.products.map(product => +product.product.fats)
-										)
-									}
-									T
-								</div>
-							</div>
+							<PropertyBadge
+								carbohydrates={getDishProductsPropertySum(
+									dish,
+									"carbohydrates"
+								)}
+								calories={getDishProductsPropertySum(dish, "calories")}
+								fats={+getDishProductsPropertySum(dish, "fats")}
+								proteins={getDishProductsPropertySum(dish, "proteins")}
+							/>
 						</Dish>
 					</DishContainer>
 				))}

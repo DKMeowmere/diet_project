@@ -196,11 +196,11 @@ function DietDetails() {
 									<TableContainer>
 										<HeaderRow />
 										<tbody>
-											{meal.dishes.map(dish => (
-												<DishTable key={dish._id} dish={dish} />
-											))}
 											{meal.products.map(product => (
 												<ProductRow product={product} key={product._id} />
+											))}
+											{meal.dishes.map(dish => (
+												<DishTable key={dish._id} dish={dish} />
 											))}
 										</tbody>
 										<FooterRow meal={meal} />

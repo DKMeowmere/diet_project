@@ -7,6 +7,7 @@ import { useAppDispatch } from "../../app/hooks"
 import theme from "../../app/theme"
 import { Button } from "../../components/button/Button"
 import Input from "../../components/input/Index"
+import useCalculations from "../../hooks/useCalculations"
 import { Day } from "../../types/day"
 import { MealProduct, Meal } from "../../types/meal"
 
@@ -18,6 +19,7 @@ type Props = {
 
 export default function Product({ product, meal, day }: Props) {
 	const dispatch = useAppDispatch()
+	const { getMealProductProperty } = useCalculations()
 
 	return (
 		<div className="product">
@@ -67,41 +69,19 @@ export default function Product({ product, meal, day }: Props) {
 			<div className="values">
 				<div className="calories">
 					Kalorie:
-					{
-						+(
-							(+product.product.calories * +product.grams * +product.count) /
-							100
-						).toFixed(2)
-					}
+					{getMealProductProperty(product, "calories")}
 				</div>
 				<div className="carbo">
 					Węglowodany:
-					{
-						+(
-							(+product.product.carbohydrates *
-								+product.grams *
-								+product.count) /
-							100
-						).toFixed(2)
-					}
+					{getMealProductProperty(product, "carbohydrates")}
 				</div>
 				<div className="proteins">
 					Białka:
-					{
-						+(
-							(+product.product.proteins * +product.grams * +product.count) /
-							100
-						).toFixed(2)
-					}
+					{getMealProductProperty(product, "proteins")}
 				</div>
 				<div className="fats">
 					Tłuszcze:
-					{
-						+(
-							(+product.product.fats * +product.grams * +product.count) /
-							100
-						).toFixed(2)
-					}
+					{getMealProductProperty(product, "fats")}
 				</div>
 			</div>
 			<Button

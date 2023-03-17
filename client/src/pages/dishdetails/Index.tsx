@@ -12,6 +12,8 @@ import { useNavigate, useParams } from "react-router-dom"
 import { MealProducts } from "../../types/meal"
 import ProductModal from "../../components/productModal/Index"
 import { Product as ProductType } from "../../types/product"
+import useCalculations from "../../hooks/useCalculations"
+import PropertyBadge from "../../components/propertyBadge/Index"
 
 function CreateDish() {
 	const [name, setName] = useState("")
@@ -22,6 +24,8 @@ function CreateDish() {
 	const [cookies] = useCookies()
 	const serverUrl = useAppSelector(state => state.app.serverUrl)
 	const { id } = useParams()
+	const { getDishProductsPropertySum, getMealProductProperty } =
+		useCalculations()
 
 	useEffect(() => {
 		dispatch(startLoading())
@@ -187,7 +191,7 @@ function CreateDish() {
 				/>
 			)}
 			<Form>
-				<p className="dish-title">Dodaj potrawę</p>
+				<p className="dish-title">Edytuj potrawę</p>
 				<Button
 					width="90%"
 					height="40px"
@@ -223,10 +227,26 @@ function CreateDish() {
 				>
 					Dodaj produkt
 				</Button>
+				<PropertyBadge
+					carbohydrates={getDishProductsPropertySum(
+						{ _id: "", products, name },
+						"carbohydrates"
+					)}
+					calories={getDishProductsPropertySum(
+						{ _id: "", products, name },
+						"calories"
+					)}
+					fats={getDishProductsPropertySum({ _id: "", products, name }, "fats")}
+					proteins={getDishProductsPropertySum(
+						{ _id: "", products, name },
+						"proteins"
+					)}
+				/>
 				{products.length > 0 &&
 					products.map(product => (
 						<ProductContainer key={product._id}>
 							<AiOutlineClose
+								className="close-icon"
 								onClick={() =>
 									setProducts(
 										products.filter(
@@ -236,9 +256,13 @@ function CreateDish() {
 								}
 							/>
 							<p className="product-title">{product.product.name}</p>
-							<p className="dish-text" onClick={() => console.log(product)}>
-								Podaj wagę potrawy (g)
-							</p>
+							<PropertyBadge
+								carbohydrates={getMealProductProperty(product, "carbohydrates")}
+								calories={getMealProductProperty(product, "calories")}
+								fats={getMealProductProperty(product, "fats")}
+								proteins={getMealProductProperty(product, "proteins")}
+							/>
+							<p className="dish-text">Podaj wagę produktu (g)</p>
 							<Input
 								width="90%"
 								height="50px"
@@ -254,7 +278,7 @@ function CreateDish() {
 									)
 								}
 							/>
-							<p className="dish-text">Podaj ilość potrawy</p>
+							<p className="dish-text">Podaj ilość produktu</p>
 							<Input
 								width="90%"
 								height="50px"

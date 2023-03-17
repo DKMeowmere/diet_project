@@ -1,7 +1,4 @@
 import { Product, ProductsContainer, ProductsArticle } from "./styles"
-import { AiFillFire } from "react-icons/ai"
-import { GiCoalWagon, GiMilkCarton } from "react-icons/gi"
-import { RiOilFill } from "react-icons/ri"
 import SearchInput from "../../components/searchInput/Index"
 import { ProductContainer } from "./styles"
 import { useState, useMemo, useEffect } from "react"
@@ -12,6 +9,7 @@ import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
 import { Link } from "react-router-dom"
 import { Button } from "../../components/button/Button"
 import theme from "../../app/theme"
+import PropertyBadge from "../../components/propertyBadge/Index"
 
 function ProductList() {
 	const [products, setProducts] = useState<Products>([])
@@ -69,33 +67,18 @@ function ProductList() {
 				query={query}
 				setQuery={setQuery}
 				autocompleteData={productsTitles}
-				/>
+			/>
 			<ProductsContainer>
 				{filteredProducts.map(product => (
-					<ProductContainer
-						key={product._id}
-						to={`/product/${product._id}`}
-					>
+					<ProductContainer key={product._id} to={`/product/${product._id}`}>
 						<Product>
 							<div className="product-title">{product.name}</div>
-							<div className="product-value">
-								<div className="unit-container">
-									<AiFillFire className="fire" />
-									{product.calories}cal
-								</div>
-								<div className="unit-container">
-									<GiCoalWagon className="coal" />
-									{product.carbohydrates} W
-								</div>
-								<div className="unit-container">
-									<GiMilkCarton className="milk" />
-									{product.proteins} B
-								</div>
-								<div className="unit-container">
-									<RiOilFill className="oil" /> {product.fats}
-									T
-								</div>
-							</div>
+							<PropertyBadge
+								carbohydrates={+product.carbohydrates}
+								calories={+product.calories}
+								fats={+product.fats}
+								proteins={+product.proteins}
+							/>
 						</Product>
 					</ProductContainer>
 				))}

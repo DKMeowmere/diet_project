@@ -7,7 +7,7 @@ import { useAppDispatch } from "../../app/hooks"
 import theme from "../../app/theme"
 import { Button } from "../../components/button/Button"
 import Input from "../../components/input/Index"
-import useReduce from "../../hooks/useReduce"
+import useCalculations from "../../hooks/useCalculations"
 import { Day } from "../../types/day"
 import { MealDish, Meal } from "../../types/meal"
 
@@ -19,13 +19,16 @@ type Props = {
 
 export default function Dish({ dish, meal, day }: Props) {
 	const dispatch = useAppDispatch()
-	const { calculateSum } = useReduce()
+	const { getDishProperty, getDefaultDishWeight } = useCalculations()
 
 	return (
 		<div className="product">
 			<div className="diet-text">Potrawa: {dish.dishDetails.name}</div>
 			<div className="input-container-box">
-				<div className="weight">Podaj wage (w gramach)</div>
+				<div className="weight">
+					Podaj wage (w gramach, domyślna waga produktu:
+					{getDefaultDishWeight(dish.dishDetails).toString()}g)
+				</div>
 				<div className="input-box">
 					<Input
 						width="100%"
@@ -69,61 +72,19 @@ export default function Dish({ dish, meal, day }: Props) {
 			<div className="values">
 				<div className="calories">
 					Kalorie:
-					{
-						+(
-							(+calculateSum(
-								dish.dishDetails.products.map(
-									product => +product.product.calories
-								)
-							) *
-								+dish.grams *
-								+dish.count) /
-							100
-						).toFixed(2)
-					}
+					{getDishProperty(dish, "calories")}
 				</div>
 				<div className="carbo">
 					Węglowodany:
-					{
-						+(
-							(+calculateSum(
-								dish.dishDetails.products.map(
-									product => +product.product.carbohydrates
-								)
-							) *
-								+dish.grams *
-								+dish.count) /
-							100
-						).toFixed(2)
-					}
+					{getDishProperty(dish, "carbohydrates")}
 				</div>
 				<div className="proteins">
 					Białka:
-					{
-						+(
-							(+calculateSum(
-								dish.dishDetails.products.map(
-									product => +product.product.proteins
-								)
-							) *
-								+dish.grams *
-								+dish.count) /
-							100
-						).toFixed(2)
-					}
+					{getDishProperty(dish, "proteins")}
 				</div>
 				<div className="fats">
 					Tłuszcze:
-					{
-						+(
-							(+calculateSum(
-								dish.dishDetails.products.map(product => +product.product.fats)
-							) *
-								+dish.grams *
-								+dish.count) /
-							100
-						).toFixed(2)
-					}
+					{getDishProperty(dish, "fats")}
 				</div>
 			</div>
 			<Button

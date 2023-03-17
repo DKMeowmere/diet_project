@@ -4,9 +4,6 @@ import {
 	ProductsArticle,
 	ProductModalContainer,
 } from "./styles"
-import { AiFillFire } from "react-icons/ai"
-import { GiCoalWagon, GiMilkCarton } from "react-icons/gi"
-import { RiOilFill } from "react-icons/ri"
 import SearchInput from "../../components/searchInput/Index"
 import { ProductContainer } from "./styles"
 import { useState, useMemo, useEffect } from "react"
@@ -18,6 +15,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { useCookies } from "react-cookie"
 import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
 import { BsX } from "react-icons/bs"
+import PropertyBadge from "../propertyBadge/Index"
 
 type Props = {
 	setIsModalOpen: (isModalOpen: boolean) => void
@@ -92,24 +90,12 @@ function ProductModal({ setIsModalOpen, onProductClick }: Props) {
 						<ProductContainer key={product._id}>
 							<Product onClick={() => onProductClick(product)}>
 								<div className="product-title">{product.name}</div>
-								<div className="product-value">
-									<div className="unit-container">
-										<AiFillFire className="fire" />
-										{product.calories}cal
-									</div>
-									<div className="unit-container">
-										<GiCoalWagon className="coal" />
-										{product.carbohydrates} W
-									</div>
-									<div className="unit-container">
-										<GiMilkCarton className="milk" />
-										{product.proteins} B
-									</div>
-									<div className="unit-container">
-										<RiOilFill className="oil" />
-										{product.fats} T
-									</div>
-								</div>
+                <PropertyBadge
+								carbohydrates={+product.carbohydrates}
+								calories={+product.calories}
+								fats={+product.fats}
+								proteins={+product.proteins}
+							/>
 							</Product>
 						</ProductContainer>
 					))}

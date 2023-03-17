@@ -65,32 +65,6 @@ export const Dish = styled.div`
 		height: 80%;
 		font-size: 1.4rem;
 	}
-	.dish-value {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		height: auto;
-		font-size: 1rem;
-		font-weight: light;
-		.unit-container {
-			height: 100%;
-			display: flex;
-			align-items: center;
-			gap: 4px;
-			.milk {
-				color: #1cbbbb;
-			}
-			.coal {
-				color: #000;
-			}
-			.fire {
-				color: #ffa500;
-			}
-			.oil {
-				color: crimson;
-			}
-		}
-	}
 	&:last-child {
 		padding-bottom: 30px;
 	}
