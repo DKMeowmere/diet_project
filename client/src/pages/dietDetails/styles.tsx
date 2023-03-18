@@ -126,7 +126,7 @@ export const TableContainer = styled.table`
 	text-align: center;
 	margin: auto;
 	border-collapse: collapse;
-	width: 90%;
+	
 	.cell {
 		border: 2px solid black;
 		padding: 20px;
@@ -160,7 +160,7 @@ export const ProductDishContainer = styled.tr`
 export const DishRow = styled.tr`
 	border: none;
 	border-collapse: collapse;
-	display: table-row;
+	
 	td {
 		background-color: #fff;
 		color: black;

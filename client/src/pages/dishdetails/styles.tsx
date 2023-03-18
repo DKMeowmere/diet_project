@@ -30,7 +30,7 @@ export const ProductContainer = styled.div`
 	width: 90%;
 	background-color: ${({ theme }) => theme.colors.whiteText};
 	border-radius: 15px;
-	padding: 30px;
+	padding: 60px;
 	display: flex;
 	justify-content: center;
 	align-items: center;

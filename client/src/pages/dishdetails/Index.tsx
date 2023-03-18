@@ -84,13 +84,8 @@ function DishDetails() {
 			}))
 
 			dispatch(startLoading())
-<<<<<<< HEAD
-			const res = await fetch(`${serverUrl}/api/dish`, {
-				method: 'PATCH',
-=======
 			const res = await fetch(`${serverUrl}/api/dish/${id}`, {
 				method: "PATCH",
->>>>>>> d6e9f936c29468b1afeb02803dfca793a590672b
 				body: JSON.stringify({
 					name,
 					products: productsToPatch,
