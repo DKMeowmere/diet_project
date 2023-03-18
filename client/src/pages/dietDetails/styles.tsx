@@ -126,11 +126,11 @@ export const TableContainer = styled.table`
 	text-align: center;
 	margin: auto;
 	border-collapse: collapse;
-	
+	width: 80%;
 	.cell {
 		border: 2px solid black;
-		padding: 20px;
-		font-size: 1.2rem;
+		padding: 12px;
+		font-size: .8rem;
 	}
 	.strong {
 		background-color: ${({ theme }) => theme.colors.main};
@@ -138,7 +138,7 @@ export const TableContainer = styled.table`
 	}
 	.bold {
 		font-weight: bold;
-		font-size: 1.5rem;
+		font-size: 1.1rem;
 	}
 `
 
@@ -151,7 +151,7 @@ export const ProductContainer = styled.tr`
 
 export const ProductDishContainer = styled.tr`
 	td {
-		padding: 10px !important;
+		padding: 6px !important;
 		background-color: #f0f0f0 !important;
 		color: black !important;
 	}

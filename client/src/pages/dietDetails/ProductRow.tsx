@@ -1,3 +1,4 @@
+import useCalculations from "../../hooks/useCalculations"
 import { MealProduct } from "../../types/meal"
 import { ProductContainer } from "./styles"
 
@@ -6,47 +7,22 @@ type Props = {
 }
 
 export default function ProductRow({ product }: Props) {
+	const { getMealProductProperty } = useCalculations()
+
 	return (
 		<ProductContainer>
 			<td className="cell">{product.product.name}</td>
 			<td className="cell">
-				{
-					+(
-						(+product.product.calories * +product.grams * +product.count) /
-						100
-					).toFixed(2)
-				}
+				{getMealProductProperty(product, "calories")}
 				cal
 			</td>
+			<td className="cell">{getMealProductProperty(product, "proteins")}B</td>
+			<td className="cell">{getMealProductProperty(product, "fats")}T</td>
 			<td className="cell">
-				{
-					+(
-						(+product.product.proteins * +product.grams * +product.count) /
-						100
-					).toFixed(2)
-				}
-				B
-			</td>
-			<td className="cell">
-				{
-					+(
-						(+product.product.fats * +product.grams * +product.count) /
-						100
-					).toFixed(2)
-				}
-				T
-			</td>
-			<td className="cell">
-				{
-					+(
-						(+product.product.carbohydrates * +product.grams * +product.count) /
-						100
-					).toFixed(2)
-				}
-				W
+				{getMealProductProperty(product, "carbohydrates")}W
 			</td>
 			<td className="cell">{product.count}</td>
-			<td className="cell">{product.grams}g</td>
+			<td className="cell">{+(+product.grams * +product.count).toFixed(2)}g</td>
 		</ProductContainer>
 	)
 }

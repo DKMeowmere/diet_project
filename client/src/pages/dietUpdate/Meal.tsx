@@ -9,7 +9,7 @@ import theme from "../../app/theme"
 import { Button } from "../../components/button/Button"
 import Input from "../../components/input/Index"
 import Textarea from "../../components/textarea/Index"
-import useReduce from "../../hooks/useReduce"
+import useCalculations from "../../hooks/useCalculations"
 import { Day } from "../../types/day"
 import { Meal as MealType, MealDish, MealProduct } from "../../types/meal"
 import Dish from "./Dish"
@@ -30,44 +30,7 @@ export default function Meal({
 	setIsDishModalOpen,
 }: Props) {
 	const dispatch = useAppDispatch()
-	const { calculateSum } = useReduce()
-
-	function calculateMealProperty(key: string): number {
-		//get sum of meal products e.g. calories and dishes e.g. calories
-		const productPropertySum =
-			calculateSum(
-				meal.products.map(product => {
-					type ProductKey = keyof typeof product.product
-					return (
-						+product.product[key as ProductKey] *
-						+product.count *
-						+product.grams
-					)
-				})
-			) / 100
-
-		const dishPropertySum = calculateSum(
-			meal.dishes.map(
-				dish =>
-					(calculateSum(
-						dish.dishDetails.products.map(product => {
-							type ProductKey = keyof typeof product.product
-							return (
-								(+product.product[key as ProductKey] *
-									+product.count *
-									+product.grams) /
-								100
-							)
-						})
-					) /
-						100) *
-					+dish.count *
-					+dish.grams
-			)
-		)
-
-		return +(productPropertySum + dishPropertySum).toFixed(2)
-	}
+	const { getMealProperty } = useCalculations()
 
 	return (
 		<div className="meal" key={meal._id}>
@@ -155,19 +118,19 @@ export default function Meal({
 				<div className="amount">Razem</div>
 				<div className="calories">
 					Kalorie:
-					{calculateMealProperty("calories")}
+					{getMealProperty(meal, "calories")}
 				</div>
 				<div className="carbo">
 					Węglowodany:
-					{calculateMealProperty("carbohydrates")}
+					{getMealProperty(meal, "carbohydrates")}
 				</div>
 				<div className="proteins">
 					Białka:
-					{calculateMealProperty("proteins")}
+					{getMealProperty(meal, "proteins")}
 				</div>
 				<div className="fats">
 					Tłuszcze:
-					{calculateMealProperty("fats")}
+					{getMealProperty(meal, "fats")}
 				</div>
 			</div>
 

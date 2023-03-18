@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 export const DishCreateContainer = styled.article`
 	width: 100%;
@@ -44,7 +44,7 @@ export const ProductContainer = styled.div`
 		font-size: 1.2rem;
 		margin: 15px 0px;
 	}
-	svg {
+	.close-icon  {
 		position: absolute;
 		right: 15px;
 		top: 15px;

@@ -1,18 +1,18 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { Alert } from "../../types/alert"
-import { AppState } from "../../types/appState"
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { Alert } from '../../types/alert'
+import { AppState } from '../../types/appState'
 
 const initialState: AppState = {
 	token: null,
-	serverUrl: import.meta.env.VITE_SERVER_URL || "http://localhost:4000",
-	appUrl: import.meta.env.VITE_CLIENT_URL || "http://localhost:5173",
+	serverUrl: import.meta.env.VITE_SERVER_URL || 'https://diet-project2000.onrender.com',
+	appUrl: import.meta.env.VITE_CLIENT_URL || 'https://dietproject2000.netlify.app',
 	alerts: [],
 	alertLifeTime: 5000,
 	isAppLoading: false,
-}									
+}
 
 const appSlice = createSlice({
-	name: "app",
+	name: 'app',
 	initialState,
 	reducers: {
 		addAlert: (state, action: PayloadAction<Alert>) => {
@@ -31,5 +31,4 @@ const appSlice = createSlice({
 })
 
 export default appSlice.reducer
-export const { addAlert, deleteAlert, startLoading, endLoading } =
-	appSlice.actions
+export const { addAlert, deleteAlert, startLoading, endLoading } = appSlice.actions

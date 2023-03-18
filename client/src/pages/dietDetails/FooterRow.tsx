@@ -1,3 +1,4 @@
+import useCalculations from "../../hooks/useCalculations"
 import useReduce from "../../hooks/useReduce"
 import { Meal } from "../../types/meal"
 
@@ -7,58 +8,22 @@ type Props = {
 
 export default function FooterRow({ meal }: Props) {
 	const { calculateSum } = useReduce()
-
-	function calculateMealProperty(key: string): number {
-		//get sum of meal products e.g. calories and dishes e.g. calories
-		const productPropertySum =
-			calculateSum(
-				meal.products.map(product => {
-					type ProductKey = keyof typeof product.product
-					return (
-						+product.product[key as ProductKey] *
-						+product.count *
-						+product.grams
-					)
-				})
-			) / 100
-
-		const dishPropertySum = calculateSum(
-			meal.dishes.map(
-				dish =>
-					(calculateSum(
-						dish.dishDetails.products.map(product => {
-							type ProductKey = keyof typeof product.product
-							return (
-								(+product.product[key as ProductKey] *
-									+product.count *
-									+product.grams) /
-								100
-							)
-						})
-					) /
-						100) *
-					+dish.count *
-					+dish.grams
-			)
-		)
-
-		return +(productPropertySum + dishPropertySum).toFixed(2)
-	}
+	const { getMealProperty } = useCalculations()
 
 	return (
 		<tfoot>
 			<tr>
 				<td className="cell strong bold">Łącznie</td>
 				<td className="cell strong bold">
-					{calculateMealProperty("calories")}
+					{getMealProperty(meal, "calories")}
 					cal
 				</td>
 				<td className="cell strong bold">
-					{calculateMealProperty("proteins")}B
+					{getMealProperty(meal, "proteins")}B
 				</td>
-				<td className="cell strong bold">{calculateMealProperty("fats")}T</td>
+				<td className="cell strong bold">{getMealProperty(meal, "fats")}T</td>
 				<td className="cell strong bold">
-					{calculateMealProperty("carbohydrates")}W
+					{getMealProperty(meal, "carbohydrates")}W
 				</td>
 				<td className="cell strong bold">
 					{+calculateSum(meal.products.map(product => +product.count)) +

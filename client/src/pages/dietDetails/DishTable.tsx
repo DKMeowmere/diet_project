@@ -1,4 +1,4 @@
-import useReduce from "../../hooks/useReduce"
+import useCalculations from "../../hooks/useCalculations"
 import { MealDish } from "../../types/meal"
 import { DishRow, ProductDishContainer } from "./styles"
 
@@ -7,96 +7,54 @@ type Props = {
 }
 
 export default function DishTable({ dish }: Props) {
-	const { calculateSum } = useReduce()
+	const {
+		getDishProperty,
+		getMealProductPropertyInDish,
+		getDefaultDishWeight,
+	} = useCalculations()
 
 	return (
 		<>
 			<DishRow>
 				<td className="cell strong">{dish.dishDetails.name}</td>
 				<td className="cell strong">
-					{
-						+calculateSum(
-							dish.dishDetails.products.map(
-								product => +product.product.calories
-							)
-						)
-					}
+					{getDishProperty(dish, "calories")}
 					cal
 				</td>
+				<td className="cell strong">{getDishProperty(dish, "proteins")}B</td>
+				<td className="cell strong">{getDishProperty(dish, "fats")}T</td>
 				<td className="cell strong">
-					{
-						+calculateSum(
-							dish.dishDetails.products.map(
-								product => +product.product.proteins
-							)
-						)
-					}
-					B
-				</td>
-				<td className="cell strong">
-					{
-						+calculateSum(
-							dish.dishDetails.products.map(product => +product.product.fats)
-						)
-					}
-					T
-				</td>
-				<td className="cell strong">
-					{
-						+calculateSum(
-							dish.dishDetails.products.map(
-								product => +product.product.carbohydrates
-							)
-						)
-					}
-					W
+					{getDishProperty(dish, "carbohydrates")}W
 				</td>
 				<td className="cell strong">{dish.count}</td>
-				<td className="cell strong">{dish.grams}g</td>
+				<td className="cell strong">{+dish.grams * +dish.count}g</td>
 			</DishRow>
 			{dish.dishDetails.products.map(product => (
 				<ProductDishContainer key={product._id}>
 					<td className="cell">{product.product.name}</td>
 					<td className="cell">
-						{
-							+(
-								(+product.product.calories * +product.grams * +product.count) /
-								100
-							).toFixed(2)
-						}
+						{getMealProductPropertyInDish(dish, product, "calories")}
 						cal
 					</td>
 					<td className="cell">
-						{
-							+(
-								(+product.product.proteins * +product.grams * +product.count) /
-								100
-							).toFixed(2)
-						}
-						B
+						{getMealProductPropertyInDish(dish, product, "proteins")}B
 					</td>
 					<td className="cell">
-						{
-							+(
-								(+product.product.fats * +product.grams * +product.count) /
-								100
-							).toFixed(2)
-						}
-						T
+						{getMealProductPropertyInDish(dish, product, "fats")}T
 					</td>
 					<td className="cell">
-						{
-							+(
-								(+product.product.carbohydrates *
-									+product.grams *
-									+product.count) /
-								100
-							).toFixed(2)
-						}
-						W
+						{getMealProductPropertyInDish(dish, product, "carbohydrates")}W
 					</td>
 					<td className="cell">{product.count}</td>
-					<td className="cell">{product.grams}g</td>
+					<td className="cell">
+						{
+							+(
+								(+dish.grams / getDefaultDishWeight(dish.dishDetails)) *
+								+product.grams * +product.count
+							).toFixed(2)
+						}
+						g
+					</td>
 				</ProductDishContainer>
 			))}
 		</>

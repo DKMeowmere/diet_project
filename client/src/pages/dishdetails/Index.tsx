@@ -1,17 +1,19 @@
-import { DishDetailsContainer, Form, ProductContainer } from './styles'
-import Input from '../../components/input/Index'
-import { Button } from '../../components/button/Button'
-import theme from '../../app/theme'
-import { AiOutlineClose } from 'react-icons/ai'
-import { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { addAlert, endLoading, startLoading } from '../../app/features/appSlice'
-import { useAppSelector } from '../../app/hooks'
-import { useCookies } from 'react-cookie'
-import { useNavigate, useParams } from 'react-router-dom'
-import { MealProducts } from '../../types/meal'
-import ProductModal from '../../components/productModal/Index'
-import { Product as ProductType } from '../../types/product'
+import { DishDetailsContainer, Form, ProductContainer } from "./styles"
+import Input from "../../components/input/Index"
+import { Button } from "../../components/button/Button"
+import theme from "../../app/theme"
+import { AiOutlineClose } from "react-icons/ai"
+import { useState, useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
+import { useAppSelector } from "../../app/hooks"
+import { useCookies } from "react-cookie"
+import { useNavigate, useParams } from "react-router-dom"
+import { MealProducts } from "../../types/meal"
+import ProductModal from "../../components/productModal/Index"
+import { Product as ProductType } from "../../types/product"
+import useCalculations from "../../hooks/useCalculations"
+import PropertyBadge from "../../components/propertyBadge/Index"
 
 function DishDetails() {
 	const [name, setName] = useState('')
@@ -22,6 +24,8 @@ function DishDetails() {
 	const [cookies] = useCookies()
 	const serverUrl = useAppSelector(state => state.app.serverUrl)
 	const { id } = useParams()
+	const { getDishProductsPropertySum, getMealProductProperty } =
+		useCalculations()
 
 	useEffect(() => {
 		dispatch(startLoading())
@@ -178,8 +182,14 @@ function DishDetails() {
 		<DishDetailsContainer>
 			{isModalOpen && <ProductModal onProductClick={handleProductAddition} setIsModalOpen={setIsModalOpen} />}
 			<Form>
-				<p className='dish-title'>Dodaj potrawę</p>
-				<Button width='90%' height='40px' type='submit' onClick={handleSubmit} bgColor={theme.colors.main}>
+				<p className="dish-title">Edytuj potrawę</p>
+				<Button
+					width="90%"
+					height="40px"
+					type="submit"
+					onClick={handleSubmit}
+					bgColor={theme.colors.main}
+				>
 					Zatwierdź
 				</Button>
 				<Button width='90%' height='40px' type='submit' bgColor={theme.colors.errorMain} onClick={handleDelete}>
@@ -201,16 +211,42 @@ function DishDetails() {
 					onClick={() => setIsModalOpen(true)}>
 					Dodaj produkt
 				</Button>
+				<PropertyBadge
+					carbohydrates={getDishProductsPropertySum(
+						{ _id: "", products, name },
+						"carbohydrates"
+					)}
+					calories={getDishProductsPropertySum(
+						{ _id: "", products, name },
+						"calories"
+					)}
+					fats={getDishProductsPropertySum({ _id: "", products, name }, "fats")}
+					proteins={getDishProductsPropertySum(
+						{ _id: "", products, name },
+						"proteins"
+					)}
+				/>
 				{products.length > 0 &&
 					products.map(product => (
 						<ProductContainer key={product._id}>
 							<AiOutlineClose
-								onClick={() => setProducts(products.filter(prevProduct => prevProduct._id !== product._id))}
+								className="close-icon"
+								onClick={() =>
+									setProducts(
+										products.filter(
+											prevProduct => prevProduct._id !== product._id
+										)
+									)
+								}
 							/>
-							<p className='product-title'>{product.product.name}</p>
-							<p className='dish-text' onClick={() => console.log(product)}>
-								Podaj wagę potrawy (g)
-							</p>
+							<p className="product-title">{product.product.name}</p>
+							<PropertyBadge
+								carbohydrates={getMealProductProperty(product, "carbohydrates")}
+								calories={getMealProductProperty(product, "calories")}
+								fats={getMealProductProperty(product, "fats")}
+								proteins={getMealProductProperty(product, "proteins")}
+							/>
+							<p className="dish-text">Podaj wagę produktu (g)</p>
 							<Input
 								width='90%'
 								height='50px'
@@ -224,7 +260,7 @@ function DishDetails() {
 									)
 								}
 							/>
-							<p className='dish-text'>Podaj ilość potrawy</p>
+							<p className="dish-text">Podaj ilość produktu</p>
 							<Input
 								width='90%'
 								height='50px'
