@@ -8,6 +8,7 @@ type BadgeProps = {
 	carbohydrates: number
 	proteins: number
 	fats: number
+	className?: string
 }
 
 export default function PropertyBadge({
@@ -15,9 +16,10 @@ export default function PropertyBadge({
 	carbohydrates,
 	fats,
 	proteins,
+	className,
 }: BadgeProps) {
 	return (
-		<BadgeContainer>
+		<BadgeContainer className={className || ""}>
 			<div className="unit-container">
 				<AiFillFire className="fire" />
 				{calories}
