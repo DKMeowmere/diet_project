@@ -31,7 +31,7 @@ function DietDetails() {
 	const [cookies] = useCookies()
 	const [pageNumber, setPageNumber] = useState(0)
 	const navigate = useNavigate()
-	const { getDayProperty } = useCalculations()
+	const { getDayProperty, getDietProperty } = useCalculations()
 
 	async function handlePdfGeneration(url: string) {
 		dispatch(startLoading())
@@ -171,6 +171,13 @@ function DietDetails() {
 					{diet.description && (
 						<div className="diet-description">{diet.description}</div>
 					)}
+					<PropertyBadge
+						className="diet-property-badge"
+						calories={getDietProperty(diet, "calories")}
+						carbohydrates={getDietProperty(diet, "carbohydrates")}
+						proteins={getDietProperty(diet, "proteins")}
+						fats={getDietProperty(diet, "fats")}
+					/>
 				</div>
 				<DaysContainer>
 					<Day>

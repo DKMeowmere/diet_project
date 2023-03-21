@@ -63,6 +63,16 @@ export const Diet = styled.div`
 	.diet-description {
 		font-size: 1.2rem;
 	}
+	.diet-property-badge {
+		width: 90%;
+		max-width: 500px;
+		margin: 20px 20px 0 0;
+		background-color: #fff;
+		padding: 20px;
+		border-radius: 20px;
+		font-weight: bold;
+		color: ${({ theme }) => theme.colors.main};
+	}
 `
 
 export const DaysContainer = styled.div``
@@ -201,6 +211,16 @@ export const PdfDietContainer = styled(DietContainer)`
 	}
 	.diet-description {
 		font-size: 1.2rem;
+	}
+	.diet-property-badge {
+		width: 90%;
+		max-width: 500px;
+		margin: 20px 20px 0 0;
+		background-color: #fff;
+		padding: 20px;
+		border-radius: 20px;
+		font-weight: bold;
+		color: ${({ theme }) => theme.colors.main};
 	}
 `
 

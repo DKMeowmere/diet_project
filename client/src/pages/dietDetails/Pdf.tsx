@@ -17,6 +17,8 @@ import ProductRow from "./ProductRow"
 import FooterRow from "./FooterRow"
 import HeaderRow from "./HeaderRow"
 import DishTable from "./DishTable"
+import PropertyBadge from "../../components/propertyBadge/Index"
+import useCalculations from "../../hooks/useCalculations"
 
 function DietPdf() {
 	const [diet, setDiet] = useState<DietType | null>(null)
@@ -26,6 +28,7 @@ function DietPdf() {
 	const [cookies] = useCookies()
 	const [searchParams] = useSearchParams()
 	const dayId = searchParams.get("day")
+	const { getDayProperty, getDietProperty } = useCalculations()
 
 	useEffect(() => {
 		dispatch(startLoading())
@@ -73,6 +76,13 @@ function DietPdf() {
 				{diet.description && (
 					<div className="diet-description">{diet.description}</div>
 				)}
+				<PropertyBadge
+					className="diet-property-badge"
+					calories={getDietProperty(diet, "calories")}
+					carbohydrates={getDietProperty(diet, "carbohydrates")}
+					proteins={getDietProperty(diet, "proteins")}
+					fats={getDietProperty(diet, "fats")}
+				/>
 			</div>
 			<DaysContainer>
 				{diet.days.map(day => {
@@ -83,6 +93,13 @@ function DietPdf() {
 					return (
 						<PdfDay key={day._id}>
 							<div className="day-name">{day.day}</div>
+							<PropertyBadge
+								className="property-badge"
+								calories={getDayProperty(day, "calories")}
+								carbohydrates={getDayProperty(day, "carbohydrates")}
+								proteins={getDayProperty(day, "proteins")}
+								fats={getDayProperty(day, "fats")}
+							/>
 							<MealsContainer>
 								{day.meals.map(meal => (
 									<div className="meal" key={meal._id}>
