@@ -1,3 +1,5 @@
+import { Day as DayType } from "../types/day"
+import { Diet as DietType } from "../types/diet"
 import { Dish as DishType } from "../types/dish"
 import {
 	MealDish,
@@ -15,10 +17,10 @@ export default function useCalculations() {
 
 	function getMealProductProperty(product: MealProduct, key: Property) {
 		type ProductKey = keyof typeof product.product
-		return (
+		return +(
 			(+product.product[key as ProductKey] * +product.count * +product.grams) /
 			100
-		)
+		).toFixed(2)
 	}
 
 	function getMealProductsProperty(products: MealProducts, key: Property) {
@@ -53,11 +55,11 @@ export default function useCalculations() {
 	}
 
 	function getDefaultDishWeight(dish: DishType) {
-		return calculateSum(
+		return +calculateSum(
 			dish.products.map(product => {
 				return +product.grams * +product.count
 			})
-		)
+		).toFixed(2)
 	}
 
 	function getDishProperty(dish: MealDish, key: Property) {
@@ -81,6 +83,18 @@ export default function useCalculations() {
 		).toFixed(2)
 	}
 
+	function getDayProperty(day: DayType, key: Property) {
+		return +calculateSum(
+			day.meals.map(meal => getMealProperty(meal, key))
+		).toFixed(2)
+	}
+
+	function getDietProperty(diet: DietType, key: Property) {
+		return +calculateSum(
+			diet.days.map(day => getDayProperty(day, key))
+		).toFixed(2)
+	}
+
 	return {
 		getDishProductsPropertySum,
 		getMealProductProperty,
@@ -90,5 +104,7 @@ export default function useCalculations() {
 		getMealProperty,
 		getDishesProperty,
 		getMealProductPropertyInDish,
+		getDayProperty,
+		getDietProperty,
 	}
 }

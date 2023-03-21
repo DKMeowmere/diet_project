@@ -101,6 +101,11 @@ export const Day = styled.section`
 			}
 		}
 	}
+	.property-badge {
+		width: 90%;
+		max-width: 300px;
+		margin: 20px auto 0;
+	}
 `
 
 export const MealsContainer = styled.div`
@@ -130,7 +135,7 @@ export const TableContainer = styled.table`
 	.cell {
 		border: 2px solid black;
 		padding: 12px;
-		font-size: .8rem;
+		font-size: 0.8rem;
 	}
 	.strong {
 		background-color: ${({ theme }) => theme.colors.main};

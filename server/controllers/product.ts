@@ -4,6 +4,7 @@ import Diet from "../models/diet.js"
 import Product from "../models/product.js"
 import Dish from "../models/dish.js"
 import { MealProduct } from "../types/meal.js"
+import ProductGroup from "../models/productGroup.js"
 
 export async function getProducts(req: Request, res: Response) {
 	try {
@@ -112,6 +113,15 @@ export async function deleteProduct(req: Request, res: Response) {
 					mealProduct.product.toString() !== product._id.toString()
 			)
 			dish.save()
+		})
+
+		const productGroups = await ProductGroup.find({})
+
+		productGroups.forEach(productGroup => {
+			productGroup.products = productGroup.products.filter(
+				productId => productId.toString() !== product._id.toString()
+			)
+			productGroup.save()
 		})
 	} catch (err: any) {
 		res.status(400).json({ error: err.message })

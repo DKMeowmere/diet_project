@@ -20,6 +20,8 @@ import { AiOutlineFilePdf, AiFillDelete } from "react-icons/ai"
 import { RxUpdate } from "react-icons/rx"
 import { HiClipboardCopy } from "react-icons/hi"
 import DishTable from "./DishTable"
+import PropertyBadge from "../../components/propertyBadge/Index"
+import useCalculations from "../../hooks/useCalculations"
 
 function DietDetails() {
 	const [diet, setDiet] = useState<DietType | null>(null)
@@ -29,6 +31,7 @@ function DietDetails() {
 	const [cookies] = useCookies()
 	const [pageNumber, setPageNumber] = useState(0)
 	const navigate = useNavigate()
+	const { getDayProperty } = useCalculations()
 
 	async function handlePdfGeneration(url: string) {
 		dispatch(startLoading())
@@ -182,6 +185,16 @@ function DietDetails() {
 								}
 							/>
 						</div>
+						<PropertyBadge
+							className="property-badge"
+							calories={getDayProperty(diet.days[pageNumber], "calories")}
+							carbohydrates={getDayProperty(
+								diet.days[pageNumber],
+								"carbohydrates"
+							)}
+							proteins={getDayProperty(diet.days[pageNumber], "proteins")}
+							fats={getDayProperty(diet.days[pageNumber], "fats")}
+						/>
 						<MealsContainer>
 							{diet.days[pageNumber].meals.map(meal => (
 								<div className="meal" key={meal._id}>

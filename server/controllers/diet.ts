@@ -20,6 +20,10 @@ export async function getDiets(req: Request, res: Response) {
 		const diet = await Diet.find({})
 			.populate("days.meals.products.product")
 			.populate({
+				path: "days.meals.productGroups",
+				populate: { path: "products" },
+			})
+			.populate({
 				path: "days.meals.dishes.dishDetails",
 				populate: {
 					path: "products.product",
@@ -61,6 +65,10 @@ export async function getDiet(req: Request, res: Response) {
 
 		const diet = await Diet.findById(id)
 			.populate("days.meals.products.product")
+			.populate({
+				path: "days.meals.productGroups",
+				populate: { path: "products" },
+			})
 			.populate({
 				path: "days.meals.dishes.dishDetails",
 				populate: {

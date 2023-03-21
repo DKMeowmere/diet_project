@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import { Link } from "react-router-dom"
+import styled from "styled-components"
 
 export const HomeContainer = styled.article<{ imageUrl: string }>`
 	background: url(${({ imageUrl }) => imageUrl});
@@ -8,20 +8,23 @@ export const HomeContainer = styled.article<{ imageUrl: string }>`
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	.block-container {
 		display: flex;
-		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+		flex-direction: row;
+		flex-wrap: wrap;
 		width: 100%;
-		height: 100vh;
 		gap: 40px;
 	}
 `
 export const Block = styled(Link)`
 	background-color: #fff;
-	height: 30vh;
-	width: 50%;
+	height: 18vh;
+	width: 40%;
 	height: auto;
 	display: flex;
 	color: #ffa500;
@@ -43,7 +46,7 @@ export const Block = styled(Link)`
 		background-color: #ffa500;
 		color: ${({ theme }) => theme.colors.whiteText};
 		cursor: pointer;
-		svg{
+		svg {
 			fill: ${({ theme }) => theme.colors.whiteText};
 		}
 	}

@@ -15,6 +15,12 @@ const mealsSchema = new mongoose.Schema({
 	},
 	products: [mealProductSchema],
 	dishes: [mealDishSchema],
+	productGroups: [
+		{
+			ref: "ProductGroup",
+			type: mongoose.Schema.Types.ObjectId,
+		},
+	],
 })
 
 const daysSchema = new mongoose.Schema({
