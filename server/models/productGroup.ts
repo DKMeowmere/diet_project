@@ -8,6 +8,16 @@ const productGroupSchema = new mongoose.Schema<ProductGroup>(
 			required: true,
 			trim: true,
 		},
+		description: {
+			type: String,
+			trim: true,
+			default: "",
+		},
+		auxiliaryDescription: {
+			type: String,
+			trim: true,
+			default: "",
+		},
 		products: [
 			{
 				type: mongoose.Schema.Types.ObjectId,

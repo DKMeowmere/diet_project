@@ -10,6 +10,7 @@ import {
 	addDay,
 	addDish,
 	addProduct,
+	addProductGroup,
 	changeDescription,
 	changeTitle,
 	clearDiet,
@@ -25,6 +26,8 @@ import { Diet as DietType } from "../../types/diet"
 import { Product as ProductType } from "../../types/product"
 import { Dish as DishType } from "../../types/dish"
 import DishModal from "../../components/dishModal/Index"
+import { ProductGroup as ProductGroupType } from "../../types/productGroup."
+import ProductGroupModal from "../../components/productGroupModal/Index"
 
 function UpdateDiet() {
 	const diet = useAppSelector(state => state.diet.currentDiet)
@@ -36,6 +39,7 @@ function UpdateDiet() {
 	const dispatch = useAppDispatch()
 	const [isProductModalOpen, setIsProductModalOpen] = useState(false)
 	const [isDishModalOpen, setIsDishModalOpen] = useState(false)
+	const [isProductGroupModalOpen, setIsProductGroupModalOpen] = useState(false)
 	const serverUrl = useAppSelector(state => state.app.serverUrl)
 	const [cookies] = useCookies()
 	const [pageNumber, setPageNumber] = useState(0)
@@ -66,6 +70,9 @@ function UpdateDiet() {
 							...dish,
 							_id: undefined,
 						})),
+						productGroups: meal.productGroups.map(
+							productGroup => productGroup._id
+						),
 					})),
 				})),
 			}
@@ -150,6 +157,51 @@ function UpdateDiet() {
 		)
 	}
 
+	function handleProductGroupAddition(productGroup: ProductGroupType) {
+		setIsProductGroupModalOpen(false)
+
+		const dayIndex = diet.days.findIndex(day => day._id === whereToPass.dayId)
+		const mealIndex = diet.days[dayIndex].meals.findIndex(
+			meal => meal._id === whereToPass.mealId
+		)
+
+		const currentProductGroup =
+			diet.days[dayIndex].meals[mealIndex].productGroups
+
+		if (
+			currentProductGroup.findIndex(
+				prevProductGroup => prevProductGroup._id === productGroup._id
+			) !== -1
+		) {
+			dispatch(
+				addAlert({
+					body: "Już przypisałeś tą grupę produktów do tego posiłku",
+					type: "WARNING",
+				})
+			)
+			return
+		}
+
+		productGroup.products.forEach(product => {
+			dispatch(
+				addProduct({
+					dayId: whereToPass.dayId,
+					mealId: whereToPass.mealId,
+					product,
+					referringTo: productGroup._id,
+				})
+			)
+		})
+
+		dispatch(
+			addProductGroup({
+				dayId: whereToPass.dayId,
+				mealId: whereToPass.mealId,
+				productGroup,
+			})
+		)
+	}
+
 	return (
 		<DietCreateContainer>
 			{isProductModalOpen && (
@@ -164,7 +216,12 @@ function UpdateDiet() {
 					onDishClick={handleDishAddition}
 				/>
 			)}
-
+			{isProductGroupModalOpen && (
+				<ProductGroupModal
+					setIsModalOpen={setIsProductGroupModalOpen}
+					onProductGroupClick={handleProductGroupAddition}
+				/>
+			)}
 			<Form onSubmit={handleSubmit}>
 				<div className="right-form">
 					<p className="diet-title">Podaj tytuł diety</p>
@@ -227,6 +284,7 @@ function UpdateDiet() {
 								day={days[pageNumber]}
 								setIsProductModalOpen={setIsProductModalOpen}
 								setIsDishModalOpen={setIsDishModalOpen}
+								setIsProductGroupModalOpen={setIsProductGroupModalOpen}
 								pageNumber={pageNumber}
 								setPageNumber={setPageNumber}
 								daysCount={days.length}

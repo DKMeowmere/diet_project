@@ -5,6 +5,7 @@ export type MealProduct = {
 	product: mongoose.Schema.Types.ObjectId
 	count: number
 	grams: number
+	referringTo?: mongoose.Schema.Types.ObjectId
 }
 
 export type MealProducts = MealProduct[]

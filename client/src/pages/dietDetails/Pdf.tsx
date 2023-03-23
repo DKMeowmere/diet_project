@@ -19,6 +19,7 @@ import HeaderRow from "./HeaderRow"
 import DishTable from "./DishTable"
 import PropertyBadge from "../../components/propertyBadge/Index"
 import useCalculations from "../../hooks/useCalculations"
+import ProductGroupTable from "./ProductGroupTable"
 
 function DietPdf() {
 	const [diet, setDiet] = useState<DietType | null>(null)
@@ -114,8 +115,18 @@ function DietPdf() {
 										<TableContainer>
 											<HeaderRow />
 											<tbody>
-												{meal.products.map(product => (
-													<ProductRow product={product} key={product._id} />
+												{meal.products.map(product => {
+													if (product.referringTo) return
+													return (
+														<ProductRow product={product} key={product._id} />
+													)
+												})}
+												{meal.productGroups.map(productGroup => (
+													<ProductGroupTable
+														key={productGroup._id}
+														productGroup={productGroup}
+														meal={meal}
+													/>
 												))}
 												{meal.dishes.map(dish => (
 													<DishTable key={dish._id} dish={dish} />

@@ -1,6 +1,6 @@
 import {
 	Dish,
-	DishsContainer,
+	DishsContainer as DishesContainer,
 	DishsArticle,
 	DishModalContainer,
 } from "./styles"
@@ -84,7 +84,7 @@ function DishModal({ setIsModalOpen, onDishClick }: Props) {
 					setQuery={setQuery}
 					autocompleteData={dishsTitles}
 				/>
-				<DishsContainer>
+				<DishesContainer>
 					{filteredDishs.map(dish => (
 						<DishContainer key={dish._id}>
 							<Dish onClick={() => onDishClick(dish)}>
@@ -101,7 +101,7 @@ function DishModal({ setIsModalOpen, onDishClick }: Props) {
 							</Dish>
 						</DishContainer>
 					))}
-				</DishsContainer>
+				</DishesContainer>
 				<BsX className="close-btn" onClick={() => setIsModalOpen(false)} />
 			</DishsArticle>
 		</DishModalContainer>

@@ -13,6 +13,10 @@ const mealProductSchema = new mongoose.Schema({
 		type: Number,
 		required: true,
 	},
+  referringTo:{
+    type: String
+  }
+
 })
 
 export default mealProductSchema

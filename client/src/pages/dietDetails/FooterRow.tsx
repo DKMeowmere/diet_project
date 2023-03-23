@@ -15,6 +15,12 @@ export default function FooterRow({ meal }: Props) {
 			<tr>
 				<td className="cell strong bold">Łącznie</td>
 				<td className="cell strong bold">
+					{+calculateSum(
+						meal.products.map(product => +product.grams * +product.count)
+					) + +calculateSum(meal.dishes.map(dish => +dish.grams * +dish.count))}
+					g
+				</td>
+				<td className="cell strong bold">
 					{getMealProperty(meal, "calories")}
 					cal
 				</td>
@@ -28,12 +34,6 @@ export default function FooterRow({ meal }: Props) {
 				<td className="cell strong bold">
 					{+calculateSum(meal.products.map(product => +product.count)) +
 						+calculateSum(meal.dishes.map(dish => +dish.count))}
-				</td>
-				<td className="cell strong bold">
-					{+calculateSum(
-						meal.products.map(product => +product.grams * +product.count)
-					) + +calculateSum(meal.dishes.map(dish => +dish.grams * +dish.count))}
-					g
 				</td>
 			</tr>
 		</tfoot>

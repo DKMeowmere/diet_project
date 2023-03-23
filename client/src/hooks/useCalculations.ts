@@ -29,6 +29,19 @@ export default function useCalculations() {
 		).toFixed(2)
 	}
 
+	function getMealProductGroupProperty(
+		key: Property,
+		meal: MealType,
+		productGroupId: string
+	) {
+		return +calculateSum(
+			meal.products.map(product => {
+				if (product.referringTo !== productGroupId) return 0
+				return getMealProductProperty(product, key)
+			})
+		).toFixed(2)
+	}
+
 	function getMealProductPropertyInDish(
 		dish: MealDish,
 		product: MealProduct,
@@ -106,5 +119,6 @@ export default function useCalculations() {
 		getMealProductPropertyInDish,
 		getDayProperty,
 		getDietProperty,
+		getMealProductGroupProperty,
 	}
 }

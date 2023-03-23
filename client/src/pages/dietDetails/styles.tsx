@@ -135,6 +135,11 @@ export const MealsContainer = styled.div`
 		font-size: 1.2rem;
 		text-align: center;
 	}
+	.product-group-description {
+		text-align: center;
+		font-size: 1rem;
+		margin: 15px;
+	}
 `
 
 export const TableContainer = styled.table`
@@ -164,7 +169,7 @@ export const ProductContainer = styled.tr`
 	}
 `
 
-export const ProductDishContainer = styled.tr`
+export const ProductGroupContainer = styled.tr`
 	td {
 		padding: 6px !important;
 		background-color: #f0f0f0 !important;
@@ -172,7 +177,7 @@ export const ProductDishContainer = styled.tr`
 	}
 `
 
-export const DishRow = styled.tr`
+export const ProductGroupRow = styled.tr`
 	border: none;
 	border-collapse: collapse;
 	display: table-row;

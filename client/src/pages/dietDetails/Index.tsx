@@ -22,6 +22,7 @@ import { HiClipboardCopy } from "react-icons/hi"
 import DishTable from "./DishTable"
 import PropertyBadge from "../../components/propertyBadge/Index"
 import useCalculations from "../../hooks/useCalculations"
+import ProductGroupTable from "./ProductGroupTable"
 
 function DietDetails() {
 	const [diet, setDiet] = useState<DietType | null>(null)
@@ -213,11 +214,31 @@ function DietDetails() {
 											</div>
 										)}
 									</div>
+									{meal.productGroups.map(productGroup =>
+										productGroup.description ? (
+											<p
+												className="product-group-description"
+												key={productGroup._id}
+											>
+												opis {productGroup.name}:{productGroup.description}
+											</p>
+										) : null
+									)}
 									<TableContainer>
 										<HeaderRow />
 										<tbody>
-											{meal.products.map(product => (
-												<ProductRow product={product} key={product._id} />
+											{meal.products.map(product => {
+												if (product.referringTo) return
+												return (
+													<ProductRow product={product} key={product._id} />
+												)
+											})}
+											{meal.productGroups.map(productGroup => (
+												<ProductGroupTable
+													key={productGroup._id}
+													productGroup={productGroup}
+													meal={meal}
+												/>
 											))}
 											{meal.dishes.map(dish => (
 												<DishTable key={dish._id} dish={dish} />
