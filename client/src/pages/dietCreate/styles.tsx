@@ -222,7 +222,7 @@ export const MealsContainer = styled.div`
 		margin-bottom: 30px;
 	}
 	.meal-btn {
-		margin-top: 20px;
+		margin: 20px 0;
 	}
 `
 export const ProductsContainer = styled.div`

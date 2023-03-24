@@ -120,7 +120,6 @@ export const MealsContainer = styled.div`
 		justify-content: space-between;
 		text-align: center;
 		padding: 20px;
-		margin-top: 20px;
 		background-color: ${({ theme }) => theme.colors.main};
 		color: ${({ theme }) => theme.colors.whiteText};
 		.products-meal {
@@ -222,7 +221,7 @@ export const MealsContainer = styled.div`
 		margin-bottom: 30px;
 	}
 	.meal-btn {
-		margin-top: 20px;
+		margin: 20px 0;
 	}
 `
 export const ProductsContainer = styled.div`
