@@ -146,6 +146,12 @@ export async function deleteProductGroup(req: Request, res: Response) {
 						productGroupId =>
 							productGroupId.toString() !== productGroup._id.toString()
 					)
+					meal.products = meal.products.filter(prevProduct => {
+						if (!prevProduct.referringTo) return true
+						return (
+							prevProduct.referringTo.toString() !== productGroup._id.toString()
+						)
+					})
 				})
 			})
 			diet.save()

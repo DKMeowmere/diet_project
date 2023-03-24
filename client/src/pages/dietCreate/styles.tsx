@@ -163,43 +163,7 @@ export const MealsContainer = styled.div`
 		}
 	}
 
-	/* .input-container-box {
-		display: flex;
-		flex-direction: column;
-		height: 150px;
-		background-color: #d96500;
-		width: 100%;
-		.input-box {
-			width: 50%;
-			margin: auto;
-			div {
-				display: block;
-				margin: auto;
-			}
-		}
-	}
-	.input-amount-box {
-		height: 150px;
-		background-color: #e56f00;
-		width: 100%;
-
-		.amount-element {
-			width: 100%;
-			padding: 20px;
-			text-align: center;
-			font-size: 1.5rem;
-			color: ${({ theme }) => theme.colors.whiteText};
-		}
-		.input-box {
-			width: 50%;
-			margin-left: auto;
-			margin-right: auto;
-			div {
-				display: block;
-				margin: auto;
-			}
-		}
-	}*/
+	
 	.meal-name {
 		width: 100%;
 		background-color: ${({ theme }) => theme.colors.main};
@@ -209,13 +173,6 @@ export const MealsContainer = styled.div`
 		font-size: 1.5rem;
 		margin-top: 30px;
 	}
-	/* .weight {
-		width: 100%;
-		padding: 20px;
-		text-align: center;
-		color: ${({ theme }) => theme.colors.whiteText};
-		font-size: 1.5rem;
-	} */
 	.values {
 		display: flex;
 		flex-direction: row;
@@ -275,4 +232,30 @@ export const ProductsContainer = styled.div`
 export const DishesContainer = styled.div`
 	width: 100%;
 	margin: auto;
+`
+
+export const ProductGroupContainer = styled.div`
+	width: 100%;
+	margin: auto;
+	.product-group-title {
+		text-align: center;
+		font-size: 1.5rem;
+		margin: 10px;
+		position: relative;
+		.close-btn {
+			position: absolute;
+			cursor: pointer;
+			fill: ${({ theme }) => theme.colors.errorMain};
+			width: 40px;
+			height: 40px;
+			right: 12px;
+			top: 12px;
+		}
+	}
+	.product-group-description {
+		text-align: center;
+		font-size: 1rem;
+		margin: 10px;
+		position: relative;
+	}
 `

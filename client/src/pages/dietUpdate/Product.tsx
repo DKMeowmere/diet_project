@@ -10,6 +10,8 @@ import Input from "../../components/input/Index"
 import useCalculations from "../../hooks/useCalculations"
 import { Day } from "../../types/day"
 import { MealProduct, Meal } from "../../types/meal"
+import { ProductGroup as ProductGroupType } from "../../types/productGroup."
+import { useState, useEffect } from "react"
 
 type Props = {
 	product: MealProduct
@@ -20,10 +22,30 @@ type Props = {
 export default function Product({ product, meal, day }: Props) {
 	const dispatch = useAppDispatch()
 	const { getMealProductProperty } = useCalculations()
+	const [parentProductGroup, setParentProductGroup] =
+		useState<ProductGroupType | null>(null)
 
+	useEffect(() => {
+		if (!product.referringTo) {
+			setParentProductGroup(null)
+			return
+		}
+
+		const newParentProductGroup = meal.productGroups.find(
+			productGroup => productGroup._id === product.referringTo
+		)
+		newParentProductGroup
+			? setParentProductGroup(newParentProductGroup)
+			: setParentProductGroup(null)
+	}, [product])
 	return (
 		<div className="product">
-			<div className="diet-text">Produkt: {product.product.name}</div>
+			<div className="diet-text">
+				Produkt: {product.product.name}
+				{parentProductGroup
+					? ` należy do grupy produktów ${parentProductGroup.name}`
+					: ""}
+			</div>
 			<div className="input-container-box">
 				<div className="weight">Podaj wage (w gramach)</div>
 				<div className="input-box">
@@ -84,24 +106,26 @@ export default function Product({ product, meal, day }: Props) {
 					{getMealProductProperty(product, "fats")}
 				</div>
 			</div>
-			<Button
-				width="100%"
-				height="40px"
-				type="button"
-				bgColor={theme.colors.errorMain}
-				className="diet-btn"
-				onClick={() =>
-					dispatch(
-						removeProduct({
-							day,
-							meal,
-							product,
-						})
-					)
-				}
-			>
-				Usuń produkt
-			</Button>
+			{!product.referringTo && (
+				<Button
+					width="100%"
+					height="40px"
+					type="button"
+					bgColor={theme.colors.errorMain}
+					className="diet-btn"
+					onClick={() =>
+						dispatch(
+							removeProduct({
+								day,
+								meal,
+								product,
+							})
+						)
+					}
+				>
+					Usuń produkt
+				</Button>
+			)}
 		</div>
 	)
 }

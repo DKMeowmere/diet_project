@@ -5,6 +5,7 @@ import { DietState } from "../../types/dietState"
 import { Dish as DishType } from "../../types/dish"
 import { Meal, MealDish, MealProduct } from "../../types/meal"
 import { Product } from "../../types/product"
+import { ProductGroup as ProductGroupType } from "../../types/productGroup."
 import { WhereToPass } from "../../types/whereToPass"
 
 const initialState: DietState = {
@@ -93,6 +94,7 @@ const dietSlice = createSlice({
 				description: "",
 				products: [],
 				dishes: [],
+				productGroups: [],
 			})
 		},
 
@@ -154,6 +156,7 @@ const dietSlice = createSlice({
 				product: Product
 				dayId: string
 				mealId: string
+				referringTo?: string
 			}>
 		) => {
 			const dayIndex = state.currentDiet.days.findIndex(
@@ -167,6 +170,7 @@ const dietSlice = createSlice({
 				count: "1",
 				grams: "0",
 				product: action.payload.product,
+				referringTo: action.payload.referringTo || undefined,
 			})
 		},
 
@@ -346,6 +350,50 @@ const dietSlice = createSlice({
 
 			state.currentDiet.days[dayIndex].meals[mealIndex].dishes = newDishes
 		},
+
+		addProductGroup: (
+			state,
+			action: PayloadAction<{
+				dayId: string
+				mealId: string
+				productGroup: ProductGroupType
+			}>
+		) => {
+			const dayIndex = state.currentDiet.days.findIndex(
+				day => day._id === action.payload.dayId
+			)
+			const mealIndex = state.currentDiet.days[dayIndex].meals.findIndex(
+				meal => meal._id === action.payload.mealId
+			)
+
+			state.currentDiet.days[dayIndex].meals[mealIndex].productGroups.push(
+				action.payload.productGroup
+			)
+		},
+
+		removeProductGroup: (
+			state,
+			action: PayloadAction<{
+				dayId: string
+				mealId: string
+				productGroup: ProductGroupType
+			}>
+		) => {
+			const dayIndex = state.currentDiet.days.findIndex(
+				day => day._id === action.payload.dayId
+			)
+			const mealIndex = state.currentDiet.days[dayIndex].meals.findIndex(
+				meal => meal._id === action.payload.mealId
+			)
+
+			const productGroups =
+				state.currentDiet.days[dayIndex].meals[mealIndex].productGroups
+			state.currentDiet.days[dayIndex].meals[mealIndex].productGroups =
+				productGroups.filter(
+					prevProductGroup =>
+						prevProductGroup._id !== action.payload.productGroup._id
+				)
+		},
 	},
 })
 
@@ -371,4 +419,6 @@ export const {
 	changeDishGrams,
 	changeDishCount,
 	removeDish,
+	addProductGroup,
+	removeProductGroup,
 } = dietSlice.actions

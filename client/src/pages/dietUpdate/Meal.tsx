@@ -14,6 +14,7 @@ import { Day } from "../../types/day"
 import { Meal as MealType, MealDish, MealProduct } from "../../types/meal"
 import Dish from "./Dish"
 import Product from "./Product"
+import ProductGroup from "./ProductGroup"
 import { ProductsContainer } from "./styles"
 
 type Props = {
@@ -21,6 +22,7 @@ type Props = {
 	day: Day
 	setIsProductModalOpen: (isModalOpen: boolean) => void
 	setIsDishModalOpen: (isModalOpen: boolean) => void
+	setIsProductGroupModalOpen: (isModalOpen: boolean) => void
 }
 
 export default function Meal({
@@ -28,6 +30,7 @@ export default function Meal({
 	day,
 	setIsProductModalOpen,
 	setIsDishModalOpen,
+	setIsProductGroupModalOpen,
 }: Props) {
 	const dispatch = useAppDispatch()
 	const { getMealProperty } = useCalculations()
@@ -88,6 +91,20 @@ export default function Meal({
 				bgColor={theme.colors.main}
 				onClick={() => {
 					dispatch(updateWhereToPass({ dayId: day._id, mealId: meal._id }))
+					setIsProductGroupModalOpen(true)
+				}}
+				className="meal-btn"
+			>
+				Dodaj grupe produktów do posiłku:
+				{meal.name}
+			</Button>
+			<Button
+				width="100%"
+				height="40px"
+				type="button"
+				bgColor={theme.colors.main}
+				onClick={() => {
+					dispatch(updateWhereToPass({ dayId: day._id, mealId: meal._id }))
 					setIsDishModalOpen(true)
 				}}
 				className="meal-btn"
@@ -97,16 +114,28 @@ export default function Meal({
 			</Button>
 			{meal.products.length > 0 && (
 				<ProductsContainer>
-					{meal.products.map((product: MealProduct) => (
-						<Product
-							key={product._id}
-							day={day}
-							meal={meal}
-							product={product}
-						/>
-					))}
+					{meal.products.map((product: MealProduct) => {
+						if (product.referringTo) return
+						return (
+							<Product
+								key={product._id}
+								day={day}
+								meal={meal}
+								product={product}
+							/>
+						)
+					})}
 				</ProductsContainer>
 			)}
+			{meal.productGroups.length > 0 &&
+				meal.productGroups.map(productGroup => (
+					<ProductGroup
+						key={productGroup._id}
+						meal={meal}
+						day={day}
+						productGroup={productGroup}
+					/>
+				))}
 			{meal.dishes.length > 0 && (
 				<ProductsContainer>
 					{meal.dishes.map((dish: MealDish) => (

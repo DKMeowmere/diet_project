@@ -1,9 +1,11 @@
-import { Products } from "./product"
+import { Product } from "./product"
 
 export type ProductGroup = {
 	_id: string
 	name: string
-	products: Products[]
+	description?: string  
+  auxiliaryDescription?: string
+	products: Product[]
 }
 
 export type ProductGroups = ProductGroup[]

@@ -1,6 +1,6 @@
 import useCalculations from "../../hooks/useCalculations"
 import { MealDish } from "../../types/meal"
-import { DishRow, ProductDishContainer } from "./styles"
+import { ProductGroupRow, ProductGroupContainer } from "./styles"
 
 type Props = {
 	dish: MealDish
@@ -15,8 +15,9 @@ export default function DishTable({ dish }: Props) {
 
 	return (
 		<>
-			<DishRow>
+			<ProductGroupRow>
 				<td className="cell strong">{dish.dishDetails.name}</td>
+				<td className="cell strong">{+dish.grams * +dish.count}g</td>
 				<td className="cell strong">
 					{getDishProperty(dish, "calories")}
 					cal
@@ -27,10 +28,9 @@ export default function DishTable({ dish }: Props) {
 					{getDishProperty(dish, "carbohydrates")}W
 				</td>
 				<td className="cell strong">{dish.count}</td>
-				<td className="cell strong">{+dish.grams * +dish.count}g</td>
-			</DishRow>
+			</ProductGroupRow>
 			{dish.dishDetails.products.map(product => (
-				<ProductDishContainer key={product._id}>
+				<ProductGroupContainer key={product._id}>
 					<td className="cell">{product.product.name}</td>
 					<td className="cell">
 						{getMealProductPropertyInDish(dish, product, "calories")}
@@ -50,12 +50,13 @@ export default function DishTable({ dish }: Props) {
 						{
 							+(
 								(+dish.grams / getDefaultDishWeight(dish.dishDetails)) *
-								+product.grams * +product.count
+								+product.grams *
+								+product.count
 							).toFixed(2)
 						}
 						g
 					</td>
-				</ProductDishContainer>
+				</ProductGroupContainer>
 			))}
 		</>
 	)

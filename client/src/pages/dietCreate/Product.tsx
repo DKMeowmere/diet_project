@@ -1,11 +1,17 @@
-import { changeProductCount, changeProductGrams, removeProduct } from '../../app/features/dietSlice'
-import { useAppDispatch } from '../../app/hooks'
-import theme from '../../app/theme'
-import { Button } from '../../components/button/Button'
-import Input from '../../components/input/Index'
-import useCalculations from '../../hooks/useCalculations'
-import { Day } from '../../types/day'
-import { MealProduct, Meal } from '../../types/meal'
+import {
+	changeProductCount,
+	changeProductGrams,
+	removeProduct,
+} from "../../app/features/dietSlice"
+import { useAppDispatch } from "../../app/hooks"
+import theme from "../../app/theme"
+import { Button } from "../../components/button/Button"
+import Input from "../../components/input/Index"
+import useCalculations from "../../hooks/useCalculations"
+import { Day } from "../../types/day"
+import { MealProduct, Meal } from "../../types/meal"
+import { ProductGroup as ProductGroupType } from "../../types/productGroup."
+import { useState, useEffect } from "react"
 import { HiTrash } from 'react-icons/hi'
 
 type Props = {
@@ -17,6 +23,22 @@ type Props = {
 export default function Product({ product, meal, day }: Props) {
 	const dispatch = useAppDispatch()
 	const { getMealProductProperty } = useCalculations()
+	const [parentProductGroup, setParentProductGroup] =
+		useState<ProductGroupType | null>(null)
+
+	useEffect(() => {
+		if (!product.referringTo) {
+			setParentProductGroup(null)
+			return
+		}
+
+		const newParentProductGroup = meal.productGroups.find(
+			productGroup => productGroup._id === product.referringTo
+		)
+		newParentProductGroup
+			? setParentProductGroup(newParentProductGroup)
+			: setParentProductGroup(null)
+	}, [product])
 
 	return (
 		<div className='product'>

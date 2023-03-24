@@ -11,6 +11,7 @@ type Props = {
 	day: DayType
 	setIsProductModalOpen: (isModalOpen: boolean) => void
 	setIsDishModalOpen: (isModalOpen: boolean) => void
+	setIsProductGroupModalOpen: (isModalOpen: boolean) => void
 	pageNumber: number
 	setPageNumber: (pageNumber: number) => void
 	daysCount: number
@@ -23,6 +24,7 @@ export default function Day({
 	pageNumber,
 	setPageNumber,
 	daysCount,
+	setIsProductGroupModalOpen,
 }: Props) {
 	const dispatch = useAppDispatch()
 
@@ -56,6 +58,7 @@ export default function Day({
 							meal={meal}
 							setIsProductModalOpen={setIsProductModalOpen}
 							setIsDishModalOpen={setIsDishModalOpen}
+							setIsProductGroupModalOpen={setIsProductGroupModalOpen}
 						/>
 					))}
 				</MealsContainer>

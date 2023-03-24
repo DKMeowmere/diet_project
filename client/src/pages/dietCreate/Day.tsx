@@ -11,6 +11,7 @@ type Props = {
 	day: DayType
 	setIsProductModalOpen: (isModalOpen: boolean) => void
 	setIsDishModalOpen: (isModalOpen: boolean) => void
+	setIsProductGroupModalOpen: (isModalOpen: boolean) => void
 	pageNumber: number
 	setPageNumber: (pageNumber: number) => void
 	daysCount: number
@@ -20,6 +21,7 @@ export default function Day({
 	day,
 	setIsProductModalOpen,
 	setIsDishModalOpen,
+	setIsProductGroupModalOpen,
 	pageNumber,
 	setPageNumber,
 	daysCount,
@@ -56,6 +58,7 @@ export default function Day({
 							meal={meal}
 							setIsProductModalOpen={setIsProductModalOpen}
 							setIsDishModalOpen={setIsDishModalOpen}
+							setIsProductGroupModalOpen={setIsProductGroupModalOpen}
 						/>
 					))}
 				</MealsContainer>

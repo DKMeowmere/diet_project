@@ -210,3 +210,29 @@ export const DishesContainer = styled.div`
 	width: 100%;
 	margin: auto;
 `
+
+export const ProductGroupContainer = styled.div`
+	width: 100%;
+	margin: auto;
+	.product-group-title {
+		text-align: center;
+		font-size: 1.5rem;
+		margin: 10px;
+		position: relative;
+		.close-btn {
+			position: absolute;
+			cursor: pointer;
+			fill: ${({ theme }) => theme.colors.errorMain};
+			width: 40px;
+			height: 40px;
+			right: 0px;
+			top: 0px;
+		}
+	}
+  .product-group-description {
+		text-align: center;
+		font-size: 1rem;
+		margin: 10px;
+		position: relative;
+	}
+`

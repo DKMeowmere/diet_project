@@ -12,6 +12,7 @@ export default function ProductRow({ product }: Props) {
 	return (
 		<ProductContainer>
 			<td className="cell">{product.product.name}</td>
+			<td className="cell">{+(+product.grams * +product.count).toFixed(2)}g</td>
 			<td className="cell">
 				{getMealProductProperty(product, "calories")}
 				cal
@@ -22,7 +23,6 @@ export default function ProductRow({ product }: Props) {
 				{getMealProductProperty(product, "carbohydrates")}W
 			</td>
 			<td className="cell">{product.count}</td>
-			<td className="cell">{+(+product.grams * +product.count).toFixed(2)}g</td>
 		</ProductContainer>
 	)
 }
