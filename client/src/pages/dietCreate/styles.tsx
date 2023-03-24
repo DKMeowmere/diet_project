@@ -156,6 +156,7 @@ export const MealsContainer = styled.div`
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			background-color: #f0f0f0;
 		}
 		.weight-number {
 			.weight-input {

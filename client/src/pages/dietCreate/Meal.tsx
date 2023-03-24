@@ -95,7 +95,7 @@ export default function Meal({
 				}}
 				className="meal-btn"
 			>
-				Dodaj grupe produktów do posiłku:
+				Dodaj potrawe do posiłku:
 				{meal.name}
 			</Button>
 			{/* <Button
@@ -152,21 +152,21 @@ export default function Meal({
 					))}
 				</ProductsContainer>
 			)}
-			<div className="values">
-				<div className="amount">Razem</div>
-				<div className="calories">
+			<div className="product-container">
+				<div className="amount-meal">Razem</div>
+				<div className="calories-meal">
 					Kalorie:
 					{getMealProperty(meal, "calories")}
 				</div>
-				<div className="carbo">
+				<div className="carbo-meal">
 					Węglowodany:
 					{getMealProperty(meal, "carbohydrates")}
 				</div>
-				<div className="proteins">
+				<div className="proteins-meal">
 					Białka:
 					{getMealProperty(meal, "proteins")}
 				</div>
-				<div className="fats">
+				<div className="fats-meal">
 					Tłuszcze:
 					{getMealProperty(meal, "fats")}
 				</div>

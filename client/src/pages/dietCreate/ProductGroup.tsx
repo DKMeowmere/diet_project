@@ -31,7 +31,7 @@ export default function ProductGroup({ meal, day, productGroup }: Props) {
 	return (
 		<ProductGroupContainer>
 			<p className="product-group-title">
-				Grupa produktów: {productGroup.name}
+				Potrawa: {productGroup.name}
 				<BsX className="close-btn" onClick={deleteProductGroup} />
 			</p>
 			{productGroup.auxiliaryDescription && (
