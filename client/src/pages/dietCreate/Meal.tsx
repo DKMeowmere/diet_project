@@ -10,6 +10,7 @@ import { Button } from "../../components/button/Button"
 import Input from "../../components/input/Index"
 import Textarea from "../../components/textarea/Index"
 import useCalculations from "../../hooks/useCalculations"
+import useReduce from "../../hooks/useReduce"
 import { Day } from "../../types/day"
 import { Meal as MealType, MealDish, MealProduct } from "../../types/meal"
 import Dish from "./Dish"
@@ -33,8 +34,8 @@ export default function Meal({
 	setIsProductGroupModalOpen,
 }: Props) {
 	const dispatch = useAppDispatch()
-	const { getMealProperty } = useCalculations()
-
+	const { getMealProperty, getMealProductProperty } = useCalculations()
+	const { calculateSum } = useReduce()
 	return (
 		<div className="meal" key={meal._id}>
 			<div className="meal-name">Podaj nazwe posiłku</div>
@@ -121,7 +122,7 @@ export default function Meal({
 						<div className="carbo-meal">Węglowodany</div>
 						<div className="proteins-meal">Białka</div>
 						<div className="fats-meal">Tłuszcze</div>
-            <div className="weight-meal">Ilość</div>
+						<div className="weight-meal">Ilość</div>
 					</div>
 					{meal.products.map((product: MealProduct) => {
 						if (product.referringTo) return
@@ -134,6 +135,74 @@ export default function Meal({
 							/>
 						)
 					})}
+					<div className="product-container">
+						<div className="products-meal">Razem </div>
+						<div className="weight-meal">
+							{
+								+calculateSum(
+									meal.products.map(product => {
+										if (product.referringTo) return 0
+										return +product.grams
+									})
+								).toFixed(2)
+							}
+							g
+						</div>
+						<div className="calories-meal">
+							{
+								+calculateSum(
+									meal.products.map(product => {
+										if (product.referringTo) return 0
+										return getMealProductProperty(product, "calories")
+									})
+								).toFixed(2)
+							}
+							cal
+						</div>
+						<div className="carbo-meal">
+							{
+								+calculateSum(
+									meal.products.map(product => {
+										if (product.referringTo) return 0
+										return getMealProductProperty(product, "carbohydrates")
+									})
+								).toFixed(2)
+							}
+							W
+						</div>
+						<div className="proteins-meal">
+							{
+								+calculateSum(
+									meal.products.map(product => {
+										if (product.referringTo) return 0
+										return getMealProductProperty(product, "proteins")
+									})
+								).toFixed(2)
+							}
+							B
+						</div>
+						<div className="fats-meal">
+							{
+								+calculateSum(
+									meal.products.map(product => {
+										if (product.referringTo) return 0
+										return getMealProductProperty(product, "fats")
+									})
+								).toFixed(2)
+							}
+							T
+						</div>
+						<div className="weight-meal">
+							{
+								+calculateSum(
+									meal.products.map(product => {
+										if (product.referringTo) return 0
+										return +product.count
+									})
+								).toFixed(2)
+							}
+						</div>
+					</div>
 				</ProductsContainer>
 			)}
 			{meal.productGroups.length > 0 &&
@@ -154,6 +223,12 @@ export default function Meal({
 			)}
 			<div className="product-container meal-summary">
 				<div className="amount-meal">Razem</div>
+				<div className="amount-meal">
+					{+calculateSum(
+						meal.products.map(product => +product.grams * +product.count)
+					) + +calculateSum(meal.dishes.map(dish => +dish.grams * +dish.count))}
+					g
+				</div>
 				<div className="calories-meal">
 					Kalorie:
 					{getMealProperty(meal, "calories")}
