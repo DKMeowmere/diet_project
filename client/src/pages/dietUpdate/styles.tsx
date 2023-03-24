@@ -156,7 +156,6 @@ export const MealsContainer = styled.div`
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			
 		}
 		.weight-number {
 			.weight-input {
@@ -179,6 +178,9 @@ export const MealsContainer = styled.div`
 	}
 	.meal-btn {
 		margin: 20px 0;
+	}
+	.meal-summary {
+		margin-top: 20px;
 	}
 `
 export const ProductsContainer = styled.div`

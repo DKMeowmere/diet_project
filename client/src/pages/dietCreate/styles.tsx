@@ -225,6 +225,9 @@ export const MealsContainer = styled.div`
 	.meal-btn {
 		margin: 20px 0;
 	}
+	.meal-summary {
+		margin-top: 20px;
+	}
 `
 export const ProductsContainer = styled.div`
 	width: 100%;

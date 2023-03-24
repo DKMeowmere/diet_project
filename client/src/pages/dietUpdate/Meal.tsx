@@ -151,7 +151,7 @@ export default function Meal({
 					))}
 				</ProductsContainer>
 			)}
-			<div className="product-container">
+			<div className="product-container meal-summary">
 				<div className="amount-meal">Razem</div>
 				<div className="calories-meal">
 					Kalorie:
