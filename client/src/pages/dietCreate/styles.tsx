@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 export const DietCreateContainer = styled.article`
 	width: 100%;
@@ -99,18 +99,19 @@ export const MealsContainer = styled.div`
 	width: 100%;
 	margin: auto;
 	.product {
-		margin-top: 20px;
 		.product-value-container {
 			position: relative;
 			border-radius: 20px;
+			position: relative;
 		}
 		svg {
 			width: 32px;
 			height: 32px;
 			color: ${({ theme }) => theme.colors.errorMain};
 			cursor: pointer;
-			top: 77px;
-			right: 15px;
+			top: 50%;
+			translate: 0 -50%;
+			right: 5px;
 			position: absolute;
 		}
 	}
@@ -119,8 +120,9 @@ export const MealsContainer = styled.div`
 		justify-content: space-between;
 		text-align: center;
 		padding: 20px;
+		margin-top: 20px;
 		background-color: ${({ theme }) => theme.colors.main};
-		color:${({ theme }) => theme.colors.whiteText};;
+		color: ${({ theme }) => theme.colors.whiteText};
 		.products-meal {
 			width: 25%;
 		}
@@ -131,7 +133,6 @@ export const MealsContainer = styled.div`
 		.fats-meal {
 			width: 15%;
 		}
-		
 	}
 	.value {
 		background-color: ${({ theme }) => theme.colors.whiteText};
@@ -156,14 +157,13 @@ export const MealsContainer = styled.div`
 			justify-content: center;
 			align-items: center;
 		}
-		.weight-number{
-			.weight-input{
+		.weight-number {
+			.weight-input {
 				text-align: center;
 			}
 		}
 	}
 
-	
 	.meal-name {
 		width: 100%;
 		background-color: ${({ theme }) => theme.colors.main};
@@ -238,9 +238,12 @@ export const ProductGroupContainer = styled.div`
 	width: 100%;
 	margin: auto;
 	.product-group-title {
+		margin: 15px 0;
+		padding: 15px;
+		background-color: #fff;
+		border-radius: 10px;
 		text-align: center;
 		font-size: 1.5rem;
-		margin: 10px;
 		position: relative;
 		.close-btn {
 			position: absolute;
@@ -249,13 +252,17 @@ export const ProductGroupContainer = styled.div`
 			width: 40px;
 			height: 40px;
 			right: 12px;
-			top: 12px;
+			top: 50%;
+			translate: 0 -50%;
 		}
 	}
 	.product-group-description {
+		margin: 15px 0;
+		padding: 10px;
+		background-color: #fff;
+		border-radius: 10px;
 		text-align: center;
 		font-size: 1rem;
-		margin: 10px;
 		position: relative;
 	}
 `

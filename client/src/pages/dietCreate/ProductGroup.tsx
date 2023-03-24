@@ -39,6 +39,15 @@ export default function ProductGroup({ meal, day, productGroup }: Props) {
 					{productGroup.auxiliaryDescription}
 				</p>
 			)}
+			<div className="product-container">
+				<div className="products-meal">Produkt </div>
+				<div className="weight-meal">Waga (g)</div>
+				<div className="calories-meal">Kalorie</div>
+				<div className="carbo-meal">Węglowodany</div>
+				<div className="proteins-meal">Białka</div>
+				<div className="fats-meal">Tłuszcze</div>
+        <div className="weight-meal">Ilość</div>
+			</div>
 			{meal.products.map(product => {
 				if (product.referringTo !== productGroup._id) return
 				return (

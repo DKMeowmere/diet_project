@@ -1,7 +1,7 @@
 import { NavbarContainer, NavbarPlaceholder } from "./styles"
 import { HiFaceSmile } from "react-icons/hi2"
 import { FaCarrot } from "react-icons/fa"
-import { BiDish } from "react-icons/bi"
+// import { BiDish } from "react-icons/bi"
 import { AiFillHome } from "react-icons/ai"
 import { MdOutlineRestaurantMenu } from "react-icons/md"
 import { IoFastFoodSharp } from "react-icons/io5"

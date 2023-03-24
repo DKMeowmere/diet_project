@@ -29,7 +29,6 @@ export default function Meal({
 	meal,
 	day,
 	setIsProductModalOpen,
-	setIsDishModalOpen,
 	setIsProductGroupModalOpen,
 }: Props) {
 	const dispatch = useAppDispatch()
@@ -98,7 +97,7 @@ export default function Meal({
 				Dodaj grupe produktów do posiłku:
 				{meal.name}
 			</Button>
-			<Button
+			{/* <Button
 				width="100%"
 				height="40px"
 				type="button"
@@ -111,9 +110,18 @@ export default function Meal({
 			>
 				Dodaj potrawe do posiłku:
 				{meal.name}
-			</Button>
+			</Button> */}
 			{meal.products.length > 0 && (
 				<ProductsContainer>
+					<div className="product-container">
+						<div className="products-meal">Produkt </div>
+						<div className="weight-meal">Waga (g)</div>
+						<div className="calories-meal">Kalorie</div>
+						<div className="carbo-meal">Węglowodany</div>
+						<div className="proteins-meal">Białka</div>
+						<div className="fats-meal">Tłuszcze</div>
+						<div className="weight-meal">Ilość</div>
+					</div>
 					{meal.products.map((product: MealProduct) => {
 						if (product.referringTo) return
 						return (

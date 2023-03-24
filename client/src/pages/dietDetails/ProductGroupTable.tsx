@@ -39,7 +39,7 @@ export default function ProductGroupTable({ productGroup, meal }: Props) {
 					{getMealProductGroupProperty("fats", meal, productGroup._id)} T
 				</td>
 				<td className="cell strong">
-					{getMealProductGroupProperty("carbohydrates", meal, productGroup._id)}{" "}
+					{getMealProductGroupProperty("carbohydrates", meal, productGroup._id)}
 					W
 				</td>
 				<td className="cell strong">-</td>

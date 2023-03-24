@@ -73,9 +73,4 @@ export const ProductContainer = styled.div`
 		background-color: ${({ theme }) => theme.colors.whiteText};
 		color: ${({ theme }) => theme.colors.main};
 	}
-	.product-title {
-		font-size: 1.5rem;
-		width: 100%;
-		text-align: center;
-	}
 `

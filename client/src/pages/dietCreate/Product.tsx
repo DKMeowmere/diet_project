@@ -4,15 +4,13 @@ import {
 	removeProduct,
 } from "../../app/features/dietSlice"
 import { useAppDispatch } from "../../app/hooks"
-import theme from "../../app/theme"
-import { Button } from "../../components/button/Button"
+// import theme from "../../app/theme"
+// import { Button } from "../../components/button/Button"
 import Input from "../../components/input/Index"
 import useCalculations from "../../hooks/useCalculations"
 import { Day } from "../../types/day"
 import { MealProduct, Meal } from "../../types/meal"
-import { ProductGroup as ProductGroupType } from "../../types/productGroup."
-import { useState, useEffect } from "react"
-import { HiTrash } from 'react-icons/hi'
+import { HiTrash } from "react-icons/hi"
 
 type Props = {
 	product: MealProduct
@@ -23,43 +21,18 @@ type Props = {
 export default function Product({ product, meal, day }: Props) {
 	const dispatch = useAppDispatch()
 	const { getMealProductProperty } = useCalculations()
-	const [parentProductGroup, setParentProductGroup] =
-		useState<ProductGroupType | null>(null)
-
-	useEffect(() => {
-		if (!product.referringTo) {
-			setParentProductGroup(null)
-			return
-		}
-
-		const newParentProductGroup = meal.productGroups.find(
-			productGroup => productGroup._id === product.referringTo
-		)
-		newParentProductGroup
-			? setParentProductGroup(newParentProductGroup)
-			: setParentProductGroup(null)
-	}, [product])
 
 	return (
-		<div className='product'>
-			<div className='product-value-container'>
-				<div className='product-container'>
-					<div className='products-meal'>Produkt </div>
-					<div className='weight-meal'>Waga (g)</div>
-					<div className='calories-meal'>Kalorie</div>
-					<div className='carbo-meal'>Węglowodany</div>
-					<div className='proteins-meal'>Białka</div>
-					<div className='fats-meal'>Tłuszcze</div>
-				</div>
-				<div className='value'>
-					<div className='product-name'>{product.product.name}</div>
-					<div className='weight-number'>
-						{' '}
+		<div className="product">
+			<div className="product-value-container">
+				<div className="value">
+					<div className="product-name">{product.product.name}</div>
+					<div className="weight-number">
 						<Input
-							width='40%'
-							height='100%'
+							width="40%"
+							height="100%"
 							inputClassName="weight-input"
-							placeholder='ilość'
+							placeholder="waga"
 							value={product.grams.toString()}
 							onChange={e =>
 								dispatch(
@@ -71,29 +44,25 @@ export default function Product({ product, meal, day }: Props) {
 									})
 								)
 							}
-						/>{' '}
+						/>
 					</div>
-					<div className='calories-number'>{getMealProductProperty(product, 'calories')}</div>
-					<div className='carbo-number'>{getMealProductProperty(product, 'carbohydrates')}</div>
-					<div className='proteins-number'>{getMealProductProperty(product, 'proteins')}</div>
-					<div className='fats-number'>{getMealProductProperty(product, 'fats')}</div>
-				</div>
-
-				<HiTrash 
-				onClick={() =>
-					dispatch(
-						removeProduct({
-							day,
-							meal,
-							product,
-						})
-					)
-				}/>
-			</div>
-			{/* <Input
-							width='100%'
-							height='50px'
-							placeholder='Podaj ilość'
+					<div className="calories-number">
+						{getMealProductProperty(product, "calories")}
+					</div>
+					<div className="carbo-number">
+						{getMealProductProperty(product, "carbohydrates")}
+					</div>
+					<div className="proteins-number">
+						{getMealProductProperty(product, "proteins")}
+					</div>
+					<div className="fats-number">
+						{getMealProductProperty(product, "fats")}
+					</div>
+					<div className="weight-number">
+						<Input
+							width="40px"
+							height="100%"
+							placeholder="Podaj ilość"
 							value={product.count.toString()}
 							onChange={e =>
 								dispatch(
@@ -105,9 +74,24 @@ export default function Product({ product, meal, day }: Props) {
 									})
 								)
 							}
-						/> */}
-
-			
+						/>
+					</div>
+					{!product.referringTo && (
+						<HiTrash
+							className="trash-icon"
+							onClick={() =>
+								dispatch(
+									removeProduct({
+										day,
+										meal,
+										product,
+									})
+								)
+							}
+						/>
+					)}
+				</div>
+			</div>
 		</div>
 	)
 }

@@ -15,10 +15,15 @@ import {
 	Product as ProductType,
 	Products as ProductsType,
 } from "../../types/product"
-import { ProductGroupFormContainer, Form, ProductContainer, ProductBox } from "./styles"
+import {
+	ProductGroupFormContainer,
+	Form,
+	ProductContainer,
+	ProductBox,
+} from "./styles"
 
 type Props = {
-	type: 'CREATE' | 'UPDATE'
+	type: "CREATE" | "UPDATE"
 }
 
 export default function ProductGroupForm({ type }: Props) {
@@ -34,9 +39,11 @@ export default function ProductGroupForm({ type }: Props) {
 	const { id } = useParams()
 
 	{
-		type === 'CREATE' &&
+		type === "CREATE" &&
 			useEffect(() => {
-				const productGroup = JSON.parse(localStorage.getItem('product-group') || 'null')
+				const productGroup = JSON.parse(
+					localStorage.getItem("product-group") || "null"
+				)
 
 				if (productGroup) {
 					setName(productGroup.name)
@@ -46,7 +53,7 @@ export default function ProductGroupForm({ type }: Props) {
 				}
 			}, [])
 
-		type === 'CREATE' &&
+		type === "CREATE" &&
 			useEffect(() => {
 				if (!name) {
 					return
@@ -64,7 +71,7 @@ export default function ProductGroupForm({ type }: Props) {
 	}
 
 	{
-		type === 'UPDATE' &&
+		type === "UPDATE" &&
 			useEffect(() => {
 				dispatch(startLoading())
 				async function fetchProductGroup() {
@@ -81,7 +88,7 @@ export default function ProductGroupForm({ type }: Props) {
 						setDescription("")
 						setAuxiliaryDescription("")
 						setProducts([])
-						dispatch(addAlert({ body: data?.error, type: 'ERROR' }))
+						dispatch(addAlert({ body: data?.error, type: "ERROR" }))
 						return
 					}
 
@@ -103,11 +110,15 @@ export default function ProductGroupForm({ type }: Props) {
 	}
 
 	function handleProductAddition(product: ProductType) {
-		if (products.findIndex((prevProduct: ProductType) => product._id === prevProduct._id) !== -1) {
+		if (
+			products.findIndex(
+				(prevProduct: ProductType) => product._id === prevProduct._id
+			) !== -1
+		) {
 			dispatch(
 				addAlert({
-					body: 'Ten produkt już istnieje w tej grupie produktów',
-					type: 'WARNING',
+					body: "Ten produkt już istnieje w tej grupie produktów",
+					type: "WARNING",
 				})
 			)
 			return
@@ -122,19 +133,24 @@ export default function ProductGroupForm({ type }: Props) {
 
 		try {
 			if (!name) {
-				throw new Error('Musisz podać nazwe grupy produktów')
+				throw new Error("Musisz podać nazwe grupy produktów")
 			}
 
 			if (!products.length) {
-				throw new Error('Musisz przypisać minimum jeden produkt do grupy produktów')
+				throw new Error(
+					"Musisz przypisać minimum jeden produkt do grupy produktów"
+				)
 			}
 
 			const productsId = products.map(prevProduct => prevProduct._id)
 
 			dispatch(startLoading())
-			const url = type === 'CREATE' ? `${serverUrl}/api/product-group` : `${serverUrl}/api/product-group/${id}`
+			const url =
+				type === "CREATE"
+					? `${serverUrl}/api/product-group`
+					: `${serverUrl}/api/product-group/${id}`
 			const res = await fetch(url, {
-				method: type === 'CREATE' ? 'POST' : 'PATCH',
+				method: type === "CREATE" ? "POST" : "PATCH",
 				body: JSON.stringify({
 					name,
 					description,
@@ -142,7 +158,7 @@ export default function ProductGroupForm({ type }: Props) {
 					products: productsId,
 				}),
 				headers: {
-					'Content-Type': 'application/json',
+					"Content-Type": "application/json",
 					Authorization: `Bearer ${cookies.token}`,
 				},
 			})
@@ -155,20 +171,22 @@ export default function ProductGroupForm({ type }: Props) {
 
 			dispatch(
 				addAlert({
-					body: `Grupe produktów ${type === 'CREATE' ? 'dodano' : 'zaaktualizowano'} pomyślnie`,
-					type: 'SUCCESS',
+					body: `Grupe produktów ${
+						type === "CREATE" ? "dodano" : "zaaktualizowano"
+					} pomyślnie`,
+					type: "SUCCESS",
 				})
 			)
 
-			type === 'CREATE' && localStorage.setItem('product-group', 'null')
-			type === 'CREATE' && navigate('/product-group')
+			type === "CREATE" && localStorage.setItem("product-group", "null")
+			type === "CREATE" && navigate("/product-group")
 		} catch (err: unknown) {
-			const message = err instanceof Error ? err.message : 'Nieoczekiwany błąd'
+			const message = err instanceof Error ? err.message : "Nieoczekiwany błąd"
 
 			dispatch(
 				addAlert({
-					body: message || 'Nieoczekiwany błąd',
-					type: 'ERROR',
+					body: message || "Nieoczekiwany błąd",
+					type: "ERROR",
 				})
 			)
 		}
@@ -180,9 +198,9 @@ export default function ProductGroupForm({ type }: Props) {
 		try {
 			dispatch(startLoading)
 			const res = await fetch(`${serverUrl}/api/product-group/${id}`, {
-				method: 'DELETE',
+				method: "DELETE",
 				headers: {
-					'Content-Type': 'application/json',
+					"Content-Type": "application/json",
 					Authorization: `Bearer ${cookies.token}`,
 				},
 			})
@@ -195,19 +213,19 @@ export default function ProductGroupForm({ type }: Props) {
 
 			dispatch(
 				addAlert({
-					body: 'Grupe produktów usunięto pomyślnie',
-					type: 'SUCCESS',
+					body: "Grupe produktów usunięto pomyślnie",
+					type: "SUCCESS",
 				})
 			)
 
-			navigate('/product-group')
+			navigate("/product-group")
 		} catch (err: unknown) {
-			const message = err instanceof Error ? err.message : 'Nieoczekiwany błąd'
+			const message = err instanceof Error ? err.message : "Nieoczekiwany błąd"
 
 			dispatch(
 				addAlert({
-					body: message || 'Nieoczekiwany błąd',
-					type: 'ERROR',
+					body: message || "Nieoczekiwany błąd",
+					type: "ERROR",
 				})
 			)
 		}
@@ -215,40 +233,49 @@ export default function ProductGroupForm({ type }: Props) {
 
 	return (
 		<ProductGroupFormContainer>
-			{isModalOpen && <ProductModal onProductClick={handleProductAddition} setIsModalOpen={setIsModalOpen} />}
+			{isModalOpen && (
+				<ProductModal
+					onProductClick={handleProductAddition}
+					setIsModalOpen={setIsModalOpen}
+				/>
+			)}
 			<Form>
-				<p className='form-title'>{type === 'CREATE' ? 'Dodaj' : 'Edytuj'} grupę produktów</p>
+				<p className="form-title">
+					{type === "CREATE" ? "Dodaj" : "Edytuj"} grupę produktów
+				</p>
 				<Button
-					width='90%'
-					height='40px'
-					type='submit'
+					width="90%"
+					height="40px"
+					type="submit"
 					onClick={handleSubmit}
 					bgColor={theme.colors.main}
-					className='btn'>
+					className="btn"
+				>
 					Zatwierdź
 				</Button>
-				{type === 'UPDATE' && (
+				{type === "UPDATE" && (
 					<Button
-						width='90%'
-						height='40px'
-						type='submit'
+						width="90%"
+						height="40px"
+						type="submit"
 						bgColor={theme.colors.errorMain}
 						onClick={handleDelete}
-						className='btn'>
+						className="btn"
+					>
 						Usuń
 					</Button>
 				)}
-				<p className='form-text'>Podaj nazwę grupy produktów</p>
+				<p className="form-text">Podaj nazwę grupy produktów</p>
 				<Input
-					width='500px'
-					height='50px'
-					placeholder='Podaj nazwe'
+					width="500px"
+					height="50px"
+					placeholder="Podaj nazwe"
 					value={name}
 					onChange={e => setName(e.target.value)}
 				/>
 				<p className="form-text">Podaj opis grupy produktów (opcjonalnie)</p>
 				<Textarea
-					width="90%"
+					width="500px"
 					height="150px"
 					placeholder="Podaj opis"
 					value={description}
@@ -258,32 +285,41 @@ export default function ProductGroupForm({ type }: Props) {
 					Podaj pomocniczy opis grupy produktów (opcjonalnie)
 				</p>
 				<Textarea
-					width="90%"
+					width="500px"
 					height="150px"
 					placeholder="Podaj pomocniczy opis, bedzie widoczny tylko dla ciebie, możesz zapisać domyślną wage dla produktów"
 					value={auxiliaryDescription}
 					onChange={e => setAuxiliaryDescription(e.target.value)}
 				/>
 				<Button
-					width='90%'
-					height='40px'
-					type='button'
+					width="90%"
+					height="40px"
+					type="button"
 					bgColor={theme.colors.main}
 					onClick={() => setIsModalOpen(true)}
-					className='btn'>
+					className="btn"
+				>
 					Dodaj produkt
 				</Button>
 				{products.length > 0 && (
 					<>
-						<p className='form-text'>Właściwości produktów są podane dla 100g produktu</p>
+						<p className="form-text">
+							Właściwości produktów są podane dla 100g produktu
+						</p>
 						<ProductBox>
-						{products.map(product => (
+							{products.map(product => (
 								<ProductContainer key={product._id}>
 									<AiOutlineClose
-										className='close-icon'
-										onClick={() => setProducts(products.filter(prevProduct => prevProduct._id !== product._id))}
+										className="close-icon"
+										onClick={() =>
+											setProducts(
+												products.filter(
+													prevProduct => prevProduct._id !== product._id
+												)
+											)
+										}
 									/>
-									<p className='product-title'>{product.name}</p>
+									<p className="product-title">{product.name}</p>
 									<PropertyBadge
 										carbohydrates={+(+product.carbohydrates).toFixed(2)}
 										calories={+(+product.calories).toFixed(2)}
@@ -291,7 +327,7 @@ export default function ProductGroupForm({ type }: Props) {
 										proteins={+(+product.proteins).toFixed(2)}
 									/>
 								</ProductContainer>
-						))}
+							))}
 						</ProductBox>
 					</>
 				)}
