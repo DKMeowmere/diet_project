@@ -60,9 +60,9 @@ export default function Product({ product, meal, day }: Props) {
 					</div>
 					<div className="weight-number">
 						<Input
-							width="40px"
+							width="40%"
 							height="100%"
-							placeholder="Podaj ilość"
+							placeholder="Ilość"
 							value={product.count.toString()}
 							onChange={e =>
 								dispatch(

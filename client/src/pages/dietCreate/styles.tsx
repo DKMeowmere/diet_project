@@ -115,22 +115,31 @@ export const MealsContainer = styled.div`
 			position: absolute;
 		}
 	}
-	.product-container {
+	.product-container-element{
+		height: 100px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 1.5rem;
+		margin-top: 50px;
+	}
+	.product-container,.product-container-element {
 		display: flex;
 		justify-content: space-between;
 		text-align: center;
 		padding: 20px;
-		margin-top: 20px;
 		background-color: ${({ theme }) => theme.colors.main};
 		color: ${({ theme }) => theme.colors.whiteText};
 		.products-meal {
 			width: 25%;
 		}
+
 		.weight-meal,
 		.calories-meal,
 		.carbo-meal,
 		.proteins-meal,
-		.fats-meal {
+		.fats-meal,
+		.minus {
 			width: 15%;
 		}
 	}
@@ -140,7 +149,8 @@ export const MealsContainer = styled.div`
 		text-align: center;
 		justify-content: space-between;
 		padding: 20px;
-		border-bottom: 1px solid #fffdd0;
+		border-bottom: 1px solid #d6cfcf;
+		background-color: #f0f0f0;
 		.product-name {
 			width: 25%;
 			display: flex;

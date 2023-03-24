@@ -220,7 +220,7 @@ function DietDetails() {
 												className="product-group-description"
 												key={productGroup._id}
 											>
-												opis {productGroup.name}:{productGroup.description}
+												Opis {productGroup.name}: {productGroup.description}
 											</p>
 										) : null
 									)}

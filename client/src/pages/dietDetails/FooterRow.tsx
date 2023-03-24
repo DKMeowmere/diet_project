@@ -32,8 +32,7 @@ export default function FooterRow({ meal }: Props) {
 					{getMealProperty(meal, "carbohydrates")}W
 				</td>
 				<td className="cell strong bold">
-					{+calculateSum(meal.products.map(product => +product.count)) +
-						+calculateSum(meal.dishes.map(dish => +dish.count))}
+					-
 				</td>
 			</tr>
 		</tfoot>
