@@ -1,10 +1,10 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 export const ProductGroupFormContainer = styled.article`
 	width: 100%;
 	display: flex;
 	justify-content: center;
-	padding-bottom: 30px;
+	padding-bottom: 70px;
 `
 
 export const Form = styled.form`
@@ -12,10 +12,12 @@ export const Form = styled.form`
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-	gap: 30px;
+	gap: 50px;
 	margin-top: 30px;
-	max-width: 500px;
 	flex-direction: column;
+	.btn {
+		max-width: 500px;
+	}
 	input {
 		display: block;
 		margin: auto;
@@ -27,9 +29,17 @@ export const Form = styled.form`
 		font-size: 1.2rem;
 	}
 `
-
+export const ProductBox = styled.div`
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	gap: 30px;
+	flex-wrap: wrap;
+`
 export const ProductContainer = styled.div`
-	width: 90%;
+	width: 20%;
 	background-color: ${({ theme }) => theme.colors.whiteText};
 	border-radius: 15px;
 	padding: 30px;
@@ -38,6 +48,7 @@ export const ProductContainer = styled.div`
 	align-items: center;
 	flex-direction: column;
 	position: relative;
+	min-height: 175px;
 	.product-title {
 		font-size: 1.7rem;
 		margin-bottom: 20px;

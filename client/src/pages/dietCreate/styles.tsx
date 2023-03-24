@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 export const DietCreateContainer = styled.article`
 	width: 100%;
@@ -70,7 +70,100 @@ export const Form = styled.form`
 		margin-top: 30px;
 		color: ${({ theme }) => theme.colors.whiteText};
 	}
-	.input-container-box {
+
+	.diet-text-main {
+		margin-top: 20px;
+	}
+	.main-btn {
+		border-radius: 0;
+		margin: 5px 0px;
+		width: 100%;
+	}
+	button {
+		border-radius: 0 !important;
+	}
+	input {
+		display: block;
+		margin: auto;
+	}
+`
+
+export const DaysContainer = styled.div`
+	width: 100%;
+	position: relative;
+	.diet-btn-element {
+		margin-bottom: 30px;
+	}
+`
+export const MealsContainer = styled.div`
+	width: 100%;
+	margin: auto;
+	.product {
+		margin-top: 20px;
+		.product-value-container {
+			position: relative;
+			border-radius: 20px;
+		}
+		svg {
+			width: 32px;
+			height: 32px;
+			color: ${({ theme }) => theme.colors.errorMain};
+			cursor: pointer;
+			top: 77px;
+			right: 15px;
+			position: absolute;
+		}
+	}
+	.product-container {
+		display: flex;
+		justify-content: space-between;
+		text-align: center;
+		padding: 20px;
+		background-color: ${({ theme }) => theme.colors.main};
+		color:${({ theme }) => theme.colors.whiteText};;
+		.products-meal {
+			width: 25%;
+		}
+		.weight-meal,
+		.calories-meal,
+		.carbo-meal,
+		.proteins-meal,
+		.fats-meal {
+			width: 15%;
+		}
+		
+	}
+	.value {
+		background-color: ${({ theme }) => theme.colors.whiteText};
+		display: flex;
+		text-align: center;
+		justify-content: space-between;
+		padding: 20px;
+		border-bottom: 1px solid #fffdd0;
+		.product-name {
+			width: 25%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.weight-number,
+		.calories-number,
+		.carbo-number,
+		.proteins-number,
+		.fats-number {
+			width: 15%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.weight-number{
+			.weight-input{
+				text-align: center;
+			}
+		}
+	}
+
+	/* .input-container-box {
 		display: flex;
 		flex-direction: column;
 		height: 150px;
@@ -106,35 +199,7 @@ export const Form = styled.form`
 				margin: auto;
 			}
 		}
-	}
-
-	.diet-text-main {
-		margin-top: 20px;
-	}
-	.main-btn {
-		border-radius: 0;
-		margin: 5px 0px;
-		width: 100%;
-	}
-	button {
-		border-radius: 0 !important;
-	}
-	input {
-		display: block;
-		margin: auto;
-	}
-`
-
-export const DaysContainer = styled.div`
-	width: 100%;
-	position: relative;
-	.diet-btn-element {
-		margin-bottom: 30px;
-	}
-`
-export const MealsContainer = styled.div`
-	width: 100%;
-	margin: auto;
+	}*/
 	.meal-name {
 		width: 100%;
 		background-color: ${({ theme }) => theme.colors.main};
@@ -144,16 +209,17 @@ export const MealsContainer = styled.div`
 		font-size: 1.5rem;
 		margin-top: 30px;
 	}
-	.weight {
+	/* .weight {
 		width: 100%;
 		padding: 20px;
 		text-align: center;
 		color: ${({ theme }) => theme.colors.whiteText};
 		font-size: 1.5rem;
-	}
+	} */
 	.values {
 		display: flex;
 		flex-direction: row;
+		margin-top: 20px;
 	}
 	.proteins {
 		width: 100%;

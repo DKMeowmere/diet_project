@@ -15,7 +15,7 @@ export const HomeContainer = styled.article<{ imageUrl: string }>`
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		flex-direction: row;
+		flex-direction: column;
 		flex-wrap: wrap;
 		width: 100%;
 		gap: 40px;
