@@ -1,5 +1,5 @@
 import { addMeal, changeDayName, removeDay } from "../../app/features/dietSlice"
-import { useAppDispatch } from "../../app/hooks"
+import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import Input from "../../components/input/Index"
 import { Day as DayType } from "../../types/day"
 import { MealsContainer } from "./styles"
@@ -23,40 +23,52 @@ export default function Day({
 	day,
 	setIsProductModalOpen,
 	setIsDishModalOpen,
+	setIsProductGroupModalOpen,
 	pageNumber,
 	setPageNumber,
 	daysCount,
-	setIsProductGroupModalOpen,
 }: Props) {
 	const dispatch = useAppDispatch()
-	const { getDayProperty } = useCalculations()
+	const { getDayProperty, getRecommendedMacronutrientCount } = useCalculations()
+	const diet = useAppSelector(state => state.diet.currentDiet)
 
 	return (
 		<div className="day" key={day._id}>
-			<div className="input-diet-box">
+			<div className="day-summary">
 				<div className="diet-name">Podaj nazwe dnia</div>
-				<div className="input-box">
-					<Input
-						width="100%"
-						height="50px"
-						placeholder="Podaj tytuł"
-						value={day.day}
-						onChange={e =>
-							dispatch(
-								changeDayName({
-									day,
-									value: e.target.value,
-								})
-							)
-						}
-					/>
-				</div>
-        <PropertyBadge
+
+				<Input
+					width="50%"
+					height="50px"
+					placeholder="Podaj tytuł"
+					value={day.day}
+					onChange={e =>
+						dispatch(
+							changeDayName({
+								day,
+								value: e.target.value,
+							})
+						)
+					}
+				/>
+				<p>Aktualnie</p>
+				<PropertyBadge
 					className="property-badge"
 					calories={getDayProperty(day, "calories")}
 					carbohydrates={getDayProperty(day, "carbohydrates")}
 					proteins={getDayProperty(day, "proteins")}
 					fats={getDayProperty(day, "fats")}
+				/>
+				<p>Cel</p>
+				<PropertyBadge
+					className="property-badge"
+					calories={+diet.caloricGoal}
+					carbohydrates={getRecommendedMacronutrientCount(
+						diet,
+						"carbohydrates"
+					)}
+					proteins={getRecommendedMacronutrientCount(diet, "proteins")}
+					fats={getRecommendedMacronutrientCount(diet, "fats")}
 				/>
 			</div>
 			{day.meals.length > 0 && (

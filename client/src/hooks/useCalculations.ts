@@ -11,6 +11,7 @@ import {
 import useReduce from "./useReduce"
 
 type Property = "calories" | "fats" | "carbohydrates" | "proteins"
+type Macronutrient = "fats" | "carbohydrates" | "proteins"
 
 export default function useCalculations() {
 	const { calculateSum } = useReduce()
@@ -108,6 +109,25 @@ export default function useCalculations() {
 		).toFixed(2)
 	}
 
+	function getRecommendedMacronutrientCount(
+		diet: DietType,
+		macronutrient: Macronutrient
+	) {
+		type MacronutrientProperty = keyof typeof diet.macronutrientsDivision
+		const { caloricGoal, macronutrientsDivision } = diet
+		const { carbohydrates, fats, proteins } = macronutrientsDivision
+		const caloriesDivisionNumber = macronutrient === "fats" ? 9 : 4
+		const propertiesSum = +carbohydrates + +fats + +proteins
+		if (propertiesSum !== 100) return Infinity
+
+		const caloriesInMacronutientCounst =
+			(+caloricGoal *
+				+macronutrientsDivision[macronutrient as MacronutrientProperty]) /
+			100
+
+		return +(caloriesInMacronutientCounst / caloriesDivisionNumber).toFixed(2)
+	}
+
 	return {
 		getDishProductsPropertySum,
 		getMealProductProperty,
@@ -120,5 +140,6 @@ export default function useCalculations() {
 		getDayProperty,
 		getDietProperty,
 		getMealProductGroupProperty,
+		getRecommendedMacronutrientCount,
 	}
 }

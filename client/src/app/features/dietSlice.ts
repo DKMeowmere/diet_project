@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { Day } from "../../types/day"
-import { Diet } from "../../types/diet"
+import { Diet, MacronutrientsDivision } from "../../types/diet"
 import { DietState } from "../../types/dietState"
 import { Dish as DishType } from "../../types/dish"
 import { Meal, MealDish, MealProduct } from "../../types/meal"
@@ -13,6 +13,12 @@ const initialState: DietState = {
 		title: "",
 		description: "",
 		days: [],
+		caloricGoal: "0",
+		macronutrientsDivision: {
+			proteins: "0",
+			carbohydrates: "0",
+			fats: "0",
+		},
 	},
 	dayNames: [
 		"Poniedziałek",
@@ -34,7 +40,17 @@ const dietSlice = createSlice({
 	initialState,
 	reducers: {
 		clearDiet: state => {
-			state.currentDiet = { title: "", description: "", days: [] }
+			state.currentDiet = {
+				title: "",
+				description: "",
+				caloricGoal: "0",
+				macronutrientsDivision: {
+					proteins: "0",
+					carbohydrates: "0",
+					fats: "0",
+				},
+				days: [],
+			}
 		},
 
 		importDiet: (state, action: PayloadAction<Diet>) => {
@@ -47,6 +63,17 @@ const dietSlice = createSlice({
 
 		changeDescription: (state, action: PayloadAction<string>) => {
 			state.currentDiet.description = action.payload
+		},
+
+		changeCaloricGoal: (state, action: PayloadAction<string>) => {
+			state.currentDiet.caloricGoal = action.payload
+		},
+
+		changeMacronutrientsDivision: (
+			state,
+			action: PayloadAction<MacronutrientsDivision>
+		) => {
+			state.currentDiet.macronutrientsDivision = action.payload
 		},
 
 		addDay: state => {
@@ -403,6 +430,7 @@ export const {
 	importDiet,
 	changeTitle,
 	changeDescription,
+	changeCaloricGoal,
 	addDay,
 	removeDay,
 	changeDayName,
@@ -421,4 +449,5 @@ export const {
 	removeDish,
 	addProductGroup,
 	removeProductGroup,
+	changeMacronutrientsDivision,
 } = dietSlice.actions

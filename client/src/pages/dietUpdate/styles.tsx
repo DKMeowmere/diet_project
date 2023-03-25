@@ -41,6 +41,8 @@ export const Form = styled.form`
 		position: fixed;
 		top: 100px;
 		right: 20px;
+		overflow-y: scroll;
+		max-height: 60vh;
 	}
 	.button-container {
 		position: fixed;
@@ -75,6 +77,13 @@ export const Form = styled.form`
 	.diet-text-main {
 		margin-top: 20px;
 	}
+	.diet-text-sm {
+		background-color: ${({ theme }) => theme.colors.main};
+		padding: 8px;
+		text-align: center;
+		font-size: 0.9rem;
+		color: ${({ theme }) => theme.colors.whiteText};
+	}
 	.main-btn {
 		border-radius: 0;
 		margin: 5px 0px;
@@ -92,6 +101,15 @@ export const Form = styled.form`
 export const DaysContainer = styled.div`
 	width: 100%;
 	position: relative;
+	.day-summary {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		padding: 10px;
+		justify-content: center;
+		align-items: center;
+		background-color: #fff;
+	}
 	.diet-btn-element {
 		margin-bottom: 30px;
 	}
@@ -140,8 +158,7 @@ export const MealsContainer = styled.div`
 		text-align: center;
 		justify-content: space-between;
 		padding: 20px;
-		border-bottom: 1px solid #d6cfcf;
-		background-color: #f0f0f0;
+		border-bottom: 1px solid #fffdd0;
 		.product-name {
 			width: 25%;
 			display: flex;
@@ -157,6 +174,7 @@ export const MealsContainer = styled.div`
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			background-color: #f0f0f0;
 		}
 		.weight-number {
 			.weight-input {
@@ -173,6 +191,51 @@ export const MealsContainer = styled.div`
 		text-align: center;
 		font-size: 1.5rem;
 		margin-top: 30px;
+	}
+	.values {
+		display: flex;
+		flex-direction: row;
+		margin-top: 20px;
+	}
+	.proteins {
+		width: 100%;
+		background-color: #ff8f22;
+		padding: 20px;
+		text-align: center;
+		font-size: 1.5rem;
+		color: ${({ theme }) => theme.colors.whiteText};
+	}
+	.calories {
+		width: 100%;
+		background-color: #f27a00;
+		padding: 20px;
+		text-align: center;
+		font-size: 1.5rem;
+		color: ${({ theme }) => theme.colors.whiteText};
+	}
+	.carbo {
+		width: 100%;
+		background-color: #ff8413;
+		padding: 20px;
+		text-align: center;
+		font-size: 1.5rem;
+		color: ${({ theme }) => theme.colors.whiteText};
+	}
+	.fats {
+		width: 100%;
+		background-color: #ff992f;
+		padding: 20px;
+		text-align: center;
+		font-size: 1.5rem;
+		color: ${({ theme }) => theme.colors.whiteText};
+	}
+	.amount {
+		width: 100%;
+		padding: 20px;
+		text-align: center;
+		background-color: #d96500;
+		font-size: 1.5rem;
+		color: ${({ theme }) => theme.colors.whiteText};
 	}
 	.diet-btn {
 		margin-bottom: 30px;

@@ -11,7 +11,9 @@ import {
 	addDish,
 	addProduct,
 	addProductGroup,
+	changeCaloricGoal,
 	changeDescription,
+	changeMacronutrientsDivision,
 	changeTitle,
 	clearDiet,
 	importDiet,
@@ -34,6 +36,12 @@ function CreateDiet() {
 	const description = useAppSelector(
 		state => state.diet.currentDiet.description
 	)
+	const caloricGoal = useAppSelector(
+		state => state.diet.currentDiet.caloricGoal
+	)
+	const macronutrientsDivision = useAppSelector(
+		state => state.diet.currentDiet.macronutrientsDivision
+	)
 	const days = useAppSelector(state => state.diet.currentDiet.days)
 	const dispatch = useAppDispatch()
 	const [isProductModalOpen, setIsProductModalOpen] = useState(false)
@@ -51,10 +59,17 @@ function CreateDiet() {
 		try {
 			validate(diet)
 			dispatch(startLoading())
+			const { carbohydrates, fats, proteins } = macronutrientsDivision
 
 			const newDiet: unknown = {
 				...diet,
 				_id: undefined,
+				caloricGoal: +diet.caloricGoal,
+				macronutrientsDivision: {
+					carbohydrates: +carbohydrates,
+					fats: +fats,
+					proteins: +proteins,
+				},
 				days: diet.days.map(day => ({
 					...day,
 					_id: undefined,
@@ -225,6 +240,60 @@ function CreateDiet() {
 						value={title}
 						onChange={e => dispatch(changeTitle(e.target.value))}
 					/>
+					<p className="diet-text-main">Podaj cel kaloryczny</p>
+					<Input
+						width="100%"
+						height="65px"
+						placeholder="Podaj cel kaloryczny"
+						value={caloricGoal}
+						onChange={e => dispatch(changeCaloricGoal(e.target.value))}
+					/>
+					<p className="diet-text-main">Podaj podział makroelemetów</p>
+					<p className="diet-text-sm">Węglowodany (%)</p>
+					<Input
+						width="100%"
+						height="35px"
+						placeholder="Podaj węglowodany (%)"
+						value={macronutrientsDivision.carbohydrates}
+						onChange={e =>
+							dispatch(
+								changeMacronutrientsDivision({
+									...macronutrientsDivision,
+									carbohydrates: e.target.value,
+								})
+							)
+						}
+					/>
+					<p className="diet-text-sm">Tłuszcze (%)</p>
+					<Input
+						width="100%"
+						height="35px"
+						placeholder="Podaj tłuszcze (%)"
+						value={macronutrientsDivision.fats}
+						onChange={e =>
+							dispatch(
+								changeMacronutrientsDivision({
+									...macronutrientsDivision,
+									fats: e.target.value,
+								})
+							)
+						}
+					/>
+					<p className="diet-text-sm">Białka (%)</p>
+					<Input
+						width="100%"
+						height="35px"
+						placeholder="Podaj białka (%)"
+						value={macronutrientsDivision.proteins}
+						onChange={e =>
+							dispatch(
+								changeMacronutrientsDivision({
+									...macronutrientsDivision,
+									proteins: e.target.value,
+								})
+							)
+						}
+					/>
 					<p className="diet-text-main">Podaj opis diety</p>
 					<Textarea
 						width="100%"
@@ -233,7 +302,6 @@ function CreateDiet() {
 						value={description}
 						onChange={e => dispatch(changeDescription(e.target.value))}
 					/>
-
 					<div className="button-container">
 						<Button
 							width="100%"
