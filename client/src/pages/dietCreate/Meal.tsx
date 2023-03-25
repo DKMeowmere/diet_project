@@ -36,7 +36,7 @@ export default function Meal({
 			<div className='meal-name'>Podaj nazwe posiłku</div>
 			<Input
 				width='100%'
-				height='70px'
+				height='60px'
 				placeholder='Podaj tytuł'
 				value={meal.name}
 				onChange={e =>
@@ -53,7 +53,7 @@ export default function Meal({
 			<div className='meal-name'>Podaj opis posiłku</div>
 			<Textarea
 				width='100%'
-				height='150px'
+				height='60px'
 				placeholder='podaj opis... (opcjonalnie)'
 				value={meal.description}
 				onChange={e =>
@@ -66,46 +66,37 @@ export default function Meal({
 					)
 				}
 			/>
-			<Button
-				width='100%'
-				height='40px'
-				type='button'
-				bgColor={theme.colors.main}
-				onClick={() => {
-					dispatch(updateWhereToPass({ dayId: day._id, mealId: meal._id }))
-					setIsProductModalOpen(true)
-				}}
-				className='meal-btn'>
-				Dodaj produkt do posiłku:
-				{meal.name}
-			</Button>
-			<Button
-				width='100%'
-				height='40px'
-				type='button'
-				bgColor={theme.colors.main}
-				onClick={() => {
-					dispatch(updateWhereToPass({ dayId: day._id, mealId: meal._id }))
-					setIsProductGroupModalOpen(true)
-				}}
-				className='meal-btn'>
-				Dodaj potrawe do posiłku:
-				{meal.name}
-			</Button>
-			{/* <Button
-				width="100%"
-				height="40px"
-				type="button"
-				bgColor={theme.colors.main}
-				onClick={() => {
-					dispatch(updateWhereToPass({ dayId: day._id, mealId: meal._id }))
-					setIsDishModalOpen(true)
-				}}
-				className="meal-btn"
-			>
-				Dodaj potrawe do posiłku:
-				{meal.name}
-			</Button> */}
+			<div className='btn-element-container'>
+				<Button
+					width='40%'
+					height='70px'
+					type='button'
+					bgColor={theme.colors.main}
+					onClick={() => {
+						dispatch(updateWhereToPass({ dayId: day._id, mealId: meal._id }))
+						setIsProductModalOpen(true)
+					}}
+					className='diet-btn-element'>
+					Dodaj produkt do posiłku:
+					{meal.name}
+				</Button>
+			</div>
+			<div className='btn-element-container-2'>
+				<Button
+					width='40%'
+					height='70px'
+					type='button'
+					bgColor={theme.colors.main}
+					onClick={() => {
+						dispatch(updateWhereToPass({ dayId: day._id, mealId: meal._id }))
+						setIsProductGroupModalOpen(true)
+					}}
+					className='diet-btn-element'>
+					Dodaj potrawe do posiłku:
+					{meal.name}
+				</Button>
+			</div>
+
 			{meal.products.length > 0 && (
 				<ProductsContainer>
 					<div className='product-container'>
@@ -161,16 +152,18 @@ export default function Meal({
 								+calculateSum(
 									meal.products.map(product => {
 										if (product.referringTo) return 0
-										return getMealProductProperty(product,'proteins')
+										return getMealProductProperty(product, 'proteins')
 									})
 								).toFixed(2)
-							}B</div>
+							}
+							B
+						</div>
 						<div className='fats-meal'>
 							{
 								+calculateSum(
 									meal.products.map(product => {
 										if (product.referringTo) return 0
-										return getMealProductProperty(product,'fats')
+										return getMealProductProperty(product, 'fats')
 									})
 								).toFixed(2)
 							}

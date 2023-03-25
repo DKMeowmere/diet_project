@@ -62,6 +62,7 @@ export default function Product({ product, meal, day }: Props) {
 						<Input
 							width="40px"
 							height="100%"
+							inputClassName="weight-input"
 							placeholder="Podaj ilość"
 							value={product.count.toString()}
 							onChange={e =>

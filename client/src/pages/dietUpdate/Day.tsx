@@ -1,11 +1,11 @@
-import { addMeal, changeDayName, removeDay } from "../../app/features/dietSlice"
-import { useAppDispatch } from "../../app/hooks"
-import Input from "../../components/input/Index"
-import { Day as DayType } from "../../types/day"
-import { MealsContainer } from "./styles"
-import Meal from "./Meal"
-import theme from "../../app/theme"
-import { Button } from "../../components/button/Button"
+import { addMeal, changeDayName, removeDay } from '../../app/features/dietSlice'
+import { useAppDispatch } from '../../app/hooks'
+import Input from '../../components/input/Index'
+import { Day as DayType } from '../../types/day'
+import { MealsContainer } from './styles'
+import Meal from './Meal'
+import theme from '../../app/theme'
+import { Button } from '../../components/button/Button'
 
 type Props = {
 	day: DayType
@@ -29,14 +29,15 @@ export default function Day({
 	const dispatch = useAppDispatch()
 
 	return (
-		<div className="day" key={day._id}>
-			<div className="input-diet-box">
-				<div className="diet-name">Podaj nazwe dnia</div>
-				<div className="input-box">
+		<div className='day' key={day._id}>
+			<div className='meal-name-element'>
+				<div className='diet-name'>Podaj nazwe dnia</div>
+				<div className='input-box'>
 					<Input
-						width="100%"
-						height="50px"
-						placeholder="Podaj tytuł"
+						width='100%'
+						height='60px'
+						placeholder='Podaj tytuł'
+						inputClassName='day-input'
 						value={day.day}
 						onChange={e =>
 							dispatch(
@@ -63,31 +64,32 @@ export default function Day({
 					))}
 				</MealsContainer>
 			)}
-
-			<Button
-				width="100%"
-				height="40px"
-				type="button"
-				className="diet-btn-element"
-				bgColor={theme.colors.main}
-				onClick={() => dispatch(addMeal({ day }))}
-			>
-				Dodaj posiłek do dnia: {day.day}
-			</Button>
-			<Button
-				width="100%"
-				height="40px"
-				type="button"
-				bgColor={theme.colors.errorMain}
-				onClick={() => {
-					if (pageNumber >= daysCount - 1) {
-						setPageNumber(pageNumber - 1)
-					}
-					dispatch(removeDay(day))
-				}}
-			>
-				Usuń dzień
-			</Button>
+			<div className='btn-element-container'>
+				<Button
+					width='40%'
+					height='70px'
+					type='button'
+					className='diet-btn-element'
+					bgColor={theme.colors.main}
+					onClick={() => dispatch(addMeal({ day }))}>
+					Dodaj posiłek do dnia: {day.day}
+				</Button>
+			</div>
+			<div className='btn-element-container'>
+				<Button
+					width='70%'
+					height='70px'
+					type='button'
+					bgColor={theme.colors.errorMain}
+					onClick={() => {
+						if (pageNumber >= daysCount - 1) {
+							setPageNumber(pageNumber - 1)
+						}
+						dispatch(removeDay(day))
+					}}>
+					Usuń dzień
+				</Button>
+			</div>
 		</div>
 	)
 }

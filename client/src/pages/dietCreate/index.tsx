@@ -1,11 +1,11 @@
-import { DaysContainer, DietCreateContainer, Form } from "./styles"
-import Input from "../../components/input/Index"
-import { Button } from "../../components/button/Button"
-import theme from "../../app/theme"
-import { useState, useEffect } from "react"
-import Textarea from "../../components/textarea/Index"
-import ProductModal from "../../components/productModal/Index"
-import { useAppDispatch, useAppSelector } from "../../app/hooks"
+import { DaysContainer, DietCreateContainer, Form } from './styles'
+import Input from '../../components/input/Index'
+import { Button } from '../../components/button/Button'
+import theme from '../../app/theme'
+import { useState, useEffect } from 'react'
+import Textarea from '../../components/textarea/Index'
+import ProductModal from '../../components/productModal/Index'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import {
 	addDay,
 	addDish,
@@ -15,25 +15,23 @@ import {
 	changeTitle,
 	clearDiet,
 	importDiet,
-} from "../../app/features/dietSlice"
-import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
-import { validate } from "./validateDiet"
-import { useCookies } from "react-cookie"
-import { useNavigate } from "react-router-dom"
-import Day from "./Day"
-import { LeftArrow, RightArrow } from "../../components/arrow/Index"
-import { Product as ProductType } from "../../types/product"
-import { Dish as DishType } from "../../types/dish"
-import DishModal from "../../components/dishModal/Index"
-import ProductGroupModal from "../../components/productGroupModal/Index"
-import { ProductGroup as ProductGroupType } from "../../types/productGroup."
+} from '../../app/features/dietSlice'
+import { addAlert, endLoading, startLoading } from '../../app/features/appSlice'
+import { validate } from './validateDiet'
+import { useCookies } from 'react-cookie'
+import { useNavigate } from 'react-router-dom'
+import Day from './Day'
+import { LeftArrow, RightArrow } from '../../components/arrow/Index'
+import { Product as ProductType } from '../../types/product'
+import { Dish as DishType } from '../../types/dish'
+import DishModal from '../../components/dishModal/Index'
+import ProductGroupModal from '../../components/productGroupModal/Index'
+import { ProductGroup as ProductGroupType } from '../../types/productGroup.'
 
 function CreateDiet() {
 	const diet = useAppSelector(state => state.diet.currentDiet)
 	const title = useAppSelector(state => state.diet.currentDiet.title)
-	const description = useAppSelector(
-		state => state.diet.currentDiet.description
-	)
+	const description = useAppSelector(state => state.diet.currentDiet.description)
 	const days = useAppSelector(state => state.diet.currentDiet.days)
 	const dispatch = useAppDispatch()
 	const [isProductModalOpen, setIsProductModalOpen] = useState(false)
@@ -69,18 +67,16 @@ function CreateDiet() {
 							...dish,
 							_id: undefined,
 						})),
-						productGroups: meal.productGroups.map(
-							productGroup => productGroup._id
-						),
+						productGroups: meal.productGroups.map(productGroup => productGroup._id),
 					})),
 				})),
 			}
 
 			const res = await fetch(`${serverUrl}/api/diet`, {
-				method: "POST",
+				method: 'POST',
 				body: JSON.stringify(newDiet),
 				headers: {
-					"Content-Type": "application/json",
+					'Content-Type': 'application/json',
 					Authorization: `Bearer ${cookies.token}`,
 				},
 			})
@@ -93,38 +89,38 @@ function CreateDiet() {
 
 			dispatch(
 				addAlert({
-					body: "Diete dodano pomyślnie",
-					type: "SUCCESS",
+					body: 'Diete dodano pomyślnie',
+					type: 'SUCCESS',
 				})
 			)
 
 			navigate(`/diet/${data._id}`)
-			localStorage.setItem("diet", "null")
+			localStorage.setItem('diet', 'null')
 		} catch (err: unknown) {
-			const message = err instanceof Error ? err.message : "Nieoczekiwany błąd"
+			const message = err instanceof Error ? err.message : 'Nieoczekiwany błąd'
 
 			dispatch(
 				addAlert({
-					body: message || "Nieoczekiwany błąd",
-					type: "ERROR",
+					body: message || 'Nieoczekiwany błąd',
+					type: 'ERROR',
 				})
 			)
 		}
 	}
 
 	useEffect(() => {
-		const diet = JSON.parse(localStorage.getItem("diet") || "null")
+		const diet = JSON.parse(localStorage.getItem('diet') || 'null')
 
 		if (diet) {
 			dispatch(importDiet(diet))
 		}
 
-		localStorage.setItem("diet", JSON.stringify(diet))
+		localStorage.setItem('diet', JSON.stringify(diet))
 	}, [])
 
 	useEffect(() => {
 		if (diet.days.length > 0) {
-			localStorage.setItem("diet", JSON.stringify(diet))
+			localStorage.setItem('diet', JSON.stringify(diet))
 		}
 	}, [diet])
 
@@ -154,22 +150,15 @@ function CreateDiet() {
 		setIsProductGroupModalOpen(false)
 
 		const dayIndex = diet.days.findIndex(day => day._id === whereToPass.dayId)
-		const mealIndex = diet.days[dayIndex].meals.findIndex(
-			meal => meal._id === whereToPass.mealId
-		)
+		const mealIndex = diet.days[dayIndex].meals.findIndex(meal => meal._id === whereToPass.mealId)
 
-		const currentProductGroup =
-			diet.days[dayIndex].meals[mealIndex].productGroups
+		const currentProductGroup = diet.days[dayIndex].meals[mealIndex].productGroups
 
-		if (
-			currentProductGroup.findIndex(
-				prevProductGroup => prevProductGroup._id === productGroup._id
-			) !== -1
-		) {
+		if (currentProductGroup.findIndex(prevProductGroup => prevProductGroup._id === productGroup._id) !== -1) {
 			dispatch(
 				addAlert({
-					body: "Już przypisałeś tą grupę produktów do tego posiłku",
-					type: "WARNING",
+					body: 'Już przypisałeś tą grupę produktów do tego posiłku',
+					type: 'WARNING',
 				})
 			)
 			return
@@ -198,17 +187,9 @@ function CreateDiet() {
 	return (
 		<DietCreateContainer>
 			{isProductModalOpen && (
-				<ProductModal
-					setIsModalOpen={setIsProductModalOpen}
-					onProductClick={handleProductAddition}
-				/>
+				<ProductModal setIsModalOpen={setIsProductModalOpen} onProductClick={handleProductAddition} />
 			)}
-			{isDishModalOpen && (
-				<DishModal
-					setIsModalOpen={setIsDishModalOpen}
-					onDishClick={handleDishAddition}
-				/>
-			)}
+			{isDishModalOpen && <DishModal setIsModalOpen={setIsDishModalOpen} onDishClick={handleDishAddition} />}
 			{isProductGroupModalOpen && (
 				<ProductGroupModal
 					setIsModalOpen={setIsProductGroupModalOpen}
@@ -216,61 +197,55 @@ function CreateDiet() {
 				/>
 			)}
 			<Form onSubmit={handleSubmit}>
-				<div className="right-form">
-					<p className="diet-title">Podaj tytuł diety</p>
+				<div className='right-form'>
+					<p className='diet-title'>Podaj tytuł diety</p>
 					<Input
-						width="100%"
-						height="65px"
-						placeholder="Podaj tytuł"
+						width='100%'
+						height='65px'
+						placeholder='Podaj tytuł'
 						value={title}
 						onChange={e => dispatch(changeTitle(e.target.value))}
 					/>
-					<p className="diet-text-main">Podaj opis diety</p>
+					<p className='diet-text-main'>Podaj opis diety</p>
 					<Textarea
-						width="100%"
-						height="150px"
-						placeholder="podaj opis... (opcjonalnie)"
+						width='100%'
+						height='80px'
+						placeholder='podaj opis... (opcjonalnie)'
 						value={description}
 						onChange={e => dispatch(changeDescription(e.target.value))}
 					/>
 
-					<div className="button-container">
+					<div className='button-container'>
 						<Button
-							width="100%"
-							height="40px"
-							type="reset"
+							width='100%'
+							height='40px'
+							type='reset'
 							bgColor={theme.colors.errorMain}
 							onClick={() => {
-								localStorage.setItem("diet", "null")
+								localStorage.setItem('diet', 'null')
 								setPageNumber(0)
 								dispatch(clearDiet())
 							}}
-							className="main-btn"
-						>
+							className='main-btn'>
 							Wyczyść diete
 						</Button>
-						<Button
-							width="100%"
-							height="40px"
-							type="submit"
-							bgColor={theme.colors.main}
-							className="main-btn"
-						>
+						<Button width='100%' height='40px' type='submit' bgColor={theme.colors.main} className='main-btn'>
 							Zatwierź
 						</Button>
 					</div>
 				</div>
-				<div className="left-form">
-					<Button
-						width="100%"
-						height="40px"
-						type="button"
-						bgColor={theme.colors.main}
-						onClick={() => dispatch(addDay())}
-						className="diet-btn"
-					>
-						Dodaj Dzień
-					</Button>
+				<div className='left-form'>
+					<div className='btn-element-container'>
+						<Button
+							width='50%'
+							height='70px'
+							type='button'
+							bgColor={theme.colors.main}
+							onClick={() => dispatch(addDay())}
+							className='diet-btn-element'>
+							Dodaj Dzień
+						</Button>
+					</div>
 					{days.length > 0 && (
 						<DaysContainer>
 							<Day
@@ -283,18 +258,10 @@ function CreateDiet() {
 								daysCount={days.length}
 							/>
 							{pageNumber > 0 && (
-								<LeftArrow
-									onClick={() => setPageNumber(prevPage => prevPage - 1)}
-									position="absolute"
-									top="20px"
-								/>
+								<LeftArrow onClick={() => setPageNumber(prevPage => prevPage - 1)} position='absolute' top='20px' />
 							)}
 							{pageNumber < diet.days.length - 1 && (
-								<RightArrow
-									onClick={() => setPageNumber(prevPage => prevPage + 1)}
-									position="absolute"
-									top="20px"
-								/>
+								<RightArrow onClick={() => setPageNumber(prevPage => prevPage + 1)} position='absolute' top='20px' />
 							)}
 						</DaysContainer>
 					)}

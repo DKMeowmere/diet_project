@@ -1,31 +1,30 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 export const DietCreateContainer = styled.article`
 	width: 100%;
 	padding-bottom: 30px;
-	.input-diet-box {
+	.meal-name-element {
+		width: 100%;
+		background-color: ${({ theme }) => theme.colors.main};
+		color: ${({ theme }) => theme.colors.whiteText};
+		text-align: center;
+		font-size: 1.5rem;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		height: 200px;
-		background-color: #fafafa;
+	}
+	.diet-name {
 		width: 100%;
-		margin-bottom: 40px;
-		.diet-name {
-			width: 100%;
-			padding: 20px;
-			text-align: center;
-			color: ${({ theme }) => theme.colors.blackText};
-			font-size: 1.5rem;
-		}
-		.input-box {
-			width: 50%;
-			margin-left: auto;
-			padding: 20px;
-			margin-right: auto;
-			margin-bottom: 20px;
-		}
+		padding: 35px;
+		text-align: center;
+		color: ${({ theme }) => theme.colors.main};
+		font-size: 1.5rem;
+		background-color: #303030;
+	}
+	.input-box {
+		width: 100%;
+	}
+	.day-input {
+		text-align: center;
 	}
 `
 export const Form = styled.form`
@@ -47,7 +46,13 @@ export const Form = styled.form`
 		right: 20px;
 		width: inherit;
 	}
-
+	.btn-element-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		margin-bottom: 20px;
+	}
 	.diet-title,
 	.diet-text-main {
 		width: 100%;
@@ -70,17 +75,13 @@ export const Form = styled.form`
 		margin-top: 30px;
 		color: ${({ theme }) => theme.colors.whiteText};
 	}
-
-	.diet-text-main {
+	button .diet-text-main {
 		margin-top: 20px;
 	}
 	.main-btn {
 		border-radius: 0;
 		margin: 5px 0px;
 		width: 100%;
-	}
-	button {
-		border-radius: 0 !important;
 	}
 	input {
 		display: block;
@@ -91,8 +92,22 @@ export const Form = styled.form`
 export const DaysContainer = styled.div`
 	width: 100%;
 	position: relative;
+	.btn-element-container,
+	.btn-element-container-2 {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		margin-top: 20px;
+		margin-bottom: 0px;
+	}
+	.btn-element-container-2 {
+		margin-top: 0px;
+	}
 	.diet-btn-element {
 		margin-bottom: 30px;
+		border-radius: 10px;
+		padding: 20px;
 	}
 `
 export const MealsContainer = styled.div`
@@ -102,7 +117,6 @@ export const MealsContainer = styled.div`
 		.product-value-container {
 			position: relative;
 			border-radius: 20px;
-			position: relative;
 		}
 		svg {
 			width: 32px;
@@ -115,15 +129,19 @@ export const MealsContainer = styled.div`
 			position: absolute;
 		}
 	}
-	.product-container-element{
-		height: 100px;
+	.product-container-element {
+		height: 75px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		font-size: 1.5rem;
 		margin-top: 50px;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
 	}
-	.product-container,.product-container-element {
+
+	.product-container,
+	.product-container-element {
 		display: flex;
 		justify-content: space-between;
 		text-align: center;
@@ -231,10 +249,25 @@ export const MealsContainer = styled.div`
 	}
 	.diet-btn {
 		margin-bottom: 30px;
+		border-top-left-radius: 0px;
+		border-top-right-radius: 0px;
 	}
-	.meal-btn {
+	.btn-container {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	.btn-meal {
 		margin: 20px 0;
+		border-radius: 20px;
+		width: 50vw;
+		background-color: ${({ theme }) => theme.colors.main};
+		color: ${({ theme }) => theme.colors.whiteText};
+		margin: 20px;
 	}
+
 	.meal-summary {
 		margin-top: 20px;
 	}
@@ -251,6 +284,16 @@ export const DishesContainer = styled.div`
 export const ProductGroupContainer = styled.div`
 	width: 100%;
 	margin: auto;
+	.product-group{
+		background-color: #ffa500;
+		padding: 10px;
+		margin: 40px 0px;
+		border-radius: 15px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
 	.product-group-title {
 		margin: 15px 0;
 		padding: 15px;
@@ -259,6 +302,7 @@ export const ProductGroupContainer = styled.div`
 		text-align: center;
 		font-size: 1.5rem;
 		position: relative;
+		width: 70%;
 		.close-btn {
 			position: absolute;
 			cursor: pointer;
@@ -272,6 +316,7 @@ export const ProductGroupContainer = styled.div`
 	}
 	.product-group-description {
 		margin: 15px 0;
+		width: 90%;
 		padding: 10px;
 		background-color: #fff;
 		border-radius: 10px;
