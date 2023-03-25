@@ -3,6 +3,16 @@ import styled from 'styled-components'
 export const DietCreateContainer = styled.article`
 	width: 100%;
 	padding-bottom: 30px;
+	.diet-property-badge {
+		width: 90%;
+		max-width: 500px;
+		margin: 20px 20px 0 0;
+		background-color: #fff;
+		padding: 20px;
+		border-radius: 20px;
+		font-weight: bold;
+		color: ${({ theme }) => theme.colors.main};
+	}
 	.btn-element-container {
 		display: flex;
 		justify-content: center;

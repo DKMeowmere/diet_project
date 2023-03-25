@@ -3,6 +3,16 @@ import styled from 'styled-components'
 export const DietCreateContainer = styled.article`
 	width: 100%;
 	padding-bottom: 30px;
+	.diet-property-badge {
+		width: 90%;
+		max-width: 500px;
+		margin: 20px 20px 0 0;
+		background-color: #fff;
+		padding: 20px;
+		border-radius: 20px;
+		font-weight: bold;
+		color: ${({ theme }) => theme.colors.main};
+	}
 	.meal-name-element {
 		width: 100%;
 		background-color: ${({ theme }) => theme.colors.main};
@@ -284,7 +294,7 @@ export const DishesContainer = styled.div`
 export const ProductGroupContainer = styled.div`
 	width: 100%;
 	margin: auto;
-	.product-group{
+	.product-group {
 		background-color: #ffa500;
 		padding: 10px;
 		margin: 40px 0px;

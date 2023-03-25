@@ -1,11 +1,13 @@
-import { addMeal, changeDayName, removeDay } from '../../app/features/dietSlice'
-import { useAppDispatch } from '../../app/hooks'
-import Input from '../../components/input/Index'
-import { Day as DayType } from '../../types/day'
-import { MealsContainer } from './styles'
-import Meal from './Meal'
-import theme from '../../app/theme'
-import { Button } from '../../components/button/Button'
+import { addMeal, changeDayName, removeDay } from "../../app/features/dietSlice"
+import { useAppDispatch } from "../../app/hooks"
+import Input from "../../components/input/Index"
+import { Day as DayType } from "../../types/day"
+import { MealsContainer } from "./styles"
+import Meal from "./Meal"
+import theme from "../../app/theme"
+import { Button } from "../../components/button/Button"
+import PropertyBadge from "../../components/propertyBadge/Index"
+import useCalculations from "../../hooks/useCalculations"
 
 type Props = {
 	day: DayType
@@ -27,6 +29,7 @@ export default function Day({
 	setIsProductGroupModalOpen,
 }: Props) {
 	const dispatch = useAppDispatch()
+	const { getDayProperty } = useCalculations()
 
 	return (
 		<div className='day' key={day._id}>
@@ -49,6 +52,13 @@ export default function Day({
 						}
 					/>
 				</div>
+        <PropertyBadge
+					className="diet-property-badge"
+					calories={getDayProperty(day, "calories")}
+					carbohydrates={getDayProperty(day, "carbohydrates")}
+					proteins={getDayProperty(day, "proteins")}
+					fats={getDayProperty(day, "fats")}
+				/>
 			</div>
 			{day.meals.length > 0 && (
 				<MealsContainer>
