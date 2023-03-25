@@ -25,6 +25,7 @@ export const DietCreateContainer = styled.article`
 			padding: 20px;
 			margin-right: auto;
 			margin-bottom: 20px;
+			padding: 5px;
 		}
 	}
 `
