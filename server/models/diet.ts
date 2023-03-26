@@ -42,6 +42,24 @@ const dietSchema = new mongoose.Schema<Diet>(
 			type: String,
 			trim: true,
 		},
+		caloricGoal: {
+			type: Number,
+			required: true,
+		},
+		macronutrientsDivision: {
+			proteins: {
+				type: Number,
+				required: true,
+			},
+			fats: {
+				type: Number,
+				required: true,
+			},
+			carbohydrates: {
+				type: Number,
+				required: true,
+			},
+		},
 		days: [daysSchema],
 	},
 	{ timestamps: true }

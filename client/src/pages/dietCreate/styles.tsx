@@ -59,6 +59,8 @@ export const Form = styled.form`
 		position: fixed;
 		top: 100px;
 		right: 20px;
+		overflow-y: scroll;
+		max-height: 60vh;
 	}
 	.button-container {
 		position: fixed;
@@ -97,6 +99,13 @@ export const Form = styled.form`
 	}
 	button .diet-text-main {
 		margin-top: 20px;
+	}
+	.diet-text-sm {
+		background-color: ${({ theme }) => theme.colors.main};
+		padding: 8px;
+		text-align: center;
+		font-size: 0.9rem;
+		color: ${({ theme }) => theme.colors.whiteText};
 	}
 	.main-btn {
 		border-radius: 0;

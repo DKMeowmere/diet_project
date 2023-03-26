@@ -1,5 +1,5 @@
 import { addMeal, changeDayName, removeDay } from "../../app/features/dietSlice"
-import { useAppDispatch } from "../../app/hooks"
+import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import Input from "../../components/input/Index"
 import { Day as DayType } from "../../types/day"
 import { MealsContainer } from "./styles"
@@ -23,13 +23,14 @@ export default function Day({
 	day,
 	setIsProductModalOpen,
 	setIsDishModalOpen,
+	setIsProductGroupModalOpen,
 	pageNumber,
 	setPageNumber,
 	daysCount,
-	setIsProductGroupModalOpen,
 }: Props) {
 	const dispatch = useAppDispatch()
-	const { getDayProperty } = useCalculations()
+	const { getDayProperty, getRecommendedMacronutrientCount } = useCalculations()
+	const diet = useAppSelector(state => state.diet.currentDiet)
 
 	return (
 		<div className='day' key={day._id}>
