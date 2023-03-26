@@ -112,6 +112,16 @@ function DietPdf() {
 												</div>
 											)}
 										</div>
+										{meal.productGroups.map(productGroup =>
+											productGroup.description ? (
+												<p
+													className="product-group-description"
+													key={productGroup._id}
+												>
+													opis {productGroup.name}:{productGroup.description}
+												</p>
+											) : null
+										)}
 										<TableContainer>
 											<HeaderRow />
 											<tbody>
