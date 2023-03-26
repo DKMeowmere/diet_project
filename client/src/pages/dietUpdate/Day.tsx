@@ -52,13 +52,15 @@ export default function Day({
 						}
 					/>
 				</div>
-        <PropertyBadge
-					className="diet-property-badge"
-					calories={getDayProperty(day, "calories")}
-					carbohydrates={getDayProperty(day, "carbohydrates")}
-					proteins={getDayProperty(day, "proteins")}
-					fats={getDayProperty(day, "fats")}
-				/>
+				<div className='diet-property-badge-container'>
+					<PropertyBadge
+						className='diet-property-badge'
+						calories={getDayProperty(day, 'calories')}
+						carbohydrates={getDayProperty(day, 'carbohydrates')}
+						proteins={getDayProperty(day, 'proteins')}
+						fats={getDayProperty(day, 'fats')}
+					/>
+				</div>
 			</div>
 			{day.meals.length > 0 && (
 				<MealsContainer>

@@ -3,10 +3,19 @@ import styled from 'styled-components'
 export const DietCreateContainer = styled.article`
 	width: 100%;
 	padding-bottom: 30px;
+	.diet-property-badge-container{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 20px;
+		background-color: #ddd;
+		margin-top: 20px;
+		background-color: #ffa500;
+		border-radius: 10px;
+	}
 	.diet-property-badge {
 		width: 90%;
 		max-width: 500px;
-		margin: 20px 20px 0 0;
 		background-color: #fff;
 		padding: 20px;
 		border-radius: 20px;
@@ -15,7 +24,7 @@ export const DietCreateContainer = styled.article`
 	}
 	.meal-name-element {
 		width: 100%;
-		background-color: ${({ theme }) => theme.colors.main};
+		
 		color: ${({ theme }) => theme.colors.whiteText};
 		text-align: center;
 		font-size: 1.5rem;
@@ -32,6 +41,7 @@ export const DietCreateContainer = styled.article`
 	}
 	.input-box {
 		width: 100%;
+		
 	}
 	.day-input {
 		text-align: center;
@@ -313,6 +323,7 @@ export const ProductGroupContainer = styled.div`
 		font-size: 1.5rem;
 		position: relative;
 		width: 70%;
+		
 		.close-btn {
 			position: absolute;
 			cursor: pointer;
