@@ -334,7 +334,10 @@ function CreateDiet() {
 						height="40px"
 						type="button"
 						bgColor={theme.colors.main}
-						onClick={() => dispatch(addDay())}
+						onClick={() => {
+							dispatch(addDay())
+							setPageNumber(days.length)
+						}}
 						className="diet-btn"
 					>
 						Dodaj Dzień
