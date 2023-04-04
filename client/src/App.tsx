@@ -26,11 +26,19 @@ import DishDetails from "./pages/dishDetails/Index"
 import ProductGroupList from "./pages/productGroupList/Index"
 import ProductGroupForm from "./pages/productGroupForm/Index"
 
-
 function App() {
 	const isLoading = useAppSelector(state => state.app.isAppLoading)
 	const { isTokenValid } = useTokenValidation()
 	const serverUrl = useAppSelector(state => state.app.serverUrl)
+
+	useEffect(() => {
+		async function reloadServer() {
+			await fetch(`${serverUrl}/reload`)
+		}
+
+		const interval = setInterval(reloadServer, 1000 * 60 * 5)
+		return () => clearInterval(interval)
+	}, [])
 
 	if (!isTokenValid()) {
 		return (
@@ -41,15 +49,6 @@ function App() {
 			</>
 		)
 	}
-
-	useEffect(() => {
-		async function reloadServer() {
-			await fetch(`${serverUrl}/reload`)
-		}
-
-		const interval = setInterval(reloadServer, 1000 * 60 * 5)
-		return () => clearInterval(interval)
-	}, [])
 
 	return (
 		<Container>

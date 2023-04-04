@@ -151,12 +151,18 @@ function UpdateDiet() {
 	}, [])
 
 	function handleProductAddition(product: ProductType) {
-		setIsProductModalOpen(false)
 		dispatch(
 			addProduct({
 				dayId: whereToPass.dayId,
 				mealId: whereToPass.mealId,
 				product,
+			})
+		)
+
+    dispatch(
+			addAlert({
+				body: `Produkt "${product.name}" dodano pomyślnie`,
+				type: "SUCCESS",
 			})
 		)
 	}
@@ -173,8 +179,6 @@ function UpdateDiet() {
 	}
 
 	function handleProductGroupAddition(productGroup: ProductGroupType) {
-		setIsProductGroupModalOpen(false)
-
 		const dayIndex = diet.days.findIndex(day => day._id === whereToPass.dayId)
 		const mealIndex = diet.days[dayIndex].meals.findIndex(
 			meal => meal._id === whereToPass.mealId
@@ -213,6 +217,13 @@ function UpdateDiet() {
 				dayId: whereToPass.dayId,
 				mealId: whereToPass.mealId,
 				productGroup,
+			})
+		)
+
+    dispatch(
+			addAlert({
+				body: `Potrawe "${productGroup.name}" dodano pomyślnie`,
+				type: "SUCCESS",
 			})
 		)
 	}
