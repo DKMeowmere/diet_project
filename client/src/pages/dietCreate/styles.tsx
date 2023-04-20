@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const DietCreateContainer = styled.article`
 	width: 100%;
 	padding-bottom: 30px;
-	.diet-property-badge-container{
+	.diet-property-badge-container {
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -12,6 +12,8 @@ export const DietCreateContainer = styled.article`
 		margin-top: 20px;
 		background-color: #ffa500;
 		border-radius: 10px;
+		flex-direction: column;
+		gap: 20px;
 	}
 	.diet-property-badge {
 		width: 90%;
@@ -24,7 +26,7 @@ export const DietCreateContainer = styled.article`
 	}
 	.meal-name-element {
 		width: 100%;
-		
+
 		color: ${({ theme }) => theme.colors.whiteText};
 		text-align: center;
 		font-size: 1.5rem;
@@ -41,7 +43,6 @@ export const DietCreateContainer = styled.article`
 	}
 	.input-box {
 		width: 100%;
-		
 	}
 	.day-input {
 		text-align: center;
@@ -101,11 +102,14 @@ export const Form = styled.form`
 		margin-top: 20px;
 	}
 	.diet-text-sm {
-		background-color: ${({ theme }) => theme.colors.main};
-		padding: 8px;
+		background-color: ${({ theme }) => theme.colors.whiteText};
+		padding: 10px;
 		text-align: center;
 		font-size: 0.9rem;
-		color: ${({ theme }) => theme.colors.whiteText};
+		color: ${({ theme }) => theme.colors.main};
+		display: flex;
+		gap: 10px;
+		flex-direction: column;
 	}
 	.main-btn {
 		border-radius: 0;
@@ -332,7 +336,7 @@ export const ProductGroupContainer = styled.div`
 		font-size: 1.5rem;
 		position: relative;
 		width: 70%;
-		
+
 		.close-btn {
 			position: absolute;
 			cursor: pointer;

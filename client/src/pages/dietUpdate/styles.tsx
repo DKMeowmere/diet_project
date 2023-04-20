@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const DietCreateContainer = styled.article`
 	width: 100%;
 	padding-bottom: 30px;
-	.diet-property-badge-container {
+	.diet-property-badge-container{
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -12,6 +12,8 @@ export const DietCreateContainer = styled.article`
 		margin-top: 20px;
 		background-color: #ffa500;
 		border-radius: 10px;
+		flex-direction: column;
+		gap: 20px;
 	}
 	.diet-property-badge {
 		width: 90%;
@@ -99,16 +101,18 @@ export const Form = styled.form`
 
 	.diet-text-main {
 		margin-top: 20px;
-		background-color: ${({ theme }) => theme.colors.whiteText};
-		color: ${({ theme }) => theme.colors.main};
+		background-color: ${({ theme }) => theme.colors.main};
+		color: ${({ theme }) => theme.colors.whiteText};
 	}
 	.diet-text-sm {
-		background-color: ${({ theme }) => theme.colors.main};
-		padding: 8px;
+		background-color: ${({ theme }) => theme.colors.whiteText};
+		padding: 10px;
 		text-align: center;
 		font-size: 0.9rem;
-		color: ${({ theme }) => theme.colors.whiteText};
-		
+		color: ${({ theme }) => theme.colors.main};
+		display: flex;
+		gap: 10px;
+		flex-direction: column;
 	}
 	.main-btn {
 		border-radius: 0;

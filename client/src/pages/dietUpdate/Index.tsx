@@ -34,15 +34,9 @@ import ProductGroupModal from '../../components/productGroupModal/Index'
 function UpdateDiet() {
 	const diet = useAppSelector(state => state.diet.currentDiet)
 	const title = useAppSelector(state => state.diet.currentDiet.title)
-	const description = useAppSelector(
-		state => state.diet.currentDiet.description
-	)
-	const caloricGoal = useAppSelector(
-		state => state.diet.currentDiet.caloricGoal
-	)
-	const macronutrientsDivision = useAppSelector(
-		state => state.diet.currentDiet.macronutrientsDivision
-	)
+	const description = useAppSelector(state => state.diet.currentDiet.description)
+	const caloricGoal = useAppSelector(state => state.diet.currentDiet.caloricGoal)
+	const macronutrientsDivision = useAppSelector(state => state.diet.currentDiet.macronutrientsDivision)
 	const days = useAppSelector(state => state.diet.currentDiet.days)
 	const dispatch = useAppDispatch()
 	const [isProductModalOpen, setIsProductModalOpen] = useState(false)
@@ -230,61 +224,70 @@ function UpdateDiet() {
 						value={title}
 						onChange={e => dispatch(changeTitle(e.target.value))}
 					/>
-					<p className="diet-text-main">Podaj cel kaloryczny</p>
+					<p className='diet-text-main'>Podaj cel kaloryczny</p>
 					<Input
-						width="100%"
-						height="65px"
-						placeholder="Podaj cel kaloryczny"
+						width='100%'
+						height='65px'
+						placeholder='Podaj cel kaloryczny'
 						value={caloricGoal}
 						onChange={e => dispatch(changeCaloricGoal(e.target.value))}
 					/>
-					<p className="diet-text-main">Podaj podział makroelemetów</p>
-					<p className="diet-text-sm">Węglowodany (%)</p>
-					<Input
-						width="100%"
-						height="35px"
-						placeholder="Podaj węglowodany (%)"
-						value={macronutrientsDivision.carbohydrates}
-						onChange={e =>
-							dispatch(
-								changeMacronutrientsDivision({
-									...macronutrientsDivision,
-									carbohydrates: e.target.value,
-								})
-							)
-						}
-					/>
-					<p className="diet-text-sm">Tłuszcze (%)</p>
-					<Input
-						width="100%"
-						height="35px"
-						placeholder="Podaj tłuszcze (%)"
-						value={macronutrientsDivision.fats}
-						onChange={e =>
-							dispatch(
-								changeMacronutrientsDivision({
-									...macronutrientsDivision,
-									fats: e.target.value,
-								})
-							)
-						}
-					/>
-					<p className="diet-text-sm">Białka (%)</p>
-					<Input
-						width="100%"
-						height="35px"
-						placeholder="Podaj białka (%)"
-						value={macronutrientsDivision.proteins}
-						onChange={e =>
-							dispatch(
-								changeMacronutrientsDivision({
-									...macronutrientsDivision,
-									proteins: e.target.value,
-								})
-							)
-						}
-					/>
-					<p className="diet-text-main">Podaj opis diety</p>
+					<p className='diet-text-main'>Podaj podział makroelemetów</p>
+					<p className='diet-text-sm'>
+						Węglowodany (%)
+						<Input
+							width='100%'
+							height='35px'
+							placeholder='Podaj węglowodany (%)'
+							value={macronutrientsDivision.carbohydrates}
+							onChange={e =>
+								dispatch(
+									changeMacronutrientsDivision({
+										...macronutrientsDivision,
+										carbohydrates: e.target.value,
+									})
+								)
+							}
+						/>
+					</p>
+
+					<p className='diet-text-sm'>
+						Tłuszcze (%)
+						<Input
+							width='100%'
+							height='35px'
+							placeholder='Podaj tłuszcze (%)'
+							value={macronutrientsDivision.fats}
+							onChange={e =>
+								dispatch(
+									changeMacronutrientsDivision({
+										...macronutrientsDivision,
+										fats: e.target.value,
+									})
+								)
+							}
+						/>
+					</p>
+
+					<p className='diet-text-sm'>
+						Białka (%)
+						<Input
+							width='100%'
+							height='35px'
+							placeholder='Podaj białka (%)'
+							value={macronutrientsDivision.proteins}
+							onChange={e =>
+								dispatch(
+									changeMacronutrientsDivision({
+										...macronutrientsDivision,
+										proteins: e.target.value,
+									})
+								)
+							}
+						/>
+					</p>
+
+					<p className='diet-text-main'>Podaj opis diety</p>
 					<Textarea
 						width='100%'
 						height='80px'

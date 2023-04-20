@@ -116,12 +116,19 @@ export const Day = styled.section`
 		max-width: 300px;
 		margin: 20px auto 0;
 	}
+	
 `
 
 export const MealsContainer = styled.div`
 	gap: 20px;
 	display: flex;
 	flex-direction: column;
+	..day-name-container:last-child{
+		height:100vh;
+	}
+	.meal-pdf{
+		height: 170vh;
+	}
 	.meal-box {
 		padding: 20px;
 		color: ${({ theme }) => theme.colors.blackText};
