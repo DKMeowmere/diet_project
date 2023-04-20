@@ -1,4 +1,5 @@
 export type Product = {
+  product: any
 	_id: string
 	name: string
 	calories: string
