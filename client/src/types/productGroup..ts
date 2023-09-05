@@ -5,6 +5,7 @@ export type ProductGroup = {
 	name: string
 	description?: string  
   auxiliaryDescription?: string
+  category?: string
 	products: Product[]
 }
 

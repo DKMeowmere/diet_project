@@ -18,6 +18,11 @@ const productGroupSchema = new mongoose.Schema<ProductGroup>(
 			trim: true,
 			default: "",
 		},
+		category: {
+			type: String,
+			trim: true,
+			default: "",
+		},
 		products: [
 			{
 				type: mongoose.Schema.Types.ObjectId,
