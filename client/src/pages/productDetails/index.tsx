@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
 import { useCookies } from "react-cookie"
 
-function ProductDetails() {
+function ProductForm() {
 	const [product, setProduct] = useState<ProductType | null>(null)
 	const { id } = useParams()
 	const serverUrl = useAppSelector(state => state.app.serverUrl)
@@ -97,8 +97,7 @@ function ProductDetails() {
 
 			setProduct(data)
 		} catch (err: unknown) {
-			const message =
-				err instanceof Error ? err.message : "Nieoczekiwany błąd"
+			const message = err instanceof Error ? err.message : "Nieoczekiwany błąd"
 
 			dispatch(
 				addAlert({
@@ -141,8 +140,7 @@ function ProductDetails() {
 
 			navigate("/product")
 		} catch (err: unknown) {
-			const message =
-				err instanceof Error ? err.message : "Nieoczekiwany błąd"
+			const message = err instanceof Error ? err.message : "Nieoczekiwany błąd"
 
 			dispatch(
 				addAlert({
@@ -166,26 +164,22 @@ function ProductDetails() {
 	return (
 		<ProductDetailsContainer>
 			<Form onSubmit={handleSubmit}>
-				<p className="product-title">
-					Modyfikuj Produkt: {product.name}
-				</p>
-				<p className="product-subtitle">
-					Wszystkie wartości są dla 100g
-				</p>
+				<p className="product-title">Modyfikuj Produkt: {product.name}</p>
+				<p className="product-subtitle">Wszystkie wartości są dla 100g</p>
 				<p className="product-text">Podaj nazwe produktu</p>
 				<Input
 					width="90%"
 					height="50px"
 					placeholder="Podaj nazwe produktu..."
 					value={product.name}
-					onChange={e =>
-						setProduct({ ...product, name: e.target.value })
-					}
+					data-cy="product-name-input"
+					onChange={e => setProduct({ ...product, name: e.target.value })}
 				/>
 				<p className="product-text">Edytuj ilość kalorii</p>
 				<Input
 					width="90%"
 					height="50px"
+					data-cy="product-calories-input"
 					placeholder="Edytuj ilość"
 					value={product.calories}
 					onChange={e =>
@@ -199,6 +193,7 @@ function ProductDetails() {
 				<Input
 					width="90%"
 					height="50px"
+					data-cy="product-fats-input"
 					placeholder="Edytuj ilość"
 					value={product.fats}
 					onChange={e =>
@@ -212,6 +207,7 @@ function ProductDetails() {
 				<Input
 					width="90%"
 					height="50px"
+					data-cy="product-proteins-input"
 					placeholder="Edytuj ilość"
 					value={product.proteins}
 					onChange={e =>
@@ -225,6 +221,7 @@ function ProductDetails() {
 				<Input
 					width="90%"
 					height="50px"
+					data-cy="product-carbohydrates-input"
 					placeholder="Edytuj Ilość"
 					value={product.carbohydrates}
 					onChange={e =>
@@ -238,6 +235,7 @@ function ProductDetails() {
 					width="90%"
 					height="40px"
 					type="submit"
+					data-cy="product-submit-btn"
 					bgColor={theme.colors.main}
 				>
 					Zatwierdź
@@ -246,6 +244,7 @@ function ProductDetails() {
 					width="90%"
 					height="40px"
 					type="button"
+					data-cy="product-delete-btn"
 					bgColor={theme.colors.errorMain}
 					onClick={handleDelete}
 				>
@@ -255,4 +254,4 @@ function ProductDetails() {
 		</ProductDetailsContainer>
 	)
 }
-export default ProductDetails
+export default ProductForm

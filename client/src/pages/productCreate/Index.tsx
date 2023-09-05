@@ -76,8 +76,7 @@ function CreateProduct() {
 			localStorage.setItem("product", "null")
 			navigate("/product")
 		} catch (err: unknown) {
-			const message =
-				err instanceof Error ? err.message : "Nieoczekiwany błąd"
+			const message = err instanceof Error ? err.message : "Nieoczekiwany błąd"
 
 			dispatch(
 				addAlert({
@@ -120,14 +119,13 @@ function CreateProduct() {
 		<ProductCreateContainer>
 			<Form onSubmit={handleSubmit}>
 				<p className="product-title">Stwórz Produkt</p>
-				<p className="product-subtitle">
-					Wszystkie wartości są dla 100g
-				</p>
+				<p className="product-subtitle">Wszystkie wartości są dla 100g</p>
 				<p className="product-text">Podaj nazwe produktu</p>
 				<Input
 					width="90%"
 					height="50px"
 					placeholder="Podaj nazwe produktu..."
+					data-cy="product-name-input"
 					value={name}
 					onChange={e => setName(e.target.value)}
 				/>
@@ -136,6 +134,7 @@ function CreateProduct() {
 					width="90%"
 					height="50px"
 					placeholder="Podaj ilość kalorii..."
+					data-cy="product-calories-input"
 					value={calories}
 					onChange={e => setCalories(e.target.value)}
 				/>
@@ -144,6 +143,7 @@ function CreateProduct() {
 					width="90%"
 					height="50px"
 					placeholder="Podaj ilość tłuszczy"
+					data-cy="product-fats-input"
 					value={fats}
 					onChange={e => setFats(e.target.value)}
 				/>
@@ -153,6 +153,7 @@ function CreateProduct() {
 					width="90%"
 					height="50px"
 					placeholder="Podaj ilość białka"
+					data-cy="product-proteins-input"
 					value={proteins}
 					onChange={e => setProteins(e.target.value)}
 				/>
@@ -162,6 +163,7 @@ function CreateProduct() {
 					width="90%"
 					height="50px"
 					placeholder="Podaj ilość węglowodanów..."
+					data-cy="product-carbohydrates-input"
 					value={carbohydrates}
 					onChange={e => setCarbohydrates(e.target.value)}
 				/>
@@ -169,6 +171,7 @@ function CreateProduct() {
 				<Button
 					width="90%"
 					height="40px"
+					data-cy="product-submit-btn"
 					type="submit"
 					bgColor={theme.colors.main}
 				>

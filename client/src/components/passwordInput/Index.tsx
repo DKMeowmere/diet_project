@@ -16,6 +16,7 @@ export default function PasswordInput({
 	value,
 	onChange,
 	placeholder,
+	...args
 }: Props) {
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
@@ -26,6 +27,7 @@ export default function PasswordInput({
 				placeholder={placeholder}
 				value={value}
 				onChange={onChange}
+				{...args}
 			/>
 			{isPasswordVisible ? (
 				<AiFillEyeInvisible

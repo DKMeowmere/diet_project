@@ -28,6 +28,7 @@ type Props = {
 
 export default function ProductGroupForm({ type }: Props) {
 	const [name, setName] = useState("")
+	const [category, setCategory] = useState("")
 	const [description, setDescription] = useState("")
 	const [auxiliaryDescription, setAuxiliaryDescription] = useState("")
 	const [products, setProducts] = useState<ProductsType>([])
@@ -47,6 +48,7 @@ export default function ProductGroupForm({ type }: Props) {
 
 				if (productGroup) {
 					setName(productGroup.name)
+					setCategory(productGroup.category  || "")
 					setDescription(productGroup.description)
 					setAuxiliaryDescription(productGroup.auxiliaryDescription)
 					setProducts(productGroup.products)
@@ -61,13 +63,14 @@ export default function ProductGroupForm({ type }: Props) {
 
 				const productGroup = {
 					name,
+					category,
 					description,
 					auxiliaryDescription,
 					products,
 				}
 
 				localStorage.setItem("product-group", JSON.stringify(productGroup))
-			}, [name, products, description, auxiliaryDescription])
+			}, [name, products, category, description, auxiliaryDescription])
 	}
 
 	{
@@ -85,6 +88,7 @@ export default function ProductGroupForm({ type }: Props) {
 
 					if (!res.ok) {
 						setName("")
+						setCategory("")
 						setDescription("")
 						setAuxiliaryDescription("")
 						setProducts([])
@@ -94,6 +98,7 @@ export default function ProductGroupForm({ type }: Props) {
 
 					if (!data) {
 						setName("")
+						setCategory("")
 						setDescription("")
 						setAuxiliaryDescription("")
 						setProducts([])
@@ -101,6 +106,7 @@ export default function ProductGroupForm({ type }: Props) {
 					}
 
 					setName(data.name)
+					setCategory(data.category)
 					setDescription(data.description)
 					setAuxiliaryDescription(data.auxiliaryDescription)
 					setProducts(data.products)
@@ -153,6 +159,7 @@ export default function ProductGroupForm({ type }: Props) {
 				method: type === "CREATE" ? "POST" : "PATCH",
 				body: JSON.stringify({
 					name,
+					category,
 					description,
 					auxiliaryDescription,
 					products: productsId,
@@ -273,7 +280,16 @@ export default function ProductGroupForm({ type }: Props) {
 					value={name}
 					onChange={e => setName(e.target.value)}
 				/>
-				<p className="form-text">Podaj opis grupy produktów (opcjonalnie)</p>
+				<p className="form-text">
+					Podaj kategorie grupy produktów (opcjonalnie)
+				</p>
+        <Input
+					width="500px"
+					height="50px"
+					placeholder="Podaj kategorie"
+					value={category}
+					onChange={e => setCategory(e.target.value)}
+				/>
 				<Textarea
 					width="500px"
 					height="150px"

@@ -6,12 +6,11 @@ import { useState } from "react"
 import { useLogin } from "../../hooks/useLogin"
 import { useNavigate } from "react-router-dom"
 
-
 function Login() {
 	const [password, setPassword] = useState("")
 	const { login } = useLogin()
 	const navigate = useNavigate()
-	
+
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault()
 		await login(password)
@@ -27,12 +26,14 @@ function Login() {
 					placeholder="Podaj Hasło"
 					value={password}
 					onChange={e => setPassword(e.target.value)}
+					data-cy="password-input"
 				/>
 				<Button
 					width="100%"
 					height="40px"
 					type="submit"
 					bgColor={theme.colors.main}
+					data-cy="password-submit"
 				>
 					Zatwierdź
 				</Button>

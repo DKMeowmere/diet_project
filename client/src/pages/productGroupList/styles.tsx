@@ -23,6 +23,32 @@ export const ProductGroupsContainer = styled.div`
 	gap: 30px;
 	margin-top: 40px;
 `
+export const CategoriesContainer = styled.div`
+	width: 100%;
+	margin: 20px auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	.item {
+		color: ${({ theme }) => theme.colors.main};
+		background-color: #fff;
+		padding: 12px;
+		outline: 2px dotted ${({ theme }) => theme.colors.main};
+		border-radius: 8px;
+		cursor: pointer;
+		font-weight: 700;
+		user-select: none;
+		&:hover {
+			background-color: #eee;
+		}
+	}
+	.active {
+		outline: 4px solid ${({ theme }) => theme.colors.main};
+	}
+`
+
 export const ProductGroupContainer = styled(Link)`
 	width: calc(40% - 30px);
 	margin: 20px 40px;
