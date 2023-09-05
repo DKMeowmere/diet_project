@@ -85,6 +85,11 @@ export default function ProductGroupModal({
 						<ProductGroupContainer key={productGroup._id}>
 							<ProductGroup onClick={() => onProductGroupClick(productGroup)}>
 								<div className="product-group-title">{productGroup.name}</div>
+								<div className="products-list">
+									{productGroup.products.map(product => {
+										return <p key={product._id}>{product.name}</p>
+									})}
+								</div>
 							</ProductGroup>
 						</ProductGroupContainer>
 					))}

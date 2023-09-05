@@ -66,6 +66,26 @@ export const ProductGroup = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	.products-list {
+		display: none;
+		position: fixed;
+		right: 40px;
+		bottom: 40px;
+		width: 200px;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		background-color: #fff;
+		gap: 10px;
+		font-size: 1.2rem;
+		padding: 20px;
+		border-radius: 10px;
+	}
+	&:hover {
+		.products-list {
+			display: flex;
+		}
+	}
 	.product-group-title {
 		font-size: 1.4rem;
 	}
