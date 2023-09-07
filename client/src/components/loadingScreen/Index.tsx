@@ -3,9 +3,9 @@ import { LoadingScreenContainer } from './styles'
 
 export default function LoadingScreen() {
 	useEffect(() => {
-		document.body.style.overflow = 'hidden'
+		document.body.style.overflowY = 'hidden'
 		return () => {
-			document.body.style.overflow = 'hidden auto'
+			document.body.style.overflowY = 'scroll'
 		}
 	}, [])
 

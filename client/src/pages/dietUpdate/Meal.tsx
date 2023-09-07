@@ -122,6 +122,7 @@ export default function Meal({
 						<div className="carbo-meal">Węglowodany</div>
 						<div className="proteins-meal">Białka</div>
 						<div className="fats-meal">Tłuszcze</div>
+						<div className="fiber-meal">Błonnik</div>
 						<div className="weight-meal">Ilość</div>
 					</div>
 					{meal.products.map((product: MealProduct) => {
@@ -192,6 +193,17 @@ export default function Meal({
 							}
 							T
 						</div>
+						<div className="fiber-meal">
+							{
+								+calculateSum(
+									meal.products.map(product => {
+										if (product.referringTo) return 0
+										return getMealProductProperty(product, "fiber")
+									})
+								).toFixed(2)
+							}
+							Bł
+						</div>
 						<div className="weight-meal">
 							{
 								+calculateSum(
@@ -244,6 +256,10 @@ export default function Meal({
 				<div className="fats-meal">
 					Tłuszcze:
 					{getMealProperty(meal, "fats")}
+				</div>
+				<div className="fiber-meal">
+					Błonnik:
+					{getMealProperty(meal, "fiber")}
 				</div>
 			</div>
 

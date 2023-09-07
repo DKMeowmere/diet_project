@@ -78,6 +78,7 @@ function ProductList() {
 								calories={+product.calories}
 								fats={+product.fats}
 								proteins={+product.proteins}
+                fiber={product.fiber ? +product.fiber : undefined}
 							/>
 						</Product>
 					</ProductContainer>

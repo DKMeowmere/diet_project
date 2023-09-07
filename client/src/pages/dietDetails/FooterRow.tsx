@@ -31,6 +31,9 @@ export default function FooterRow({ meal }: Props) {
 				<td className="cell strong bold">
 					{getMealProperty(meal, "carbohydrates")}W
 				</td>
+        <td className="cell strong bold">
+					{getMealProperty(meal, "fiber")}Bł
+				</td>
 				<td className="cell strong bold">
 					{+calculateSum(meal.products.map(product => +product.count)) +
 						+calculateSum(meal.dishes.map(dish => +dish.count))}

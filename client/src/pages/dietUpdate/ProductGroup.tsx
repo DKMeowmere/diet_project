@@ -50,6 +50,7 @@ export default function ProductGroup({ meal, day, productGroup }: Props) {
 				<div className="carbo-meal">Węglowodany</div>
 				<div className="proteins-meal">Białka</div>
 				<div className="fats-meal">Tłuszcze</div>
+        <div className="fiber-meal">Błonnik</div>
 				<div className="weight-meal">Ilość</div>
 			</div>
 			{meal.products.map(product => {
@@ -83,6 +84,9 @@ export default function ProductGroup({ meal, day, productGroup }: Props) {
 				</div>
 				<div className="fats-meal">
 					{getMealProductGroupProperty("fats", meal, productGroup._id)} T
+				</div>
+				<div className="fiber-meal">
+					{getMealProductGroupProperty("fiber", meal, productGroup._id)} bł
 				</div>
 				<div className="weight-meal">-</div>
 			</div>

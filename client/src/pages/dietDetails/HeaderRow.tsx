@@ -2,13 +2,14 @@ export default function HeaderRow() {
 	return (
 		<thead>
 			<tr>
-				<td className="cell strong bold">Nazwa</td>
-				<td className="cell strong bold">Waga</td>
-				<td className="cell strong bold">Kalorie</td>
-				<td className="cell strong bold">Białka</td>
-				<td className="cell strong bold">Tłuszcze</td>
-				<td className="cell strong bold">Węglowodany</td>
-				<td className="cell strong bold">Ilość</td>
+				<th className="cell strong bold">Nazwa</th>
+				<th className="cell strong bold">Waga</th>
+				<th className="cell strong bold">Kalorie</th>
+				<th className="cell strong bold">Białka</th>
+				<th className="cell strong bold">Tłuszcze</th>
+				<th className="cell strong bold">Węglowodany</th>
+				<th className="cell strong bold">Błonnik</th>
+				<th className="cell strong bold">Ilość</th>
 			</tr>
 		</thead>
 	)

@@ -10,7 +10,7 @@ import {
 } from "../types/meal"
 import useReduce from "./useReduce"
 
-type Property = "calories" | "fats" | "carbohydrates" | "proteins"
+type Property = "calories" | "fats" | "carbohydrates" | "proteins" | "fiber"
 type Macronutrient = "fats" | "carbohydrates" | "proteins"
 
 export default function useCalculations() {
@@ -18,10 +18,14 @@ export default function useCalculations() {
 
 	function getMealProductProperty(product: MealProduct, key: Property) {
 		type ProductKey = keyof typeof product.product
-		return +(
-			(+product.product[key as ProductKey] * +product.count * +product.grams) /
-			100
-		).toFixed(2)
+
+		if (!product.product[key as ProductKey]) {
+			return 0
+		}
+
+		const property = product.product[key as ProductKey] || 0
+
+		return +((+property * +product.count * +product.grams) / 100).toFixed(2)
 	}
 
 	function getMealProductsProperty(products: MealProducts, key: Property) {
@@ -59,7 +63,7 @@ export default function useCalculations() {
 			dish.products.map(product => {
 				type ProductProperty = keyof typeof product.product
 				return (
-					(+product.product[key as ProductProperty] *
+					(+product.product[key as ProductProperty]! *
 						+product.grams *
 						+product.count) /
 					100

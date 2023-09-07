@@ -5,4 +5,5 @@ export type Product = {
 	proteins: number
 	carbohydrates: number
 	fats: number
+  fiber?: number
 }

@@ -178,6 +178,7 @@ function DietDetails() {
 						carbohydrates={getDietProperty(diet, "carbohydrates")}
 						proteins={getDietProperty(diet, "proteins")}
 						fats={getDietProperty(diet, "fats")}
+						fiber={getDietProperty(diet, "fiber")}
 					/>
 				</div>
 				<DaysContainer>
@@ -202,6 +203,7 @@ function DietDetails() {
 							)}
 							proteins={getDayProperty(diet.days[pageNumber], "proteins")}
 							fats={getDayProperty(diet.days[pageNumber], "fats")}
+							fiber={getDayProperty(diet.days[pageNumber], "fiber")}
 						/>
 						<MealsContainer>
 							{diet.days[pageNumber].meals.map(meal => (

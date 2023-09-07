@@ -148,7 +148,8 @@ export const MealsContainer = styled.div`
 		.calories-meal,
 		.carbo-meal,
 		.proteins-meal,
-		.fats-meal {
+		.fats-meal,
+		.fiber-meal {
 			width: 15%;
 		}
 	}
@@ -169,7 +170,8 @@ export const MealsContainer = styled.div`
 		.calories-number,
 		.carbo-number,
 		.proteins-number,
-		.fats-number {
+		.fats-number,
+		.fiber-number {
 			width: 15%;
 			display: flex;
 			justify-content: center;

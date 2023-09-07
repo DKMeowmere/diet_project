@@ -14,6 +14,7 @@ function CreateProduct() {
 	const [fats, setFats] = useState("0")
 	const [proteins, setProteins] = useState("0")
 	const [carbohydrates, setCarbohydrates] = useState("0")
+	const [fiber, setFiber] = useState("0")
 	const dispatch = useDispatch()
 	const serverUrl = useAppSelector(state => state.app.serverUrl)
 	const [name, setName] = useState("")
@@ -40,6 +41,10 @@ function CreateProduct() {
 				throw new Error("Węglowodany to nie liczba")
 			}
 
+			if (isNaN(+fiber)) {
+				throw new Error("Błonnik to nie liczba")
+			}
+
 			if (!name) {
 				throw new Error("Podaj nazwe produktu")
 			}
@@ -53,6 +58,7 @@ function CreateProduct() {
 					fats,
 					proteins,
 					carbohydrates,
+					fiber,
 				}),
 				headers: {
 					"Content-Type": "application/json",
@@ -96,11 +102,12 @@ function CreateProduct() {
 			setFats(product.fats)
 			setCarbohydrates(product.carbohydrates)
 			setProteins(product.proteins)
+			setFiber(product.fiber || "0")
 		}
 	}, [])
 
 	useEffect(() => {
-		if (!calories || !carbohydrates || !fats || !name || !proteins) {
+		if (!calories || !carbohydrates || !fats || !name || !proteins || !fiber) {
 			return
 		}
 
@@ -110,10 +117,11 @@ function CreateProduct() {
 			fats,
 			name,
 			proteins,
+			fiber,
 		}
 
 		localStorage.setItem("product", JSON.stringify(product))
-	}, [calories, carbohydrates, fats, name, proteins])
+	}, [calories, carbohydrates, fats, name, proteins, fiber])
 
 	return (
 		<ProductCreateContainer>
@@ -147,7 +155,6 @@ function CreateProduct() {
 					value={fats}
 					onChange={e => setFats(e.target.value)}
 				/>
-
 				<p className="product-text">Podaj ilość białka</p>
 				<Input
 					width="90%"
@@ -157,7 +164,6 @@ function CreateProduct() {
 					value={proteins}
 					onChange={e => setProteins(e.target.value)}
 				/>
-
 				<p className="product-text">Podaj ilość węglowodanów</p>
 				<Input
 					width="90%"
@@ -167,7 +173,15 @@ function CreateProduct() {
 					value={carbohydrates}
 					onChange={e => setCarbohydrates(e.target.value)}
 				/>
-
+				<p className="product-text">Podaj ilość błonnika</p>
+				<Input
+					width="90%"
+					height="50px"
+					placeholder="Podaj ilość błonnika.. (opcjonalnie)."
+					data-cy="product-fiber-input"
+					value={fiber}
+					onChange={e => setFiber(e.target.value)}
+				/>
 				<Button
 					width="90%"
 					height="40px"
