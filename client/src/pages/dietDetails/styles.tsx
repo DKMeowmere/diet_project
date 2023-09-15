@@ -123,7 +123,7 @@ export const MealsContainer = styled.div`
 	gap: 20px;
 	display: flex;
 	flex-direction: column;
-	..day-name-container:last-child{
+	.day-name-container:last-child{
 		height:100vh;
 	}
 	.meal-pdf{
