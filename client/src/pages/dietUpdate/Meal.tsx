@@ -12,8 +12,7 @@ import Textarea from "../../components/textarea/Index"
 import useCalculations from "../../hooks/useCalculations"
 import useReduce from "../../hooks/useReduce"
 import { Day } from "../../types/day"
-import { Meal as MealType, MealDish, MealProduct } from "../../types/meal"
-import Dish from "./Dish"
+import { Meal as MealType, MealProduct } from "../../types/meal"
 import Product from "./Product"
 import ProductGroup from "./ProductGroup"
 import { ProductsContainer } from "./styles"
@@ -22,7 +21,6 @@ type Props = {
 	meal: MealType
 	day: Day
 	setIsProductModalOpen: (isModalOpen: boolean) => void
-	setIsDishModalOpen: (isModalOpen: boolean) => void
 	setIsProductGroupModalOpen: (isModalOpen: boolean) => void
 }
 
@@ -99,20 +97,6 @@ export default function Meal({
 				Dodaj potrawe do posiłku:
 				{meal.name}
 			</Button>
-			{/* <Button
-				width="100%"
-				height="40px"
-				type="button"
-				bgColor={theme.colors.main}
-				onClick={() => {
-					dispatch(updateWhereToPass({ dayId: day._id, mealId: meal._id }))
-					setIsDishModalOpen(true)
-				}}
-				className="meal-btn"
-			>
-				Dodaj potrawe do posiłku:
-				{meal.name}
-			</Button> */}
 			{meal.products.length > 0 && (
 				<ProductsContainer>
 					<div className="product-container">
@@ -226,19 +210,14 @@ export default function Meal({
 						productGroup={productGroup}
 					/>
 				))}
-			{meal.dishes.length > 0 && (
-				<ProductsContainer>
-					{meal.dishes.map((dish: MealDish) => (
-						<Dish key={dish._id} day={day} meal={meal} dish={dish} />
-					))}
-				</ProductsContainer>
-			)}
 			<div className="product-container meal-summary">
 				<div className="amount-meal">Razem</div>
 				<div className="amount-meal">
-					{+calculateSum(
-						meal.products.map(product => +product.grams * +product.count)
-					) + +calculateSum(meal.dishes.map(dish => +dish.grams * +dish.count))}
+					{
+						+calculateSum(
+							meal.products.map(product => +product.grams * +product.count)
+						)
+					}
 					g
 				</div>
 				<div className="calories-meal">

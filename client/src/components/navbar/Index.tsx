@@ -32,10 +32,6 @@ function Navbar() {
 							<FaCarrot />
 							<span className="option-text">Produkty</span>
 						</NavLink>
-						{/* <NavLink to="/dish" className="option">
-							<BiDish />
-							<span className="option-text">Potrawy</span>
-						</NavLink> */}
 						<NavLink to="/product-group" className="option">
 							<IoFastFoodSharp />
 							<span className="option-text">Potrawy</span>

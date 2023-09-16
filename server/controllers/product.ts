@@ -1,9 +1,8 @@
 import { Request, Response } from "express"
 import mongoose from "mongoose"
+import { MealProduct } from "../types/meal.js"
 import Diet from "../models/diet.js"
 import Product from "../models/product.js"
-import Dish from "../models/dish.js"
-import { MealProduct } from "../types/meal.js"
 import ProductGroup from "../models/productGroup.js"
 
 export async function getProducts(req: Request, res: Response) {
@@ -103,16 +102,6 @@ export async function deleteProduct(req: Request, res: Response) {
 				})
 			})
 			diet.save()
-		})
-
-		const dishes = await Dish.find({})
-
-		dishes.forEach(dish => {
-			dish.products = dish.products.filter(
-				(mealProduct: MealProduct) =>
-					mealProduct.product.toString() !== product._id.toString()
-			)
-			dish.save()
 		})
 
 		const productGroups = await ProductGroup.find({})

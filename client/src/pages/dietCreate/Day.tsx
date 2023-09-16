@@ -6,13 +6,12 @@ import { MealsContainer } from "./styles"
 import Meal from "./Meal"
 import theme from "../../app/theme"
 import { Button } from "../../components/button/Button"
-import PropertyBadge from "../../components/propertyBadge/Index"
+import PropertiesBadge from "../../components/propertiesBadge/Index"
 import useCalculations from "../../hooks/useCalculations"
 
 type Props = {
 	day: DayType
 	setIsProductModalOpen: (isModalOpen: boolean) => void
-	setIsDishModalOpen: (isModalOpen: boolean) => void
 	setIsProductGroupModalOpen: (isModalOpen: boolean) => void
 	pageNumber: number
 	setPageNumber: (pageNumber: number) => void
@@ -22,7 +21,6 @@ type Props = {
 export default function Day({
 	day,
 	setIsProductModalOpen,
-	setIsDishModalOpen,
 	setIsProductGroupModalOpen,
 	pageNumber,
 	setPageNumber,
@@ -52,7 +50,7 @@ export default function Day({
 					}
 				/>
 				<p>Aktualnie</p>
-				<PropertyBadge
+				<PropertiesBadge
 					className="property-badge"
 					calories={getDayProperty(day, "calories")}
 					carbohydrates={getDayProperty(day, "carbohydrates")}
@@ -60,7 +58,7 @@ export default function Day({
 					fats={getDayProperty(day, "fats")}
 				/>
 				<p>Cel</p>
-				<PropertyBadge
+				<PropertiesBadge
 					className="property-badge"
 					calories={+diet.caloricGoal}
 					carbohydrates={getRecommendedMacronutrientCount(
@@ -79,7 +77,6 @@ export default function Day({
 							day={day}
 							meal={meal}
 							setIsProductModalOpen={setIsProductModalOpen}
-							setIsDishModalOpen={setIsDishModalOpen}
 							setIsProductGroupModalOpen={setIsProductGroupModalOpen}
 						/>
 					))}

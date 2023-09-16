@@ -15,7 +15,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { useCookies } from "react-cookie"
 import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
 import { BsX } from "react-icons/bs"
-import PropertyBadge from "../propertyBadge/Index"
+import PropertiesBadge from "../propertiesBadge/Index"
 
 type Props = {
 	setIsModalOpen: (isModalOpen: boolean) => void
@@ -90,7 +90,7 @@ function ProductModal({ setIsModalOpen, onProductClick }: Props) {
 						<ProductContainer key={product._id}>
 							<Product onClick={() => onProductClick(product)}>
 								<div className="product-title">{product.name}</div>
-								<PropertyBadge
+								<PropertiesBadge
 									carbohydrates={+product.carbohydrates}
 									calories={+product.calories}
 									fats={+product.fats}

@@ -16,8 +16,7 @@ import { Diet as DietType } from "../../types/diet"
 import ProductRow from "./ProductRow"
 import FooterRow from "./FooterRow"
 import HeaderRow from "./HeaderRow"
-import DishTable from "./DishTable"
-import PropertyBadge from "../../components/propertyBadge/Index"
+import PropertiesBadge from "../../components/propertiesBadge/Index"
 import useCalculations from "../../hooks/useCalculations"
 import ProductGroupTable from "./ProductGroupTable"
 
@@ -77,7 +76,7 @@ function DietPdf() {
 				{diet.description && (
 					<div className="diet-description">{diet.description}</div>
 				)}
-				<PropertyBadge
+				<PropertiesBadge
 					className="diet-property-badge"
 					calories={getDietProperty(diet, "calories")}
 					carbohydrates={getDietProperty(diet, "carbohydrates")}
@@ -95,7 +94,7 @@ function DietPdf() {
 					return (
 						<PdfDay key={day._id}>
 							<div className="day-name">{day.day}</div>
-							<PropertyBadge
+							<PropertiesBadge
 								className="property-badge"
 								calories={getDayProperty(day, "calories")}
 								carbohydrates={getDayProperty(day, "carbohydrates")}
@@ -139,9 +138,6 @@ function DietPdf() {
 														productGroup={productGroup}
 														meal={meal}
 													/>
-												))}
-												{meal.dishes.map(dish => (
-													<DishTable key={dish._id} dish={dish} />
 												))}
 											</tbody>
 											<FooterRow meal={meal} />

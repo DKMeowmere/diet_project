@@ -9,7 +9,7 @@ import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
 import { Link } from "react-router-dom"
 import { Button } from "../../components/button/Button"
 import theme from "../../app/theme"
-import PropertyBadge from "../../components/propertyBadge/Index"
+import PropertiesBadge from "../../components/propertiesBadge/Index"
 
 function ProductList() {
 	const [products, setProducts] = useState<Products>([])
@@ -73,12 +73,12 @@ function ProductList() {
 					<ProductContainer key={product._id} to={`/product/${product._id}`}>
 						<Product>
 							<div className="product-title">{product.name}</div>
-							<PropertyBadge
+							<PropertiesBadge
 								carbohydrates={+product.carbohydrates}
 								calories={+product.calories}
 								fats={+product.fats}
 								proteins={+product.proteins}
-                fiber={product.fiber ? +product.fiber : undefined}
+								fiber={product.fiber ? +product.fiber : undefined}
 							/>
 						</Product>
 					</ProductContainer>

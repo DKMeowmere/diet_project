@@ -8,7 +8,6 @@ import ProductModal from "../../components/productModal/Index"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import {
 	addDay,
-	addDish,
 	addProduct,
 	addProductGroup,
 	changeCaloricGoal,
@@ -25,8 +24,6 @@ import { useNavigate } from "react-router-dom"
 import Day from "./Day"
 import { LeftArrow, RightArrow } from "../../components/arrow/Index"
 import { Product as ProductType } from "../../types/product"
-import { Dish as DishType } from "../../types/dish"
-import DishModal from "../../components/dishModal/Index"
 import ProductGroupModal from "../../components/productGroupModal/Index"
 import { ProductGroup as ProductGroupType } from "../../types/productGroup."
 
@@ -45,7 +42,6 @@ function CreateDiet() {
 	const days = useAppSelector(state => state.diet.currentDiet.days)
 	const dispatch = useAppDispatch()
 	const [isProductModalOpen, setIsProductModalOpen] = useState(false)
-	const [isDishModalOpen, setIsDishModalOpen] = useState(false)
 	const [isProductGroupModalOpen, setIsProductGroupModalOpen] = useState(false)
 	const serverUrl = useAppSelector(state => state.app.serverUrl)
 	const [cookies] = useCookies()
@@ -78,10 +74,6 @@ function CreateDiet() {
 						_id: undefined,
 						products: meal.products.map(product => ({
 							...product,
-							_id: undefined,
-						})),
-						dishes: meal.dishes.map(dish => ({
-							...dish,
 							_id: undefined,
 						})),
 						productGroups: meal.productGroups.map(
@@ -160,16 +152,6 @@ function CreateDiet() {
 		)
 	}
 
-	function handleDishAddition(dish: DishType) {
-		dispatch(
-			addDish({
-				dayId: whereToPass.dayId,
-				mealId: whereToPass.mealId,
-				dish,
-			})
-		)
-	}
-
 	function handleProductGroupAddition(productGroup: ProductGroupType) {
 		const dayIndex = diet.days.findIndex(day => day._id === whereToPass.dayId)
 		const mealIndex = diet.days[dayIndex].meals.findIndex(
@@ -226,12 +208,6 @@ function CreateDiet() {
 				<ProductModal
 					setIsModalOpen={setIsProductModalOpen}
 					onProductClick={handleProductAddition}
-				/>
-			)}
-			{isDishModalOpen && (
-				<DishModal
-					setIsModalOpen={setIsDishModalOpen}
-					onDishClick={handleDishAddition}
 				/>
 			)}
 			{isProductGroupModalOpen && (
@@ -357,7 +333,6 @@ function CreateDiet() {
 							<Day
 								day={days[pageNumber]}
 								setIsProductModalOpen={setIsProductModalOpen}
-								setIsDishModalOpen={setIsDishModalOpen}
 								setIsProductGroupModalOpen={setIsProductGroupModalOpen}
 								pageNumber={pageNumber}
 								setPageNumber={setPageNumber}

@@ -9,15 +9,16 @@ type BadgeProps = {
 	carbohydrates: number
 	proteins: number
 	fats: number
-  fiber?: number
+	fiber?: number
 	className?: string
 }
 
-export default function PropertyBadge({
+export default function PropertiesBadge({
 	calories,
 	carbohydrates,
 	fats,
-	proteins, fiber,
+	proteins,
+	fiber,
 	className,
 }: BadgeProps) {
 	return (
@@ -39,10 +40,10 @@ export default function PropertyBadge({
 				<RiOilFill className="oil" />
 				{fats}T
 			</div>
-      {fiber && <div className="unit-container">
+			<div className="unit-container">
 				<FaAppleAlt className="fiber" />
-				{fiber}Bł
-			</div>}
+				{fiber || 0}Bł
+			</div>
 		</BadgeContainer>
 	)
 }

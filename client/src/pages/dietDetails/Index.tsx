@@ -19,8 +19,7 @@ import HeaderRow from "./HeaderRow"
 import { AiOutlineFilePdf, AiFillDelete } from "react-icons/ai"
 import { RxUpdate } from "react-icons/rx"
 import { HiClipboardCopy } from "react-icons/hi"
-import DishTable from "./DishTable"
-import PropertyBadge from "../../components/propertyBadge/Index"
+import PropertiesBadge from "../../components/propertiesBadge/Index"
 import useCalculations from "../../hooks/useCalculations"
 import ProductGroupTable from "./ProductGroupTable"
 
@@ -172,7 +171,7 @@ function DietDetails() {
 					{diet.description && (
 						<div className="diet-description">{diet.description}</div>
 					)}
-					<PropertyBadge
+					<PropertiesBadge
 						className="diet-property-badge"
 						calories={getDietProperty(diet, "calories")}
 						carbohydrates={getDietProperty(diet, "carbohydrates")}
@@ -194,7 +193,7 @@ function DietDetails() {
 								}
 							/>
 						</div>
-						<PropertyBadge
+						<PropertiesBadge
 							className="property-badge"
 							calories={getDayProperty(diet.days[pageNumber], "calories")}
 							carbohydrates={getDayProperty(
@@ -241,9 +240,6 @@ function DietDetails() {
 													productGroup={productGroup}
 													meal={meal}
 												/>
-											))}
-											{meal.dishes.map(dish => (
-												<DishTable key={dish._id} dish={dish} />
 											))}
 										</tbody>
 										<FooterRow meal={meal} />

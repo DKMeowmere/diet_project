@@ -253,10 +253,6 @@ export const ProductsContainer = styled.div`
 	width: 100%;
 	margin: auto;
 `
-export const DishesContainer = styled.div`
-	width: 100%;
-	margin: auto;
-`
 
 export const ProductGroupContainer = styled.div`
 	width: 100%;

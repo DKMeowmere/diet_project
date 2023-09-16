@@ -23,12 +23,6 @@ export async function getDiets(req: Request, res: Response) {
 				path: "days.meals.productGroups",
 				populate: { path: "products" },
 			})
-			.populate({
-				path: "days.meals.dishes.dishDetails",
-				populate: {
-					path: "products.product",
-				},
-			})
 			.sort({ createdAt: -1 })
 
 		res.json(diet)
@@ -40,7 +34,7 @@ export async function getDiets(req: Request, res: Response) {
 export async function createDiet(req: Request, res: Response) {
 	try {
 		const { title, days, caloricGoal, macronutrientsDivision } = req.body
-    const {  carbohydrates, fats, proteins } = macronutrientsDivision
+		const { carbohydrates, fats, proteins } = macronutrientsDivision
 
 		if (!title || !days || !caloricGoal) {
 			throw new Error(
@@ -48,11 +42,9 @@ export async function createDiet(req: Request, res: Response) {
 			)
 		}
 
-    if(carbohydrates + fats + proteins !== 100){
-      throw new Error(
-				"Proporcje makroskładników nie są równe 100"
-			)
-    }
+		if (carbohydrates + fats + proteins !== 100) {
+			throw new Error("Proporcje makroskładników nie są równe 100")
+		}
 		const diet = await Diet.create(req.body)
 
 		res.status(201).json(diet)
@@ -75,12 +67,6 @@ export async function getDiet(req: Request, res: Response) {
 				path: "days.meals.productGroups",
 				populate: { path: "products" },
 			})
-			.populate({
-				path: "days.meals.dishes.dishDetails",
-				populate: {
-					path: "products.product",
-				},
-			})
 
 		if (!diet) {
 			throw new Error("Nie znaleziono diety o podanym id")
@@ -95,8 +81,8 @@ export async function getDiet(req: Request, res: Response) {
 export async function updateDiet(req: Request, res: Response) {
 	try {
 		const { id } = req.params
-    const { title, days, caloricGoal, macronutrientsDivision } = req.body
-    const {  carbohydrates, fats, proteins } = macronutrientsDivision
+		const { title, days, caloricGoal, macronutrientsDivision } = req.body
+		const { carbohydrates, fats, proteins } = macronutrientsDivision
 
 		if (!title || !days || !caloricGoal) {
 			throw new Error(
@@ -104,12 +90,10 @@ export async function updateDiet(req: Request, res: Response) {
 			)
 		}
 
-    if(carbohydrates + fats + proteins !== 100){
-      throw new Error(
-				"Proporcje makroskładników nie są równe 100"
-			)
-    }
-    
+		if (carbohydrates + fats + proteins !== 100) {
+			throw new Error("Proporcje makroskładników nie są równe 100")
+		}
+
 		if (!mongoose.isValidObjectId(id)) {
 			throw new Error("Nie poprawne id diety")
 		}

@@ -63,7 +63,7 @@ function ProductGroupList() {
 		fetchProductGroups()
 	}, [])
 
-  useEffect(() => {
+	useEffect(() => {
 		const categories: Categories = {}
 
 		productGroups.forEach(productGroup => {
@@ -82,11 +82,11 @@ function ProductGroupList() {
 		setPossibleCategories(categories)
 	}, [productGroups])
 
-	const filteredProductGroups = useMemo(() => {
+	const filteredProductGroups:ProductGroupsType = useMemo(() => {
 		return productGroups.filter(productGroup => {
 			if (
 				selectedCategories.size > 0 &&
-				productGroup.category &&
+				productGroup.category !== undefined &&
 				!selectedCategories.has(productGroup.category)
 			) {
 				return false
@@ -96,7 +96,7 @@ function ProductGroupList() {
 		})
 	}, [query, productGroups, selectedCategories, possibleCategories])
 
-	const productGroupsTitles = productGroups.map(
+	const productGroupsTitles = filteredProductGroups.map(
 		productGroup => productGroup.name
 	)
 
