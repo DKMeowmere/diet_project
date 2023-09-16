@@ -11,6 +11,7 @@ import { useCookies } from "react-cookie"
 
 function ProductForm() {
 	const [product, setProduct] = useState<ProductType | null>(null)
+	const [fiber, setFiber] = useState("0")
 	const { id } = useParams()
 	const serverUrl = useAppSelector(state => state.app.serverUrl)
 	const dispatch = useAppDispatch()
@@ -40,6 +41,7 @@ function ProductForm() {
 			}
 
 			setProduct(data as unknown as ProductType)
+			setFiber(data.fiber || "0")
 		}
 		fetchProduct()
 	}, [])
@@ -68,6 +70,10 @@ function ProductForm() {
 				throw new Error("Węglowodany to nie liczba")
 			}
 
+			if (isNaN(+fiber)) {
+				throw new Error("Błonnik to nie liczba")
+			}
+
 			if (!product.name) {
 				throw new Error("Podaj nazwe produktu")
 			}
@@ -75,7 +81,7 @@ function ProductForm() {
 			dispatch(startLoading)
 			const res = await fetch(`${serverUrl}/api/product/${id}`, {
 				method: "PATCH",
-				body: JSON.stringify(product),
+				body: JSON.stringify({...product, fiber}),
 				headers: {
 					"Content-Type": "application/json",
 					Authorization: `Bearer ${cookies.token}`,
@@ -230,6 +236,15 @@ function ProductForm() {
 							carbohydrates: e.target.value,
 						})
 					}
+				/>
+				<p className="product-text">Edytuj ilość błonnika</p>
+				<Input
+					width="90%"
+					height="50px"
+					data-cy="product-fiber-input"
+					placeholder="Edytuj Ilość"
+					value={fiber}
+					onChange={e => setFiber(e.target.value)}
 				/>
 				<Button
 					width="90%"

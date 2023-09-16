@@ -22,7 +22,10 @@ export const BadgeContainer = styled.div`
 			color: #ffa500;
 		}
 		.oil {
-			color: crimson;
+			color: #dc143c;
+		}
+		.fiber {
+			color: limegreen;
 		}
 	}
 `

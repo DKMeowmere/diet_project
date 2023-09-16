@@ -90,12 +90,13 @@ function ProductModal({ setIsModalOpen, onProductClick }: Props) {
 						<ProductContainer key={product._id}>
 							<Product onClick={() => onProductClick(product)}>
 								<div className="product-title">{product.name}</div>
-                <PropertyBadge
-								carbohydrates={+product.carbohydrates}
-								calories={+product.calories}
-								fats={+product.fats}
-								proteins={+product.proteins}
-							/>
+								<PropertyBadge
+									carbohydrates={+product.carbohydrates}
+									calories={+product.calories}
+									fats={+product.fats}
+									proteins={+product.proteins}
+									fiber={product.fiber ? +product.fiber : undefined}
+								/>
 							</Product>
 						</ProductContainer>
 					))}

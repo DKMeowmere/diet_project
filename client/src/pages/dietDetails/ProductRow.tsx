@@ -22,6 +22,9 @@ export default function ProductRow({ product }: Props) {
 			<td className="cell">
 				{getMealProductProperty(product, "carbohydrates")}W
 			</td>
+      <td className="cell">
+				{getMealProductProperty(product, "fiber")}Bł
+			</td>
 			<td className="cell">{product.count}</td>
 		</ProductContainer>
 	)

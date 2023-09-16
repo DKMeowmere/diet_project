@@ -74,6 +74,7 @@ function DietPdf() {
 					carbohydrates={getDietProperty(diet, "carbohydrates")}
 					proteins={getDietProperty(diet, "proteins")}
 					fats={getDietProperty(diet, "fats")}
+					fiber={getDietProperty(diet, "fiber")}
 				/>
 			</div> */}
 			<DaysContainer>
@@ -85,6 +86,15 @@ function DietPdf() {
 					return (
 						
 						<PdfDay key={day._id}>
+							<div className="day-name">{day.day}</div>
+							<PropertyBadge
+								className="property-badge"
+								calories={getDayProperty(day, "calories")}
+								carbohydrates={getDayProperty(day, "carbohydrates")}
+								proteins={getDayProperty(day, "proteins")}
+								fats={getDayProperty(day, "fats")}
+								fiber={getDayProperty(day, "fiber")}
+							/>
 							<MealsContainer>
 								{day.meals.map(meal => (
 									

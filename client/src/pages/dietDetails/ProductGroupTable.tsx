@@ -42,6 +42,9 @@ export default function ProductGroupTable({ productGroup, meal }: Props) {
 					{getMealProductGroupProperty("carbohydrates", meal, productGroup._id)}
 					W
 				</td>
+				<td className="cell strong">
+					{getMealProductGroupProperty("fiber", meal, productGroup._id)}Bł
+				</td>
 				<td className="cell strong">-</td>
 			</ProductGroupRow>
 			{meal.products.map(product => {
@@ -62,6 +65,9 @@ export default function ProductGroupTable({ productGroup, meal }: Props) {
 						<td className="cell">{getMealProductProperty(product, "fats")}T</td>
 						<td className="cell">
 							{getMealProductProperty(product, "carbohydrates")}W
+						</td>
+						<td className="cell">
+							{getMealProductProperty(product, "fiber")}Bł
 						</td>
 						<td className="cell">{product.count}</td>
 					</ProductGroupContainer>

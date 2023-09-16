@@ -1,4 +1,5 @@
 import { AiFillFire } from "react-icons/ai"
+import { FaAppleAlt } from "react-icons/fa"
 import { GiCoalWagon, GiMilkCarton } from "react-icons/gi"
 import { RiOilFill } from "react-icons/ri"
 import { BadgeContainer } from "./styles"
@@ -8,6 +9,7 @@ type BadgeProps = {
 	carbohydrates: number
 	proteins: number
 	fats: number
+  fiber?: number
 	className?: string
 }
 
@@ -15,7 +17,7 @@ export default function PropertyBadge({
 	calories,
 	carbohydrates,
 	fats,
-	proteins,
+	proteins, fiber,
 	className,
 }: BadgeProps) {
 	return (
@@ -37,6 +39,10 @@ export default function PropertyBadge({
 				<RiOilFill className="oil" />
 				{fats}T
 			</div>
+      {fiber && <div className="unit-container">
+				<FaAppleAlt className="fiber" />
+				{fiber}Bł
+			</div>}
 		</BadgeContainer>
 	)
 }

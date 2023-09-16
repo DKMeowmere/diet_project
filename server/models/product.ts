@@ -20,6 +20,10 @@ const productSchema = new mongoose.Schema<Product>(
 			type: Number,
 			required: true,
 		},
+		fiber: {
+			type: Number,
+			default: 0,
+		},
 		carbohydrates: {
 			type: Number,
 			required: true,

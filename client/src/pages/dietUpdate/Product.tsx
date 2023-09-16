@@ -4,8 +4,6 @@ import {
 	removeProduct,
 } from "../../app/features/dietSlice"
 import { useAppDispatch } from "../../app/hooks"
-// import theme from "../../app/theme"
-// import { Button } from "../../components/button/Button"
 import Input from "../../components/input/Index"
 import useCalculations from "../../hooks/useCalculations"
 import { Day } from "../../types/day"
@@ -57,6 +55,9 @@ export default function Product({ product, meal, day }: Props) {
 					</div>
 					<div className="fats-number">
 						{getMealProductProperty(product, "fats")}
+					</div>
+					<div className="fiber-number">
+						{getMealProductProperty(product, "fiber")}
 					</div>
 					<div className="weight-number">
 						<Input

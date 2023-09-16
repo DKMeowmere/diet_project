@@ -32,23 +32,21 @@ export default function ProductGroup({ meal, day, productGroup }: Props) {
 
 	return (
 		<ProductGroupContainer>
-			<div className='product-group'>
+			<div className='product-group'/>
 				<p className='product-group-title'>
 					Potrawa: {productGroup.name}
 					<BsX className='close-btn' onClick={deleteProductGroup} />
 				</p>
-				{productGroup.auxiliaryDescription && (
-					<p className='product-group-description'>{productGroup.auxiliaryDescription}</p>
-				)}
-			</div>
-			<div className='product-container'>
-				<div className='products-meal'>Produkt </div>
-				<div className='weight-meal'>Waga</div>
-				<div className='calories-meal'>Kalorie</div>
-				<div className='carbo-meal'>Węglowodany</div>
-				<div className='proteins-meal'>Białka</div>
-				<div className='fats-meal'>Tłuszcze</div>
-				<div className='weight-meal'>Ilość</div>
+			
+			<div className="product-container">
+				<div className="products-meal">Produkt </div>
+				<div className="weight-meal">Waga</div>
+				<div className="calories-meal">Kalorie</div>
+				<div className="carbo-meal">Węglowodany</div>
+				<div className="proteins-meal">Białka</div>
+				<div className="fats-meal">Tłuszcze</div>
+				<div className="fiber-meal">Błonnik</div>
+				<div className="weight-meal">Ilość</div>
 			</div>
 			{meal.products.map(product => {
 				if (product.referringTo !== productGroup._id) return
@@ -67,11 +65,23 @@ export default function ProductGroup({ meal, day, productGroup }: Props) {
 					}
 					g
 				</div>
-				<div className='calories-meal'>{getMealProductGroupProperty('calories', meal, productGroup._id)} cal</div>
-				<div className='carbo-meal'>{getMealProductGroupProperty('carbohydrates', meal, productGroup._id)}W</div>
-				<div className='proteins-meal'>{getMealProductGroupProperty('proteins', meal, productGroup._id)} B</div>
-				<div className='fats-meal'>{getMealProductGroupProperty('fats', meal, productGroup._id)} T</div>
-				<div className='weight-meal'>-</div>
+				<div className="calories-meal">
+					{getMealProductGroupProperty("calories", meal, productGroup._id)} cal
+				</div>
+				<div className="carbo-meal">
+					{getMealProductGroupProperty("carbohydrates", meal, productGroup._id)}
+					W
+				</div>
+				<div className="proteins-meal">
+					{getMealProductGroupProperty("proteins", meal, productGroup._id)} B
+				</div>
+				<div className="fats-meal">
+					{getMealProductGroupProperty("fats", meal, productGroup._id)} T
+				</div>
+        <div className="fiber-meal">
+					{getMealProductGroupProperty("fiber", meal, productGroup._id)} bł
+				</div>
+				<div className="weight-meal">-</div>
 			</div>
 		</ProductGroupContainer>
 	)

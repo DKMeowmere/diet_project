@@ -65,7 +65,7 @@ export const Diet = styled.div`
 	}
 	.diet-property-badge {
 		width: 90%;
-		max-width: 500px;
+		max-width: 600px;
 		margin: 20px 20px 0 0;
 		background-color: #fff;
 		padding: 20px;
@@ -113,7 +113,7 @@ export const Day = styled.section`
 	}
 	.property-badge {
 		width: 90%;
-		max-width: 300px;
+		max-width: 400px;
 		margin: 20px auto 0;
 	}
 	
@@ -157,7 +157,7 @@ export const TableContainer = styled.table`
 	.cell {
 		border: 2px solid black;
 		padding: 12px;
-		font-size: 0.8rem;
+		font-size: 0.6rem;
 	}
 	.strong {
 		background-color: ${({ theme }) => theme.colors.main};
@@ -165,7 +165,7 @@ export const TableContainer = styled.table`
 	}
 	.bold {
 		font-weight: bold;
-		font-size: 1.1rem;
+		font-size: 0.9rem;
 	}
 `
 
@@ -187,7 +187,7 @@ export const ProductGroupContainer = styled.tr`
 export const ProductGroupRow = styled.tr`
 	border: none;
 	border-collapse: collapse;
-	
+
 	td {
 		background-color: #fff;
 		color: black;
@@ -226,7 +226,7 @@ export const PdfDietContainer = styled(DietContainer)`
 	}
 	.diet-property-badge {
 		width: 90%;
-		max-width: 500px;
+		max-width: 600px;
 		margin: 20px 20px 0 0;
 		background-color: #fff;
 		padding: 20px;

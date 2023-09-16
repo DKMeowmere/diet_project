@@ -159,11 +159,12 @@ function DietDetails() {
 
 					{diet.description && <div className='diet-description'>{diet.description}</div>}
 					<PropertyBadge
-						className='diet-property-badge'
-						calories={getDietProperty(diet, 'calories')}
-						carbohydrates={getDietProperty(diet, 'carbohydrates')}
-						proteins={getDietProperty(diet, 'proteins')}
-						fats={getDietProperty(diet, 'fats')}
+						className="diet-property-badge"
+						calories={getDietProperty(diet, "calories")}
+						carbohydrates={getDietProperty(diet, "carbohydrates")}
+						proteins={getDietProperty(diet, "proteins")}
+						fats={getDietProperty(diet, "fats")}
+						fiber={getDietProperty(diet, "fiber")}
 					/>
 				</div>
 				<DaysContainer>
@@ -178,11 +179,15 @@ function DietDetails() {
 							/>
 						</div>
 						<PropertyBadge
-							className='property-badge'
-							calories={getDayProperty(diet.days[pageNumber], 'calories')}
-							carbohydrates={getDayProperty(diet.days[pageNumber], 'carbohydrates')}
-							proteins={getDayProperty(diet.days[pageNumber], 'proteins')}
-							fats={getDayProperty(diet.days[pageNumber], 'fats')}
+							className="property-badge"
+							calories={getDayProperty(diet.days[pageNumber], "calories")}
+							carbohydrates={getDayProperty(
+								diet.days[pageNumber],
+								"carbohydrates"
+							)}
+							proteins={getDayProperty(diet.days[pageNumber], "proteins")}
+							fats={getDayProperty(diet.days[pageNumber], "fats")}
+							fiber={getDayProperty(diet.days[pageNumber], "fiber")}
 						/>
 						<MealsContainer>
 							{diet.days[pageNumber].meals.map(meal => (

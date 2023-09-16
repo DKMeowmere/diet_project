@@ -94,14 +94,15 @@ export default function Meal({ meal, day, setIsProductModalOpen, setIsProductGro
 			
 			{meal.products.length > 0 && (
 				<ProductsContainer>
-					<div className='product-container'>
-						<div className='products-meal'>Produkt </div>
-						<div className='weight-meal'>Waga (g)</div>
-						<div className='calories-meal'>Kalorie</div>
-						<div className='carbo-meal'>Węglowodany</div>
-						<div className='proteins-meal'>Białka</div>
-						<div className='fats-meal'>Tłuszcze</div>
-						<div className='weight-meal'>Ilość</div>
+					<div className="product-container">
+						<div className="products-meal">Produkt </div>
+						<div className="weight-meal">Waga (g)</div>
+						<div className="calories-meal">Kalorie</div>
+						<div className="carbo-meal">Węglowodany</div>
+						<div className="proteins-meal">Białka</div>
+						<div className="fats-meal">Tłuszcze</div>
+						<div className="fiber-meal">Błonnik</div>
+						<div className="weight-meal">Ilość</div>
 					</div>
 					{meal.products.map((product: MealProduct) => {
 						if (product.referringTo) return
@@ -164,7 +165,18 @@ export default function Meal({ meal, day, setIsProductModalOpen, setIsProductGro
 							}
 							T
 						</div>
-						<div className='weight-meal'>
+						<div className="fiber-meal">
+							{
+								+calculateSum(
+									meal.products.map(product => {
+										if (product.referringTo) return 0
+										return getMealProductProperty(product, "fiber")
+									})
+								).toFixed(2)
+							}
+							Bł
+						</div>
+						<div className="weight-meal">
 							{
 								+calculateSum(
 									meal.products.map(product => {
@@ -195,11 +207,26 @@ export default function Meal({ meal, day, setIsProductModalOpen, setIsProductGro
 						+calculateSum(meal.dishes.map(dish => +dish.grams * +dish.count))}
 					g
 				</div>
-				<div className='calories-meal'>{getMealProperty(meal, 'calories')}cal</div>
-				<div className='carbo-meal'>{getMealProperty(meal, 'carbohydrates')}W</div>
-				<div className='proteins-meal'>{getMealProperty(meal, 'proteins')}B</div>
-				<div className='fats-meal'>{getMealProperty(meal, 'fats')}T</div>
-				<div className='minus'>-</div>
+				<div className="calories-meal">
+					Kalorie:
+					{getMealProperty(meal, "calories")}
+				</div>
+				<div className="carbo-meal">
+					Węglowodany:
+					{getMealProperty(meal, "carbohydrates")}
+				</div>
+				<div className="proteins-meal">
+					Białka:
+					{getMealProperty(meal, "proteins")}
+				</div>
+				<div className="fats-meal">
+					Tłuszcze:
+					{getMealProperty(meal, "fats")}
+				</div>
+				<div className="fiber-meal">
+					Błonnik:
+					{getMealProperty(meal, "fiber")}
+				</div>
 			</div>
 
 			<Button
