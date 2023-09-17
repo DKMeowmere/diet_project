@@ -1,23 +1,26 @@
-import { changeMealDescription, changeMealName, removeMeal, updateWhereToPass } from '../../app/features/dietSlice'
-import { useAppDispatch } from '../../app/hooks'
-import theme from '../../app/theme'
-import { Button } from '../../components/button/Button'
-import Input from '../../components/input/Index'
-import Textarea from '../../components/textarea/Index'
-import useCalculations from '../../hooks/useCalculations'
-import useReduce from '../../hooks/useReduce'
-import { Day } from '../../types/day'
-import { Meal as MealType, MealDish, MealProduct } from '../../types/meal'
-import Dish from './Dish'
-import Product from './Product'
-import ProductGroup from './ProductGroup'
-import { ProductsContainer } from './styles'
+import {
+	changeMealDescription,
+	changeMealName,
+	removeMeal,
+	updateWhereToPass,
+} from "../../app/features/dietSlice"
+import { useAppDispatch } from "../../app/hooks"
+import theme from "../../app/theme"
+import { Button } from "../../components/button/Button"
+import Input from "../../components/input/Index"
+import Textarea from "../../components/textarea/Index"
+import useCalculations from "../../hooks/useCalculations"
+import useReduce from "../../hooks/useReduce"
+import { Day } from "../../types/day"
+import { Meal as MealType, MealProduct } from "../../types/meal"
+import Product from "./Product"
+import ProductGroup from "./ProductGroup"
+import { ProductsContainer } from "./styles"
 
 type Props = {
 	meal: MealType
 	day: Day
 	setIsProductModalOpen: (isModalOpen: boolean) => void
-	setIsDishModalOpen: (isModalOpen: boolean) => void
 	setIsProductGroupModalOpen: (isModalOpen: boolean) => void
 }
 
@@ -61,37 +64,34 @@ export default function Meal({ meal, day, setIsProductModalOpen, setIsProductGro
 					)
 				}
 			/>
-			<div className='btn-element-container'>
-				<Button
-					width='40%'
-					height='70px'
-					type='button'
-					bgColor={theme.colors.main}
-					onClick={() => {
-						dispatch(updateWhereToPass({ dayId: day._id, mealId: meal._id }))
-						setIsProductModalOpen(true)
-					}}
-					className='diet-btn-element'>
-					Dodaj produkt do posiłku:
-					{meal.name}
-				</Button>
-			</div>
-			<div className='btn-element-container-2'>
-				<Button
-					width='40%'
-					height='70px'
-					type='button'
-					bgColor={theme.colors.main}
-					onClick={() => {
-						dispatch(updateWhereToPass({ dayId: day._id, mealId: meal._id }))
-						setIsProductGroupModalOpen(true)
-					}}
-					className='diet-btn-element'>
-					Dodaj potrawe do posiłku:
-					{meal.name}
-				</Button>
-			</div>
-			
+			<Button
+				width="100%"
+				height="40px"
+				type="button"
+				bgColor={theme.colors.main}
+				onClick={() => {
+					dispatch(updateWhereToPass({ dayId: day._id, mealId: meal._id }))
+					setIsProductModalOpen(true)
+				}}
+				className="meal-btn"
+			>
+				Dodaj produkt do posiłku:
+				{meal.name}
+			</Button>
+			<Button
+				width="100%"
+				height="40px"
+				type="button"
+				bgColor={theme.colors.main}
+				onClick={() => {
+					dispatch(updateWhereToPass({ dayId: day._id, mealId: meal._id }))
+					setIsProductGroupModalOpen(true)
+				}}
+				className="meal-btn"
+			>
+				Dodaj potrawe do posiłku:
+				{meal.name}
+			</Button>
 			{meal.products.length > 0 && (
 				<ProductsContainer>
 					<div className="product-container">
@@ -193,18 +193,14 @@ export default function Meal({ meal, day, setIsProductModalOpen, setIsProductGro
 				meal.productGroups.map(productGroup => (
 					<ProductGroup key={productGroup._id} meal={meal} day={day} productGroup={productGroup} />
 				))}
-			{meal.dishes.length > 0 && (
-				<ProductsContainer>
-					{meal.dishes.map((dish: MealDish) => (
-						<Dish key={dish._id} day={day} meal={meal} dish={dish} />
-					))}
-				</ProductsContainer>
-			)}
-			<div className='product-container-element'>
-				<div className='products-meal'>Razem</div>
-				<div className='weight-meal'>
-					{+calculateSum(meal.products.map(product => +product.grams * +product.count)) +
-						+calculateSum(meal.dishes.map(dish => +dish.grams * +dish.count))}
+			<div className="product-container meal-summary">
+				<div className="amount-meal">Razem</div>
+				<div className="amount-meal">
+					{
+						+calculateSum(
+							meal.products.map(product => +product.grams * +product.count)
+						)
+					}
 					g
 				</div>
 				<div className="calories-meal">

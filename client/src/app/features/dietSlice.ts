@@ -2,8 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { Day } from "../../types/day"
 import { Diet, MacronutrientsDivision } from "../../types/diet"
 import { DietState } from "../../types/dietState"
-import { Dish as DishType } from "../../types/dish"
-import { Meal, MealDish, MealProduct } from "../../types/meal"
+import { Meal,  MealProduct } from "../../types/meal"
 import { Product } from "../../types/product"
 import { ProductGroup as ProductGroupType } from "../../types/productGroup."
 import { WhereToPass } from "../../types/whereToPass"
@@ -120,7 +119,6 @@ const dietSlice = createSlice({
 				name: `Posiłek ${state.currentDiet.days[dayIndex].meals.length + 1}`,
 				description: "",
 				products: [],
-				dishes: [],
 				productGroups: [],
 			})
 		},
@@ -283,101 +281,6 @@ const dietSlice = createSlice({
 			state.whereToPass = action.payload
 		},
 
-		addDish: (
-			state,
-			action: PayloadAction<{
-				dish: DishType
-				dayId: string
-				mealId: string
-			}>
-		) => {
-			const dayIndex = state.currentDiet.days.findIndex(
-				day => day._id === action.payload.dayId
-			)
-			const mealIndex = state.currentDiet.days[dayIndex].meals.findIndex(
-				meal => meal._id === action.payload.mealId
-			)
-			state.currentDiet.days[dayIndex].meals[mealIndex].dishes.push({
-				_id: crypto.randomUUID(),
-				count: "1",
-				grams: "0",
-				dishDetails: action.payload.dish,
-			})
-		},
-
-		changeDishGrams: (
-			state,
-			action: PayloadAction<{
-				day: Day
-				meal: Meal
-				dish: MealDish
-				value: string
-			}>
-		) => {
-			const value = action.payload.value
-
-			const dayIndex = state.currentDiet.days.findIndex(
-				day => day._id === action.payload.day._id
-			)
-			const mealIndex = state.currentDiet.days[dayIndex].meals.findIndex(
-				meal => meal._id === action.payload.meal._id
-			)
-			const dishIndex = state.currentDiet.days[dayIndex].meals[
-				mealIndex
-			].dishes.findIndex(dish => dish._id === action.payload.dish._id)
-			state.currentDiet.days[dayIndex].meals[mealIndex].dishes[
-				dishIndex
-			].grams = value
-		},
-
-		changeDishCount: (
-			state,
-			action: PayloadAction<{
-				day: Day
-				meal: Meal
-				dish: MealDish
-				value: string
-			}>
-		) => {
-			const value = action.payload.value
-
-			const dayIndex = state.currentDiet.days.findIndex(
-				day => day._id === action.payload.day._id
-			)
-			const mealIndex = state.currentDiet.days[dayIndex].meals.findIndex(
-				meal => meal._id === action.payload.meal._id
-			)
-			const dishIndex = state.currentDiet.days[dayIndex].meals[
-				mealIndex
-			].dishes.findIndex(dish => dish._id === action.payload.dish._id)
-			state.currentDiet.days[dayIndex].meals[mealIndex].dishes[
-				dishIndex
-			].count = value
-		},
-
-		removeDish: (
-			state,
-			action: PayloadAction<{
-				day: Day
-				meal: Meal
-				dish: MealDish
-			}>
-		) => {
-			const dayIndex = state.currentDiet.days.findIndex(
-				day => day._id === action.payload.day._id
-			)
-
-			const mealIndex = state.currentDiet.days[dayIndex].meals.findIndex(
-				meal => meal._id === action.payload.meal._id
-			)
-
-			const newDishes = state.currentDiet.days[dayIndex].meals[
-				mealIndex
-			].dishes.filter(dish => dish._id !== action.payload.dish._id)
-
-			state.currentDiet.days[dayIndex].meals[mealIndex].dishes = newDishes
-		},
-
 		addProductGroup: (
 			state,
 			action: PayloadAction<{
@@ -443,10 +346,6 @@ export const {
 	changeProductCount,
 	removeProduct,
 	updateWhereToPass,
-	addDish,
-	changeDishGrams,
-	changeDishCount,
-	removeDish,
 	addProductGroup,
 	removeProductGroup,
 	changeMacronutrientsDivision,

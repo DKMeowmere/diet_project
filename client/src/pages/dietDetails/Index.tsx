@@ -13,8 +13,7 @@ import HeaderRow from './HeaderRow'
 import { AiOutlineFilePdf, AiFillDelete } from 'react-icons/ai'
 import { RxUpdate } from 'react-icons/rx'
 import { HiClipboardCopy } from 'react-icons/hi'
-import DishTable from './DishTable'
-import PropertyBadge from '../../components/propertyBadge/Index'
+import PropertiesBadge from '../../components/propertiesBadge/Index'
 import useCalculations from '../../hooks/useCalculations'
 import ProductGroupTable from './ProductGroupTable'
 
@@ -158,70 +157,66 @@ function DietDetails() {
 					</div>
 
 					{diet.description && <div className='diet-description'>{diet.description}</div>}
-					<PropertyBadge
-						className="diet-property-badge"
-						calories={getDietProperty(diet, "calories")}
-						carbohydrates={getDietProperty(diet, "carbohydrates")}
-						proteins={getDietProperty(diet, "proteins")}
-						fats={getDietProperty(diet, "fats")}
-						fiber={getDietProperty(diet, "fiber")}
+					<PropertiesBadge
+						className='diet-property-badge'
+						calories={getDietProperty(diet, 'calories')}
+						carbohydrates={getDietProperty(diet, 'carbohydrates')}
+						proteins={getDietProperty(diet, 'proteins')}
+						fats={getDietProperty(diet, 'fats')}
+						fiber={getDietProperty(diet, 'fiber')}
 					/>
 				</div>
 				<DaysContainer>
 					<Day>
-						<div className='day-name'>
-							{diet.days[pageNumber].day}
-							<AiOutlineFilePdf
-								className='pdf-icon'
-								onClick={() =>
-									handlePdfGeneration(`${serverUrl}/api/diet/pdf/${diet._id}?day=${diet.days[pageNumber]._id}`)
-								}
+						<div className='day-name-container'>
+							<div className='day-name'>
+								{diet.days[pageNumber].day}
+								<AiOutlineFilePdf
+									className='pdf-icon'
+									onClick={() =>
+										handlePdfGeneration(`${serverUrl}/api/diet/pdf/${diet._id}?day=${diet.days[pageNumber]._id}`)
+									}
+								/>
+							</div>
+							<PropertiesBadge
+								className='property-badge'
+								calories={getDayProperty(diet.days[pageNumber], 'calories')}
+								carbohydrates={getDayProperty(diet.days[pageNumber], 'carbohydrates')}
+								proteins={getDayProperty(diet.days[pageNumber], 'proteins')}
+								fats={getDayProperty(diet.days[pageNumber], 'fats')}
+								fiber={getDayProperty(diet.days[pageNumber], 'fiber')}
 							/>
-						</div>
-						<PropertyBadge
-							className="property-badge"
-							calories={getDayProperty(diet.days[pageNumber], "calories")}
-							carbohydrates={getDayProperty(
-								diet.days[pageNumber],
-								"carbohydrates"
-							)}
-							proteins={getDayProperty(diet.days[pageNumber], "proteins")}
-							fats={getDayProperty(diet.days[pageNumber], "fats")}
-							fiber={getDayProperty(diet.days[pageNumber], "fiber")}
-						/>
-						<MealsContainer>
-							{diet.days[pageNumber].meals.map(meal => (
-								<div className='meal' key={meal._id}>
-									<div className='meal-box'>
-										<div className='meal-title'>{meal.name}</div>
-										{meal.description && <div className='meals-description'>{meal.description}</div>}
+							<MealsContainer>
+								{diet.days[pageNumber].meals.map(meal => (
+									<div className='meal-pdf' key={meal._id}>
+										<div className='meal-box'>
+											<div className='meal-title'>{meal.name}</div>
+											{meal.description && <div className='meals-description'>{meal.description}</div>}
+										</div>
+										{meal.productGroups.map(productGroup =>
+											productGroup.description ? (
+												<p className='product-group-description' key={productGroup._id}>
+													Opis {productGroup.name}: {productGroup.description}
+												</p>
+											) : null
+										)}
+										<TableContainer>
+											<HeaderRow />
+											<tbody>
+												{meal.products.map(product => {
+													if (product.referringTo) return
+													return <ProductRow product={product} key={product._id} />
+												})}
+												{meal.productGroups.map(productGroup => (
+													<ProductGroupTable key={productGroup._id} productGroup={productGroup} meal={meal} />
+												))}
+											</tbody>
+											<FooterRow meal={meal} />
+										</TableContainer>
 									</div>
-									{meal.productGroups.map(productGroup =>
-										productGroup.description ? (
-											<p className='product-group-description' key={productGroup._id}>
-												Opis {productGroup.name}: {productGroup.description}
-											</p>
-										) : null
-									)}
-									<TableContainer>
-										<HeaderRow />
-										<tbody>
-											{meal.products.map(product => {
-												if (product.referringTo) return
-												return <ProductRow product={product} key={product._id} />
-											})}
-											{meal.productGroups.map(productGroup => (
-												<ProductGroupTable key={productGroup._id} productGroup={productGroup} meal={meal} />
-											))}
-											{meal.dishes.map(dish => (
-												<DishTable key={dish._id} dish={dish} />
-											))}
-										</tbody>
-										<FooterRow meal={meal} />
-									</TableContainer>
-								</div>
-							))}
-						</MealsContainer>
+								))}
+							</MealsContainer>
+						</div>
 					</Day>
 				</DaysContainer>
 			</Diet>

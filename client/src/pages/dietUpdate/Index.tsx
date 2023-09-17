@@ -8,7 +8,6 @@ import ProductModal from '../../components/productModal/Index'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import {
 	addDay,
-	addDish,
 	addProduct,
 	addProductGroup,
 	changeCaloricGoal,
@@ -17,19 +16,17 @@ import {
 	changeTitle,
 	clearDiet,
 	importDiet,
-} from '../../app/features/dietSlice'
-import { addAlert, endLoading, startLoading } from '../../app/features/appSlice'
-import { validate } from './validateDiet'
-import { useCookies } from 'react-cookie'
-import { useParams } from 'react-router-dom'
-import Day from './Day'
-import { LeftArrow, RightArrow } from '../../components/arrow/Index'
-import { Diet as DietType } from '../../types/diet'
-import { Product as ProductType } from '../../types/product'
-import { Dish as DishType } from '../../types/dish'
-import DishModal from '../../components/dishModal/Index'
-import { ProductGroup as ProductGroupType } from '../../types/productGroup.'
-import ProductGroupModal from '../../components/productGroupModal/Index'
+} from "../../app/features/dietSlice"
+import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
+import { validate } from "./validateDiet"
+import { useCookies } from "react-cookie"
+import { useParams } from "react-router-dom"
+import Day from "./Day"
+import { LeftArrow, RightArrow } from "../../components/arrow/Index"
+import { Diet as DietType } from "../../types/diet"
+import { Product as ProductType } from "../../types/product"
+import { ProductGroup as ProductGroupType } from "../../types/productGroup."
+import ProductGroupModal from "../../components/productGroupModal/Index"
 
 function UpdateDiet() {
 	const diet = useAppSelector(state => state.diet.currentDiet)
@@ -40,7 +37,6 @@ function UpdateDiet() {
 	const days = useAppSelector(state => state.diet.currentDiet.days)
 	const dispatch = useAppDispatch()
 	const [isProductModalOpen, setIsProductModalOpen] = useState(false)
-	const [isDishModalOpen, setIsDishModalOpen] = useState(false)
 	const [isProductGroupModalOpen, setIsProductGroupModalOpen] = useState(false)
 	const serverUrl = useAppSelector(state => state.app.serverUrl)
 	const [cookies] = useCookies()
@@ -75,11 +71,9 @@ function UpdateDiet() {
 							...product,
 							_id: undefined,
 						})),
-						dishes: meal.dishes.map(dish => ({
-							...dish,
-							_id: undefined,
-						})),
-						productGroups: meal.productGroups.map(productGroup => productGroup._id),
+						productGroups: meal.productGroups.map(
+							productGroup => productGroup._id
+						),
 					})),
 				})),
 			}
@@ -159,17 +153,6 @@ function UpdateDiet() {
 		)
 	}
 
-	function handleDishAddition(dish: DishType) {
-		setIsDishModalOpen(false)
-		dispatch(
-			addDish({
-				dayId: whereToPass.dayId,
-				mealId: whereToPass.mealId,
-				dish,
-			})
-		)
-	}
-
 	function handleProductGroupAddition(productGroup: ProductGroupType) {
 		const dayIndex = diet.days.findIndex(day => day._id === whereToPass.dayId)
 		const mealIndex = diet.days[dayIndex].meals.findIndex(meal => meal._id === whereToPass.mealId)
@@ -216,9 +199,11 @@ function UpdateDiet() {
 	return (
 		<DietCreateContainer>
 			{isProductModalOpen && (
-				<ProductModal setIsModalOpen={setIsProductModalOpen} onProductClick={handleProductAddition} />
+				<ProductModal
+					setIsModalOpen={setIsProductModalOpen}
+					onProductClick={handleProductAddition}
+				/>
 			)}
-			{isDishModalOpen && <DishModal setIsModalOpen={setIsDishModalOpen} onDishClick={handleDishAddition} />}
 			{isProductGroupModalOpen && (
 				<ProductGroupModal
 					setIsModalOpen={setIsProductGroupModalOpen}
@@ -343,7 +328,6 @@ function UpdateDiet() {
 							<Day
 								day={days[pageNumber]}
 								setIsProductModalOpen={setIsProductModalOpen}
-								setIsDishModalOpen={setIsDishModalOpen}
 								setIsProductGroupModalOpen={setIsProductGroupModalOpen}
 								pageNumber={pageNumber}
 								setPageNumber={setPageNumber}

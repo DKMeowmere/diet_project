@@ -29,6 +29,7 @@ export const useLogin = () => {
 		setCookie("token", data.token, {
 			maxAge: month,
 			sameSite: "lax",
+			path: "/",
 		})
 	}
 

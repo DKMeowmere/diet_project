@@ -115,11 +115,11 @@ export default function ProductGroupModal({
 		setSelectedCategories(newSelectedCategories)
 	}
 
-	const filteredProductGroups = useMemo(() => {
+	const filteredProductGroups: ProductGroupsType = useMemo(() => {
 		return productGroups.filter(productGroup => {
 			if (
 				selectedCategories.size > 0 &&
-				productGroup.category &&
+				productGroup.category !== undefined &&
 				!selectedCategories.has(productGroup.category)
 			) {
 				return false
@@ -129,7 +129,7 @@ export default function ProductGroupModal({
 		})
 	}, [query, productGroups, selectedCategories, possibleCategories])
 
-	const productGroupsTitles = productGroups.map(
+	const productGroupsTitles = filteredProductGroups.map(
 		productGroup => productGroup.name
 	)
 

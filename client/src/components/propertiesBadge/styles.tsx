@@ -5,9 +5,9 @@ export const BadgeContainer = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	height: auto;
-	font-size: 1rem;
+	font-size: .9rem;
 	font-weight: light;
-	gap: 15px;
+	gap: 10px;
 	.unit-container {
 		height: 100%;
 		display: flex;
@@ -25,7 +25,7 @@ export const BadgeContainer = styled.div`
 			color: #dc143c;
 		}
 		.fiber {
-			color: limegreen;
+			color: #32cd32;
 		}
 	}
 `

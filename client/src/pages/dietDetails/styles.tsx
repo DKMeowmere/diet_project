@@ -126,8 +126,8 @@ export const MealsContainer = styled.div`
 	.day-name-container:last-child{
 		height:100vh;
 	}
-	.meal-pdf{
-		height: 170vh;
+	.day-name-container{
+		height:170vh;
 	}
 	.meal-box {
 		padding: 20px;

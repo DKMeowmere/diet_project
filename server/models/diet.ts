@@ -1,7 +1,6 @@
 import mongoose from "mongoose"
 import { Diet } from "../types/diet.js"
 import mealProductSchema from "./schemas/mealProduct.js"
-import mealDishSchema from "./schemas/mealDish.js"
 
 const mealsSchema = new mongoose.Schema({
 	name: {
@@ -14,7 +13,6 @@ const mealsSchema = new mongoose.Schema({
 		trim: true,
 	},
 	products: [mealProductSchema],
-	dishes: [mealDishSchema],
 	productGroups: [
 		{
 			ref: "ProductGroup",

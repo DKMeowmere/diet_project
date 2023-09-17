@@ -9,7 +9,7 @@ import theme from "../../app/theme"
 import { Button } from "../../components/button/Button"
 import Input from "../../components/input/Index"
 import ProductModal from "../../components/productModal/Index"
-import PropertyBadge from "../../components/propertyBadge/Index"
+import PropertiesBadge from "../../components/propertiesBadge/Index"
 import Textarea from "../../components/textarea/Index"
 import {
 	Product as ProductType,
@@ -48,7 +48,7 @@ export default function ProductGroupForm({ type }: Props) {
 
 				if (productGroup) {
 					setName(productGroup.name)
-					setCategory(productGroup.category  || "")
+					setCategory(productGroup.category || "")
 					setDescription(productGroup.description)
 					setAuxiliaryDescription(productGroup.auxiliaryDescription)
 					setProducts(productGroup.products)
@@ -93,6 +93,7 @@ export default function ProductGroupForm({ type }: Props) {
 						setAuxiliaryDescription("")
 						setProducts([])
 						dispatch(addAlert({ body: data?.error, type: "ERROR" }))
+						navigate("/product-group")
 						return
 					}
 
@@ -283,7 +284,7 @@ export default function ProductGroupForm({ type }: Props) {
 				<p className="form-text">
 					Podaj kategorie grupy produktów (opcjonalnie)
 				</p>
-        <Input
+				<Input
 					width="500px"
 					height="50px"
 					placeholder="Podaj kategorie"
@@ -336,7 +337,7 @@ export default function ProductGroupForm({ type }: Props) {
 										}
 									/>
 									<p className="product-title">{product.name}</p>
-									<PropertyBadge
+									<PropertiesBadge
 										carbohydrates={+(+product.carbohydrates).toFixed(2)}
 										calories={+(+product.calories).toFixed(2)}
 										fats={+(+product.fats).toFixed(2)}
