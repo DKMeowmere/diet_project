@@ -1,13 +1,13 @@
-import { addMeal, changeDayName, removeDay } from "../../app/features/dietSlice"
-import { useAppDispatch, useAppSelector } from "../../app/hooks"
-import Input from "../../components/input/Index"
-import { Day as DayType } from "../../types/day"
-import { MealsContainer } from "./styles"
-import Meal from "./Meal"
-import theme from "../../app/theme"
-import { Button } from "../../components/button/Button"
-import PropertiesBadge from "../../components/propertiesBadge/Index"
-import useCalculations from "../../hooks/useCalculations"
+import { addMeal, changeDayName, removeDay } from '../../app/features/dietSlice'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import Input from '../../components/input/Index'
+import { Day as DayType } from '../../types/day'
+import { MealsContainer } from './styles'
+import Meal from './Meal'
+import theme from '../../app/theme'
+import { Button } from '../../components/button/Button'
+import PropertiesBadge from '../../components/propertiesBadge/Index'
+import useCalculations from '../../hooks/useCalculations'
 
 type Props = {
 	day: DayType
@@ -51,40 +51,25 @@ export default function Day({
 						}
 					/>
 				</div>
-
-				<Input
-					width="50%"
-					height="50px"
-					placeholder="Podaj tytuł"
-					value={day.day}
-					onChange={e =>
-						dispatch(
-							changeDayName({
-								day,
-								value: e.target.value,
-							})
-						)
-					}
-				/>
+				
+				<div className='diet-property-badge-container'>
 				<p>Aktualnie</p>
-				<PropertiesBadge
-					className="property-badge"
-					calories={getDayProperty(day, "calories")}
-					carbohydrates={getDayProperty(day, "carbohydrates")}
-					proteins={getDayProperty(day, "proteins")}
-					fats={getDayProperty(day, "fats")}
-				/>
-				<p>Cel</p>
-				<PropertiesBadge
-					className="property-badge"
-					calories={+diet.caloricGoal}
-					carbohydrates={getRecommendedMacronutrientCount(
-						diet,
-						"carbohydrates"
-					)}
-					proteins={getRecommendedMacronutrientCount(diet, "proteins")}
-					fats={getRecommendedMacronutrientCount(diet, "fats")}
-				/>
+					<PropertiesBadge
+						className='diet-property-badge'
+						calories={getDayProperty(day, 'calories')}
+						carbohydrates={getDayProperty(day, 'carbohydrates')}
+						proteins={getDayProperty(day, 'proteins')}
+						fats={getDayProperty(day, 'fats')}
+					/>
+					<p>Cel</p>
+					<PropertiesBadge
+						className='diet-property-badge'
+						calories={+diet.caloricGoal}
+						carbohydrates={getRecommendedMacronutrientCount(diet, 'carbohydrates')}
+						proteins={getRecommendedMacronutrientCount(diet, 'proteins')}
+						fats={getRecommendedMacronutrientCount(diet, 'fats')}
+					/>
+				</div>
 			</div>
 			{day.meals.length > 0 && (
 				<MealsContainer>

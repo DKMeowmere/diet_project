@@ -4,8 +4,8 @@ import { AppState } from '../../types/appState'
 
 const initialState: AppState = {
 	token: null,
+	appUrl: import.meta.env.VITE_CLIENT_URL || ' https://dietproject2000.netlify.app',
 	serverUrl: import.meta.env.VITE_SERVER_URL || 'https://diet-project2000.onrender.com',
-	appUrl: import.meta.env.VITE_CLIENT_URL || 'https://dietproject2000.netlify.app',
 	alerts: [],
 	alertLifeTime: 5000,
 	isAppLoading: false,

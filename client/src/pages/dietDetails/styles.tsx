@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 export const DietContainer = styled.article`
 	width: 100%;
@@ -116,18 +116,14 @@ export const Day = styled.section`
 		max-width: 400px;
 		margin: 20px auto 0;
 	}
-	
 `
 
 export const MealsContainer = styled.div`
 	gap: 20px;
 	display: flex;
 	flex-direction: column;
-	.day-name-container:last-child{
-		height:100vh;
-	}
-	.day-name-container{
-		height:170vh;
+	.diet-name-container{
+		height: 160vh;
 	}
 	.meal-box {
 		padding: 20px;

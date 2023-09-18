@@ -16,8 +16,8 @@ export const DietCreateContainer = styled.article`
 		gap: 20px;
 	}
 	.diet-property-badge {
-		width: 90%;
-		max-width: 500px;
+		width: 100%;
+		max-width: 600px;
 		background-color: #fff;
 		padding: 20px;
 		border-radius: 20px;
@@ -133,6 +133,7 @@ export const DaysContainer = styled.div`
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		flex-direction: column;
 		width: 100%;
 		margin-top: 20px;
 		margin-bottom: 0px;
@@ -172,10 +173,11 @@ export const MealsContainer = styled.div`
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		font-size: 1.5rem;
+		font-size: 1.2rem;
 		margin-top: 50px;
 		border-top-left-radius: 10px;
 		border-top-right-radius: 10px;
+		
 	}
 	.product-container,
 	.product-container-element {
@@ -194,7 +196,8 @@ export const MealsContainer = styled.div`
 		.carbo-meal,
 		.proteins-meal,
 		.fats-meal,
-		.fiber-meal {
+		.fiber-meal,
+		.amounts-meal{
 			width: 15%;
 		}
 	}

@@ -73,6 +73,7 @@ export const Form = styled.form`
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		flex-direction: column;
 		width: 100%;
 		margin-bottom: 20px;
 	}
@@ -167,10 +168,23 @@ export const MealsContainer = styled.div`
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		font-size: 1.5rem;
+		font-size: 1.2rem;
 		margin-top: 50px;
 		border-top-left-radius: 10px;
 		border-top-right-radius: 10px;
+		.products-meal {
+			width: 25%;
+		}
+
+		.weight-meal,
+		.calories-meal,
+		.carbo-meal,
+		.proteins-meal,
+		.fats-meal,
+		.fiber-meal,
+		.amounts-meal {
+			width: 15%;
+		}
 	}
 
 	.product-container,
@@ -332,8 +346,8 @@ export const ProductGroupContainer = styled.div`
 		text-align: center;
 		font-size: 1.5rem;
 		position: relative;
+		color: #ffa500;
 		width: 70%;
-
 		.close-btn {
 			position: absolute;
 			cursor: pointer;
@@ -354,5 +368,6 @@ export const ProductGroupContainer = styled.div`
 		text-align: center;
 		font-size: 1rem;
 		position: relative;
+		
 	}
 `

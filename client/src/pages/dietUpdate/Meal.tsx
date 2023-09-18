@@ -1,21 +1,16 @@
-import {
-	changeMealDescription,
-	changeMealName,
-	removeMeal,
-	updateWhereToPass,
-} from "../../app/features/dietSlice"
-import { useAppDispatch } from "../../app/hooks"
-import theme from "../../app/theme"
-import { Button } from "../../components/button/Button"
-import Input from "../../components/input/Index"
-import Textarea from "../../components/textarea/Index"
-import useCalculations from "../../hooks/useCalculations"
-import useReduce from "../../hooks/useReduce"
-import { Day } from "../../types/day"
-import { Meal as MealType, MealProduct } from "../../types/meal"
-import Product from "./Product"
-import ProductGroup from "./ProductGroup"
-import { ProductsContainer } from "./styles"
+import { changeMealDescription, changeMealName, removeMeal, updateWhereToPass } from '../../app/features/dietSlice'
+import { useAppDispatch } from '../../app/hooks'
+import theme from '../../app/theme'
+import { Button } from '../../components/button/Button'
+import Input from '../../components/input/Index'
+import Textarea from '../../components/textarea/Index'
+import useCalculations from '../../hooks/useCalculations'
+import useReduce from '../../hooks/useReduce'
+import { Day } from '../../types/day'
+import { Meal as MealType, MealProduct } from '../../types/meal'
+import Product from './Product'
+import ProductGroup from './ProductGroup'
+import { ProductsContainer } from './styles'
 
 type Props = {
 	meal: MealType
@@ -64,45 +59,45 @@ export default function Meal({ meal, day, setIsProductModalOpen, setIsProductGro
 					)
 				}
 			/>
-			<Button
-				width="100%"
-				height="40px"
-				type="button"
-				bgColor={theme.colors.main}
-				onClick={() => {
-					dispatch(updateWhereToPass({ dayId: day._id, mealId: meal._id }))
-					setIsProductModalOpen(true)
-				}}
-				className="meal-btn"
-			>
-				Dodaj produkt do posiłku:
-				{meal.name}
-			</Button>
-			<Button
-				width="100%"
-				height="40px"
-				type="button"
-				bgColor={theme.colors.main}
-				onClick={() => {
-					dispatch(updateWhereToPass({ dayId: day._id, mealId: meal._id }))
-					setIsProductGroupModalOpen(true)
-				}}
-				className="meal-btn"
-			>
-				Dodaj potrawe do posiłku:
-				{meal.name}
-			</Button>
+			<div className='btn-element-container'>
+				<Button
+					width='40%'
+					height='70px'
+					type='button'
+					bgColor={theme.colors.main}
+					onClick={() => {
+						dispatch(updateWhereToPass({ dayId: day._id, mealId: meal._id }))
+						setIsProductModalOpen(true)
+					}}
+					className='diet-btn-element'>
+					Dodaj produkt do posiłku:
+					{meal.name}
+				</Button>
+				<Button
+					width='40%'
+					height='70px'
+					type='button'
+					bgColor={theme.colors.main}
+					onClick={() => {
+						dispatch(updateWhereToPass({ dayId: day._id, mealId: meal._id }))
+						setIsProductGroupModalOpen(true)
+					}}
+					className='diet-btn-element'>
+					Dodaj potrawe do posiłku:
+					{meal.name}
+				</Button>
+			</div>
 			{meal.products.length > 0 && (
 				<ProductsContainer>
-					<div className="product-container">
-						<div className="products-meal">Produkt </div>
-						<div className="weight-meal">Waga (g)</div>
-						<div className="calories-meal">Kalorie</div>
-						<div className="carbo-meal">Węglowodany</div>
-						<div className="proteins-meal">Białka</div>
-						<div className="fats-meal">Tłuszcze</div>
-						<div className="fiber-meal">Błonnik</div>
-						<div className="weight-meal">Ilość</div>
+					<div className='product-container'>
+						<div className='products-meal'>Produkt </div>
+						<div className='weight-meal'>Waga (g)</div>
+						<div className='calories-meal'>Kalorie</div>
+						<div className='carbo-meal'>Węglowodany</div>
+						<div className='proteins-meal'>Białka</div>
+						<div className='fats-meal'>Tłuszcze</div>
+						<div className='fiber-meal'>Błonnik</div>
+						<div className='weight-meal'>Ilość</div>
 					</div>
 					{meal.products.map((product: MealProduct) => {
 						if (product.referringTo) return
@@ -165,27 +160,18 @@ export default function Meal({ meal, day, setIsProductModalOpen, setIsProductGro
 							}
 							T
 						</div>
-						<div className="fiber-meal">
+						<div className='fiber-meal'>
 							{
 								+calculateSum(
 									meal.products.map(product => {
 										if (product.referringTo) return 0
-										return getMealProductProperty(product, "fiber")
+										return getMealProductProperty(product, 'fiber')
 									})
 								).toFixed(2)
 							}
 							Bł
 						</div>
-						<div className="weight-meal">
-							{
-								+calculateSum(
-									meal.products.map(product => {
-										if (product.referringTo) return 0
-										return +product.count
-									})
-								).toFixed(2)
-							}
-						</div>
+						<div className='weight-meal'>-</div>
 					</div>
 				</ProductsContainer>
 			)}
@@ -193,36 +179,32 @@ export default function Meal({ meal, day, setIsProductModalOpen, setIsProductGro
 				meal.productGroups.map(productGroup => (
 					<ProductGroup key={productGroup._id} meal={meal} day={day} productGroup={productGroup} />
 				))}
-			<div className="product-container meal-summary">
-				<div className="amount-meal">Razem</div>
-				<div className="amount-meal">
-					{
-						+calculateSum(
-							meal.products.map(product => +product.grams * +product.count)
-						)
-					}
-					g
+			<div className='product-container-element'>
+				<div className='products-meal'>Razem</div>
+				<div className='amounts-meal'>
+					{+calculateSum(meal.products.map(product => +product.grams * +product.count))}g
 				</div>
-				<div className="calories-meal">
-					Kalorie:
-					{getMealProperty(meal, "calories")}
+				<div className='calories-meal'>
+					{getMealProperty(meal, 'calories')}
+					cal
 				</div>
-				<div className="carbo-meal">
-					Węglowodany:
-					{getMealProperty(meal, "carbohydrates")}
+				<div className='carbo-meal'>
+					{getMealProperty(meal, 'carbohydrates')}
+					W
 				</div>
-				<div className="proteins-meal">
-					Białka:
-					{getMealProperty(meal, "proteins")}
+				<div className='proteins-meal'>
+					{getMealProperty(meal, 'proteins')}
+					B
 				</div>
-				<div className="fats-meal">
-					Tłuszcze:
-					{getMealProperty(meal, "fats")}
+				<div className='fats-meal'>
+					{getMealProperty(meal, 'fats')}
+					T
 				</div>
-				<div className="fiber-meal">
-					Błonnik:
-					{getMealProperty(meal, "fiber")}
+				<div className='fiber-meal'>
+					{getMealProperty(meal, 'fiber')}
+					Bł
 				</div>
+				<div className='weight-meal'>-</div>
 			</div>
 
 			<Button
