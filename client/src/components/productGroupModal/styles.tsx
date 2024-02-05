@@ -50,20 +50,25 @@ export const CategoriesContainer = styled.div`
 	align-items: center;
 	gap: 10px;
 	.item {
-		color: ${({ theme }) => theme.colors.main};
-		background-color: #fff;
+		background-color: ${({ theme }) => theme.colors.main};
+		color: #fff;
 		padding: 12px;
-		outline: 2px dotted ${({ theme }) => theme.colors.main};
+		outline: 2px solid ${({ theme }) => theme.colors.whiteText};
 		border-radius: 8px;
 		cursor: pointer;
 		font-weight: 700;
 		user-select: none;
+		min-width: 70px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		&:hover {
-			background-color: #eee;
+			background-color: #7b7b7b ;
+			color: #eee;
 		}
 	}
 	.active {
-		outline: 4px solid ${({ theme }) => theme.colors.main};
+		outline: 5px dashed ${({ theme }) => theme.colors.whiteText};
 	}
 `
 
