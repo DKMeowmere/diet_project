@@ -31,14 +31,17 @@ export const ProductGroupsArticle = styled.div`
 		margin: auto;
 		margin-top: 20px;
 	}
-	.close-btn {
+	.close-btn-container {
 		position: absolute;
-		cursor: pointer;
-		fill: ${({ theme }) => theme.colors.errorMain};
-		width: 40px;
-		height: 40px;
-		right: 12px;
-		top: 12px;
+		top: 20px;
+		right: 50px;
+		.close-btn {
+			position: fixed;
+			cursor: pointer;
+			fill: ${({ theme }) => theme.colors.errorMain};
+			width: 40px;
+			height: 40px;
+		}
 	}
 `
 

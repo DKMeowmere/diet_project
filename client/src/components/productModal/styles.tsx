@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 export const ProductModalContainer = styled.div`
 	position: fixed;
@@ -13,15 +13,15 @@ export const ProductModalContainer = styled.div`
 `
 
 export const ProductsArticle = styled.div`
-	position: relative;
 	z-index: 10;
-	max-width: 1000px;
+	max-width: 1100px;
 	width: 80%;
 	height: 500px;
 	background-color: #eee;
 	border-radius: 10px;
 	overflow-y: scroll;
 	padding: 30px 0;
+	position: relative;
 	.title {
 		font-size: 2rem;
 		text-align: center;
@@ -31,14 +31,17 @@ export const ProductsArticle = styled.div`
 		margin: auto;
 		margin-top: 20px;
 	}
-	.close-btn {
+	.close-btn-container {
 		position: absolute;
-		cursor: pointer;
-		fill: ${({ theme }) => theme.colors.errorMain};
-		width: 40px;
-		height: 40px;
-		right: 12px;
-		top: 12px;
+		top: 20px;
+		right: 50px;
+		.close-btn {
+			position: fixed;
+			cursor: pointer;
+			fill: ${({ theme }) => theme.colors.errorMain};
+			width: 40px;
+			height: 40px;
+		}
 	}
 `
 export const ProductsContainer = styled.section`
@@ -68,8 +71,7 @@ export const Product = styled.div`
 	&:last-child {
 		padding-bottom: 30px;
 	}
-	@media screen and (min-width: ${({ theme }) =>
-			theme.media.breakpoints.lg}) {
+	@media screen and (min-width: ${({ theme }) => theme.media.breakpoints.lg}) {
 		.product-value {
 			font-size: 1.4rem;
 		}

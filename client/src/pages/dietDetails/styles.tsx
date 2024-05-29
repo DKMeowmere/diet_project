@@ -83,6 +83,10 @@ export const Day = styled.section`
 	display: flex;
 	flex-direction: column;
 	background-color: #eee;
+	
+	.property-badge{
+		min-width: 600px;
+	}
 	.day-name {
 		font-size: 2rem;
 		border-bottom: 0.2rem solid black;
@@ -113,7 +117,7 @@ export const Day = styled.section`
 	}
 	.property-badge {
 		width: 90%;
-		max-width: 400px;
+		max-width: 600px;
 		margin: 20px auto 0;
 	}
 `
@@ -142,6 +146,13 @@ export const MealsContainer = styled.div`
 		text-align: center;
 		font-size: 1rem;
 		margin: 15px;
+		display: flex;
+		flex-flow: column wrap;
+	}
+	.product-group-name{
+		font-size: 1.3rem;
+		text-align: center;
+		margin-bottom: 10px;
 	}
 `
 
@@ -153,7 +164,7 @@ export const TableContainer = styled.table`
 	.cell {
 		border: 2px solid black;
 		padding: 12px;
-		font-size: 0.6rem;
+		font-size:0.9rem;
 	}
 	.strong {
 		background-color: ${({ theme }) => theme.colors.main};

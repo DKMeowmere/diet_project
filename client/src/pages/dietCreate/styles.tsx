@@ -1,51 +1,61 @@
 import styled from 'styled-components'
 
 export const DietCreateContainer = styled.article`
-	width: 100%;
+	max-width: 100%;
 	padding-bottom: 30px;
+
 	.diet-property-badge-container {
 		display: flex;
+		max-width: 200px;
 		justify-content: center;
 		align-items: center;
 		padding: 20px;
 		background-color: #ddd;
-		margin-top: 20px;
 		background-color: #ffa500;
 		border-radius: 10px;
 		flex-direction: column;
-		gap: 20px;
+		gap: 10px;
+		position: fixed;
+		right: 25%;
+		top: 25%;
 	}
 	.diet-property-badge {
-		width: 90%;
-		max-width: 500px;
+		width: 100%;
+		max-width: 600px;
 		background-color: #fff;
 		padding: 20px;
 		border-radius: 20px;
 		font-weight: bold;
 		color: ${({ theme }) => theme.colors.main};
 	}
+	.btn-element-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		margin-bottom: 20px;
+	}
 	.meal-name-element {
 		width: 100%;
-
 		color: ${({ theme }) => theme.colors.whiteText};
 		text-align: center;
 		font-size: 1.5rem;
 		display: flex;
 		flex-direction: column;
-	}
-	.diet-name {
-		width: 100%;
-		padding: 35px;
-		text-align: center;
-		color: ${({ theme }) => theme.colors.main};
-		font-size: 1.5rem;
-		background-color: #303030;
-	}
-	.input-box {
-		width: 100%;
-	}
-	.day-input {
-		text-align: center;
+		.diet-name {
+			width: 100%;
+			padding: 35px;
+			text-align: center;
+			color: ${({ theme }) => theme.colors.main};
+			font-size: 1.5rem;
+			background-color: #303030;
+		}
+		.input-box {
+			width: 100%;
+		}
+		.day-input {
+			text-align: center;
+		}
 	}
 `
 export const Form = styled.form`
@@ -69,14 +79,7 @@ export const Form = styled.form`
 		right: 20px;
 		width: inherit;
 	}
-	.btn-element-container {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		flex-direction: column;
-		width: 100%;
-		margin-bottom: 20px;
-	}
+
 	.diet-title,
 	.diet-text-main {
 		width: 100%;
@@ -99,8 +102,11 @@ export const Form = styled.form`
 		margin-top: 30px;
 		color: ${({ theme }) => theme.colors.whiteText};
 	}
-	button .diet-text-main {
+
+	.diet-text-main {
 		margin-top: 20px;
+		background-color: ${({ theme }) => theme.colors.main};
+		color: ${({ theme }) => theme.colors.whiteText};
 	}
 	.diet-text-sm {
 		background-color: ${({ theme }) => theme.colors.whiteText};
@@ -111,6 +117,9 @@ export const Form = styled.form`
 		display: flex;
 		gap: 10px;
 		flex-direction: column;
+	}
+	.diet-text-sm:last-child {
+		margin-bottom: 15px;
 	}
 	.main-btn {
 		border-radius: 0;
@@ -131,6 +140,7 @@ export const DaysContainer = styled.div`
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		flex-direction: column;
 		width: 100%;
 		margin-top: 20px;
 		margin-bottom: 0px;
@@ -142,6 +152,7 @@ export const DaysContainer = styled.div`
 		margin-bottom: 30px;
 		border-radius: 10px;
 		padding: 20px;
+		border-radius: 10px;
 	}
 `
 export const MealsContainer = styled.div`
@@ -151,6 +162,7 @@ export const MealsContainer = styled.div`
 		.product-value-container {
 			position: relative;
 			border-radius: 20px;
+			position: relative;
 		}
 		svg {
 			width: 32px;
@@ -172,21 +184,7 @@ export const MealsContainer = styled.div`
 		margin-top: 50px;
 		border-top-left-radius: 10px;
 		border-top-right-radius: 10px;
-		.products-meal {
-			width: 25%;
-		}
-
-		.weight-meal,
-		.calories-meal,
-		.carbo-meal,
-		.proteins-meal,
-		.fats-meal,
-		.fiber-meal,
-		.amounts-meal {
-			width: 15%;
-		}
 	}
-
 	.product-container,
 	.product-container-element {
 		display: flex;
@@ -204,18 +202,23 @@ export const MealsContainer = styled.div`
 		.carbo-meal,
 		.proteins-meal,
 		.fats-meal,
-		.fiber-meal {
+		.fiber-meal,
+		.amounts-meal {
 			width: 15%;
 		}
 	}
+	.diet-btn {
+		margin-bottom: 30px;
+		border-top-left-radius: 0px;
+		border-top-right-radius: 0px;
+	}
 	.value {
-		background-color: ${({ theme }) => theme.colors.whiteText};
+		background-color: #f0f0f0;
 		display: flex;
 		text-align: center;
 		justify-content: space-between;
 		padding: 20px;
 		border-bottom: 1px solid #d6cfcf;
-		background-color: #f0f0f0;
 		.product-name {
 			width: 25%;
 			display: flex;
@@ -232,7 +235,6 @@ export const MealsContainer = styled.div`
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			background-color: #f0f0f0;
 		}
 		.weight-number {
 			.weight-input {
@@ -297,25 +299,10 @@ export const MealsContainer = styled.div`
 	}
 	.diet-btn {
 		margin-bottom: 30px;
-		border-top-left-radius: 0px;
-		border-top-right-radius: 0px;
 	}
-	.btn-container {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
-	.btn-meal {
+	.meal-btn {
 		margin: 20px 0;
-		border-radius: 20px;
-		width: 50vw;
-		background-color: ${({ theme }) => theme.colors.main};
-		color: ${({ theme }) => theme.colors.whiteText};
-		margin: 20px;
 	}
-
 	.meal-summary {
 		margin-top: 20px;
 	}
@@ -361,13 +348,12 @@ export const ProductGroupContainer = styled.div`
 	}
 	.product-group-description {
 		margin: 15px 0;
-		width: 90%;
 		padding: 10px;
 		background-color: #fff;
 		border-radius: 10px;
 		text-align: center;
 		font-size: 1rem;
 		position: relative;
-		
+		width: 90%;
 	}
 `

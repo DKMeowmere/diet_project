@@ -23,12 +23,7 @@ function Home() {
 					</div>
 					<span className="block-title">Produkty</span>
 				</Block>
-				{/* <Block to="/dish">
-					<div className="block-icon">
-						<BiDish />
-					</div>
-					<span className="block-title">Potrawy</span>
-				</Block> */}
+				
 				<Block to="/product-group">
 					<div className="block-icon">
 						<IoFastFoodSharp />

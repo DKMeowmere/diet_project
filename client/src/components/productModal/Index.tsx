@@ -1,21 +1,13 @@
-import {
-	Product,
-	ProductsContainer,
-	ProductsArticle,
-	ProductModalContainer,
-} from "./styles"
-import SearchInput from "../../components/searchInput/Index"
-import { ProductContainer } from "./styles"
-import { useState, useMemo, useEffect } from "react"
-import {
-	Product as ProductType,
-	Products as ProductsType,
-} from "../../types/product"
-import { useAppDispatch, useAppSelector } from "../../app/hooks"
-import { useCookies } from "react-cookie"
-import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
-import { BsX } from "react-icons/bs"
-import PropertiesBadge from "../propertiesBadge/Index"
+import { Product, ProductsContainer, ProductsArticle, ProductModalContainer } from './styles'
+import SearchInput from '../../components/searchInput/Index'
+import { ProductContainer } from './styles'
+import { useState, useMemo, useEffect } from 'react'
+import { Product as ProductType, Products as ProductsType } from '../../types/product'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { useCookies } from 'react-cookie'
+import { addAlert, endLoading, startLoading } from '../../app/features/appSlice'
+import { BsX } from 'react-icons/bs'
+import PropertiesBadge from '../propertiesBadge/Index'
 
 type Props = {
 	setIsModalOpen: (isModalOpen: boolean) => void
@@ -24,17 +16,17 @@ type Props = {
 
 function ProductModal({ setIsModalOpen, onProductClick }: Props) {
 	const [products, setProducts] = useState<ProductsType>([])
-	const [query, setQuery] = useState("")
+	const [query, setQuery] = useState('')
 	const serverUrl = useAppSelector(state => state.app.serverUrl)
 	const dispatch = useAppDispatch()
 	const [cookies] = useCookies()
 
 	useEffect(() => {
-		const html = document.querySelector("html")
+		const html = document.querySelector('html')
 		if (!html) return
-		html.style.overflowY = "hidden"
+		html.style.overflowY = 'hidden'
 		return () => {
-			html.style.overflowY = "auto"
+			html.style.overflowY = 'auto'
 		}
 	}, [])
 
@@ -51,7 +43,7 @@ function ProductModal({ setIsModalOpen, onProductClick }: Props) {
 
 			if (!res.ok) {
 				setProducts([])
-				dispatch(addAlert({ body: data?.error, type: "ERROR" }))
+				dispatch(addAlert({ body: data?.error, type: 'ERROR' }))
 				return
 			}
 
@@ -66,9 +58,7 @@ function ProductModal({ setIsModalOpen, onProductClick }: Props) {
 	}, [])
 
 	const filteredProducts = useMemo(() => {
-		return products.filter(product =>
-			product.name.toLowerCase().includes(query.toLowerCase())
-		)
+		return products.filter(product => product.name.toLowerCase().includes(query.toLowerCase()))
 	}, [query, products])
 
 	const productsTitles = products.map(product => product.name)
@@ -76,11 +66,11 @@ function ProductModal({ setIsModalOpen, onProductClick }: Props) {
 	return (
 		<ProductModalContainer>
 			<ProductsArticle>
-				<p className="title">Wybierz produkt</p>
+				<p className='title'>Wybierz produkt</p>
 				<SearchInput
-					className="search-input"
-					width="50%"
-					height="60px"
+					className='search-input'
+					width='50%'
+					height='60px'
 					query={query}
 					setQuery={setQuery}
 					autocompleteData={productsTitles}
@@ -89,7 +79,7 @@ function ProductModal({ setIsModalOpen, onProductClick }: Props) {
 					{filteredProducts.map(product => (
 						<ProductContainer key={product._id}>
 							<Product onClick={() => onProductClick(product)}>
-								<div className="product-title">{product.name}</div>
+								<div className='product-title'>{product.name}</div>
 								<PropertiesBadge
 									carbohydrates={+product.carbohydrates}
 									calories={+product.calories}
@@ -101,7 +91,9 @@ function ProductModal({ setIsModalOpen, onProductClick }: Props) {
 						</ProductContainer>
 					))}
 				</ProductsContainer>
-				<BsX className="close-btn" onClick={() => setIsModalOpen(false)} />
+				<div className='close-btn-container'>
+					<BsX className='close-btn' onClick={() => setIsModalOpen(false)} />
+				</div>
 			</ProductsArticle>
 		</ProductModalContainer>
 	)

@@ -1,8 +1,5 @@
-import { useAppDispatch, useAppSelector } from "../../app/hooks"
-import {
-	ProductGroup as ProductGroupType,
-	ProductGroups as ProductGroupsType,
-} from "../../types/productGroup."
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { ProductGroup as ProductGroupType, ProductGroups as ProductGroupsType } from '../../types/productGroup.'
 import {
 	CategoriesContainer,
 	ProductGroup,
@@ -10,12 +7,12 @@ import {
 	ProductGroupsArticle,
 	ProductGroupsContainer,
 	ProductGroupsModalContainer,
-} from "./styles"
-import { useState, useEffect, useMemo } from "react"
-import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
-import { useCookies } from "react-cookie"
-import { BsX } from "react-icons/bs"
-import SearchInput from "../searchInput/Index"
+} from './styles'
+import { useState, useEffect, useMemo } from 'react'
+import { addAlert, endLoading, startLoading } from '../../app/features/appSlice'
+import { useCookies } from 'react-cookie'
+import { BsX } from 'react-icons/bs'
+import SearchInput from '../searchInput/Index'
 
 type Props = {
 	setIsModalOpen: (isModalOpen: boolean) => void
@@ -32,19 +29,14 @@ type Category = {
 	isActive: boolean
 }
 
-export default function ProductGroupModal({
-	setIsModalOpen,
-	onProductGroupClick,
-}: Props) {
+export default function ProductGroupModal({ setIsModalOpen, onProductGroupClick }: Props) {
 	const [productGroups, setProductGroups] = useState<ProductGroupsType>([])
-	const [query, setQuery] = useState("")
+	const [query, setQuery] = useState('')
 	const serverUrl = useAppSelector(state => state.app.serverUrl)
 	const dispatch = useAppDispatch()
 	const [cookies] = useCookies()
 	const [possibleCategories, setPossibleCategories] = useState<Categories>({})
-	const [selectedCategories, setSelectedCategories] = useState(
-		new Set<string>()
-	)
+	const [selectedCategories, setSelectedCategories] = useState(new Set<string>())
 
 	useEffect(() => {
 		dispatch(startLoading())
@@ -59,7 +51,7 @@ export default function ProductGroupModal({
 
 			if (!res.ok) {
 				setProductGroups([])
-				dispatch(addAlert({ body: data?.error, type: "ERROR" }))
+				dispatch(addAlert({ body: data?.error, type: 'ERROR' }))
 				return
 			}
 
@@ -129,45 +121,43 @@ export default function ProductGroupModal({
 		})
 	}, [query, productGroups, selectedCategories, possibleCategories])
 
-	const productGroupsTitles = filteredProductGroups.map(
-		productGroup => productGroup.name
-	)
+	const productGroupsTitles = filteredProductGroups.map(productGroup => productGroup.name)
 
 	return (
 		<ProductGroupsModalContainer>
 			<ProductGroupsArticle>
 				<CategoriesContainer>
-					{Array.from(Object.values(possibleCategories)).map(
-						possibleCategory => {
-							const { id, name, isActive } = possibleCategory
+					{Array.from(Object.values(possibleCategories)).map(possibleCategory => {
+						const { id, name, isActive } = possibleCategory
 
-							return (
-								<div
-									key={id}
-									className={`item ${isActive ? "active" : ""}`}
-									onClick={() => toggleCategory(possibleCategory)}
-								>
-									{name}
-								</div>
-							)
-						}
-					)}
+						return (
+							<div
+								key={id}
+								className={`item ${isActive ? 'active' : ''}`}
+								onClick={() => toggleCategory(possibleCategory)}
+							>
+								{name}
+							</div>
+						)
+					})}
 				</CategoriesContainer>
 				<SearchInput
-					className="search-input"
-					width="50%"
-					height="60px"
+					className='search-input'
+					width='50%'
+					height='60px'
 					query={query}
 					setQuery={setQuery}
 					autocompleteData={productGroupsTitles}
 				/>
-				<BsX className="close-btn" onClick={() => setIsModalOpen(false)} />
+				<div className='close-btn-container'>
+					<BsX className='close-btn' onClick={() => setIsModalOpen(false)} />
+				</div>
 				<ProductGroupsContainer>
 					{filteredProductGroups.map(productGroup => (
 						<ProductGroupContainer key={productGroup._id}>
 							<ProductGroup onClick={() => onProductGroupClick(productGroup)}>
-								<div className="product-group-title">{productGroup.name}</div>
-								<div className="products-list">
+								<div className='product-group-title'>{productGroup.name}</div>
+								<div className='products-list'>
 									{productGroup.products.map(product => {
 										return <p key={product._id}>{product.name}</p>
 									})}

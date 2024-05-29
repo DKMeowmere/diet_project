@@ -1,19 +1,23 @@
 import styled from 'styled-components'
 
 export const DietCreateContainer = styled.article`
-	width: 100%;
+	max-width: 100%;
 	padding-bottom: 30px;
-	.diet-property-badge-container{
+
+	.diet-property-badge-container {
 		display: flex;
+		max-width: 200px;
 		justify-content: center;
 		align-items: center;
 		padding: 20px;
 		background-color: #ddd;
-		margin-top: 20px;
 		background-color: #ffa500;
 		border-radius: 10px;
 		flex-direction: column;
-		gap: 20px;
+		gap: 10px;
+		position: fixed;
+		right: 25%;
+		top: 25%;
 	}
 	.diet-property-badge {
 		width: 100%;
@@ -114,6 +118,9 @@ export const Form = styled.form`
 		gap: 10px;
 		flex-direction: column;
 	}
+	.diet-text-sm:last-child {
+		margin-bottom: 15px;
+	}
 	.main-btn {
 		border-radius: 0;
 		margin: 5px 0px;
@@ -177,7 +184,6 @@ export const MealsContainer = styled.div`
 		margin-top: 50px;
 		border-top-left-radius: 10px;
 		border-top-right-radius: 10px;
-		
 	}
 	.product-container,
 	.product-container-element {
@@ -197,7 +203,7 @@ export const MealsContainer = styled.div`
 		.proteins-meal,
 		.fats-meal,
 		.fiber-meal,
-		.amounts-meal{
+		.amounts-meal {
 			width: 15%;
 		}
 	}

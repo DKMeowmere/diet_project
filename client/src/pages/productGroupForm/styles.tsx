@@ -39,7 +39,7 @@ export const ProductBox = styled.div`
 	flex-wrap: wrap;
 `
 export const ProductContainer = styled.div`
-	width: 20%;
+	width: 25%;
 	background-color: ${({ theme }) => theme.colors.whiteText};
 	border-radius: 15px;
 	padding: 30px;
