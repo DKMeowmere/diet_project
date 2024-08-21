@@ -199,7 +199,6 @@ function DietDetails() {
 											<p className='product-group-description' key={productGroup._id}>
 												<span className='product-group-name'>{productGroup.name}</span>
 												<p>
-
 												{productGroup.description}
 												</p>
 											</p>

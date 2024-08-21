@@ -88,13 +88,13 @@ function DietPdf() {
 												<div className='meal-title'>{meal.name}</div>
 												{meal.description && <div className='meals-description'>{meal.description}</div>}
 											</div>
-											{meal.productGroups.map(productGroup =>
+											{/* {meal.productGroups.map(productGroup =>
 												productGroup.description ? (
 													<p className='product-group-description' key={productGroup._id}>
 														opis {productGroup.name}:{productGroup.description}
 													</p>
 												) : null
-											)}
+											)} */}
 											<TableContainer>
 												<HeaderRow />
 												<tbody>

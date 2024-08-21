@@ -60,6 +60,7 @@ export default function Day({
 						carbohydrates={getDayProperty(day, 'carbohydrates')}
 						proteins={getDayProperty(day, 'proteins')}
 						fats={getDayProperty(day, 'fats')}
+            fiber={getDayProperty(day, "fiber")}
 					/>
 					<p>Cel</p>
 					<PropertiesBadge
