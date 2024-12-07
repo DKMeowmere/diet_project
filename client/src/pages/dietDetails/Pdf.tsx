@@ -1,17 +1,24 @@
-import { DietContainer, MealsContainer, DaysContainer, TableContainer, PdfDietContainer, PdfDay } from './styles'
-import { Diet } from './styles'
-import { useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { Link, useParams, useSearchParams } from 'react-router-dom'
-import { addAlert, endLoading, startLoading } from '../../app/features/appSlice'
-import { useCookies } from 'react-cookie'
-import { Diet as DietType } from '../../types/diet'
-import ProductRow from './ProductRow'
-import FooterRow from './FooterRow'
-import HeaderRow from './HeaderRow'
-import PropertiesBadge from '../../components/propertiesBadge/Index'
-import useCalculations from '../../hooks/useCalculations'
-import ProductGroupTable from './ProductGroupTable'
+import {
+	DietContainer,
+	MealsContainer,
+	DaysContainer,
+	TableContainer,
+	PdfDietContainer,
+	PdfDay,
+} from "./styles"
+import { Diet } from "./styles"
+import { useEffect, useState } from "react"
+import { useAppDispatch, useAppSelector } from "../../app/hooks"
+import { Link, useParams, useSearchParams } from "react-router-dom"
+import { addAlert, endLoading, startLoading } from "../../app/features/appSlice"
+import { useCookies } from "react-cookie"
+import { Diet as DietType } from "../../types/diet"
+import ProductRow from "./ProductRow"
+import FooterRow from "./FooterRow"
+import HeaderRow from "./HeaderRow"
+import PropertiesBadge from "../../components/propertiesBadge/Index"
+import useCalculations from "../../hooks/useCalculations"
+import ProductGroupTable from "./ProductGroupTable"
 
 function DietPdf() {
 	const [diet, setDiet] = useState<DietType | null>(null)
@@ -20,8 +27,8 @@ function DietPdf() {
 	const { id } = useParams()
 	const [cookies] = useCookies()
 	const [searchParams] = useSearchParams()
-	const dayId = searchParams.get('day')
-	const { getDayProperty, getDietProperty } = useCalculations()
+	const dayId = searchParams.get("day")
+	const { getDayProperty } = useCalculations()
 
 	useEffect(() => {
 		dispatch(startLoading())
@@ -36,7 +43,7 @@ function DietPdf() {
 
 			if (!res.ok) {
 				setDiet(null)
-				dispatch(addAlert({ body: data?.error, type: 'ERROR' }))
+				dispatch(addAlert({ body: data?.error, type: "ERROR" }))
 				return
 			}
 
@@ -54,7 +61,9 @@ function DietPdf() {
 		return (
 			<DietContainer>
 				<Diet>
-					<Link to='/'>Nie znaleziono diety o podanym id. Wróć do strony głównej</Link>
+					<Link to="/">
+						Nie znaleziono diety o podanym id. Wróć do strony głównej
+					</Link>
 				</Diet>
 			</DietContainer>
 		)
@@ -69,41 +78,58 @@ function DietPdf() {
 					}
 
 					return (
-						<MealsContainer>
+						<MealsContainer key={day._id}>
 							{day.meals.map(meal => (
 								<PdfDay key={day._id}>
-									<div className='diet-name-container'>
-										<div className='day-name'>{day.day}</div>
+									<div className="diet-name-container">
+										<div className="day-name">{day.day}</div>
 										<PropertiesBadge
-											className='property-badge'
-											calories={getDayProperty(day, 'calories')}
-											carbohydrates={getDayProperty(day, 'carbohydrates')}
-											proteins={getDayProperty(day, 'proteins')}
-											fats={getDayProperty(day, 'fats')}
-											fiber={getDayProperty(day, 'fiber')}
+											className="property-badge"
+											calories={getDayProperty(day, "calories")}
+											carbohydrates={getDayProperty(day, "carbohydrates")}
+											proteins={getDayProperty(day, "proteins")}
+											fats={getDayProperty(day, "fats")}
+											fiber={getDayProperty(day, "fiber")}
 										/>
 
-										<div className='meal-pdf' key={meal._id}>
-											<div className='meal-box'>
-												<div className='meal-title'>{meal.name}</div>
-												{meal.description && <div className='meals-description'>{meal.description}</div>}
+										<div className="meal-pdf" key={meal._id}>
+											<div className="meal-box">
+												<div className="meal-title">{meal.name}</div>
+												{meal.description && (
+													<div className="meals-description">
+														{meal.description}
+													</div>
+												)}
 											</div>
-											{/* {meal.productGroups.map(productGroup =>
+											{meal.productGroups.map(productGroup =>
 												productGroup.description ? (
-													<p className='product-group-description' key={productGroup._id}>
-														opis {productGroup.name}:{productGroup.description}
+													<p
+														className="product-group-description"
+														key={productGroup._id}
+													>
+														{productGroup.description
+															.split("<br>")
+															.map((line, index) => (
+																<p key={index}>{line}</p>
+															))}{" "}
 													</p>
 												) : null
-											)} */}
+											)}
 											<TableContainer>
 												<HeaderRow />
 												<tbody>
 													{meal.products.map(product => {
 														if (product.referringTo) return
-														return <ProductRow product={product} key={product._id} />
+														return (
+															<ProductRow product={product} key={product._id} />
+														)
 													})}
 													{meal.productGroups.map(productGroup => (
-														<ProductGroupTable key={productGroup._id} productGroup={productGroup} meal={meal} />
+														<ProductGroupTable
+															key={productGroup._id}
+															productGroup={productGroup}
+															meal={meal}
+														/>
 													))}
 												</tbody>
 												<FooterRow meal={meal} />
